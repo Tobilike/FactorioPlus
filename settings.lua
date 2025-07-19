@@ -111,7 +111,7 @@ data:extend({
 		type = "int-setting",
 		name = "settings-warehouse-scaling",
 		setting_type = "startup",
-		allowed_values = {75, 100, 150, 250, 500, 1000},
+		allowed_values = {75, 100, 125, 150, 175, 200, 250},
 		default_value = 100,
     },
 	{

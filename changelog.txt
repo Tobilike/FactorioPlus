@@ -1,10 +1,32 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.2.9
-Date: 2025
+Version: 2.2.10
+Date: 2025/07.19
+  Space Age:
+    - Turret veterancy icons are correctly removed when they are mined on space platforms.
+  Graphics:
+    - Added unique icon graphics for Chaingun and Vehicle chassis.
+    - Updated graphics for Electrical grid distributor.
   Balance:
+    - Increased Healing grenade healing rate from 8 -> 10 and changed it's damage type to physical.
+  Fixes:
     - 
- Fixes:
-    - 
+---------------------------------------------------------------------------------------------------
+Version: 2.2.9
+Date: 2025.07.17
+  Additions:
+    - Added advanced Power armors that are good against specific damage types. (Acid/Poison and Fire/Explosive)
+    - Added some more signal icons to use for labelling and started adding flags.
+  Graphics:
+    - Updated Personal shield and Personal roboport colors to match the yellow->red->blue tier system.
+  Balance:
+    - Increased many abandonment package sizes by 1.5x - 2x (e.g 200 -> 400 iron plates)
+    - Increased the amount of large meaty chunks from Polyps by about +20%
+    - Lowered Long range roboport robot count from 20 -> 15
+    - Reduced Abandonment autoplace scaling to only be 75% to 250% as the size scales exponentially (e.g. 200% is 4x larger - not 2x).
+    - Tweaked Abandonment placement formula for scaling to bias closer.
+  Fixes:
+    - Included fix for Alien Biomes with new water decoratives (ChRoNiC_MaSTAIRbater)
+    - Tool technology no longer requires Mining Productivity 1/2/3/etc.
 ---------------------------------------------------------------------------------------------------
 Version: 2.2.8
 Date: 2025.07.12

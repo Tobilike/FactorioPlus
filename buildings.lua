@@ -3662,21 +3662,21 @@ data.extend({
         {
           filename = "__factorioplus__/graphics/electric-distributor.png",
           priority = "high",
-            width = 320,
-            height = 384,
+          width = 381,
+          height = 384,
           direction_count = 1,
-          shift = util.by_pixel(0, -16),
+          shift = util.by_pixel(0, -8),
 		  scale = 0.4,
          },
         {
           filename = "__factorioplus__/graphics/electric-distributor-shadow.png",
           priority = "high",
-          width = 415,
-          height = 250,
+          width = 384,
+          height = 271,
           direction_count = 1,
-          shift = util.by_pixel(16, 14),
+          shift = util.by_pixel(18, 10),
           draw_as_shadow = true,
-		  scale = 0.4,
+		  scale = 0.44,
         }
       }
     },

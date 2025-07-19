@@ -693,5 +693,7 @@ robot_destroyer_damage_modifier = 2.5  -- uses electric beam stats
 robot_destroyer_range = 20
 robot_destroyer_speed = 0.006
 
+-- Capsules
 
+healing_grenade_health = 10 
 

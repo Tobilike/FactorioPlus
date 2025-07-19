@@ -16,6 +16,7 @@ script.on_event(defines.events.on_robot_mined_entity, function(event) RemoveTurr
 script.on_event(defines.events.on_post_entity_died, function(eventinfo)  ReplaceTurretGhost(eventinfo)  end )
 script.on_event(defines.events.on_built_entity, function(event)  ChangePastedTurret(event)  end,  {{filter="ghost", force="player"}} )
 script.on_event(defines.events.on_player_created, function(event) OnPlayerCreated(event) end)
+script.on_event(defines.events.on_space_platform_mined_entity, function(event) OnRemoved(event.entity) end,  {{filter="turret"}} )
 
 function InitMod() 
 	storage.generator = game.create_random_generator()

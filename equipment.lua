@@ -62,14 +62,32 @@ data.raw["movement-bonus-equipment"]["exoskeleton-equipment"].energy_consumption
 data.raw["movement-bonus-equipment"]["exoskeleton-equipment"].movement_bonus = 0.15
 
 --------------------------------------------------- SHIELD OVERRIDE  ------------------------------------------------------------
-
+data.raw["energy-shield-equipment"]["energy-shield-equipment"].sprite.filename = "__factorioplus__/graphics/icons/energy-shield-equipment-mk1-equipment.png"
+data.raw["item"]["energy-shield-equipment"].icon = "__factorioplus__/graphics/icons/energy-shield-equipment-mk1.png"
 data.raw["energy-shield-equipment"]["energy-shield-equipment"].energy_per_shield = "40kJ"
 
+data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].sprite.filename = "__factorioplus__/graphics/icons/energy-shield-equipment-mk2-equipment.png"
+data.raw["item"]["energy-shield-mk2-equipment"].icon = "__factorioplus__/graphics/icons/energy-shield-equipment-mk2.png"
 data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].shape.width = 3
 data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].shape.height = 3
+data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].sprite.scale = 0.75
 data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].energy_per_shield = "60kJ"
 data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].energy_source. buffer_capacity = "360kJ"
 data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].energy_source.input_flow_limit = "720kW"
+
+--------------------------------------------------- PERSONAL ROBOPORT OVERRIDE  ------------------------------------------------------------
+
+data.raw["roboport-equipment"]["personal-roboport-equipment"].sprite.filename = "__factorioplus__/graphics/icons/personal-roboport-mk1-equipment-equipment.png"
+data.raw["item"]["personal-roboport-equipment"].icon = "__factorioplus__/graphics/icons/personal-roboport-mk1-equipment.png"
+
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].sprite.filename = "__factorioplus__/graphics/icons/personal-roboport-mk2-equipment-equipment.png"
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].sprite.scale = 0.75
+data.raw["item"]["personal-roboport-mk2-equipment"].icon = "__factorioplus__/graphics/icons/personal-roboport-mk2-equipment.png"
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].shape.width = 3
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].shape.height = 3
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].energy_source.input_flow_limit = "3500kW"
+data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].charging_energy = "1200kW"
+
 
 --------------------------------------------------- BACKPACK  ------------------------------------------------------------
 
@@ -253,58 +271,61 @@ data:extend({
   },
   
 --------------------------------------------------- OVERRIDES  ------------------------------------------------------------
-{
-    type = "roboport-equipment",
-    name = "personal-roboport-mk2-equipment",
-    take_result = "personal-roboport-mk2-equipment",
-    sprite =
-    {
-      filename = "__base__/graphics/equipment/personal-roboport-mk2-equipment.png",
-      width = 128,
-      height = 128,
-      priority = "medium",
-      scale = 0.75
-    },
-    shape =
-    {
-      width = 3,
-      height = 3,
-      type = "full"
-    },
-    energy_source =
-    {
-      type = "electric",
-      buffer_capacity = "35MJ",
-      input_flow_limit = "3500kW",
-      usage_priority = "secondary-input"
-    },
-    charging_energy = "1200kW",
 
-    robot_limit = 25,
-    construction_radius = 20,
-    spawn_and_station_height = 0.4,
-    spawn_and_station_shadow_height_offset = 0.5,
-    charge_approach_distance = 2.6,
-    robots_shrink_when_entering_and_exiting = true,
 
-    recharging_animation =
-    {
-      filename = "__base__/graphics/entity/roboport/roboport-recharging.png",
-      priority = "high",
-      width = 37,
-      height = 35,
-      frame_count = 16,
-      scale = 1.5,
-      animation_speed = 0.5
-    },
-    recharging_light = {intensity = 0.4, size = 5},
-    stationing_offset = {0, -0.6},
-    charging_station_shift = {0, 0.5},
-    charging_station_count = 4,
-    charging_distance = 1.6,
-    charging_threshold_distance = 5,
-    categories = {"armor"}
-  },
+
+-- {
+    -- type = "roboport-equipment",
+    -- name = "personal-roboport-mk2-equipment",
+    -- take_result = "personal-roboport-mk2-equipment",
+    -- sprite =
+    -- {
+      -- filename = "__base__/graphics/equipment/personal-roboport-mk2-equipment.png",
+      -- width = 128,
+      -- height = 128,
+      -- priority = "medium",
+      -- scale = 0.75
+    -- },
+    -- shape =
+    -- {
+      -- width = 3,
+      -- height = 3,
+      -- type = "full"
+    -- },
+    -- energy_source =
+    -- {
+      -- type = "electric",
+      -- buffer_capacity = "35MJ",
+      -- input_flow_limit = "3500kW",
+      -- usage_priority = "secondary-input"
+    -- },
+    -- charging_energy = "1200kW",
+
+    -- robot_limit = 25,
+    -- construction_radius = 20,
+    -- spawn_and_station_height = 0.4,
+    -- spawn_and_station_shadow_height_offset = 0.5,
+    -- charge_approach_distance = 2.6,
+    -- robots_shrink_when_entering_and_exiting = true,
+
+    -- recharging_animation =
+    -- {
+      -- filename = "__base__/graphics/entity/roboport/roboport-recharging.png",
+      -- priority = "high",
+      -- width = 37,
+      -- height = 35,
+      -- frame_count = 16,
+      -- scale = 1.5,
+      -- animation_speed = 0.5
+    -- },
+    -- recharging_light = {intensity = 0.4, size = 5},
+    -- stationing_offset = {0, -0.6},
+    -- charging_station_shift = {0, 0.5},
+    -- charging_station_count = 4,
+    -- charging_distance = 1.6,
+    -- charging_threshold_distance = 5,
+    -- categories = {"armor"}
+  -- },
   
     {
     type = "recipe",
@@ -429,7 +450,7 @@ data:extend({
     },
     charging_energy = "1200kW",
 
-    robot_limit = 20,
+    robot_limit = 15,
     construction_radius = 40,
     spawn_and_station_height = 0.4,
     spawn_and_station_shadow_height_offset = 0.5,
@@ -471,7 +492,7 @@ data:extend({
     {
     type = "item",
     name = "personal-long-range-roboport-equipment",
-    icon = "__base__/graphics/icons/personal-roboport-equipment.png",
+    icon = "__factorioplus__/graphics/icons/personal-roboport-longrange.png",
     icon_size = 64, icon_mipmaps = 4,
     place_as_equipment_result = "personal-long-range-roboport-equipment",
     subgroup = "utility-equipment",

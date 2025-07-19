@@ -2485,7 +2485,7 @@ data:extend({
               target_effects =
               {
                 type = "damage",
-                damage = { amount = -8, type = "poison"}
+                damage = { amount = -healing_grenade_health, type = "physical"}
               }
             }
           }

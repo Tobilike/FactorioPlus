@@ -619,7 +619,7 @@ local _trv = (math.random() / 10) +  tinyvalue
 	s.map_generator_bounding_box = {{ -boundingspace, -boundingspace}, {boundingspace, boundingspace}}
 	
 	
-	s.autoplace = abandonments_autoplace.abandonments_loot_autoplace("abandonments_autoplace_base(0,".. ( (((_autoplace_distance + _trv) ^ (1+(warehouse_scalingvalue-1))) / 1) +_trv ) ..")")
+	s.autoplace = abandonments_autoplace.abandonments_loot_autoplace("abandonments_autoplace_base(0,".. ( (((_autoplace_distance + _trv) ^ (1+(warehouse_scalingvalue-1))) / 1.25) -_trv ) ..")")
 	s.loot = loottable 
 	reseedrandom()
 	newtinyvalue()

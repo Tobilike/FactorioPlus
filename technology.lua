@@ -4059,6 +4059,11 @@ table.insert(data.raw["technology"]["gun-turret"].effects,
 	}
 )  
 
+-- Update power armor mk2 tech req
+table.removeentry(data.raw["technology"]["power-armor-mk2"].prerequisites, "military-4") 
+table.insert(data.raw["technology"]["power-armor-mk2"].prerequisites,"military-5")
+
+
 if (mods["space-age"]) then
 
 else

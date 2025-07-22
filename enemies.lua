@@ -434,7 +434,7 @@ data:extend({
     icon = "__base__/graphics/icons/biter-spawner.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-player", "placeable-enemy", "not-repairable"},
-    max_health = health_spawner_biter,
+    max_health = 100,
     order="b-d-a",
     subgroup="enemies",
 	loot = spawner_medium_loot,
@@ -610,7 +610,7 @@ data:extend({
     icon = "__base__/graphics/icons/spitter-spawner.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-player", "placeable-enemy", "not-repairable"},
-    max_health = health_spawner_spitter,
+    max_health = 100,
     order="b-d-b",
     subgroup="enemies",
 	loot = spawner_medium_loot,
@@ -896,32 +896,6 @@ data:extend({
           }
         }
       },
-
-      -- cyclic_sound =
-      -- {
-        -- begin_sound =
-        -- {
-          -- {
-            -- filename = "__base__/sound/creatures/worm-spit-start.ogg",
-            -- volume = 0.0
-          -- },
-          -- {
-            -- filename = "__base__/sound/creatures/worm-spit-start-2.ogg",
-            -- volume = 0.0
-          -- },
-          -- {
-            -- filename = "__base__/sound/creatures/worm-spit-start-3.ogg",
-            -- volume = 0.0
-          -- }
-        -- },
-        -- end_sound =
-        -- {
-          -- {
-            -- filename = "__base__/sound/creatures/worm-spit-end.ogg",
-            -- volume = 0.0
-          -- }
-        -- }
-      -- }
     },
     autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(0, 2)"),
     call_for_help_radius = 40,

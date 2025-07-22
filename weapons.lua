@@ -1607,6 +1607,7 @@ data:extend({
     {
       {type="item", name="glass-plate", amount=3},
       {type="item", name="petroleum-fuel", amount=1},
+	  {type="item", name="grenade", amount=1},
     },
 	results = {{type="item", name="molotov", amount=2}},
   },

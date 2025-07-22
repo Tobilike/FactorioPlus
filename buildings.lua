@@ -863,7 +863,7 @@ data.extend({
     -- damaged_trigger_effect = hit_effects.rock(),
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
-    energy_usage = "140kW",
+    energy_usage = "175kW",
     crafting_speed = 3.0,
     source_inventory_size = 1,
     energy_source =
@@ -1004,7 +1004,7 @@ data.extend({
     -- damaged_trigger_effect = hit_effects.rock(),
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
-    energy_usage = "275kW",
+    energy_usage = "365kW",
     crafting_speed = 8,
     source_inventory_size = 1,
     energy_source =
@@ -1013,7 +1013,7 @@ data.extend({
       fuel_categories = {"chemical"},
       effectivity = 1,
       fuel_inventory_size = 2,
-     emissions_per_minute = { pollution = 20 },
+     emissions_per_minute = { pollution = 24 },
       smoke =
       {
         {
@@ -4866,7 +4866,13 @@ data.extend({
       }
     }
   },
+})
+
    ---------------------------------------------------  HUGE ELECTRIC POLE  ------------------------------------------------------------
+
+local hep_cw_y = -350
+
+data.extend({
    {
     type = "electric-pole",
     name = "huge-electric-pole",
@@ -4874,7 +4880,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "player-creation"},
     minable = {mining_time = 0.8, result = "huge-electric-pole"},
-    max_health = 250,
+    max_health = 450,
     corpse = "big-electric-pole-remnants",
     dying_explosion = "big-electric-pole-explosion",
     resistances =
@@ -4882,6 +4888,10 @@ data.extend({
       {
         type = "fire",
         percent = 100
+      },
+	  {
+        type = "impact",
+        percent = 40
       }
     },
     collision_box = {{-1.25, -1.25}, {1.25, 1.25}},
@@ -4889,7 +4899,7 @@ data.extend({
     damaged_trigger_effect = hit_effects.entity({{-0.5, -2.5},{0.5, 0.5}}),
     drawing_box = {{-1.5, -3}, {1.5, 1}},
     maximum_wire_distance = 64,
-    supply_area_distance = 2.5,
+    supply_area_distance = 3.5,
     vehicle_impact_sound = sounds.generic_impact,
     open_sound = sounds.electric_network_open,
     close_sound = sounds.electric_network_close,
@@ -4900,21 +4910,21 @@ data.extend({
         {
           filename = "__factorioplus__/graphics/huge-electric-pole.png",
           priority = "extra-high",
-          width = 304,
+          width = 1216/4,
           height = 512,
 		  scale = 0.5,
           direction_count = 4,
-          shift = util.by_pixel(1, -81),
+          shift = util.by_pixel(1, -70),
         },
         {
-          filename = "__base__/graphics/entity/big-electric-pole/big-electric-pole-shadow.png",
+          filename = "__factorioplus__/graphics/huge-electric-pole-shadow.png",
           priority = "extra-high",
-          width = 188,
-          height = 48,
+          width = 2048/4,
+          height = 212,
           direction_count = 4,
-          shift = util.by_pixel(100, 0),
+          shift = util.by_pixel(49, 11),
           draw_as_shadow = true,
-		  scale = 1.5,
+		  scale = 0.45,
          }
       }
     },
@@ -4929,9 +4939,9 @@ data.extend({
         },
         wire =
         {
-          copper = util.by_pixel_hr(-0, -360.0),
-          red = util.by_pixel_hr(58.0, -211.0),
-          green = util.by_pixel_hr(-58.0, -211.0)
+          copper = util.by_pixel_hr(-0, -340.0),
+          red = util.by_pixel_hr(74.0, -304.0),
+          green = util.by_pixel_hr(-74.0, -304.0)
         }
       },
 	   {
@@ -4943,9 +4953,9 @@ data.extend({
         },
         wire =
         {
-          copper = util.by_pixel_hr(-0, -360.0),
-          red = util.by_pixel_hr(58.0, -211.0),
-          green = util.by_pixel_hr(-58.0, -211.0)
+          copper = util.by_pixel_hr(-0, -340.0),
+          red = util.by_pixel_hr(52.0, -264.0),
+          green = util.by_pixel_hr(-52.0, -332.0)
         }
       },
 	   {
@@ -4957,9 +4967,9 @@ data.extend({
         },
         wire =
         {
-          copper = util.by_pixel_hr(-0, -360.0),
-          red = util.by_pixel_hr(58.0, -211.0),
-          green = util.by_pixel_hr(-58.0, -211.0)
+          copper = util.by_pixel_hr(-0, -340.0),
+          red = util.by_pixel_hr(0, -260.0),
+          green = util.by_pixel_hr(0, -360.0)
         }
       },
 	   {
@@ -4971,9 +4981,9 @@ data.extend({
         },
         wire =
         {
-          copper = util.by_pixel_hr(-0, -360.0),
-          red = util.by_pixel_hr(58.0, -211.0),
-          green = util.by_pixel_hr(-58.0, -211.0)
+          copper = util.by_pixel_hr(-0, -340.0),
+          red = util.by_pixel_hr(-52.0, -264.0),
+          green = util.by_pixel_hr(52.0, -332.0)
         }
       },
     },

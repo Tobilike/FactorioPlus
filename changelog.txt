@@ -1,15 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.2.10
-Date: 2025/07.19
+Date: 2025.07.19
   Space Age:
     - Turret veterancy icons are correctly removed when they are mined on space platforms.
   Graphics:
     - Added unique icon graphics for Chaingun and Vehicle chassis.
     - Updated graphics for Electrical grid distributor.
   Balance:
-    - Increased Healing grenade healing rate from 8 -> 10 and changed it's damage type to physical.
-  Fixes:
-    - 
+    - Increased Healing grenade healing rate from 8 -> 10 and changed its damage type to physical.
 ---------------------------------------------------------------------------------------------------
 Version: 2.2.9
 Date: 2025.07.17

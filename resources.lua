@@ -345,7 +345,7 @@ data:extend
     {
     type = "recipe",
     name = "bio-fuel",
-    energy_required = 60,
+    energy_required = 45,
 	enabled = false,
     category = "advanced-crafting",
     ingredients =
@@ -855,8 +855,8 @@ data:extend
     order="a-b-a",
     infinite = true,
     highlight = true,
-    minimum = 20000,
-    normal = 900000,
+    minimum = 40000,
+    normal = 1300000,
 	remove_decoratives = "true",
     infinite_depletion_amount = 1,
     resource_patch_search_radius = 22,
@@ -871,7 +871,7 @@ data:extend
           type = "fluid",
           name = "water",
           amount_min = 50,
-          amount_max = 50,
+          amount_max = 200,
           probability = 1
         }
       }
@@ -888,11 +888,11 @@ data:extend
       random_probability = 1/50,
       random_spot_size_minimum = 1,
       random_spot_size_maximum = 2, -- don't randomize spot size
-      additional_richness = 280000, -- this increases the total everywhere, so base_density needs to be decreased to compensate
+      additional_richness = 340000, -- this increases the total everywhere, so base_density needs to be decreased to compensate
       has_starting_area_placement = false,
       regular_rq_factor_multiplier = 1
     },
-    stage_counts = {5000000, 1500000 ,600000, 200000},
+    stage_counts = {7000000, 2500000 ,800000, 300000},
     stages =
     {
       sheet =
@@ -1421,7 +1421,7 @@ data:extend
     type = "recipe",
     name = "solid-fuel-from-nat-gas",
     category = "chemistry",
-    energy_required = 10,
+    energy_required = 8,
 	enabled = false,
     ingredients =
     {

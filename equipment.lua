@@ -91,6 +91,8 @@ data.raw["roboport-equipment"]["personal-roboport-mk2-equipment"].charging_energ
 
 --------------------------------------------------- BACKPACK  ------------------------------------------------------------
 
+-- ITEM -- RECIPE -- ENTITY/OBJECT
+
 data:extend({
  {
     type = "armor",

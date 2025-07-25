@@ -4933,9 +4933,9 @@ data.extend({
       {
         shadow =
         {
-          copper = util.by_pixel_hr(445.0, -34.0),
-          red = util.by_pixel_hr(301.0, -0.0),
-          green = util.by_pixel_hr(206.0, -0.0)
+          copper = util.by_pixel_hr(0.0, -0.0),
+          red = util.by_pixel_hr(0, -0.0),
+          green = util.by_pixel_hr(0.0, -0.0)
         },
         wire =
         {
@@ -4947,9 +4947,9 @@ data.extend({
 	   {
         shadow =
         {
-          copper = util.by_pixel_hr(445.0, -34.0),
-          red = util.by_pixel_hr(301.0, -0.0),
-          green = util.by_pixel_hr(206.0, -0.0)
+          copper = util.by_pixel_hr(0.0, -0.0),
+          red = util.by_pixel_hr(0.0, -0.0),
+          green = util.by_pixel_hr(0.0, -0.0)
         },
         wire =
         {
@@ -4961,9 +4961,9 @@ data.extend({
 	   {
         shadow =
         {
-          copper = util.by_pixel_hr(445.0, -34.0),
-          red = util.by_pixel_hr(301.0, -0.0),
-          green = util.by_pixel_hr(206.0, -0.0)
+          copper = util.by_pixel_hr(0.0, -0.0),
+          red = util.by_pixel_hr(0.0, -0.0),
+          green = util.by_pixel_hr(0.0, -0.0)
         },
         wire =
         {
@@ -4975,9 +4975,9 @@ data.extend({
 	   {
         shadow =
         {
-          copper = util.by_pixel_hr(445.0, -34.0),
-          red = util.by_pixel_hr(301.0, -0.0),
-          green = util.by_pixel_hr(206.0, -0.0)
+          copper = util.by_pixel_hr(0.0, -0.0),
+          red = util.by_pixel_hr(0.0, -0.0),
+          green = util.by_pixel_hr(0.0, -0.0)
         },
         wire =
         {

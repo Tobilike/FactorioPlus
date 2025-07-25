@@ -86,7 +86,7 @@ data:extend({
     flags = {"placeable-neutral", "player-creation"},
     resource_categories = {"basic-solid"},
     minable = {mining_time = 0.5, result = "large-burner-mining-drill"},
-    max_health = 350,
+    max_health = 450,
     corpse = "burner-mining-drill-remnants",
     dying_explosion = "burner-mining-drill-explosion",
     collision_box = {{ -1.4, -1.4}, {1.4, 1.4}},
@@ -130,7 +130,7 @@ data:extend({
         }
       }
     },
-    energy_usage = "250kW",
+    energy_usage = "320kW",
 	
 	graphics_set =
     {
@@ -439,9 +439,8 @@ data:extend({
       volume = 200,
       pipe_connections =
       {
-        { direction = defines.direction.west, position = {-2, -2}},
-        { direction = defines.direction.east, position = {2, -2}},
-        --{ direction = defines.direction.south, position = {0, 2}}
+        { direction = defines.direction.west, position = {-2, -1}},
+        { direction = defines.direction.east, position = {2, -1}},
       }
     },
 	working_sound =
@@ -456,10 +455,139 @@ data:extend({
 
     graphics_set =
     {
-      drilling_vertical_movement_duration = 10 / electric_drill_animation_speed,
-      animation_progress = 1,
-      min_animation_progress = 0,
-      max_animation_progress = 30,
+      status_colors = electric_mining_grinder_status_colors(),
+
+      circuit_connector_layer = "object",
+      circuit_connector_secondary_draw_order = { north = 14, east = 30, south = 30, west = 30 },
+
+      animation =
+      {
+        north =
+        {
+          layers =
+          {
+				{
+					priority = "high",
+					filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner.png",
+					line_length = 4,
+					width = 1980/4,
+					height = 1904/4,
+					y = (1904/4) * 0,
+					scale = 0.38,
+					frame_count = 4,
+					animation_speed =  1/3,
+					direction_count = 1,
+					shift = util.by_pixel(0, 0),
+				},
+				{
+					filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+					priority = "high",
+					width = 870,
+					height = 720,
+					repeat_count = 4,
+					draw_as_shadow = true,
+					shift = util.by_pixel(2, 2),
+					scale = 0.225
+			   }
+           }
+        },
+        east =
+        {
+           layers =
+          {
+            {
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 1,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
+			{
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
+           }
+           }
+        },
+        south =
+        {
+           layers =
+          {
+            {
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 2,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
+			{
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
+           }
+           }
+        },
+        west =
+        {
+           layers =
+          {
+            {
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 3,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
+			{
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
+           }
+           }
+        },
+      },
+	  
+	  working_visualisations =
+		{
+		electric_mining_drill_status_leds_working_visualisation(),
+		},
+	},	
+	
+	wet_mining_graphics_set =
+    {
 
       status_colors = electric_mining_grinder_status_colors(),
 
@@ -472,28 +600,29 @@ data:extend({
         {
           layers =
           {
-            {
-              priority = "high",
-              filename = "__factorioplus__/graphics/electric-grinder-n.png",
-              line_length = 4,
-              width = 3480/4,
-              height = 1440/2,
-			  scale = 0.23,
-              frame_count = 8,
-              animation_speed =  1/3,
-              direction_count = 1,
-              shift = util.by_pixel(0, 0),
-            },
-			{
-            filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
-            priority = "high",
-            width = 870,
-            height = 720,
-			repeat_count = 8,
-            draw_as_shadow = true,
-            shift = util.by_pixel(2, 2),
-            scale = 0.225
-           }
+				{
+					priority = "high",
+					filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner-wet.png",
+					line_length = 4,
+					width = 1980/4,
+					height = 1904/4,
+					y = (1904/4) * 0,
+					scale = 0.38,
+					frame_count = 4,
+					animation_speed =  1/3,
+					direction_count = 1,
+					shift = util.by_pixel(0, 0),
+				},
+				{
+					filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+					priority = "high",
+					width = 870,
+					height = 720,
+					repeat_count = 4,
+					draw_as_shadow = true,
+					shift = util.by_pixel(2, 2),
+					scale = 0.225
+			   }
            }
         },
         east =
@@ -501,26 +630,27 @@ data:extend({
            layers =
           {
             {
-              priority = "high",
-              filename = "__factorioplus__/graphics/electric-grinder-e.png",
-              line_length = 4,
-              width = 3480/4,
-              height = 1440/2,
-			scale = 0.23,
-              frame_count = 8,
-              animation_speed =  1/3,
-              direction_count = 1,
-              shift = util.by_pixel(0, 0),
-            },
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner-wet.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 1,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
 			{
-            filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
-            priority = "high",
-            width = 870,
-            height = 720,
-			repeat_count = 8,
-            draw_as_shadow = true,
-            shift = util.by_pixel(2, 2),
-            scale = 0.225
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
            }
            }
         },
@@ -529,26 +659,27 @@ data:extend({
            layers =
           {
             {
-              priority = "high",
-              filename = "__factorioplus__/graphics/electric-grinder-s.png",
-              line_length = 4,
-              width = 3480/4,
-              height = 1440/2,
-			  scale = 0.23,
-              frame_count = 8,
-              animation_speed =  1/3,
-              direction_count = 1,
-              shift = util.by_pixel(0, 0),
-            },
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner-wet.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 2,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
 			{
-            filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
-            priority = "high",
-            width = 870,
-            height = 720,
-			repeat_count = 8,
-            draw_as_shadow = true,
-            shift = util.by_pixel(2, 2),
-            scale = 0.225
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
            }
            }
         },
@@ -557,30 +688,32 @@ data:extend({
            layers =
           {
             {
-              priority = "high",
-              filename = "__factorioplus__/graphics/electric-grinder-w.png",
-              line_length = 4,
-              width = 3480/4,
-              height = 1440/2,
-			  scale = 0.23,
-              frame_count = 8,
-              animation_speed =  1/3,
-              direction_count = 1,
-              shift = util.by_pixel(0, 0),
-            },
+				priority = "high",
+				filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-miner-wet.png",
+				line_length = 4,
+				width = 1980/4,
+				height = 1904/4,
+				y = (1904/4) * 3,
+				scale = 0.38,
+				frame_count = 4,
+				animation_speed =  1/3,
+				direction_count = 1,
+				shift = util.by_pixel(0, 0),
+			},
 			{
-            filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
-            priority = "high",
-            width = 870,
-            height = 720,
-			repeat_count = 8,
-            draw_as_shadow = true,
-            shift = util.by_pixel(2, 2),
-            scale = 0.225
+				filename = "__factorioplus__/graphics/electric-grinder-shadow.png",
+				priority = "high",
+				width = 870,
+				height = 720,
+				repeat_count = 4,
+				draw_as_shadow = true,
+				shift = util.by_pixel(2, 2),
+				scale = 0.225
            }
            }
         },
       },
+	  
 	  working_visualisations =
 		{
 		electric_mining_drill_status_leds_working_visualisation(),

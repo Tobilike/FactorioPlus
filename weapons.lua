@@ -1744,8 +1744,31 @@ data:extend({
       draw_as_shadow = true,
     },
   },
+ })
+ 
   
   -----------------------------  SLOWDOWN GRENADE  -----------------------------
+  data.raw["sticker"]["slowdown-sticker"].duration = slowdown_grenade_duration
+   data.raw["sticker"]["slowdown-sticker"].target_movement_modifier = slowdown_grenade_movement
+  
+  
+  data.extend({
+  
+    {
+    type = "recipe",
+    name = "slowdown-capsule",
+	category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 20,
+    ingredients =
+    {
+      {type="item", name="barrel", amount=1},
+	  {type="item", name="grenade", amount=1},
+      {type="item", name="electronic-circuit", amount=3},
+      {type="fluid", name="heavy-oil", amount=60}
+    },
+    results = {{type="item", name="slowdown-capsule", amount=2}},
+  },
   
   {
     type = "capsule",
@@ -1762,11 +1785,12 @@ data:extend({
         ammo_category = "capsule",
         cooldown = firerate_grenade,
         projectile_creation_distance = 0.6,
-        range = range_grenade,
+        range = range_grenade + capsule_throw_extra_range,
         ammo_type =
         {
           category = "capsule",
           target_type = "position",
+		  clamp_position = true,
           action =
           {
             {
@@ -2071,9 +2095,34 @@ data:extend({
       }
     }
   },
+})
   
   -----------------------------  POISON GRENADE  -----------------------------
-  
+ 
+data.raw["smoke-with-trigger"]["poison-cloud"].duration = poison_grenade_duration
+data.raw["smoke-with-trigger"]["poison-cloud"].action_cooldown = poison_grenade_tick_duration
+data.raw["smoke-with-trigger"]["poison-cloud-visual-dummy"].duration = poison_grenade_duration
+data.raw["smoke-with-trigger"]["poison-cloud"].action.action_delivery.target_effects.action.action_delivery.target_effects.damage.amount = poison_grenade_damage
+
+data.extend({ 
+
+  {
+    type = "recipe",
+    name = "poison-capsule",
+    enabled = false,
+    energy_required = 20,
+	category = "crafting-with-fluid",
+    ingredients =
+    {
+	  {type="item", name="grenade", amount=1},
+      {type="item", name="barrel", amount=1},
+      {type="item", name="electronic-circuit", amount=3},
+      {type="fluid", name="sulfuric-acid", amount=100},
+    },
+    results = {{type="item", name="poison-capsule", amount=2}},
+  },
+
+
   {
     type = "capsule",
     name = "poison-capsule",
@@ -2089,11 +2138,12 @@ data:extend({
         ammo_category = "capsule",
         cooldown = firerate_grenade,
         projectile_creation_distance = 0.6,
-        range = range_grenade,
+        range = range_grenade + capsule_throw_extra_range,
         ammo_type =
         {
           category = "capsule",
           target_type = "position",
+		  clamp_position = true,
           action =
           {
             {
@@ -2231,6 +2281,21 @@ data:extend({
    
 -----------------------------  HEALING GRENADE  -----------------------------
   
+     {
+    type = "recipe",
+    name = "healing-capsule",
+	category = "crafting-with-fluid",
+    enabled = false,
+    energy_required = 20,
+    ingredients =
+    {
+      {type="item", name="med-pack", amount=1},
+      {type="item", name="barrel", amount=1},
+      {type="fluid", name="steam", amount=200},
+    },
+    results = {{type="item", name="healing-capsule", amount=2}},
+  },
+  
   {
     type = "capsule",
     name = "healing-capsule",
@@ -2246,11 +2311,12 @@ data:extend({
         ammo_category = "capsule",
         cooldown = firerate_grenade,
         projectile_creation_distance = 0.6,
-        range = range_grenade,
+        range = range_grenade + capsule_throw_extra_range,
         ammo_type =
         {
           category = "capsule",
           target_type = "position",
+		  clamp_position = true,
           action =
           {
             {
@@ -2403,7 +2469,7 @@ data:extend({
 
     affected_by_wind = false,
     cyclic = true,
-    duration = 60 * 20,
+    duration = healing_grenade_duration,
     fade_away_duration = 2 * 60,
     spread_duration = 20,
     color = {r = 0.239, g = 0.875, b = 0.192, a = 0.690}, -- #3ddffdb0,
@@ -2493,7 +2559,7 @@ data:extend({
         }
       }
     },
-    action_cooldown = 30
+    action_cooldown = healing_grenade_tick_duration
   },
   
   {
@@ -2514,7 +2580,7 @@ data:extend({
 
     affected_by_wind = false,
     cyclic = true,
-    duration = 60 * 20 + 4 * 60,
+    duration = healing_grenade_duration,
     fade_away_duration = 3 * 60,
     spread_duration = (300 - 20) / 2 ,
     color = {r = 0.239, g = 0.875, b = 0.192, a = 0.390}, -- #035b6452

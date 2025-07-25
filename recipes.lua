@@ -1403,6 +1403,9 @@ if settings.startup["settings-loaders-cost"].value == "expensive" then
 loader_cost_mult = 2
 end
 
+local loader_inserter_count = 8
+local loader_belt_count = 10
+
 if settings.startup["settings-loaders-active"].value then
 data:extend
 ({
@@ -1413,9 +1416,9 @@ data:extend
     energy_required = 2,
     ingredients =
     {
-      {type="item", name="burner-inserter", amount=6 * loader_cost_mult},
+      {type="item", name="burner-inserter", amount= loader_inserter_count * loader_cost_mult},
       {type="item", name="electronic-circuit", amount=2 * loader_cost_mult},
-      {type="item", name="basic-transport-belt", amount=6 * loader_cost_mult}
+      {type="item", name="basic-transport-belt", amount=loader_belt_count * loader_cost_mult}
     },
     results = {{type="item", name="basic-loader", amount=1}},
   },
@@ -1423,11 +1426,11 @@ data:extend
     type = "recipe",
     name = "loader",
     enabled = false,
-    energy_required = 2,
+    energy_required = 4,
     ingredients =
     {
-      {type="item", name="inserter", amount=6 * loader_cost_mult},
-      {type="item", name="transport-belt", amount=6 * loader_cost_mult},
+      {type="item", name="inserter", amount=loader_inserter_count * loader_cost_mult},
+      {type="item", name="transport-belt", amount=loader_belt_count * loader_cost_mult},
 	  {type="item", name="basic-loader", amount=1}
     },
     results = {{type="item", name="loader", amount=1}},
@@ -1436,11 +1439,11 @@ data:extend
     type = "recipe",
     name = "fast-loader",
     enabled = false,
-    energy_required = 4,
+    energy_required = 8,
     ingredients =
     {
-	  {type="item", name="long-handed-inserter", amount=6 * loader_cost_mult},
-      {type="item", name="fast-transport-belt", amount=6 * loader_cost_mult},
+	  {type="item", name="long-handed-inserter", amount=loader_inserter_count * loader_cost_mult},
+      {type="item", name="fast-transport-belt", amount=loader_belt_count * loader_cost_mult},
       {type="item", name="loader", amount=1}
     },
     results = {{type="item", name="fast-loader", amount=1}},
@@ -1450,12 +1453,12 @@ data:extend
     name = "express-loader",
     enabled = false,
 	category = "crafting-with-fluid",
-    energy_required = 8,
+    energy_required = 14,
     ingredients =
     {
 	{type="fluid", name="lubricant", amount=15 * loader_cost_mult},
-	  {type="item", name="fast-inserter", amount=6 * loader_cost_mult},
-      {type="item", name="express-transport-belt", amount=6 * loader_cost_mult},
+	  {type="item", name="fast-inserter", amount=loader_inserter_count * loader_cost_mult},
+      {type="item", name="express-transport-belt", amount=loader_belt_count * loader_cost_mult},
       {type="item", name="fast-loader", amount=1}
     },
     results = {{type="item", name="express-loader", amount=1}},
@@ -1465,12 +1468,12 @@ data:extend
     name = "turbo-loader",
     enabled = false,
 	category = "crafting-with-fluid",
-    energy_required = 16,
+    energy_required = 22,
     ingredients =
     {
 	  {type="fluid", name="lubricant", amount=30 * loader_cost_mult},
-      {type="item", name="turbo-transport-belt", amount=6 * loader_cost_mult},
-	  {type="item", name="bulk-inserter", amount=6 * loader_cost_mult},
+      {type="item", name="turbo-transport-belt", amount=loader_belt_count * loader_cost_mult},
+	  {type="item", name="bulk-inserter", amount=loader_inserter_count * loader_cost_mult},
       {type="item", name="express-loader", amount=1}
     },
     results = {{type="item", name="turbo-loader", amount=1}},
@@ -1484,8 +1487,8 @@ data:extend
     ingredients =
     {
 	  {type="fluid", name="lubricant", amount=60 * loader_cost_mult},
-      {type="item", name="supersonic-transport-belt", amount=6 * loader_cost_mult},
-	  {type="item", name="very-long-handed-inserter", amount=6 * loader_cost_mult},
+      {type="item", name="supersonic-transport-belt", amount=loader_belt_count * loader_cost_mult},
+	  {type="item", name="very-long-handed-inserter", amount=loader_inserter_count * loader_cost_mult},
       {type="item", name="turbo-loader", amount=1}
     },
     results = {{type="item", name="supersonic-loader", amount=1}},
@@ -1851,7 +1854,7 @@ end
     type = "recipe",
     name = "basic-wall",
     enabled = true,
-	energy_required = 0.25,
+	energy_required = 0.5,
     ingredients = {{type="item", name="stone", amount=8}},
     results = {{type="item", name="basic-wall", amount=4}},
   },
@@ -1977,48 +1980,8 @@ data:extend({
     results = {{type="item", name="fission-reactor-equipment", amount=1}},
   },
 
-  {
-    type = "recipe",
-    name = "poison-capsule",
-    enabled = false,
-    energy_required = 15,
-	category = "crafting-with-fluid",
-    ingredients =
-    {
-      {type="item", name="barrel", amount=1},
-      {type="item", name="electronic-circuit", amount=3},
-      {type="fluid", name="sulfuric-acid", amount=40},
-    },
-    results = {{type="item", name="poison-capsule", amount=1}},
-  },
-  {
-    type = "recipe",
-    name = "slowdown-capsule",
-	category = "crafting-with-fluid",
-    enabled = false,
-    energy_required = 15,
-    ingredients =
-    {
-      {type="item", name="barrel", amount=1},
-      {type="item", name="electronic-circuit", amount=3},
-      {type="fluid", name="heavy-oil", amount=40}
-    },
-    results = {{type="item", name="slowdown-capsule", amount=1}},
-  },
-   {
-    type = "recipe",
-    name = "healing-capsule",
-	category = "crafting-with-fluid",
-    enabled = false,
-    energy_required = 15,
-    ingredients =
-    {
-      {type="item", name="med-pack", amount=1},
-      {type="item", name="barrel", amount=1},
-      {type="fluid", name="steam", amount=80},
-    },
-    results = {{type="item", name="healing-capsule", amount=1}},
-  },
+
+
 })
   
 --data.raw["rocket-silo"]["rocket-silo"].rocket_parts_required = 50
@@ -2234,7 +2197,8 @@ data.extend({
     ingredients =
     {
       {type="item", name="turret-base", amount=2},
-      {type="item", name="submachine-gun", amount=4},
+	  {type="item", name="gun-turret", amount=2},
+      {type="item", name="submachine-gun", amount=2},
     },
     results = {{type="item", name="heavygun-turret", amount=1}},
   },

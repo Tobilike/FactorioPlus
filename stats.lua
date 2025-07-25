@@ -695,5 +695,15 @@ robot_destroyer_speed = 0.006
 
 -- Capsules
 
-healing_grenade_health = 10 
+capsule_throw_extra_range = 8
 
+slowdown_grenade_duration =  30 * 60
+slowdown_grenade_movement = 0.2
+
+healing_grenade_duration = 60 * 20
+healing_grenade_health = 10 
+healing_grenade_tick_duration = 15
+
+poison_grenade_damage = 20
+poison_grenade_duration = 60 * 40
+poison_grenade_tick_duration = 15

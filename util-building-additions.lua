@@ -232,7 +232,6 @@ end
 -- If it already has a status_color table, it does not need one.
 -- But if it already has visualizers (from coloured dust, or recipe smoke like a chem plant) we insert them into the table.
 
-
  
 function apply_generic_workingvis_to_all(entity_type)
 local _setting = settings.startup["settings-status-panels"].value

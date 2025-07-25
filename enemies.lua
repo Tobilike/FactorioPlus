@@ -9,6 +9,31 @@ require ("__factorioplus__.worm-animations")
 require ("__factorioplus__.util-attack-helpers")
 require ("__factorioplus__.explosions")
 
+-- AI settings to fix wandering biters
+biter_ai_settings = 
+{ 
+	destroy_when_commands_fail = true, 
+	allow_try_return_to_spawner = true,
+	do_separation = true,
+	join_attacks = true,
+	path_resolution_modifier = 0,
+	size_in_group = 1.0
+}
+
+-- TODO Use in the future.
+function Create_AISettings(scale)
+return
+{ 
+	destroy_when_commands_fail = true, 
+	allow_try_return_to_spawner = true,
+	do_separation = true,
+	join_attacks = true,
+	path_resolution_modifier = 1 - scale, -- larger units should use a worse resolution
+	size_in_group = 0.5 + ( scale * 0.5 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
+}
+end
+
+
 local sounds = require ("__base__.prototypes.entity.sounds")
 local hit_effects = require ("__base__.prototypes.entity.hit-effects")
 

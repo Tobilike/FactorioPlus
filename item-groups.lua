@@ -31,6 +31,12 @@
   },
   {
     type = "item-subgroup",
+    name = "fluidpower",
+    group = "fluid-handling",
+    order = "a"
+  },
+  {
+    type = "item-subgroup",
     name = "fluidextraction",
     group = "fluid-handling",
     order = "a"

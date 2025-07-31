@@ -1705,8 +1705,8 @@ end
 	enabled = false,
     ingredients =
     {
-      {type="item", name="big-electric-pole", amount=2},
-      {type="item", name="aluminium-plate", amount=2},
+      {type="item", name="big-electric-pole", amount=1},
+      {type="item", name="aluminium-plate", amount=6},
       {type="item", name="concrete", amount=10},
     },
     results = {{type="item", name="huge-electric-pole", amount=1}},

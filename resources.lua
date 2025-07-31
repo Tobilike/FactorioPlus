@@ -1081,10 +1081,12 @@ data:extend
     tree_removal_probability = 1,
     tree_removal_max_distance = 1024 * 128,
     walking_sound = sounds.wood,
+	mining_sound = sounds.wood, -- sounds.tree_mined
+	mined_sound = sounds.wood,
 	minable =
     {
       mining_particle = "green-croton-wooden-splinter-particle-small",
-      mining_time = 1,
+      mining_time = 0.5,
       results = {{type="item", name="wood", amount=1}},
     },
     collision_box = {{-1.4, -1.4}, {1.4, 1.4}},
@@ -1407,11 +1409,11 @@ data:extend
 	},
 	icon_mipmaps = 3,
     fuel_category = "chemical",
-    fuel_value = "16MJ",
+    fuel_value = "18MJ",
     fuel_acceleration_multiplier = 0.75,
     fuel_top_speed_multiplier = 0.8,
 	fuel_emissions_multiplier = 0.8,
-    subgroup = "intermediate-product",
+    subgroup = "fuel-product",
     order = "p[rocket-fuel]",
     stack_size = 40,
 	weight = 5 * kg,
@@ -1421,7 +1423,7 @@ data:extend
     type = "recipe",
     name = "solid-fuel-from-nat-gas",
     category = "chemistry",
-    energy_required = 8,
+    energy_required = 4,
 	enabled = false,
     ingredients =
     {
@@ -1495,17 +1497,17 @@ data:extend
     type = "recipe",
     name = "basic-natural-gas-processing",
     category = "oil-processing",
-    energy_required = 8,
+    energy_required = 6,
 	enabled = false,
 	allow_productivity = true,
     ingredients =
     {
-      {type="fluid", name="natural-gas", amount=40, fluidbox_index = 2}
+      {type="fluid", name="natural-gas", amount=50, fluidbox_index = 2}
     },
     results=
     {
-      {type="fluid", name="petroleum-gas", amount=25, fluidbox_index = 3},
-	  {type="fluid", name="sulfuric-acid", amount=15, fluidbox_index = 1}
+      {type="fluid", name="petroleum-gas", amount=30, fluidbox_index = 3},
+	  {type="fluid", name="sulfuric-acid", amount=20, fluidbox_index = 1}
     },
     icon = "__factorioplus__/graphics/icons/natural-gas-processing.png",
     icon_size = 64, icon_mipmaps = 4,
@@ -1555,6 +1557,8 @@ data:extend
     type = "resource",
     name = "iron-ore-pure",
     icon = "__factorioplus__/graphics/icons/iron-ore-pure-1.png",
+	icon_size = 128,
+    icon_mipmaps = 3,
     flags = {"placeable-neutral"},
     order="a-b-b",
     tree_removal_probability = 0.8,

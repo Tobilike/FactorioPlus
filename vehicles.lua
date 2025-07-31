@@ -1914,6 +1914,7 @@ data:extend({
     minable = {mining_time = 0.4, result = "atv-drone"},
     mined_sound = {filename = "__core__/sound/deconstruct-medium.ogg",volume = 0.8},
     max_health = atv_health * 1.5,
+	hidden = true,
 	resistances = atv_resistances,
     corpse = "small-remnants",
     dying_explosion = "car-explosion",
@@ -2163,6 +2164,7 @@ data:extend({
  
  -----------------------------  ATV BOOM  -----------------------------
   -- early puttering around vehicle
+  
 {
     type = "car",
     name = "atv-exploding",
@@ -2174,6 +2176,7 @@ data:extend({
     max_health = atv_health,
 	resistances = atv_resistances,
     corpse = "car-remnants",
+	hidden = true,
 	dying_trigger_effect = 
 	{
 		{
@@ -2416,9 +2419,7 @@ data:extend({
       size = {64, 64},
       scale = 0.5,
     },
- },
-
- 
+ }, 
 })
 
   -----------------------------  APC  -----------------------------

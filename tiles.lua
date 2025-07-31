@@ -62,6 +62,7 @@ end
 -- --data.raw["cliff"]["cliff-fulgora"].cliff_explosive = "cliff-explosives"
 -- --data.raw["cliff"]["cliff-gleba"].cliff_explosive = "cliff-explosives"
 -- end
+
 local pollution_ocean = { pollution = 0.000035 }
  
 data.raw["tile"]["stone-path"].walking_speed_modifier = walking_speed_stone
@@ -297,11 +298,17 @@ update_tile_map_color ("forest-floor")
 -- data.raw["planet"]["nauvis"].map_gen_settings.autoplace_settings["tile"].settings["tundra-3"] = {}
  
 
+local abandonmentstonepath = util.table.deepcopy(data.raw["tile"]["stone-path"])
+abandonmentstonepath.name = "stone-path-abandonment"
+abandonmentstonepath.can_be_part_of_blueprint = false
+abandonmentstonepath.hidden = true
+data:extend({abandonmentstonepath})
+
 local oceanwater = util.table.deepcopy(data.raw["tile"]["deepwater"])
 oceanwater.name = "oceanwater"
 
-
 ---------------------------------- CLOUDS ------------------------------------
+
 data.raw["planet"]["nauvis"].surface_render_parameters.clouds.scale = 1/6
 data.raw["planet"]["nauvis"].surface_render_parameters.clouds.opacity = 0.2
 	

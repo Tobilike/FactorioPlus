@@ -1895,7 +1895,7 @@ data.extend({
     name = "landfill-2",
     icon_size = 128,
     icon = "__factorioplus__/graphics/technology/landfill-2.png",
-    prerequisites = {"landfill", "logistics-2","cliff-explosives"},
+    prerequisites = {"landfill","cliff-explosives","chemical-science-pack","concrete"},
     unit =
     {
       count = 300,
@@ -2943,7 +2943,7 @@ data.extend({
     type = "technology",
     name = "backpack-storage",
     icon_size = 256,
-    icon = "__base__/graphics/technology/toolbelt.png",
+    icon = "__factorioplus__/graphics/technology/backpack-storage.png",
     prerequisites = {"toolbelt","steel-processing"},
     effects =
     {
@@ -2959,6 +2959,33 @@ data.extend({
       {
         {"automation-science-pack", 1},
         {"logistic-science-pack", 1}
+      },
+      time = 45
+    },
+    order = "c-k-m"
+  },
+  
+  {
+    type = "technology",
+    name = "backpack-storage-2",
+    icon_size = 256,
+    icon = "__factorioplus__/graphics/technology/backpack-storage.png",
+    prerequisites = {"backpack-storage","modular-armor","chemical-science-pack"},
+    effects =
+    {
+	  {
+        type = "unlock-recipe",
+        recipe = "backpack-2"
+      },
+    },
+    unit =
+    {
+      count = 200,
+      ingredients =
+      {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+		{"chemical-science-pack", 1}
       },
       time = 45
     },
@@ -3176,66 +3203,6 @@ table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{
     },
     order = "c-a"
   },
- -- {
-    -- type = "technology",
-    -- name = "steel-processing",
-    -- icon_size = 256, icon_mipmaps = 4,
-    -- icon = "__base__/graphics/technology/steel-processing.png",
-    -- effects =
-    -- {
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "steel-plate"
-      -- },
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "steel-chest"
-      -- },
-	  -- {
-        -- type = "unlock-recipe",
-        -- recipe = "large-burner-mining-drill"
-      -- },
-    -- },
-    -- unit =
-    -- {
-      -- count = 50,
-      -- ingredients = {{"automation-science-pack", 1}},
-      -- time = 5
-    -- },
-    -- order = "c-a"
-  -- },
-  
--- {
-    -- type = "technology",
-    -- name = "personal-roboport-mk2-equipment",
-    -- icon_size = 256, icon_mipmaps = 4,
-    -- icons = util.technology_icon_constant_equipment("__base__/graphics/technology/personal-roboport-equipment.png"),
-    -- effects =
-    -- {
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "personal-roboport-mk2-equipment"
-      -- },
-	  -- {
-        -- type = "unlock-recipe",
-        -- recipe = "personal-long-range-roboport-equipment"
-      -- }
-    -- },
-    -- prerequisites = { "personal-roboport-equipment", "utility-science-pack" },
-    -- unit =
-    -- {
-      -- count = 250,
-      -- ingredients =
-      -- {
-        -- {"automation-science-pack", 1},
-        -- {"logistic-science-pack", 1},
-        -- {"chemical-science-pack", 1},
-        -- {"utility-science-pack", 1}
-      -- },
-      -- time = 30
-    -- },
-    -- order = "c-k-d-zz"
-  -- },
   
   {
     type = "technology",
@@ -3270,41 +3237,6 @@ table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{
 
 table.insert(data.raw["technology"]["military-2"].effects,{type = "unlock-recipe",recipe = "magnum"})
  
- 
-  -- {
-    -- type = "technology",
-    -- name = "military-2",
-    -- icon_size = 256, icon_mipmaps = 4,
-    -- icon = "__base__/graphics/technology/military.png",
-    -- effects =
-    -- {
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "piercing-rounds-magazine"
-      -- },
-	  -- {
-        -- type = "unlock-recipe",
-        -- recipe = "magnum"
-      -- },
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "grenade"
-      -- }
-    -- },
-    -- prerequisites = {"military", "steel-processing", "logistic-science-pack"},
-    -- unit =
-    -- {
-      -- count = 20,
-      -- ingredients =
-      -- {
-        -- {"automation-science-pack", 1},
-        -- {"logistic-science-pack", 1}
-      -- },
-      -- time = 15
-    -- },
-    -- order = "e-a-b"
-  -- },
-  
 table.removetablewithmatchingentry(data.raw["technology"]["electronics"].effects, "recipe", "lab") 
 table.insert(data.raw["technology"]["electronics"].effects,{type = "unlock-recipe",recipe = "basic-lab"})
 table.insert(data.raw["technology"]["electronics"].effects,{type = "unlock-recipe",recipe = "listening-post"})
@@ -3332,77 +3264,15 @@ data.raw["technology"]["military-3"].unit =
       },
       time = 20
     }
-
-   -- {
-    -- type = "technology",
-    -- name = "military-3",
-    -- icon_size = 256, icon_mipmaps = 4,
-    -- icon = "__base__/graphics/technology/military.png",
-    -- effects =
-    -- {
-	  -- {
-        -- type = "unlock-recipe",
-        -- recipe = "piercing-shotgun-shell"
-      -- },
-	  -- {
-        -- type = "unlock-recipe",
-        -- recipe = "flak-grenade"
-      -- },
-    -- },
-    -- prerequisites = {"military-2"},
-    -- unit =
-    -- {
-      -- count = 50,
-      -- ingredients =
-      -- {
-        -- {"automation-science-pack", 1},
-        -- {"logistic-science-pack", 1},
-		-- {"military-science-pack", 1}
-      -- },
-      -- time = 20
-    -- },
-    -- order = "e-a-b"
-  -- },
+	
 table.insert(data.raw["technology"]["distractor"].effects,{type = "unlock-recipe",recipe = "disruptor-capsule"})
 
 
 table.insert(data.raw["technology"]["gun-turret"].effects,{type = "unlock-recipe",recipe = "shotgun-turret"})
 data.raw["technology"]["gun-turret"].icon = "__factorioplus__/graphics/technology/smg-turret.png"
 data.raw["technology"]["gun-turret"].prerequisites = {"military"}
--- data:extend
--- ({ 
-
-  -- {
-    -- type = "technology",
-    -- name = "shotgun-turret",
-     -- icon_size = 256, icon_mipmaps = 3,
-    -- icon = "__factorioplus__/graphics/technology/shotgun-turret.png",
-    -- effects =
-    -- {
-      -- {
-        -- type = "unlock-recipe",
-        -- recipe = "shotgun-turret"
-      -- }
-    -- },
-	-- prerequisites = {"military-2"},
-    -- unit =
-	-- {
-		-- count = 30,
-		-- ingredients = 
-		-- {
-			-- {"automation-science-pack", 1},
-			-- {"logistic-science-pack", 1},
-		-- },
-		-- time = 15
-	-- },
-	-- order = "a-j-a"
-	-- },
--- })
-
-
 
 table.removetablewithmatchingentry(data.raw["technology"]["military-4"].effects, "recipe", "piercing-shotgun-shell") 
---table.removetablewithmatchingentry(data.raw["technology"]["military-4"].effects, "recipe", "cluster-grenade") 
 
 table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-launcher"})
 table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-rounds"})

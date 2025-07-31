@@ -248,6 +248,7 @@ local kbold_dead=
 }
 
 local pcs = data.raw["character"]["character"].collision_box[1][1]
+data.raw["character"]["character"].crafting_speed = 1
 
 if  settings.startup["settings-character-selection"].value == "kobold" then
 

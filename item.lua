@@ -67,6 +67,10 @@ local tarmac_icon = {
   data.raw["item"]["rail-signal"].subgroup = "train-infrastructure"  
   data.raw["item"]["rail-chain-signal"].subgroup = "train-infrastructure"
   
+  data.raw["item"]["steam-turbine"].subgroup = "fluidpower"
+  data.raw["item"]["steam-engine"].subgroup = "fluidpower"
+  data.raw["item"]["boiler"].subgroup = "fluidpower"
+  
 data:extend({
  {
     type = "item-with-entity-data",

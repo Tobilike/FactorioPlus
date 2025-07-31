@@ -102,29 +102,29 @@ data:extend({
     subgroup = "armor",
     order = "c[heavy-armor]",
     stack_size = 1,
-	inventory_size_bonus = 100,
+	inventory_size_bonus = 60,
     infinite = true,
 	resistances = 
 	{
 		  {
 			type = "physical",
-			decrease = 6,
-			percent = 30
+			decrease = 4,
+			percent = 25
 		  },
 		  {
 			type = "explosion",
-			decrease = 20,
-			percent = 30
+			decrease = 10,
+			percent = 25
 		  },
 		  {
 			type = "acid",
 			decrease = 0,
-			percent = 40
+			percent = 35
 		  },
 		  {
 			type = "fire",
 			decrease = 0,
-			percent = 30
+			percent = 20
 		  },
 	},
   },
@@ -134,8 +134,58 @@ data:extend({
     name = "backpack",
     enabled = false,
     energy_required = 8,
-    ingredients = {{ type="item", name="steel-chest", amount=4}, {type="item", name="heavy-armor", amount=1}},
+    ingredients = {{ type="item", name="iron-chest", amount=6}, {type="item", name="heavy-armor", amount=1}},
 	results = {{type="item", name="backpack", amount=1}},
+  },
+  
+  
+--------------------------------------------------- BACKPACK 2 ------------------------------------------------------------
+
+-- ITEM -- RECIPE -- ENTITY/OBJECT
+
+ {
+    type = "armor",
+    name = "backpack-2",
+    icon = "__factorioplus__/graphics/icons/backpack-2.png",
+    icon_size = 64, icon_mipmaps = 4,
+    subgroup = "armor",
+    order = "c[heavy-armor]",
+    stack_size = 1,
+	inventory_size_bonus = 120,
+    infinite = true,
+	equipment_grid = "tiny-equipment-grid",
+	resistances = 
+	{
+      {
+        type = "physical",
+        decrease = 6,
+        percent = 25
+      },
+      {
+        type = "acid",
+        decrease = 0,
+        percent = 40
+      },
+      {
+        type = "explosion",
+        decrease = 20,
+        percent = 30
+      },
+      {
+        type = "fire",
+        decrease = 0,
+        percent = 30
+      }
+	},
+  },
+  
+  {
+    type = "recipe",
+    name = "backpack-2",
+    enabled = false,
+    energy_required = 16,
+    ingredients = {{ type="item", name="steel-chest", amount=10}, {type="item", name="modular-armor", amount=1}},
+	results = {{type="item", name="backpack-2", amount=1}},
   },
   
    --------------------------------------------------- ANTI EXPLOSIVE ARMOR  ------------------------------------------------------------
@@ -267,7 +317,7 @@ data:extend({
     type = "equipment-grid",
     name = "tiny-equipment-grid",
     width = 4,
-    height = 4,
+    height = 5,
     equipment_categories = {"armor"},
 	locked = false,
   },

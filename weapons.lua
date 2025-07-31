@@ -409,6 +409,7 @@ data:extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "gun",
     order = "b[shotgun]-a[basic]",
+	hidden = true,
     attack_parameters =
     {
       type = "projectile",
@@ -1602,14 +1603,14 @@ data:extend({
     type = "recipe",
     name = "molotov",
 	enabled = false,
-    energy_required = 6,
+    energy_required = 18,
     ingredients =
     {
-      {type="item", name="glass-plate", amount=3},
-      {type="item", name="petroleum-fuel", amount=1},
+      {type="item", name="glass-plate", amount=8},
+      {type="item", name="petroleum-fuel", amount=2},
 	  {type="item", name="grenade", amount=1},
     },
-	results = {{type="item", name="molotov", amount=2}},
+	results = {{type="item", name="molotov", amount=4}},
   },
   
   
@@ -2785,6 +2786,7 @@ data:extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "gun",
     order = "d[rocket-launcher]",
+	hidden = true,
     attack_parameters =
     {
       type = "projectile",

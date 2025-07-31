@@ -3,7 +3,7 @@ local sounds = {}
 
 sounds.gun_turret_gunshot_light =
 {
-  variations = sound_variations_speed("__base__/sound/fight/gun-turret-gunshot", 4, 0.4, 1.2, {volume_multiplier("main-menu", 0.9), volume_multiplier("space-platform", 0.5)}),
+  variations = sound_variations_speed("__base__/sound/fight/gun-turret-gunshot", 4, 0.4, 1.2, 0.05 , {volume_multiplier("main-menu", 0.9), volume_multiplier("space-platform", 0.5)}),
   aggregation = {max_count = 8, remove = true, count_already_playing = true, priority = "newest"}
 }
 
@@ -17,11 +17,30 @@ sounds.gun_turret_gunshot_light =
 
 sounds.gun_turret_gunshot_heavy =
 {
-   {
-      filename = "__factorioplus__/sounds/turret-heavy-gunshot.ogg",
-      volume = 0.5,
-	  speed = 0.6
-    },
+  variations = sound_variations_speed
+  ("__factorioplus__/sounds/turret-heavy-gunshot", 
+  3, 
+  0.4, 
+  0.75,
+  -0.05,
+	  {
+		  volume_multiplier("main-menu", 0.9), 
+		  volume_multiplier("space-platform", 0.5)
+	  }
+  ),
+  aggregation = 
+  {
+	  max_count = 6, 
+	  remove = true, 
+	  count_already_playing = true, 
+	  priority = "newest"
+  }
+  
+   -- {
+      -- filename = "__factorioplus__/sounds/turret-heavy-gunshot.ogg",
+      -- volume = 0.5,
+	  -- speed = 0.6
+    -- },
 }
 
 sounds.car_horn =

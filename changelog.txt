@@ -1,4 +1,27 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.0
+Date: 2025.07.25
+  Additions:
+    - Electric grinder miner can now liquid mine properly.
+  Graphics:
+    - Added proper liquid mining graphics to Electric grinder miner.
+    - Updated graphics for Electric grid distributor.
+    - Updated graphics for Huge electric pole, and fixed their shadow.
+    - Updated some icons to be brighter.
+  Balance:
+    - Moved Boiler, Steam generator and Steam turbine into the fluid category
+    - All capsules and grenade-like throwables require grenades as an ingredient (Molotov, poison and slowdown capsules)
+    - Changed Huge electric pole recipe to only require 1 Big electric pole (was 2) and 6 aluminium (was 2)
+    - Increased Large burner mining drill healh from 350 -> 450 and it's energy usage from 250kW -> 320kW
+    - Increased all Loader recipe cost of belts from 6 -> 10 and inserters from 6 -> 8 and rescaled their energy costs.
+    - Basic wall craft time increased from 0.25 -> 0.5, but decreased mining time from 0.5 -> 0.25
+    - Heavy gun turret recipes now require 2 gun-turrets, but decreased smg count from 4 -> 2
+    - Increased all capsule throw ranges by 8, and now use range clamp so you can throw them when aiming over max range.
+    - Increased Health capsule and Poison capsule efficacy by 2x.
+  Fixes:
+    - AI setting fix to biters that were not being removed if they couldn't path correctly that lead to slowdown over time when enemies are isolated.
+    - Fixed some item ordering being wrong.
+---------------------------------------------------------------------------------------------------
 Version: 2.2.10
 Date: 2025.07.19
   Space Age:

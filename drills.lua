@@ -21,7 +21,7 @@ local function electric_mining_grinder_status_colors()
   }
 end
 
-local function electric_mining_drill_status_leds_working_visualisation()
+local function electric_mininer_grinder_status_leds_working_visualisation()
   local led_blend_mode = nil -- "additive"
   local led_tint = {1,1,1,1}
   return
@@ -30,52 +30,128 @@ local function electric_mining_drill_status_leds_working_visualisation()
     always_draw = true,
     draw_as_light = true,
     north_animation =
-    {
-      filename = "__factorioplus__/graphics/electric-grinder-n-led.png",
-      width = 40,
-      height = 30,
-	  scale = 0.4,
-      blend_mode = led_blend_mode,
-	  draw_as_light = true,
-      tint = led_tint,
-      shift = util.by_pixel(-50, -62),
-    },
+	{
+		layers =
+		{
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 0,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  tint = led_tint,
+			  shift = util.by_pixel(-50, -62),
+			},
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 0,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  draw_as_light = true,
+			  tint = led_tint,
+			  shift = util.by_pixel(-50, -62),
+			},
+		},
+	},
     east_animation =
     {
-      filename = "__factorioplus__/graphics/electric-grinder-e-led.png",
-      width = 30,
-      height = 40,
-      blend_mode = led_blend_mode,
-	  draw_as_light = true,
-	  scale = 0.4,
-      tint = led_tint,
-      shift = util.by_pixel(61, -52),
+		layers =
+		{
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 1,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  tint = led_tint,
+			  shift = util.by_pixel(66, -46),
+			},
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 1,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  draw_as_light = true,
+			  tint = led_tint,
+			  shift = util.by_pixel(66, -46),
+			},
+		},
     },
     south_animation =
     {
-      filename = "__factorioplus__/graphics/electric-grinder-s-led.png",
-      width = 40,
-      height = 30,
-      blend_mode = led_blend_mode,
-	  draw_as_light = true,
-	  scale = 0.4,
-      tint = led_tint,
-      shift = util.by_pixel(51.5, 46),
+		layers =
+		{
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 2,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  tint = led_tint,
+			  shift = util.by_pixel(48, 55),
+			},
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 2,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  draw_as_light = true,
+			  tint = led_tint,
+			  shift =  util.by_pixel(48, 55),
+			},
+		},
     },
     west_animation =
     {
-      filename = "__factorioplus__/graphics/electric-grinder-w-led.png",
-      width = 30,
-      height = 40,
-      blend_mode = led_blend_mode,
-	  draw_as_light = true,
-	  scale = 0.4,
-      tint = led_tint,
-      shift = util.by_pixel(-62, 36),
+		layers =
+		{
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 3,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  tint = led_tint,
+			  shift = util.by_pixel(-68, 38),
+			},
+			{
+			  filename = "__factorioplus__/graphics/electric-grinder/electric-grinder-led.png",
+			  width = 40,
+			  height = 160/4,
+			  y = (160/4) * 3,
+			  scale = 0.4,
+			  blend_mode = led_blend_mode,
+			  draw_as_light = true,
+			  tint = led_tint,
+			  shift = util.by_pixel(-68, 38),
+			},
+		},
     },
   }
 end
 
+-- OVERRIDES --
+
+data.raw["mining-drill"]["burner-mining-drill"].resource_searching_radius = 1.99
+data.raw["mining-drill"]["burner-mining-drill"].energy_source.light_flicker = {color = {1/2,0.7/2,0.6/2}}
+data.raw["mining-drill"]["burner-mining-drill"].radius_visualisation_picture =
+    {
+      filename = "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-radius-visualization.png",
+      width = 4,
+      height = 4
+    },
+
+-- LARGE BURNER MINER DRILL --
 
 data:extend({
 	{
@@ -117,20 +193,20 @@ data:extend({
     {
       type = "burner",
       fuel_categories = {"chemical"},
-      effectivity = 1.2,
+      effectivity = 1,
       fuel_inventory_size = 2,
-      emissions_per_minute = {pollution= 24},
-      light_flicker = {color = {0,0,0}},
+      emissions_per_minute = {pollution=24},
+      light_flicker = {color = {1/1.5,0.7/1.5,0.6/1.5}},
       smoke =
       {
         {
           name = "smoke",
           deviation = {0.1, 0.1},
-          frequency = 5
+          frequency = 8
         }
       }
     },
-    energy_usage = "320kW",
+    energy_usage = "360kW",
 	
 	graphics_set =
     {
@@ -384,19 +460,6 @@ data:extend({
         },
       },
 
-      -- shift_animation_waypoints =
-      -- {
-        -- -- Movement should be between 0.25-0.4 distance
-        -- -- Bounds -0.5 - 0.6
-        -- north = { {0, 0}, {0, -0.3}, {0, 0.1}, {0, 0.5}, {0, 0.2}, {0, -0.1}, {0, -0.5}, {0, -0.15}, {0, 0.25}, {0, 0.6}, {0, 0.3} },
-        -- -- Bounds -1 - 0
-        -- east = { {0, 0}, {-0.4, 0}, {-0.1, 0}, {-0.5, 0}, {-0.75, 0}, {-1, 0}, {-0.65, 0}, {-0.3, 0}, {-0.9, 0}, {-0.6, 0}, {-0.3, 0} },
-        -- -- Bounds -1 - 0
-        -- south = { {0, 0}, {0, -0.4}, {0, -0.1}, {0, -0.5}, {0, -0.75}, {0, -1}, {0, -0.65}, {0, -0.3}, {0, -0.9}, {0, -0.6}, {0, -0.3} },
-        -- -- Bounds 0 - 1
-        -- west = { {0, 0}, {0.4, 0}, {0.1, 0}, {0.5, 0}, {0.75, 0}, {1, 0}, {0.65, 0}, {0.3, 0}, {0.9, 0}, {0.6, 0}, {0.3, 0} },
-      -- },
-
       shift_animation_waypoint_stop_duration = 195 / electric_drill_animation_speed,
       shift_animation_transition_duration = 30 / electric_drill_animation_speed,
       
@@ -582,7 +645,7 @@ data:extend({
 	  
 	  working_visualisations =
 		{
-		electric_mining_drill_status_leds_working_visualisation(),
+		electric_mininer_grinder_status_leds_working_visualisation(),
 		},
 	},	
 	
@@ -716,7 +779,7 @@ data:extend({
 	  
 	  working_visualisations =
 		{
-		electric_mining_drill_status_leds_working_visualisation(),
+		electric_mininer_grinder_status_leds_working_visualisation(),
 		},
 	},	
 

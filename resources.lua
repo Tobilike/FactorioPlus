@@ -101,7 +101,7 @@ data.raw["item"]["wood"].fuel_acceleration_multiplier = 0.5
 data.raw["item"]["wood"].fuel_top_speed_multiplier = 0.5
 data.raw["item"]["coal"].fuel_acceleration_multiplier = 0.7
 data.raw["item"]["coal"].fuel_top_speed_multiplier = 0.8
-data.raw["item"]["coal"].fuel_emissions_multiplier = 1.4
+data.raw["item"]["coal"].fuel_emissions_multiplier = 1.2
 data.raw["item"]["solid-fuel"].fuel_acceleration_multiplier = 0.9
 data.raw["item"]["solid-fuel"].fuel_top_speed_multiplier = 0.9
 data.raw["item"]["rocket-fuel"].fuel_acceleration_multiplier = 2.0
@@ -1410,9 +1410,9 @@ data:extend
 	icon_mipmaps = 3,
     fuel_category = "chemical",
     fuel_value = "18MJ",
-    fuel_acceleration_multiplier = 0.75,
-    fuel_top_speed_multiplier = 0.8,
-	fuel_emissions_multiplier = 0.8,
+    fuel_acceleration_multiplier = 0.65,
+    fuel_top_speed_multiplier = 0.65,
+	fuel_emissions_multiplier = 0.9,
     subgroup = "fuel-product",
     order = "p[rocket-fuel]",
     stack_size = 40,
@@ -1506,8 +1506,8 @@ data:extend
     },
     results=
     {
-      {type="fluid", name="petroleum-gas", amount=30, fluidbox_index = 3},
-	  {type="fluid", name="sulfuric-acid", amount=20, fluidbox_index = 1}
+      {type="fluid", name="petroleum-gas", amount=35, fluidbox_index = 3},
+	  {type="fluid", name="sulfuric-acid", amount=25, fluidbox_index = 1}
     },
     icon = "__factorioplus__/graphics/icons/natural-gas-processing.png",
     icon_size = 64, icon_mipmaps = 4,

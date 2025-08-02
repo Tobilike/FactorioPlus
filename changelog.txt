@@ -1,4 +1,39 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.2
+Date: 2025.08.02
+  Additions:
+    - 
+  Graphics:
+    - 
+  Balance:
+    - 
+  Fixes:
+    - 
+  Localization:
+    - Added Czech (CS) localization (Kecerim24)
+---------------------------------------------------------------------------------------------------
+Version: 2.3.1
+Date: 2025.07.31
+  Additions:
+    - Added Large backpack armour, a later semi-modular armor for mid/late game.
+  Graphics:
+    - Added more flag icons.
+    - Burner miners now emit a flickering light when active.
+    - Backpack technology has a proper icon.
+  Balance:
+    - Large burner miners are less effective at burning and increased their energy usage (320kW/1.2 -> 360kW/1.0 )
+    - Reduced Small backpack armour inventory improvement amount from +100 -> +60. 
+    - Reduced resistances of Small backpack armour so that there's a pro/con equipping it with its contemporaries.
+    - Increased Tiny equipment grid size from 4x4 -> 4x5 (Large backpack & Electric train)
+    - Rebalanced Natural gas fuel to be more of a powering fuel, faster to craft, etc.
+    - Reduced coal pollution multiplier from 1.4 -> 1.2
+    - Increased overall output of Natural gas processing.
+  Fixes:
+    - Fixed crafting speed error on startup with some characters.
+    - Fixed sound aggregation for Large gun turrets and added some sound variation.
+    - Landfill 2 now correctly requires chemical science pack and concrete.
+    - Hid items that should be hidden as they are inaccessible/debug.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.0
 Date: 2025.07.25
   Additions:

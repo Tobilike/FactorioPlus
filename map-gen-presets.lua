@@ -6,9 +6,9 @@
 
 local time_scale = 1.0
 
-if settings.startup["settings-enemy-health"].value == "short" then
+if settings.startup["settings-world-daynightcycle"].value == "short" then
 time_scale = 0.5
-elseif settings.startup["settings-enemy-health"].value == "long" then
+elseif settings.startup["settings-world-daynightcycle"].value == "long" then
 time_scale = 2.0 
 end
 
@@ -22,7 +22,7 @@ data.raw["map-gen-presets"]["default"]["snakey-continents-old"] =
 	order = "b",
       basic_settings =
       {
-        starting_area = 3,
+        starting_area = 2,
         property_expression_names = { elevation = "elevation_lakes" },
         autoplace_controls =
         {
@@ -51,7 +51,7 @@ data.raw["map-gen-presets"]["default"]["snakey-continents-new"] =
 	order = "b",
       basic_settings =
       {
-        starting_area = 3,
+        starting_area = 2,
         property_expression_names = { },
         autoplace_controls =
         {
@@ -81,7 +81,7 @@ data.raw["map-gen-presets"]["default"]["snakey-continents-z-authors-pick"] =
 	order = "b",
       basic_settings =
       {
-        starting_area = 2,
+        starting_area = 1.5,
         property_expression_names = { 
 		 },
         autoplace_controls =
@@ -108,14 +108,22 @@ data.raw["map-gen-presets"]["default"]["snakey-continents-z-authors-pick"] =
       {
         enemy_evolution =
         {
-          time_factor = 0.000005,
-          pollution_factor = 0.0000005
+          time_factor = 0.000004,
+          pollution_factor = 0.0000004
         },
         pollution =
         {
           ageing = 0.5,
           enemy_attack_pollution_consumption_modifier = 0.8
         },
+		enemy_expansion =
+		{
+			max_expansion_distance = 9,
+			settler_group_min_size = 10,
+			settler_group_max_size = 30,
+			min_expansion_cooldown = 60 * 60 * 20,
+			max_expansion_cooldown = 60 * 60 * 60,
+		},
         difficulty_settings =
         {
           technology_price_multiplier = 10

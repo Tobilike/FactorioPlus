@@ -141,10 +141,20 @@ if (mods["space-age"]) then
 -- }) 
 
 else
- 
-
 end
 
+-- MODULE 2 OVERRIDE
+
+table.removeentry(data.raw["technology"]["speed-module-2"].prerequisites, "processing-unit") 
+table.insert(data.raw["technology"]["speed-module-2"].prerequisites,"chemical-science-pack")
+
+table.removeentry(data.raw["technology"]["productivity-module-2"].prerequisites, "processing-unit") 
+table.insert(data.raw["technology"]["productivity-module-2"].prerequisites,"chemical-science-pack")
+
+table.removeentry(data.raw["technology"]["efficiency-module-2"].prerequisites, "processing-unit") 
+table.insert(data.raw["technology"]["efficiency-module-2"].prerequisites,"chemical-science-pack")
+
+-- FLUID HANDLING OVERRIDE
 
 table.insert(data.raw["technology"]["fluid-handling"].effects,
 {
@@ -152,6 +162,8 @@ table.insert(data.raw["technology"]["fluid-handling"].effects,
         recipe = "barrel-recycling"
 }
 )
+
+-- FACTORIOPLUS TECHNOLOGIES
 
 data:extend
 ({

@@ -1,14 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2025.08.02
-  Additions:
-    - 
-  Graphics:
-    - 
   Balance:
-    - 
+    - Increased Burner miner radius from 1 -> 2 and the resource catchment radius is now rendered.
+    - Updated "Authors Pick" map preset to increase expansion time a lot, but increase the size of an expansion.
+    - Abandonment Accumulators drop copper/iron plate scrap, and have a reduced chance to drop batteries.
   Fixes:
-    - 
+    - All Module 2 technology is behind Chemical science instead of Processing units.
+    - Fixed day/night setting timescale that wasn't hooked in correctly.
   Localization:
     - Added Czech (CS) localization (Kecerim24)
 ---------------------------------------------------------------------------------------------------

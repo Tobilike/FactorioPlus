@@ -1017,13 +1017,15 @@ newsaccumulator.max_health = newsaccumulator.max_health * enemy_health_scale
 --newsaccumulator.autoplace = abandonments_autoplace.abandonment_auxbuildings_autoplace(2.5)
 newsaccumulator.autoplace = abandonments_autoplace.abandonments_auxbuildings_autoplace("abandonments_autoplace_base(80, 3.0)")
 newsaccumulator.build_base_evolution_requirement = 10
+newsaccumulator.energy_source.buffer_capacity = "8MJ"
 newsaccumulator.remove_decoratives = "false"
 newsaccumulator.map_generator_bounding_box = {{ -2.65, -1.35},{ 2.65, 1.35}}
 newsaccumulator.enemy_map_color = abandonments_force_color_map
 newsaccumulator.loot =
     {
-      {item = "iron-plate", probability = 0.8, count_min = 0, count_max = 3},
-	  {item = "battery", probability = 1, count_min = 0, count_max = 4},
+      {item = "iron-plate", probability = 1, count_min = 0, count_max = 4},
+	  {item = "copper-plate", probability = 1, count_min = 0, count_max = 4},
+	  {item = "battery", probability = 0.25, count_min = 0, count_max = 2},
     },
 data:extend{newsaccumulator}
 

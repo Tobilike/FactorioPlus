@@ -851,11 +851,11 @@ data.extend({
       },
       {
         type = "explosion",
-        percent = 30
+        percent = 40
       },
       {
         type = "impact",
-        percent = 30
+        percent = 40
       }
     },
     collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
@@ -864,7 +864,7 @@ data.extend({
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
     energy_usage = "175kW",
-    crafting_speed = 3.0,
+    crafting_speed = 4.0,
     source_inventory_size = 1,
     energy_source =
     {
@@ -963,7 +963,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {mining_time = 1.75, result = "steel-forge"},
-    max_health = 1000,
+    max_health = 1200,
     corpse = "stone-furnace-remnants",
     dying_explosion = "stone-furnace-explosion",
     -- repair_sound = sounds.manual_repair,
@@ -1143,19 +1143,19 @@ data.extend({
     allowed_effects = {"consumption", "speed", "productivity", "pollution"},
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
-    crafting_speed = 3.0,
+    crafting_speed = 2.5,
 	effect_receiver = {
 		base_effect = {
 			productivity = 0.1,
 		}
 	},
-    energy_usage = "420kW",
+    energy_usage = "425kW",
     source_inventory_size = 1,
     energy_source =
     {
       type = "electric",
       usage_priority = "secondary-input",
-      emissions_per_minute = { pollution = 3 },
+      emissions_per_minute = { pollution = 4 },
     },
     vehicle_impact_sound = sounds.generic_impact,
     open_sound = sounds.machine_open,

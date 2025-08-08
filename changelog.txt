@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.3
+Date: 2025.08.05
+  Graphics:
+    - Updated Speeder graphics, with proper lights + shadow.
+    - Updated Transporter graphics, with proper lights.
+    - Updated ATV graphics, with proper lights.	
+  Balance:
+    - Increased Speeder impact resistances.
+  Fixes:
+    - Fixed Speeder sprite moving upwards and popping slightly when rotating from frame 64 to 1.
+    - All vehicles now have a mild snap to cardinal directions and diagonals.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2025.08.02
   Balance:

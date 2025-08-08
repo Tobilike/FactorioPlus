@@ -60,7 +60,7 @@ car_resistances =
 }
 car_effectivity = 0.8
 car_braking = "250kW"
-car_consumption = "175kW"
+car_consumption = "180kW"
 car_friction = 0.004
 car_turnrate =0.015
 car_weight = 500
@@ -224,8 +224,8 @@ speeder_resistances =
   },
   {
 	type = "impact",
-	percent = 20,
-	decrease = 30
+	percent = 30,
+	decrease = 40
   },
   {
 	type = "acid",
@@ -236,7 +236,7 @@ speeder_effectivity = 0.8
 speeder_braking = "350kW"
 speeder_consumption = "200kW"
 speeder_friction = 0.0025
-speeder_turnrate = 0.0125
+speeder_turnrate = 0.0135
 speeder_weight = 400
 speeder_inventory_size = 0
 

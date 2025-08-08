@@ -10,6 +10,7 @@ require("stats")
 
 data.raw["spider-vehicle"]["spidertron"].chain_shooting_cooldown_modifier  = 0.25
 
+local rsa = 0.02
 
 local standard_train_wheels =
 {
@@ -94,9 +95,12 @@ local rolling_stock_stand_by_light = function()
   }
 end
 
-data:extend({
+local speeder_scale = 0.425
+
 ----------------------------------------------------------  SPEEDER  ----------------------------------------------------------
--- CAR FAST, GUN NO
+-- CAR FAST YES, GUN CAR NO
+
+data:extend({
 {
     type = "car",
     name = "scout",
@@ -118,6 +122,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = speeder_effectivity,
     braking_power = speeder_braking,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -149,11 +154,28 @@ data:extend({
           filename = "__core__/graphics/light-cone.png",
           priority = "extra-high",
           flags = { "light" },
-          scale = 2,
+          scale = 1.5,
           width = 200,
           height = 200
         },
-        shift = {0, -14},
+        shift = {0.4, -11},
+        size = 2,
+        intensity = 0.6,
+        color = {r = 0.92, g = 0.77, b = 0.3}
+      },
+	   {
+        type = "oriented",
+        minimum_darkness = 0.3,
+        picture =
+        {
+          filename = "__core__/graphics/light-cone.png",
+          priority = "extra-high",
+          flags = { "light" },
+          scale = 1.5,
+          width = 200,
+          height = 200
+        },
+        shift = {-0.4, -11},
         size = 2,
         intensity = 0.6,
         color = {r = 0.92, g = 0.77, b = 0.3}
@@ -168,9 +190,9 @@ data:extend({
         {
 		  filename = "__factorioplus__/graphics/vehicles/speeder.png",
           priority = "low",
-          width = 200,
-          height = 176,
-		  scale = 0.5,
+          width = 1800/8,
+          height = 1744/8,
+		  scale = 1 * speeder_scale,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -185,9 +207,9 @@ data:extend({
 		  filename = "__factorioplus__/graphics/vehicles/speeder-mask.png",
           priority = "low",
 		   
-          width = 200,
-          height = 176,
-		  scale = 0.5,
+          width = 1800/8,
+          height = 1744/8,
+		  scale = 1 * speeder_scale,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -202,23 +224,39 @@ data:extend({
         },
   
 		{
-		  filename = "__factorioplus__/graphics/vehicles/speeder.png",
+		  filename = "__factorioplus__/graphics/vehicles/speeder-shadow.png",
           priority = "low",
-          width = 200,
-          height = 176,
-		  scale = 0.5,
+          width = 1800/8,
+          height = 1744/8,
+		  scale = 1.4 * speeder_scale,
 		  
          direction_count = 64,
 		frame_count = 1,
 		line_length = 8,
 		  
 		  draw_as_shadow = true,
-          shift = {0.3, 0.05},
+          shift = util.by_pixel(-0, -6),
           animation_speed = 8,
           max_advance = 0.2,
         },
       }
     },  
+	
+	light_animation =
+    {
+      filename = "__factorioplus__/graphics/vehicles/speeder-lights.png",
+      priority = "low",
+      blend_mode = "additive",
+      draw_as_glow = true,
+      width = 1800/8,
+	  height = 1744/8,
+      line_length = 8,
+      direction_count = 64,
+      scale = 1 * speeder_scale,
+      shift = {0, 0},
+      -- repeat_count = 2,
+    },
+	
     sound_no_fuel =
     {
       {
@@ -281,6 +319,12 @@ data:extend({
       scale = 0.5,
     },
   },
+ })
+ 
+ 
+local scale_transporter = 0.5
+ 
+ data.extend({
 -----------------------------  TRANSPORTER  -----------------------------
   -- SLOW CAR WITH LARGE TRUNK
 {
@@ -304,6 +348,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = truck_effectivity,
     braking_power = truck_braking,
+	rotation_snap_angle = rsa,
 
    energy_source =
     {
@@ -341,7 +386,7 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {-1.1, -19},
+        shift = {-1.1, -25},
         size = 2.5,
         intensity = 0.9,
         color = {r = 0.92, g = 0.77, b = 0.3}
@@ -358,7 +403,7 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {1.1, -19},
+        shift = {1.1, -25},
         size = 2.5,
         intensity = 0.9,
         color = {r = 0.92, g = 0.77, b = 0.3}
@@ -377,8 +422,25 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {-0.9, -15},
-        size = 2.5,
+        shift = {-1.25, -19},
+        size = 3,
+        intensity = 0.6,
+        color = {r = 0.92, g = 0.77, b = 0.3}
+      },
+	   {
+        type = "oriented",
+        minimum_darkness = 0.3,
+        picture =
+        {
+          filename = "__core__/graphics/light-cone.png",
+          priority = "extra-high",
+          flags = { "light" },
+          scale = 2,
+          width = 200,
+          height = 200
+        },
+        shift = {0, -19},
+        size = 3,
         intensity = 0.6,
         color = {r = 0.92, g = 0.77, b = 0.3}
       },
@@ -394,13 +456,27 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {0.9, -15},
-        size = 2.5,
+        shift = {1.25, -19},
+        size = 3,
         intensity = 0.6,
         color = {r = 0.92, g = 0.77, b = 0.3}
       }
     },
     render_layer = "object",
+	 light_animation =
+    {
+		filename = "__factorioplus__/graphics/vehicles/transporter-lights.png",
+		priority = "low",
+		blend_mode = "additive",
+		draw_as_glow = true,
+		width = 2400/8,
+		height = 2320/8,
+		line_length = 8,
+		direction_count = 64,
+		scale = scale_transporter,
+		shift = util.by_pixel(0,0),
+		--repeat_count = 2,
+    },
     animation =
     {
       layers =
@@ -408,9 +484,9 @@ data:extend({
         {
 		  filename = "__factorioplus__/graphics/vehicles/transporter.png",
           priority = "low",
-          width = 2000/8,
-          height = 1416/8,
-		  scale = 0.8,
+          width = 2400/8,
+			height = 2320/8,
+		  scale = scale_transporter,
 		  
          direction_count = 64,
 		 frame_count = 1,
@@ -424,9 +500,9 @@ data:extend({
 		 {
 		  filename = "__factorioplus__/graphics/vehicles/transporter-mask.png",
           priority = "low",
-          width = 2000/8,
-          height = 1416/8,
-		  scale = 0.8,
+          width = 2400/8,
+		height = 2320/8,
+		  scale = scale_transporter,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -443,9 +519,9 @@ data:extend({
 		{
 		  filename = "__factorioplus__/graphics/vehicles/transporter.png",
           priority = "low",
-          width = 2000/8,
-          height = 1416/8,
-		  scale = 0.8,
+         width = 2400/8,
+		height = 2320/8,
+		  scale = scale_transporter,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -573,6 +649,8 @@ data:extend({
     drawing_box = {{-1.8, -1.8}, {1.8, 1.5}},
     effectivity = 0.7,
     braking_power = "2100kW",
+	rotation_snap_angle = rsa,
+	
     energy_source =
     {
       type = "burner",
@@ -776,6 +854,8 @@ data:extend({
     drawing_box = {{-1.8, -1.8}, {1.8, 1.5}},
     effectivity = flametank_effectivity,
     braking_power = flametank_braking,
+	rotation_snap_angle = rsa,
+	
     energy_source =
     {
       type = "burner",
@@ -1223,6 +1303,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = car_effectivity,
     braking_power = car_braking,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -1357,6 +1438,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = car_effectivity,
     braking_power = car_braking,
+	rotation_snap_angle = rsa,
 
    energy_source =
     {
@@ -1539,6 +1621,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = car_effectivity,
     braking_power = car_braking,
+	rotation_snap_angle = rsa,
 
    energy_source =
     {
@@ -1719,6 +1802,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = atv_effectivity,
     braking_power = atv_braking,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -1756,9 +1840,9 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {-1.1, -10},
-        size = 2.5,
-        intensity = 0.9,
+        shift = {-0.5, -8},
+        size = 2.0,
+        intensity = 0.7,
         color = {r = 0.92, g = 0.77, b = 0.3}
       },
       {
@@ -1773,39 +1857,54 @@ data:extend({
           width = 200,
           height = 200
         },
-        shift = {1.1, -10},
-        size = 2.5,
-        intensity = 0.9,
+        shift = {0.5, -8},
+        size = 2.0,
+        intensity = 0.7,
         color = {r = 0.92, g = 0.77, b = 0.3}
       },
     },
     render_layer = "object",
+	
+	 light_animation =
+    {
+		filename = "__factorioplus__/graphics/vehicles/atv-lights.png",
+		priority = "low",
+		width = 1448/8,
+		height = 1392/8,
+		scale = 0.55,
+		blend_mode = "additive",
+		draw_as_glow = true,
+		line_length = 8,
+		direction_count = 64,
+		shift = util.by_pixel(0,0),
+		--repeat_count = 2,
+    },
     animation =
     {
       layers =
       {
         {
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv.png",
           priority = "low",
-          width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+          width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		 frame_count = 1,
 		 line_length = 8,
 		  
-          shift = {0, 0.2},
+          shift = {0, 0.0},
           animation_speed = 8,
           max_advance = 0.2,
         },
 		
 		 {
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv-mask.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv-mask.png",
           priority = "low",
-         width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+			width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -1814,24 +1913,24 @@ data:extend({
 		  flags = { "mask" },
 		  apply_runtime_tint = true,
 		  
-          shift = {0, 0.2},
+          shift = {0, 0.0},
           animation_speed = 8,
           max_advance = 0.2,
         },
 		
 		{
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv.png",
           priority = "low",
-          width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+          width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		frame_count = 1,
 		line_length = 8,
 		  
 		  draw_as_shadow = true,
-          shift = {0.2, 0.2},
+          shift = {0.2, 0.0},
           animation_speed = 8,
           max_advance = 0.2,
         },
@@ -1927,13 +2026,14 @@ data:extend({
 	--collision_mask = {"consider-tile-transitions","object-layer"},
 	
 	allow_remote_driving = true,
-	allow_passengers = true,
+	allow_passengers = false,
 	chunk_exploration_radius = 3,
 	is_military_target = true,
 	
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = atv_effectivity,
     braking_power = atv_braking,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -2239,6 +2339,7 @@ data:extend({
     damaged_trigger_effect = hit_effects.entity(),
     effectivity = atv_effectivity,
     braking_power = atv_braking,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -2300,16 +2401,16 @@ data:extend({
       },
     },
     render_layer = "object",
-    animation =
+     animation =
     {
       layers =
       {
         {
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv.png",
           priority = "low",
-          width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+          width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		 frame_count = 1,
@@ -2321,11 +2422,11 @@ data:extend({
         },
 		
 		 {
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv-mask.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv-mask.png",
           priority = "low",
-         width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+			width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -2340,11 +2441,11 @@ data:extend({
         },
 		
 		{
-		  filename = "__factorioplus__/graphics/vehicles/hr-atv.png",
+		  filename = "__factorioplus__/graphics/vehicles/atv.png",
           priority = "low",
-          width = 1680/8,
-          height = 1584/8,
-		  scale = 0.5,
+          width = 1448/8,
+          height = 1392/8,
+		  scale = 0.55,
 		  
          direction_count = 64,
 		frame_count = 1,
@@ -2560,6 +2661,7 @@ data:extend({
 	equipment_grid = "small-equipment-grid",
 	allow_passengers = true,
 	terrain_friction_modifier = apc_friction_terrain_modifier,
+	rotation_snap_angle = rsa,
 
    energy_source =
     {
@@ -2730,6 +2832,7 @@ data:extend({
 	allow_passengers = true,
 	equipment_grid = "small-equipment-grid",
 	terrain_friction_modifier = apc_friction_terrain_modifier,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -2943,6 +3046,7 @@ local twingun_turret_shift_xy = {0, -40 }
 	allow_passengers = true,
 	equipment_grid = "small-equipment-grid",
 	terrain_friction_modifier = apc_friction_terrain_modifier,
+	rotation_snap_angle = rsa,
 
     energy_source =
     {
@@ -3150,6 +3254,7 @@ local twingun_turret_shift_xy = {0, -40 }
 	allow_passengers = true,
 	equipment_grid = "small-equipment-grid",
 	terrain_friction_modifier = apc_friction_terrain_modifier,
+	rotation_snap_angle = rsa,
 
    energy_source =
     {
@@ -3351,6 +3456,8 @@ local twingun_turret_shift_xy = {0, -40 }
     drawing_box = {{-2.8, -2.8}, {2.8, 2.5}},
     effectivity = tank_effectivity,
     braking_power = tank_braking,
+	rotation_snap_angle = rsa,
+	
 	equipment_grid = "medium-equipment-grid",
     energy_source =
     {
@@ -3654,6 +3761,7 @@ local twingun_turret_shift_xy = {0, -40 }
     braking_force = 5,
     friction_force = 0.30,
     vertical_selection_shift = -0.5,
+	allow_robot_dispatch_in_automatic_mode = true,
     air_resistance = 0.01, -- this is a percentage of current speed that will be subtracted
 
 	-- The length between this rolling stocks front and rear joints. Joints are the point where connection_distance is measured from when rolling stock are connected to one another. Wheels sprite are placed based on the joint position.
@@ -3905,6 +4013,7 @@ local twingun_turret_shift_xy = {0, -40 }
     collision_box = {{-0.6, -2.4}, {0.6, 2.4}},
     selection_box = {{-1, -2.703125}, {1, 3.296875}},
     damaged_trigger_effect = hit_effects.entity(),
+	allow_robot_dispatch_in_automatic_mode = true,
     vertical_selection_shift = -0.796875,
     weight = 2000,
     max_speed = 1.5,

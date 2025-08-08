@@ -1491,7 +1491,7 @@ data:extend(robots)
               type = "area",
               radius = rocket_radius/2,
 			  show_in_tooltip = true,
-			  force_condition = "not-same",
+			  force = "not-same",
               action_delivery =
               {
                 type = "instant",
@@ -1517,7 +1517,7 @@ data:extend(robots)
               type = "area",
               radius = (rocket_radius/2)/friendly_fire_radius_reduction_factor,
 			  show_in_tooltip = false,
-			  force_condition = "same",
+			  force = "same",
               action_delivery =
               {
                 type = "instant",
@@ -1539,7 +1539,7 @@ data:extend(robots)
 		  type = "area",
 		  radius = rocket_radius,
 		  show_in_tooltip = true,
-		  force_condition = "not-same",
+		  force = "not-same",
 		  action_delivery =
 		  {
 			type = "instant",
@@ -1566,7 +1566,7 @@ data:extend(robots)
 		  type = "area",
 		  radius = rocket_radius/friendly_fire_radius_reduction_factor,
 		  show_in_tooltip = false,
-		  force_condition = "same",
+		  force = "same",
 		  action_delivery =
 		  {
 			type = "instant",

@@ -725,7 +725,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 						{
 						  type = "area",
 						  radius = bullet_explosive_radius,
-						  force_condition = "not-same",
+						  force = "not-same",
 						  action_delivery =
 						  {
 							type = "instant",
@@ -750,7 +750,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 						  type = "area",
 						  radius = bullet_explosive_radius / friendly_fire_radius_reduction_factor,
 						  show_in_tooltip = false,
-						  force_condition = "same",
+						  force = "same",
 						  action_delivery =
 						  {
 							type = "instant",
@@ -926,7 +926,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
             {
               type = "area",
               radius = bullet_nuke_radius,
-			  force_condition = "not-same",
+			  force = "not-same",
               action_delivery =
               {
                 type = "instant",
@@ -956,7 +956,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
               type = "area",
               radius = bullet_nuke_radius / friendly_fire_radius_reduction_factor,
 			  show_in_tooltip = false,
-			  force_condition = "same",
+			  force = "same",
               action_delivery =
               {
                 type = "instant",
@@ -1968,7 +1968,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 				{
 				  type = "area",
 				  radius = shell_explosive_radius,
-				  force_condition = "not-same",
+				  force = "not-same",
 				  action_delivery =
 				  {
 					type = "instant",
@@ -2003,7 +2003,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 				  type = "area",
 				  radius = shell_explosive_radius / friendly_fire_radius_reduction_factor,
 				  show_in_tooltip = false,
-				  force_condition = "same",
+				  force = "same",
 				  action_delivery =
 				  {
 					type = "instant",
@@ -2080,7 +2080,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 		  type = "area",
 		  radius = (shell_explosive_radius*2)/friendly_fire_radius_reduction_factor,
 		  show_in_tooltip = false,
-		  force_condition = "same",
+		  force = "same",
 		  action_delivery =
 		  {
 			type = "instant",
@@ -2368,7 +2368,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 				  type = "area",
 				  radius = shell_nuke_radius,
 				  show_in_tooltip = true,
-				  force_condition = "not-same",
+				  force = "not-same",
 				  action_delivery =
 				  {
 					type = "instant",
@@ -2393,7 +2393,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 				  type = "area",
 				  radius = shell_nuke_radius / friendly_fire_radius_reduction_factor,
 				  show_in_tooltip = false,
-				  force_condition = "same",
+				  force = "same",
 				  action_delivery =
 				  {
 					type = "instant",
@@ -2494,7 +2494,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
 		  type = "area",
 		  radius = (shell_nuke_radius*2) / friendly_fire_radius_reduction_factor,
 		  show_in_tooltip = false,
-		  force_condition = "same",
+		  force = "same",
 		  action_delivery =
 		  {
 			type = "instant",
@@ -4537,7 +4537,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
               type = "area",
               radius = cannon_shell_radius,
 			  show_in_tooltip = true,
-			  force_condition = "not-same",
+			  force = "not-same",
               action_delivery =
               {
                 type = "instant",
@@ -4562,7 +4562,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
               type = "area",
               radius = cannon_shell_radius/friendly_fire_radius_reduction_factor,
 			  show_in_tooltip = false,
-			  force_condition = "same",
+			  force = "same",
               action_delivery =
               {
                 type = "instant",

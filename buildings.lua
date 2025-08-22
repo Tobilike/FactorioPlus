@@ -4506,8 +4506,8 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 1264/8,
-        height = 264/4,
+        width = 1280/8,
+        height = 280/4,
 		scale = 0.5,
         shift = util.by_pixel(6, 0),
       },
@@ -4517,7 +4517,7 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 688/8,
+        width = 720/8,
         height = 336/4,
 		scale = 0.5,
         shift = util.by_pixel(4, 12),
@@ -4539,8 +4539,8 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-		width = 720/8,
-        height = 336/4,
+		width = 752/8,
+        height = 344/4,
 		scale = 0.5,
         shift = util.by_pixel(6, 12),
       }
@@ -4555,7 +4555,7 @@ data.extend({
         line_length = 8,
         priority = "extra-high",
         width = 720/8,
-        height = 408/4,
+        height = 416/4,
 		scale = 0.5,
         shift = util.by_pixel(4, -20),
       },
@@ -4566,7 +4566,7 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 720/8,
+        width = 752/8,
         height = 384/4,
 		scale = 0.5,
         shift = util.by_pixel(6, -18),
@@ -4799,8 +4799,8 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 1264/8,
-        height = 264/4,
+        width = 1280/8,
+        height = 280/4,
 		scale = 0.5,
         shift = util.by_pixel(6, 0),
       },
@@ -4810,7 +4810,7 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 688/8,
+        width = 720/8,
         height = 336/4,
 		scale = 0.5,
         shift = util.by_pixel(4, 12),
@@ -4832,8 +4832,8 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-		width = 720/8,
-        height = 336/4,
+		width = 752/8,
+        height = 344/4,
 		scale = 0.5,
         shift = util.by_pixel(6, 12),
       }
@@ -4848,7 +4848,7 @@ data.extend({
         line_length = 8,
         priority = "extra-high",
         width = 720/8,
-        height = 408/4,
+        height = 416/4,
 		scale = 0.5,
         shift = util.by_pixel(4, -20),
       },
@@ -4859,7 +4859,7 @@ data.extend({
         frame_count = 32,
         line_length = 8,
         priority = "extra-high",
-        width = 720/8,
+        width = 752/8,
         height = 384/4,
 		scale = 0.5,
         shift = util.by_pixel(6, -18),
@@ -6238,6 +6238,10 @@ data.extend({
  -- table.insert(data.raw["technology"]["advanced-circuit"].effects,{type = "unlock-recipe",recipe = "silicon-wafer"})
   
   table.insert( data.raw["lab"]["lab"].inputs, "bio-science-pack")
+ 
+ if (mods["space-age"]) then
+    table.insert( data.raw["lab"]["biolab"].inputs, "bio-science-pack")
+end
  
 
 data.extend({ 

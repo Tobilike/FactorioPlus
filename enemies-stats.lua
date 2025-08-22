@@ -82,7 +82,7 @@ worm_collision_map_scale_addition = 3.0 -- autoplace total + this amount
 autoplace_spacing_biter    = {0.25, 6.0}
 autoplace_spacing_spitter  	= {0.5, 5.0}
 autoplace_spacing_swarmer	= {0.40, 4.75}
-autoplace_spacing_blaster = {1.1, 12}
+autoplace_spacing_blaster = {1.1, 11}
 autoplace_spacing_tanker  ={1.0, 9.0}
 autoplace_spacing_webber = {0.8, 9.5}
 autoplace_spacing_flamer = {0.9, 6.2}
@@ -134,11 +134,11 @@ health_boss_flamer     = 1800
 
 health_spawner_blaster   = 350
 
-health_small_blaster    = 200
-health_medium_blaster  	= 600
-health_big_blaster		= 1400
-health_behemoth_blaster = 3200
-health_boss_blaster     = 6500
+health_small_blaster    = 200 * 1.25
+health_medium_blaster  	= 600 * 1.25
+health_big_blaster		= 1400 * 1.25
+health_behemoth_blaster = 3200 * 1.25
+health_boss_blaster     = 6500 * 1.25
 
 health_spawner_swarmer   = 125
 
@@ -166,17 +166,17 @@ health_boss_spitter     = 1900
 
 health_spawner_tanker   = 400
 
-health_small_tanker    	= 50
-health_medium_tanker  	= 180
-health_big_tanker		= 600
-health_behemoth_tanker 	= 1000
-health_boss_tanker     	= 3000
+health_small_tanker    	= 150
+health_medium_tanker  	= 300
+health_big_tanker		= 800
+health_behemoth_tanker 	= 1200
+health_boss_tanker     	= 2500
 
 health_spawner_stinger   = 250
 
 -- MOVEMENT
 
-movement_blaster_movement_scalar   = 0.6
+movement_blaster_movement_scalar   = 0.5
 
 movement_speed_swarmer_base		=  0.15
 movement_speed_swarmer 			=  0.035
@@ -185,7 +185,7 @@ movement_speed_biter 			=  0.025
 movement_speed_spitter_base 	=  0.10
 movement_speed_spitter 			=  0.015
 movement_speed_blaster_base 	=  0.06
-movement_speed_blaster 			=  0.017
+movement_speed_blaster 			=  0.018
 movement_speed_tanker_base 		=  0.06
 movement_speed_tanker 			=  0.011
 movement_speed_webber_base 		=  0.10 -- base speed
@@ -241,7 +241,7 @@ small_tanker_scale    = 0.6
 medium_tanker_scale   = 0.9
 big_tanker_scale      = 1.2
 behemoth_tanker_scale = 1.6
-boss_tanker_scale     = 2.1
+boss_tanker_scale     = 2.3
 
 stinger_spawner_scale = 1.25
 
@@ -550,24 +550,24 @@ tint_2_spitter_boss = spitter_spawner_tint
 function tankerresistances(v)
 local ntv = v
 local dinc = {4,5}
-local pinc = {3,6}
+local pinc = {2,6}
 local einc = {2,5}
 return 
 {
 	{
 	type = "physical",
 	decrease = 2 + ( ntv * dinc[1] ) ,
-	percent = 60 + ( ntv * dinc[2] ) ,
+	percent = 50 + ( ntv * dinc[2] ) ,
 	},
 	{
 	type = "piercing",
 	decrease = 2 + ( ntv * pinc[1] ),
-	percent = 60 + ( ntv * pinc[2] ),
+	percent = 50 + ( ntv * pinc[2] ),
 	},
 	{
 	type = "explosion",
-	decrease = 2 + ( ntv * einc[1] ), 
-	percent = 20 + ( ntv * einc[2] ),
+	decrease = 1 + ( ntv * einc[1] ), 
+	percent = 10 + ( ntv * einc[2] ),
 	},
 }
 end
@@ -636,18 +636,18 @@ end
 
 function blasterresistances(v)
 local ntv = v - 1
-local dinc = {1,5}
+local dinc = {1,10}
 local einc = {10,5}
 return 
 {
 {
 	type = "physical",
-	decrease = 0 + ( ntv * dinc[1] ) ,
+	decrease = 1 + ( ntv * dinc[1] ) ,
 	percent = 0 + ( ntv * dinc[2] ) ,
 	},
 	{
 	type = "explosion",
-	decrease = 10 + ( ntv * einc[1] ),
+	decrease = 20 + ( ntv * einc[1] ),
 	percent = 70 + ( ntv * einc[2] ),
 	},
 }
@@ -655,7 +655,7 @@ end
 
 function swarmerresistances(v)
 local ntv = v - 1
-local dinc = {1,4}
+local dinc = {0,5}
 return 
 {
 	{
@@ -739,11 +739,7 @@ end
 
 -- Preset loot
 
-small_loot = createmeatyloot(1, 1)
-medium_loot = createmeatyloot(1.25, 2) 
-big_loot = createmeatyloot(1.5, 3)
-behemoth_loot = createmeatyloot(1.75, 4)
-boss_loot = createmeatyloot(2.0, 5) 
+
 
 -- small_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100) , count_min = 0 , count_max = 1 * settings.startup["settings-chunks-multiplier"].value} }
 -- medium_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100) , count_min = 0 , count_max = 2 * settings.startup["settings-chunks-multiplier"].value} }
@@ -756,7 +752,24 @@ boss_loot = createmeatyloot(2.0, 5)
 -- behemoth_loot = { {item = "meaty-chunks", probability = 0.5, count_min = 3, count_max = 6} }
 -- boss_loot = { {item = "meaty-chunks", probability = 1, count_min = 4, count_max = 8} }
 
-spawner_small_loot = { {item = "meaty-chunks", probability = (settings.startup["settings-chunks-probability"].value/100), count_min = 2, count_max = 6 * settings.startup["settings-chunks-multiplier"].value} }
-spawner_medium_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100), count_min = 4, count_max = 10 * settings.startup["settings-chunks-multiplier"].value} }
-spawner_big_loot = { {item = "meaty-chunks", probability = (settings.startup["settings-chunks-probability"].value/100), count_min = 6, count_max = 14 * settings.startup["settings-chunks-multiplier"].value} }
-spawner_behemoth_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100), count_min = 8, count_max = 18 * settings.startup["settings-chunks-multiplier"].value} }
+if (settings.startup["settings-chunks-probability"].value ~= 0) then
+	small_loot = createmeatyloot(1, 1)
+	medium_loot = createmeatyloot(1.25, 2) 
+	big_loot = createmeatyloot(1.5, 3)
+	behemoth_loot = createmeatyloot(1.75, 4)
+	boss_loot = createmeatyloot(2.0, 5) 
+	spawner_small_loot = { {item = "meaty-chunks", probability = (settings.startup["settings-chunks-probability"].value/100), count_min = 2, count_max = 6 * settings.startup["settings-chunks-multiplier"].value} }
+	spawner_medium_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100), count_min = 4, count_max = 10 * settings.startup["settings-chunks-multiplier"].value} }
+	spawner_big_loot = { {item = "meaty-chunks", probability = (settings.startup["settings-chunks-probability"].value/100), count_min = 6, count_max = 14 * settings.startup["settings-chunks-multiplier"].value} }
+	spawner_behemoth_loot = { {item = "meaty-chunks", probability =  (settings.startup["settings-chunks-probability"].value/100), count_min = 8, count_max = 18 * settings.startup["settings-chunks-multiplier"].value} }
+else
+	small_loot = nil
+	medium_loot = nil
+	big_loot = nil
+	behemoth_loot = nil
+	boss_loot = nil
+	spawner_small_loot = nil
+	spawner_medium_loot = nil
+	spawner_big_loot = nil
+	spawner_behemoth_loot = nil
+end

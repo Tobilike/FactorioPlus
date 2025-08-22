@@ -11,7 +11,47 @@ data.raw["armor"]["power-armor"].inventory_size_bonus = 40
 data.raw["armor"]["power-armor-mk2"].inventory_size_bonus = 50
 if (mods["space-age"]) then
 	data.raw["armor"]["mech-armor"].inventory_size_bonus = 60
+	table.insert(data.raw["armor"]["mech-armor"].resistances,  
+		{
+		type = "laser",
+		decrease = 5,
+		percent = 30
+		} 	
+	)
 end
+
+
+-- ADD LASER RESISTANCES
+
+table.insert(data.raw["armor"]["heavy-armor"].resistances,  
+	{
+	type = "laser",
+	decrease = 1,
+	percent = 10
+	} 
+)
+table.insert(data.raw["armor"]["modular-armor"].resistances,  
+	{
+	type = "laser",
+	decrease = 2,
+	percent = 15
+	} 
+)
+table.insert(data.raw["armor"]["power-armor"].resistances,  
+	{
+	type = "laser",
+	decrease = 3,
+	percent = 20
+	} 
+)
+table.insert(data.raw["armor"]["power-armor-mk2"].resistances,  
+	{
+	type = "laser",
+	decrease = 4,
+	percent = 25
+	} 
+)
+
 
 --------------------------------------------------- ARMOUR TECH OVERRIDE  ------------------------------------------------------------
 
@@ -216,7 +256,12 @@ data:extend({
         type = "fire",
         decrease = 20,
         percent = 90
-      }
+      },
+	  {
+		type = "laser",
+		decrease = 2,
+		percent = 15
+	  } 
     },
     subgroup = "armor",
     order = "da[power-armor-fire]",
@@ -323,62 +368,6 @@ data:extend({
   },
   
 --------------------------------------------------- OVERRIDES  ------------------------------------------------------------
-
-
-
--- {
-    -- type = "roboport-equipment",
-    -- name = "personal-roboport-mk2-equipment",
-    -- take_result = "personal-roboport-mk2-equipment",
-    -- sprite =
-    -- {
-      -- filename = "__base__/graphics/equipment/personal-roboport-mk2-equipment.png",
-      -- width = 128,
-      -- height = 128,
-      -- priority = "medium",
-      -- scale = 0.75
-    -- },
-    -- shape =
-    -- {
-      -- width = 3,
-      -- height = 3,
-      -- type = "full"
-    -- },
-    -- energy_source =
-    -- {
-      -- type = "electric",
-      -- buffer_capacity = "35MJ",
-      -- input_flow_limit = "3500kW",
-      -- usage_priority = "secondary-input"
-    -- },
-    -- charging_energy = "1200kW",
-
-    -- robot_limit = 25,
-    -- construction_radius = 20,
-    -- spawn_and_station_height = 0.4,
-    -- spawn_and_station_shadow_height_offset = 0.5,
-    -- charge_approach_distance = 2.6,
-    -- robots_shrink_when_entering_and_exiting = true,
-
-    -- recharging_animation =
-    -- {
-      -- filename = "__base__/graphics/entity/roboport/roboport-recharging.png",
-      -- priority = "high",
-      -- width = 37,
-      -- height = 35,
-      -- frame_count = 16,
-      -- scale = 1.5,
-      -- animation_speed = 0.5
-    -- },
-    -- recharging_light = {intensity = 0.4, size = 5},
-    -- stationing_offset = {0, -0.6},
-    -- charging_station_shift = {0, 0.5},
-    -- charging_station_count = 4,
-    -- charging_distance = 1.6,
-    -- charging_threshold_distance = 5,
-    -- categories = {"armor"}
-  -- },
-  
     {
     type = "recipe",
     name = "personal-laser-defense-equipment",

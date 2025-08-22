@@ -1,14 +1,38 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.6
+Date: 2025.08.22
+  Graphics:
+    - 
+  Balance:
+    - 
+  Fixes:
+    - 
+  Settings:
+    - Added settings to scale the spawn times of Nauvis enemy spawners.
+---------------------------------------------------------------------------------------------------
+Version: 2.3.5
+Date: 2025.08.08
+  Fixes:
+    - Fixed a graphical glitch with Turbo and Supersonic belt splitters jiggling.
+---------------------------------------------------------------------------------------------------
+Version: 2.3.4
+Date: 2025.08.08
+  Graphics:
+    - Updated Turbo and Supersonic belt graphics to use the slightly older versions to avoid any potential licence issues with Space Age.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.3
-Date: 2025.08.05
+Date: 2025.08.08
   Graphics:
     - Updated Speeder graphics, with proper lights + shadow.
     - Updated Transporter graphics, with proper lights.
     - Updated ATV graphics, with proper lights.	
   Balance:
     - Increased Speeder impact resistances.
+    - Increased Large stone furnace speed from 3 -> 4.
+    - Reduced Electric foundry speed from 3 -> 2.5. 
   Fixes:
     - Fixed Speeder sprite moving upwards and popping slightly when rotating from frame 64 to 1.
+    - Fixed many damage source of explosives not correctly set up with any friendly fire damage reduction.
     - All vehicles now have a mild snap to cardinal directions and diagonals.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2

@@ -740,26 +740,30 @@ data.extend({
     stack_size = 10,
 	 weight = 100*kg
   },
-   -- CAR OVERRIDE --
+   
+   	----------------------------------------
+	
+   -- VEHICLES HERE --
   
   {
     type = "item-with-entity-data",
     name = "car-base",
     icon = "__base__/graphics/icons/car.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
+    subgroup = "simple-vehicles",
     order = "ba[cars]",
     place_result = "car-base",
     stack_size = 1
   },
   
+  -- Car is overriden here:
    {
     type = "item-with-entity-data",
     name = "car",
     icon = "__base__/graphics/icons/car.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "bb[cars]",
+    subgroup = "military-vehicles",
+    order = "aa[milveh]",
     place_result = "car",
     stack_size = 1
   },
@@ -769,8 +773,8 @@ data.extend({
     name = "car-shotgun",
     icon = "__base__/graphics/icons/car.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "bb[cars]",
+    subgroup = "military-vehicles",
+    order = "ab[milveh]",
     place_result = "car-shotgun",
     stack_size = 1
   },
@@ -780,7 +784,7 @@ data.extend({
     name = "scout",
     icon = "__factorioplus__/graphics/icons/speeder.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
+    subgroup = "simple-vehicles",
     order = "e[cars]",
     place_result = "scout",
     stack_size = 1
@@ -791,8 +795,8 @@ data.extend({
     name = "transporter",
     icon = "__factorioplus__/graphics/icons/transporter.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "d[cars]",
+    subgroup = "utility-vehicles",
+    order = "b[utilveh]",
     place_result = "transporter",
     stack_size = 1
   },
@@ -802,7 +806,7 @@ data.extend({
     name = "atv",
     icon = "__factorioplus__/graphics/icons/atv.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
+    subgroup = "simple-vehicles",
     order = "9[cars]",
     place_result = "atv",
     stack_size = 1
@@ -813,8 +817,8 @@ data.extend({
     name = "atv-drone",
     icon = "__factorioplus__/graphics/icons/atv.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "9[cars]",
+    subgroup = "military-vehicles",
+    order = "ab[milveh]",
     place_result = "atv-drone",
     stack_size = 1
   },
@@ -824,8 +828,8 @@ data.extend({
     name = "atv-exploding",
     icon = "__factorioplus__/graphics/icons/atv.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "9[cars]",
+    subgroup = "military-vehicles",
+    order = "aa[milveh]",
     place_result = "atv-exploding",
     stack_size = 1
   },
@@ -836,7 +840,7 @@ data.extend({
     name = "apc-base",
     icon = "__factorioplus__/graphics/icons/apc.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
+    subgroup = "simple-vehicles",
     order = "ca[cars]",
     place_result = "apc-base",
     stack_size = 1
@@ -847,8 +851,8 @@ data.extend({
     name = "apc-twinsmg",
     icon = "__factorioplus__/graphics/icons/apc-smg.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "cb[cars]",
+    subgroup = "military-vehicles",
+    order = "cb[milveh]",
     place_result = "apc-twinsmg",
     stack_size = 1
   },
@@ -858,8 +862,8 @@ data.extend({
     name = "apc-autoshotgun",
     icon = "__factorioplus__/graphics/icons/apc-autoshotgun.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "cb[cars]",
+    subgroup = "military-vehicles",
+    order = "cb[milveh]",
     place_result = "apc-autoshotgun",
     stack_size = 1
   },
@@ -869,8 +873,8 @@ data.extend({
     name = "apc-rocket",
     icon = "__factorioplus__/graphics/icons/apc-rocket.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "cb[cars]",
+    subgroup = "military-vehicles",
+    order = "cb[milveh]",
     place_result = "apc-rocket",
     stack_size = 1
   },
@@ -880,8 +884,8 @@ data.extend({
     name = "dozer",
     icon = "__factorioplus__/graphics/icons/dozer.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "tanks",
-    order = "a[tanks]",
+    subgroup = "utility-vehicles",
+    order = "da[utilveh]",
     place_result = "dozer",
     stack_size = 1
   },
@@ -890,8 +894,8 @@ data.extend({
     name = "flame-tank",
     icon = "__factorioplus__/graphics/icons/flame-tank.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "tanks",
-    order = "b[tanks]",
+    subgroup = "military-vehicles",
+    order = "ta[milveh]",
     place_result = "flame-tank",
     stack_size = 1
   },
@@ -901,11 +905,25 @@ data.extend({
     name = "tank",
     icon = "__base__/graphics/icons/tank.png",
     icon_size = 64, icon_mipmaps = 4,
-    subgroup = "tanks",
-    order = "c[tanks]",
+    subgroup = "military-vehicles",
+    order = "tb[milveh]",
     place_result = "tank",
     stack_size = 1
   },
+  
+   {
+    type = "item-with-entity-data",
+    name = "hovercraft",
+    icon = "__factorioplus__/graphics/icons/hovercraft.png",
+    icon_size = 64, icon_mipmaps = 4,
+    subgroup = "utility-vehicles",
+    order = "c[utilveh]",
+    place_result = "hovercraft",
+    stack_size = 1
+  },
+ 
+	----------------------------------------
+
   {
     type = "item",
     name = "pistol-turret",
@@ -1015,6 +1033,9 @@ end
     place_result = "sniper-turret",
     stack_size = 10
   },
+  
+	----------------------------------------
+  
    {
     type = "item",
     name = "steel-forge",

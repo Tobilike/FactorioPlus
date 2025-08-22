@@ -4343,26 +4343,17 @@ local twingun_turret_shift_xy = {0, -40 }
     },
   },
   
-     {
-    type = "item-with-entity-data",
-    name = "hovercraft",
-    icon = "__factorioplus__/graphics/icons/hovercraft.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "cars",
-    order = "e[cars]",
-    place_result = "hovercraft",
-    stack_size = 1
-  },
+
   
   {
     type = "recipe",
     name = "hovercraft",
     enabled = false,
-    energy_required = 20,
+    energy_required = 25,
     ingredients =
     { 
       {type="item", name="transporter", amount=1},
-      {type="item", name="aluminium-plate", amount=10},
+      {type="item", name="low-density-structure", amount=20},
 	  {type="item", name="plastic-bar", amount=20},
     },
     results = {{type="item", name="hovercraft", amount=1}},

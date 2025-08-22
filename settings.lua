@@ -59,7 +59,7 @@ data:extend({
 		type = "int-setting",
 		name = "settings-chunks-probability",
 		setting_type = "startup",
-		allowed_values = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100},
+		allowed_values = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100},
 		default_value = 50,
     },
 	{
@@ -111,8 +111,8 @@ data:extend({
 		type = "int-setting",
 		name = "settings-warehouse-scaling",
 		setting_type = "startup",
-		allowed_values = {75, 100, 125, 150, 175, 200, 250},
-		default_value = 100,
+		allowed_values = {75, 100, 125, 150, 175, 200},
+		default_value = 100,3
     },
 	{
 		type = "bool-setting",

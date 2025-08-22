@@ -159,28 +159,28 @@ local extra_loot_large_wreck = nil
 local extra_loot_medium_wreck = nil
 if settings.startup["settings-crashsite-bonus"].value == "more" then
 	extra_loot_ship = {
-		{name="med-pack", count=4},
-		{name="repair-pack", count=10},
+		{name="med-pack", count=5},
+		{name="repair-pack", count=20},
 		{name="submachine-gun", count=1},
 		{name="light-armor", count=1},
 		{name="firearm-magazine", count=40},
 	}
 	extra_loot_large_wreck = {
-		{name="iron-plate", count=20},
-		{name="iron-gear-wheel", count=10},
+		{name="iron-plate", count=30},
+		{name="iron-gear-wheel", count=15},
 	}
 	extra_loot_medium_wreck = {
-		{name="iron-plate", count=5},
+		{name="iron-plate", count=10},
 	}
 elseif settings.startup["settings-crashsite-bonus"].value == "extra" then
 extra_loot_ship = {
-		{name="med-pack", count=10},
-		{name="repair-pack", count=40},
+		{name="med-pack", count=20},
+		{name="repair-pack", count=80},
 		{name="submachine-gun", count=1},
 		{name="firearm-magazine", count=40},
 		{name="piercing-rounds-magazine", count=20},
 		{name="heavy-armor", count=1},
-		{name="defender-capsule", count=4},
+		{name="defender-capsule", count=5},
 		
 	}
 	extra_loot_large_wreck = {

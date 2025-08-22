@@ -1533,6 +1533,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
     action =
     {
       type = "direct",
@@ -1646,6 +1647,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
     action =
     {
       type = "direct",
@@ -1795,6 +1797,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
 	piercing_damage = 50, 
     action =
     {
@@ -1932,6 +1935,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
     action =
     {
 		type = "direct",
@@ -2194,6 +2198,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
 	piercing_damage = shell_depleted_piercing,
     action =
     {
@@ -2330,6 +2335,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
     acceleration = 0,
     direction_only = true,
+	hit_at_collision_position = true,
     action =
     {
 		type = "direct",

@@ -20,7 +20,9 @@ biter_ai_settings =
 	size_in_group = 1.0
 }
 
+-- currently unused
 -- TODO Use in the future.
+-- Take in an enemy scale, and then change their path reolution accordingly to better path/optimizaitons.
 function Create_AISettings(scale)
 return
 { 
@@ -1468,240 +1470,244 @@ collision_box = {{-0.9 * scale_worm_big, -0.8 * scale_worm_big }, {0.9 * scale_w
 })
 
 function makeenemyspawner(spawnername, spawnerbasehealth, spawning_amount, spawnerscale, spawnertier, spawnerloot, spawnerresistances, spawnertint, spawnerautoplace, spawncooldownscalar)
--- Spawnertierfator is a factor from 1 onwards, starting at 1.0 at tier 1
--- e.g. 
-local _tierreductionfactor = 4
-local spawnertierfactor = 1 + ((spawnertier-1)/_tierreductionfactor)
-local build_base_tier = 0
-local hpt = 0.01
+	-- Spawnertierfator is a factor from 1 onwards, starting at 1.0 at tier 1
+	-- e.g. 
+	local _tierreductionfactor = 4
+	local spawnertierfactor = 1 + ((spawnertier-1)/_tierreductionfactor)
+	local build_base_tier = 0
+	local hpt = 0.01
 
-local enemy_default_size = "small"
-local prefix = ""
-if (spawnertier == 1) then
-prefix = "small"
-enemy_default_size = "small"
-elseif (spawnertier == 2) then
-prefix = "medium"
-enemy_default_size = "medium"
-build_base_tier = 0.3
-elseif (spawnertier == 3) then
-prefix = "big"
-enemy_default_size = "big"
-build_base_tier = 0.6
-elseif (spawnertier == 4) then
-prefix = "behemoth"
-enemy_default_size = "behemoth"
-build_base_tier = 0.8
-elseif (spawnertier == 5) then
-prefix = "huge"
-enemy_default_size = "boss"
-build_base_tier = 0.95
-end
-
-_ap = enemy_autoplace.enemy_spawner_autoplace("enemy_autoplace_base(" .. (spawnerautoplace[1] ) * ( (1.8 * spawnertier) * spawnertier ) .."," .. spawnertier ..")")
-
-dte = nil
-_gs = 
-	{
-		 animations =
-		{
-		  spawner_idle_animation(0, spawnertint, (spawnerscale * spawnertierfactor)),
-		  spawner_idle_animation(1, spawnertint, (spawnerscale * spawnertierfactor)),
-		  spawner_idle_animation(2, spawnertint, (spawnerscale * spawnertierfactor)),
-		  spawner_idle_animation(3, spawnertint, (spawnerscale * spawnertierfactor))
-		},
-	}
-if (string.find(spawnername, "swarmer")) then
-	dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = enemy_default_size .. "-" .. spawnername,
-		as_enemy = true,
-		find_non_colliding_position = true,
-		offsets =
-		{
-		  util.rotate_position({0,1*spawnerscale}, 0.1), 
-		  util.rotate_position({0,1*spawnerscale}, 0.2),
-		  util.rotate_position({0,1*spawnerscale}, 0.3),
-		  util.rotate_position({0,1*spawnerscale}, 0.4),
-		  util.rotate_position({0,1*spawnerscale}, 0.5),
-		  util.rotate_position({0,1*spawnerscale}, 0.6),
-		  util.rotate_position({0,1*spawnerscale}, 0.7),
-	      util.rotate_position({0,1*spawnerscale}, 0.8),
-		  util.rotate_position({0,1*spawnerscale}, 0.9),
-		  util.rotate_position({0,1*spawnerscale}, 1.0),
-		  util.rotate_position({0,2*spawnerscale}, 0.05),
-		  util.rotate_position({0,2*spawnerscale}, 0.15),
-		  util.rotate_position({0,2*spawnerscale}, 0.35),
-		  util.rotate_position({0,2*spawnerscale}, 0.55),
-		  util.rotate_position({0,2*spawnerscale}, 0.75),
-		  util.rotate_position({0,2*spawnerscale}, 0.95),
-		}
-	  },
-		create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		--create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-	_ap.tile_restriction = {"sand-1","sand-2","sand-3","red-desert-0","red-desert-1","red-desert-2","red-desert-3"} 
-elseif (string.find(spawnername, "tanker")) then	
-	hpt = hpt * 10
-	dte = 
-	{ 
-		create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		--create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-elseif (string.find(spawnername, "webber")) then
-	dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = "web-splash-fire-web-" .. enemy_default_size,
-		as_enemy = true,
-		find_non_colliding_position = true,
-		offsets =
-		{
-		  util.rotate_position({0,1*spawnerscale}, 0.1),
-		  util.rotate_position({0,3*spawnerscale}, 0.3),
-		  util.rotate_position({0,1*spawnerscale}, 0.9),
-		  util.rotate_position({0,2*spawnerscale}, 0.05),
-		  util.rotate_position({0,3*spawnerscale}, 0.15),
-		  util.rotate_position({0,5*spawnerscale}, 0.35),
-		  util.rotate_position({0,3*spawnerscale}, 0.55),
-		  util.rotate_position({0,2*spawnerscale}, 0.75),
-		  util.rotate_position({0,5*spawnerscale}, 0.95),
-		  util.rotate_position({0,4*spawnerscale}, 0.25),
-		}
-	  },
-		  create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		  --create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-elseif (string.find(spawnername, "hatcher")) then	
-	dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = "hatcher-egg-" ..enemy_default_size,
-		as_enemy = true,
-		find_non_colliding_position = false,
-		offsets =
-		{
-		   util.rotate_position({0,1*spawnerscale}, 0.1),
-          util.rotate_position({0,2*spawnerscale}, 0.5),
-          util.rotate_position({0,2*spawnerscale}, 0.9),
-          util.rotate_position({0,3*spawnerscale}, 0.1),
-          util.rotate_position({0,3*spawnerscale}, 0.3),
-          util.rotate_position({0,3*spawnerscale}, 0.5),
-          util.rotate_position({0,4*spawnerscale}, 0.9),
-		}
-	  },
-		  create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		  --create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-	_ap.tile_restriction = spawner_tilerestrictions_hatcher
-elseif (string.find(spawnername, "spitter")) then	
-	dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = "acid-splash-fire-spitter-" .. enemy_default_size,
-		as_enemy = true,
-		find_non_colliding_position = true,
-		offsets =
-		{
-		  util.rotate_position({0,1*spawnerscale}, 0.1),
-		  util.rotate_position({0,3*spawnerscale}, 0.3),
-		  util.rotate_position({0,1*spawnerscale}, 0.9),
-		  util.rotate_position({0,2*spawnerscale}, 0.05),
-		  util.rotate_position({0,3*spawnerscale}, 0.15),
-		  util.rotate_position({0,5*spawnerscale}, 0.35),
-		  util.rotate_position({0,3*spawnerscale}, 0.55),
-		  util.rotate_position({0,2*spawnerscale}, 0.75),
-		  util.rotate_position({0,5*spawnerscale}, 0.95),
-		  util.rotate_position({0,4*spawnerscale}, 0.25),
-		}
-	  },
-		  create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		  --create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-	_ap.tile_restriction = {"grass-1","grass-2","grass-3","grass-4" }
-elseif (string.find(spawnername, "stinger")) then	
-	_ap.tile_restriction = {"grass-1","grass-2","grass-3","grass-4" }
-	dte = 
-	{ 
-		create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		--create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-	-- TODO make a ipair iterator to go through the tint colour and reduce the values by half(?).
-elseif (string.find(spawnername, "blaster")) then
-	dte = make_explosion_trigger( damage_modifier_blaster_spawn * spawnertierfactor , damage_radius_blaster_spawn * spawnertierfactor , damage_falloff_blaster_spawn)
-	_gs.animations[1].layers[4] = table.deepcopy(_gs.animations[1].layers[2])
-	_gs.animations[2].layers[4] = table.deepcopy(_gs.animations[2].layers[2])
-	_gs.animations[3].layers[4] = table.deepcopy(_gs.animations[3].layers[2])
-	_gs.animations[4].layers[4] = table.deepcopy(_gs.animations[4].layers[2])
-	_gs.animations[1].layers[4].tint = blaster_spawner_tint_light
-	_gs.animations[2].layers[4].tint = blaster_spawner_tint_light
-	_gs.animations[3].layers[4].tint = blaster_spawner_tint_light
-	_gs.animations[4].layers[4].tint = blaster_spawner_tint_light
-	_gs.animations[1].layers[4].draw_as_light = true
-	_gs.animations[2].layers[4].draw_as_light = true
-	_gs.animations[3].layers[4].draw_as_light = true
-	_gs.animations[4].layers[4].draw_as_light = true
-	
-elseif (string.find(spawnername, "flamer")) then
-dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = "flamer-fire-" .. enemy_default_size,
-		find_non_colliding_position = true,
-		as_enemy = true,
-		offsets =
-		{
-		  util.rotate_position({0,0*spawnerscale}, 0.3),
-		  util.rotate_position({0,0*spawnerscale}, 0.9),
-		  util.rotate_position({0,1*spawnerscale}, 0.05),
-		  util.rotate_position({0,1*spawnerscale}, 0.15),
-		  util.rotate_position({0,1*spawnerscale}, 0.1),
-		  util.rotate_position({0,1*spawnerscale}, 0.3),
-		  util.rotate_position({0,2*spawnerscale}, 0.9),
-		  util.rotate_position({0,2*spawnerscale}, 0.05),
-		  util.rotate_position({0,2*spawnerscale}, 0.15),
-		  util.rotate_position({0,2*spawnerscale}, 0.35),
-		  util.rotate_position({0,3*spawnerscale}, 0.55),
-		  util.rotate_position({0,3*spawnerscale}, 0.75),
-		  util.rotate_position({0,4*spawnerscale}, 0.95),
-		  util.rotate_position({0,4*spawnerscale}, 0.25),
-		  util.rotate_position({0,5*spawnerscale}, 0.55),
-		  util.rotate_position({0,5*spawnerscale}, 0.75),
-		  util.rotate_position({0,5*spawnerscale}, 0.95),
-		  util.rotate_position({0,6*spawnerscale}, 0.25),
-		}
-	  },
-		  create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		  --create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
-	_gs.animations[1].layers[4] = table.deepcopy(_gs.animations[1].layers[2])
-	_gs.animations[2].layers[4] = table.deepcopy(_gs.animations[2].layers[2])
-	_gs.animations[3].layers[4] = table.deepcopy(_gs.animations[3].layers[2])
-	_gs.animations[4].layers[4] = table.deepcopy(_gs.animations[4].layers[2])
-	_gs.animations[1].layers[4].tint = flamer_spawner_tint_light
-	_gs.animations[2].layers[4].tint = flamer_spawner_tint_light
-	_gs.animations[3].layers[4].tint = flamer_spawner_tint_light
-	_gs.animations[4].layers[4].tint = flamer_spawner_tint_light
-	_gs.animations[1].layers[4].draw_as_light = true
-	_gs.animations[2].layers[4].draw_as_light = true
-	_gs.animations[3].layers[4].draw_as_light = true
-	_gs.animations[4].layers[4].draw_as_light = true
-	
-	_ap.tile_restriction = {"red-desert-0","red-desert-1","red-desert-2","red-desert-3"} 
-else if (string.find(spawnername, "biter")) then
-	dte = 
-	{ 
-		create_entity("alien-polyp-"..enemy_default_size , 6 * spawnerscale , 0.1 , 2 + (1 * spawnertier)),
-		--create_entity("alien-furnace" , 6 * spawnerscale , 0.5 , 2 + (1 * spawnertier))
-	}
+	local enemy_default_size = "small"
+	local prefix = ""
+	if (spawnertier == 1) then
+	prefix = "small"
+	enemy_default_size = "small"
+	elseif (spawnertier == 2) then
+	prefix = "medium"
+	enemy_default_size = "medium"
+	build_base_tier = 0.3
+	elseif (spawnertier == 3) then
+	prefix = "big"
+	enemy_default_size = "big"
+	build_base_tier = 0.6
+	elseif (spawnertier == 4) then
+	prefix = "behemoth"
+	enemy_default_size = "behemoth"
+	build_base_tier = 0.8
+	elseif (spawnertier == 5) then
+	prefix = "huge"
+	enemy_default_size = "boss"
+	build_base_tier = 0.95
 	end
-end
+
+	_ap = enemy_autoplace.enemy_spawner_autoplace("enemy_autoplace_base(" .. (spawnerautoplace[1] ) * ( (1.8 * spawnertier) * spawnertier ) .."," .. spawnertier ..")")
+
+	dte = nil
+	_gs = 
+		{
+			 animations =
+			{
+			  spawner_idle_animation(0, spawnertint, (spawnerscale * spawnertierfactor)),
+			  spawner_idle_animation(1, spawnertint, (spawnerscale * spawnertierfactor)),
+			  spawner_idle_animation(2, spawnertint, (spawnerscale * spawnertierfactor)),
+			  spawner_idle_animation(3, spawnertint, (spawnerscale * spawnertierfactor))
+			},
+		}
+	if (string.find(spawnername, "swarmer")) then
+		dte =
+		{
+		  {
+			type = "create-entity",
+			entity_name = enemy_default_size .. "-" .. spawnername,
+			as_enemy = true,
+			find_non_colliding_position = true,
+			offsets =
+			{
+			  util.rotate_position({0,1*spawnerscale}, 0.1), 
+			  util.rotate_position({0,1*spawnerscale}, 0.2),
+			  util.rotate_position({0,1*spawnerscale}, 0.3),
+			  util.rotate_position({0,1*spawnerscale}, 0.4),
+			  util.rotate_position({0,1*spawnerscale}, 0.5),
+			  util.rotate_position({0,1*spawnerscale}, 0.6),
+			  util.rotate_position({0,1*spawnerscale}, 0.7),
+			  util.rotate_position({0,1*spawnerscale}, 0.8),
+			  util.rotate_position({0,1*spawnerscale}, 0.9),
+			  util.rotate_position({0,1*spawnerscale}, 1.0),
+			  util.rotate_position({0,2*spawnerscale}, 0.05),
+			  util.rotate_position({0,2*spawnerscale}, 0.15),
+			  util.rotate_position({0,2*spawnerscale}, 0.35),
+			  util.rotate_position({0,2*spawnerscale}, 0.55),
+			  util.rotate_position({0,2*spawnerscale}, 0.75),
+			  util.rotate_position({0,2*spawnerscale}, 0.95),
+			}
+		  },
+		}
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)))
+		end
+
+		_ap.tile_restriction = {"sand-1","sand-2","sand-3","red-desert-0","red-desert-1","red-desert-2","red-desert-3"} 
+	elseif (string.find(spawnername, "tanker")) then	
+		hpt = hpt * 10
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			dte = {}
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)))
+		end
+
+	elseif (string.find(spawnername, "webber")) then
+		dte =
+		{
+		  {
+			type = "create-entity",
+			entity_name = "web-splash-fire-web-" .. enemy_default_size,
+			as_enemy = true,
+			find_non_colliding_position = true,
+			offsets =
+			{
+			  util.rotate_position({0,1*spawnerscale}, 0.1),
+			  util.rotate_position({0,3*spawnerscale}, 0.3),
+			  util.rotate_position({0,1*spawnerscale}, 0.9),
+			  util.rotate_position({0,2*spawnerscale}, 0.05),
+			  util.rotate_position({0,3*spawnerscale}, 0.15),
+			  util.rotate_position({0,5*spawnerscale}, 0.35),
+			  util.rotate_position({0,3*spawnerscale}, 0.55),
+			  util.rotate_position({0,2*spawnerscale}, 0.75),
+			  util.rotate_position({0,5*spawnerscale}, 0.95),
+			  util.rotate_position({0,4*spawnerscale}, 0.25),
+			}
+		  },
+		}
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+		end
+	elseif (string.find(spawnername, "hatcher")) then	
+		dte =
+		{
+		  {
+			type = "create-entity",
+			entity_name = "hatcher-egg-" ..enemy_default_size,
+			as_enemy = true,
+			find_non_colliding_position = false,
+			offsets =
+			{
+			   util.rotate_position({0,1*spawnerscale}, 0.1),
+			  util.rotate_position({0,2*spawnerscale}, 0.5),
+			  util.rotate_position({0,2*spawnerscale}, 0.9),
+			  util.rotate_position({0,3*spawnerscale}, 0.1),
+			  util.rotate_position({0,3*spawnerscale}, 0.3),
+			  util.rotate_position({0,3*spawnerscale}, 0.5),
+			  util.rotate_position({0,4*spawnerscale}, 0.9),
+			}
+		  },
+		}
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+		end
+		_ap.tile_restriction = spawner_tilerestrictions_hatcher
+	elseif (string.find(spawnername, "spitter")) then	
+		dte =
+		{
+		  {
+			type = "create-entity",
+			entity_name = "acid-splash-fire-spitter-" .. enemy_default_size,
+			as_enemy = true,
+			find_non_colliding_position = true,
+			offsets =
+			{
+			  util.rotate_position({0,1*spawnerscale}, 0.1),
+			  util.rotate_position({0,3*spawnerscale}, 0.3),
+			  util.rotate_position({0,1*spawnerscale}, 0.9),
+			  util.rotate_position({0,2*spawnerscale}, 0.05),
+			  util.rotate_position({0,3*spawnerscale}, 0.15),
+			  util.rotate_position({0,5*spawnerscale}, 0.35),
+			  util.rotate_position({0,3*spawnerscale}, 0.55),
+			  util.rotate_position({0,2*spawnerscale}, 0.75),
+			  util.rotate_position({0,5*spawnerscale}, 0.95),
+			  util.rotate_position({0,4*spawnerscale}, 0.25),
+			}
+		  },
+		}
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+		end
+		_ap.tile_restriction = {"grass-1","grass-2","grass-3","grass-4" }
+	elseif (string.find(spawnername, "stinger")) then	
+		_ap.tile_restriction = {"grass-1","grass-2","grass-3","grass-4" }
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			dte = {}
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+		end
+		-- TODO make a ipair iterator to go through the tint colour and reduce the values by half(?).
+	elseif (string.find(spawnername, "blaster")) then
+		dte = make_explosion_trigger( damage_modifier_blaster_spawn * spawnertierfactor , damage_radius_blaster_spawn * spawnertierfactor , damage_falloff_blaster_spawn)
+		_gs.animations[1].layers[4] = table.deepcopy(_gs.animations[1].layers[2])
+		_gs.animations[2].layers[4] = table.deepcopy(_gs.animations[2].layers[2])
+		_gs.animations[3].layers[4] = table.deepcopy(_gs.animations[3].layers[2])
+		_gs.animations[4].layers[4] = table.deepcopy(_gs.animations[4].layers[2])
+		_gs.animations[1].layers[4].tint = blaster_spawner_tint_light
+		_gs.animations[2].layers[4].tint = blaster_spawner_tint_light
+		_gs.animations[3].layers[4].tint = blaster_spawner_tint_light
+		_gs.animations[4].layers[4].tint = blaster_spawner_tint_light
+		_gs.animations[1].layers[4].draw_as_light = true
+		_gs.animations[2].layers[4].draw_as_light = true
+		_gs.animations[3].layers[4].draw_as_light = true
+		_gs.animations[4].layers[4].draw_as_light = true
+		
+	elseif (string.find(spawnername, "flamer")) then
+	dte =
+		{
+		  {
+			type = "create-entity",
+			entity_name = "flamer-fire-" .. enemy_default_size,
+			find_non_colliding_position = true,
+			as_enemy = true,
+			offsets =
+			{
+			  util.rotate_position({0,0*spawnerscale}, 0.3),
+			  util.rotate_position({0,0*spawnerscale}, 0.9),
+			  util.rotate_position({0,1*spawnerscale}, 0.05),
+			  util.rotate_position({0,1*spawnerscale}, 0.15),
+			  util.rotate_position({0,1*spawnerscale}, 0.1),
+			  util.rotate_position({0,1*spawnerscale}, 0.3),
+			  util.rotate_position({0,2*spawnerscale}, 0.9),
+			  util.rotate_position({0,2*spawnerscale}, 0.05),
+			  util.rotate_position({0,2*spawnerscale}, 0.15),
+			  util.rotate_position({0,2*spawnerscale}, 0.35),
+			  util.rotate_position({0,3*spawnerscale}, 0.55),
+			  util.rotate_position({0,3*spawnerscale}, 0.75),
+			  util.rotate_position({0,4*spawnerscale}, 0.95),
+			  util.rotate_position({0,4*spawnerscale}, 0.25),
+			  util.rotate_position({0,5*spawnerscale}, 0.55),
+			  util.rotate_position({0,5*spawnerscale}, 0.75),
+			  util.rotate_position({0,5*spawnerscale}, 0.95),
+			  util.rotate_position({0,6*spawnerscale}, 0.25),
+			}
+		  },
+		}
+		if (settings.startup["settings-chunks-probability"].value ~= 0) then
+			table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+		end
+		_gs.animations[1].layers[4] = table.deepcopy(_gs.animations[1].layers[2])
+		_gs.animations[2].layers[4] = table.deepcopy(_gs.animations[2].layers[2])
+		_gs.animations[3].layers[4] = table.deepcopy(_gs.animations[3].layers[2])
+		_gs.animations[4].layers[4] = table.deepcopy(_gs.animations[4].layers[2])
+		_gs.animations[1].layers[4].tint = flamer_spawner_tint_light
+		_gs.animations[2].layers[4].tint = flamer_spawner_tint_light
+		_gs.animations[3].layers[4].tint = flamer_spawner_tint_light
+		_gs.animations[4].layers[4].tint = flamer_spawner_tint_light
+		_gs.animations[1].layers[4].draw_as_light = true
+		_gs.animations[2].layers[4].draw_as_light = true
+		_gs.animations[3].layers[4].draw_as_light = true
+		_gs.animations[4].layers[4].draw_as_light = true
+		
+		_ap.tile_restriction = {"red-desert-0","red-desert-1","red-desert-2","red-desert-3"} 
+	else if (string.find(spawnername, "biter")) then
+			if (settings.startup["settings-chunks-probability"].value ~= 0) then
+				dte = {}
+				table.insert(dte,create_entity("alien-polyp-"..enemy_default_size , 6 *spawnerscale , 0.1 , 2 + (1 * spawnertier)) )
+			end
+		end
+	end
 
 -- (function() 
 		-- local r = {}
@@ -1923,239 +1929,252 @@ end
 
 function makeenemysbiter(enemyname, enemyhealth, enemyrange, enemydamage, enemyscale, enemytier, enemytint, enemyresistances)
 
+	local _flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "not-repairable", "breaths-air"}
+	-- Attack params
+	local ap = makeenemyattack(enemyname, "bite", 1, 30 * enemyscale, 1, 1, {1,1,1,1})
+	-- light
+	local lt = nil 
+	-- base move speed
+	local bms = 1 
+	-- additional move speed
+	local ams = 1 
+	-- spawn time
+	local stm = 1 
+	-- healing per tick (+%)
+	local hpt = 0.01
+	-- affected by tiles?
+	local abt = true
+	if (enemyscale >= 1.5) then abt = false end
+	-- run animation
+	local ra = nil
 
-local enemy_size = nil
-if (string.find(enemyname, "small")) then
-enemy_size = "small"
-elseif (string.find(enemyname, "medium")) then
-enemy_size = "medium"
-elseif (string.find(enemyname, "big")) then
-enemy_size = "big"
-elseif (string.find(enemyname, "behemoth")) then
-enemy_size = "behemoth"
-elseif (string.find(enemyname, "boss")) then
-enemy_size = "boss"
-end
+	local enemy_size = nil
+	if (string.find(enemyname, "small")) then
+		enemy_size = "small"
+	elseif (string.find(enemyname, "medium")) then
+		enemy_size = "medium"
+		hpt = hpt * 1.25
+	elseif (string.find(enemyname, "big")) then
+		enemy_size = "big"
+		hpt = hpt * 1.5
+	elseif (string.find(enemyname, "behemoth")) then
+		enemy_size = "behemoth"
+		hpt = hpt * 2.5
+	elseif (string.find(enemyname, "boss")) then
+		enemy_size = "boss"
+		hpt = hpt * 4
+	end
 
--- Death Trigger effect.
-local dte = nil
-if (string.find(enemyname, "blaster")) then
-	dte = make_explosion_trigger( enemydamage/2, enemyrange/2, 3)
-elseif (string.find(enemyname, "flamer")) then
-	dte = 
-	{
-		type = "create-entity",
-		entity_name = "flamer-fire-" .. enemy_size,
-		as_enemy = true,
-		offsets =
+	-- Death Trigger effect.
+	local dte = nil
+	if (string.find(enemyname, "blaster")) then
+		dte = make_explosion_trigger( enemydamage/2, enemyrange/2, 3)
+	elseif (string.find(enemyname, "flamer")) then
+		dte = 
 		{
-		  {0,0},
-		}
-	  }
-elseif (string.find(enemyname, "hatcher")) then
-	dte =
-	{
-	  {
-		type = "create-entity",
-		entity_name = enemy_size .. "-swarmer",
-		as_enemy = true,
-		offsets =
+			type = "create-entity",
+			entity_name = "flamer-fire-" .. enemy_size,
+			as_enemy = true,
+			offsets =
+			{
+			  {0,0},
+			}
+		  }
+	elseif (string.find(enemyname, "hatcher")) then
+		dte =
 		{
-		  util.rotate_position({0,1*enemyscale}, 0.1), 
-		  --util.rotate_position({0,1*enemyscale}, 0.2),
-		  util.rotate_position({0,1*enemyscale}, 0.3),
-		  --util.rotate_position({0,1*enemyscale}, 0.4),
-		  util.rotate_position({0,1*enemyscale}, 0.5),
-		  --util.rotate_position({0,1*enemyscale}, 0.6),
-		  util.rotate_position({0,1*enemyscale}, 0.7),
-	     -- util.rotate_position({0,1*enemyscale}, 0.8),
-		  util.rotate_position({0,1*enemyscale}, 0.9),
-		 -- util.rotate_position({0,1*enemyscale}, 1.0),
+		  {
+			type = "create-entity",
+			entity_name = enemy_size .. "-swarmer",
+			as_enemy = true,
+			offsets =
+			{
+			  util.rotate_position({0,1*enemyscale}, 0.1), 
+			  --util.rotate_position({0,1*enemyscale}, 0.2),
+			  util.rotate_position({0,1*enemyscale}, 0.3),
+			  --util.rotate_position({0,1*enemyscale}, 0.4),
+			  util.rotate_position({0,1*enemyscale}, 0.5),
+			  --util.rotate_position({0,1*enemyscale}, 0.6),
+			  util.rotate_position({0,1*enemyscale}, 0.7),
+			 -- util.rotate_position({0,1*enemyscale}, 0.8),
+			  util.rotate_position({0,1*enemyscale}, 0.9),
+			 -- util.rotate_position({0,1*enemyscale}, 1.0),
+			}
+		  }
 		}
-	  }
-	}
-end 
+	end 
 
--- Corpse override.
-local cor = enemyname .. "-corpse"
-if (string.find(enemyname, "blaster")) then
-	cor = nil
-end
+	-- Corpse override.
+	local cor = enemyname .. "-corpse"
+	if (string.find(enemyname, "blaster")) then
+		cor = nil
+	end
 
-local _da = nil
-local _da_spit = add_spitter_die_animation(enemyscale, enemytint, enemytint,
-	{
-		type = "corpse",
-		name = enemyname .. "-corpse",
-		icon = "__base__/graphics/icons/big-biter-corpse.png",
-		icon_size = 64, icon_mipmaps = 4,
-		selectable_in_game = false,
-		selection_box = {{-1, -1}, {1, 1}},
-		subgroup="corpses",
-		order = "c[corpse]-b[spitter]-a[small]",
-		flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
-	}
-)
-  
-local _da_bite = add_biter_die_animation(enemyscale, enemytint, enemytint,
-	{
-		type = "corpse",
-		name = enemyname .. "-corpse",
-		icon = "__base__/graphics/icons/small-biter-corpse.png",
-		icon_size = 64, icon_mipmaps = 4,
-		selection_box = {{-0.8, -0.8}, {0.8, 0.8}},
-		selectable_in_game = false,
-		subgroup="corpses",
-		order = "c[corpse]-a[biter]-a[small]",
-		flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-repairable", "not-on-map"}
-	}
-)
+	local _da = nil
+	local _da_spit = add_spitter_die_animation(enemyscale, enemytint, enemytint,
+		{
+			type = "corpse",
+			name = enemyname .. "-corpse",
+			icon = "__base__/graphics/icons/big-biter-corpse.png",
+			icon_size = 64, icon_mipmaps = 4,
+			selectable_in_game = false,
+			selection_box = {{-1, -1}, {1, 1}},
+			subgroup="corpses",
+			order = "c[corpse]-b[spitter]-a[small]",
+			flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+		}
+	)	  
+	local _da_bite = add_biter_die_animation(enemyscale, enemytint, enemytint,
+		{
+			type = "corpse",
+			name = enemyname .. "-corpse",
+			icon = "__base__/graphics/icons/small-biter-corpse.png",
+			icon_size = 64, icon_mipmaps = 4,
+			selection_box = {{-0.8, -0.8}, {0.8, 0.8}},
+			selectable_in_game = false,
+			subgroup="corpses",
+			order = "c[corpse]-a[biter]-a[small]",
+			flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-repairable", "not-on-map"}
+		}
+	)
 
--- Attack params
-local ap = makeenemyattack(enemyname, "bite", 1, 30 * enemyscale, 1, 1, {1,1,1,1})
--- light
-local lt = nil 
--- base move speed
-local bms = 1 
--- additional move speed
-local ams = 1 
--- spawn time
-local stm = 1 
--- healing per tick (+%)
-local hpt = 0.01
--- affected by tiles?
-local abt = true
-if (enemyscale >= 1.5) then abt = false end
--- run animation
-local ra = nil
 
-if (string.find(enemyname, "blaster")) then
-	ap = makeenemyattack(enemyname, "explode", enemydamage, attack_speed_blaster_base, enemyscale, enemyrange, enemytint)
-	lt = {intensity = 0.5 * enemyscale , size = 4 * enemyscale, color=enemytint}
-	bms = movement_speed_blaster_base
-	ams = movement_speed_blaster 
-	stm = spawning_time_scalar_blaster
-	ra =  biterrunanimation(enemyscale, enemytint, enemytint)
-	ra.layers[2].draw_as_light = true
-	_da = _da_bite
-elseif (string.find(enemyname, "spitter")) then
-	ap = makeenemyattack(enemyname, "spit",enemydamage, attack_speed_spitter_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_spitter_base
-	ams = movement_speed_spitter
-	stm = spawning_time_scalar_spitter
-	ra = spitterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_spit
-elseif (string.find(enemyname, "hatcher")) then
-	ap = makeenemyattack(enemyname, "egg", enemydamage, attack_speed_hatcher_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_hatcher_base
-	ams = movement_speed_hatcher
-	stm = spawning_time_scalar_hatcher
-	ra = spitterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_spit
-elseif (string.find(enemyname, "biter")) then
-	ap = makeenemyattack(enemyname, "bite",enemydamage, attack_speed_biter_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_biter_base
-	ams = movement_speed_biter
-	ra =  biterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_bite
-elseif (string.find(enemyname, "stinger")) then
-	ap = makeenemyattack(enemyname, "sting",enemydamage, attack_speed_stinger_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_stinger_base
-	ams = movement_speed_stinger
-	ra =  biterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_bite
-elseif (string.find(enemyname, "swarmer")) then
-	ap = makeenemyattack(enemyname, "bite",enemydamage, attack_speed_swarmer_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_swarmer_base
-	ams = movement_speed_swarmer
-	stm = spawning_time_scalar_swarmer
-	ra =  biterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_bite
-elseif (string.find(enemyname, "tanker")) then
-	ap = makeenemyattack(enemyname, "bite", enemydamage, attack_speed_tanker_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_tanker_base
-	ams = movement_speed_tanker
-	stm = spawning_time_scalar_tanker
-	hpt = (hpt * 60 * enemyscale) / enemy_health_scale
-	ra =  biterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_bite
-elseif (string.find(enemyname, "webber")) then
-	ap = makeenemyattack(enemyname, "web", enemydamage, attack_speed_webber_base , enemyscale, enemyrange, enemytint)
-	bms = movement_speed_webber_base
-	ams = movement_speed_webber
-	stm = spawning_time_scalar_webber
-	ra = spitterrunanimation(enemyscale, enemytint, enemytint)
-	_da = _da_spit
-elseif (string.find(enemyname, "flamer")) then
-	ap = makeenemyattack(enemyname, "flame", enemydamage, attack_speed_flamer_base , enemyscale, enemyrange, enemytint)
-	ap.animation.layers[2].draw_as_light = true
-	lt = {intensity = 0.5 * enemyscale , size = 4 * enemyscale, color=enemytint}
-	bms = movement_speed_flamer_base
-	ams = movement_speed_flamer
-	stm = spawning_time_scalar_flamer
-	ra = spitterrunanimation(enemyscale, enemytint, enemytint)
-	ra.layers[2].draw_as_light = true
-	_da = _da_spit
-end
 
-if (string.find(enemyname, "small")) then
-	stm = stm * spawning_time_small
-elseif (string.find(enemyname, "medium")) then
-	stm = stm * spawning_time_medium
-elseif (string.find(enemyname, "big")) then
-	stm = stm * spawning_time_big
-elseif (string.find(enemyname, "behemoth")) then
-	stm = stm * spawning_time_behemoth
-elseif (string.find(enemyname, "boss")) then
-	stm = stm * spawning_time_boss
-end
+	if (string.find(enemyname, "blaster")) then
+		ap = makeenemyattack(enemyname, "explode", enemydamage, attack_speed_blaster_base, enemyscale, enemyrange, enemytint)
+		lt = {intensity = 0.5 * enemyscale , size = 4 * enemyscale, color=enemytint}
+		bms = movement_speed_blaster_base
+		ams = movement_speed_blaster 
+		stm = spawning_time_scalar_blaster
+		ra =  biterrunanimation(enemyscale, enemytint, enemytint)
+		ra.layers[2].draw_as_light = true
+		_da = _da_bite
+	elseif (string.find(enemyname, "spitter")) then
+		ap = makeenemyattack(enemyname, "spit",enemydamage, attack_speed_spitter_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_spitter_base
+		ams = movement_speed_spitter
+		stm = spawning_time_scalar_spitter
+		ra = spitterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_spit
+	elseif (string.find(enemyname, "hatcher")) then
+		ap = makeenemyattack(enemyname, "egg", enemydamage, attack_speed_hatcher_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_hatcher_base
+		ams = movement_speed_hatcher
+		stm = spawning_time_scalar_hatcher
+		ra = spitterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_spit
+	elseif (string.find(enemyname, "biter")) then
+		ap = makeenemyattack(enemyname, "bite",enemydamage, attack_speed_biter_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_biter_base
+		ams = movement_speed_biter
+		hpt = (hpt * 5 * enemyscale) / enemy_health_scale
+		ra =  biterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_bite
+	elseif (string.find(enemyname, "stinger")) then
+		ap = makeenemyattack(enemyname, "sting",enemydamage, attack_speed_stinger_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_stinger_base
+		ams = movement_speed_stinger
+		ra =  biterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_bite
+	elseif (string.find(enemyname, "swarmer")) then
+		ap = makeenemyattack(enemyname, "bite",enemydamage, attack_speed_swarmer_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_swarmer_base
+		ams = movement_speed_swarmer
+		stm = spawning_time_scalar_swarmer
+		ra =  biterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_bite
+	elseif (string.find(enemyname, "tanker")) then
+		ap = makeenemyattack(enemyname, "bite", enemydamage, attack_speed_tanker_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_tanker_base
+		ams = movement_speed_tanker
+		stm = spawning_time_scalar_tanker
+		hpt = (hpt * 30 * enemyscale) / enemy_health_scale
+		ra =  biterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_bite
+	elseif (string.find(enemyname, "webber")) then
+		ap = makeenemyattack(enemyname, "web", enemydamage, attack_speed_webber_base , enemyscale, enemyrange, enemytint)
+		bms = movement_speed_webber_base
+		ams = movement_speed_webber
+		stm = spawning_time_scalar_webber
+		ra = spitterrunanimation(enemyscale, enemytint, enemytint)
+		_da = _da_spit
+	elseif (string.find(enemyname, "flamer")) then
+		ap = makeenemyattack(enemyname, "flame", enemydamage, attack_speed_flamer_base , enemyscale, enemyrange, enemytint)
+		ap.animation.layers[2].draw_as_light = true
+		lt = {intensity = 0.5 * enemyscale , size = 4 * enemyscale, color=enemytint}
+		bms = movement_speed_flamer_base
+		ams = movement_speed_flamer
+		stm = spawning_time_scalar_flamer
+		ra = spitterrunanimation(enemyscale, enemytint, enemytint)
+		ra.layers[2].draw_as_light = true
+		table.insert( _flags, "not-flammable")
+		_da = _da_spit
+	end
 
-local res
-res = 
-{
-	{ 
-	   {
-		type = "unit",
-		name = enemyname,
-		icons = {{ icon = "__base__/graphics/icons/small-biter.png", icon_size = 64, tint = enemytint }},
-		flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "not-repairable", "breaths-air"},
-		max_health = enemyhealth * enemy_health_scale,
-		order = "b-a-a",
-		subgroup="enemies",
-		resistances = enemyresistances,
-		spawning_time_modifier = stm,
-		healing_per_tick = hpt,
-		collision_box = {{-enemyscale, -enemyscale}, {enemyscale, enemyscale}},
-		selection_box = {{-enemyscale, -enemyscale}, {enemyscale, enemyscale}},
-		damaged_trigger_effect = hit_effects.biter(),
-		affected_by_tiles = abt,
-		attack_parameters = ap,
-		loot = createmeatyloot(enemyscale,enemytier),	 
-		vision_distance = 20 * (1 + (enemytier/5)),
-		movement_speed = bms + ( ams * (enemytier-1) ),
-		distance_per_frame = 0.125 * enemyscale,
-		absorptions_to_join_attack = { pollution = spawning_base_pollution_cost * enemyscale },
-		distraction_cooldown = 300,
-		min_pursue_time = 10 * 20 * (1 + (enemytier/5)),
-		max_pursue_distance = 30 * (1 + (enemytier/5)),
-		corpse = cor,
-		dying_explosion = "small-biter-die",
-		dying_sound =  sounds.biter_dying(0.2*enemyscale),
-		working_sound =  sounds.biter_calls(0.4*enemyscale),
-		run_animation = ra,
-		running_sound_animation_positions = {2,},
-		walking_sound = sounds.biter_walk(0.2*enemyscale),
-		ai_settings = biter_ai_settings,
-		water_reflection = biter_water_reflection(enemyscale),
-		dying_trigger_effect = dte,
-		light = lt,
-		hide_resistances = false,
-	  },
-  },
-  {_da},
+	if (string.find(enemyname, "small")) then
+		stm = stm * spawning_time_small
+	elseif (string.find(enemyname, "medium")) then
+		stm = stm * spawning_time_medium
+	elseif (string.find(enemyname, "big")) then
+		stm = stm * spawning_time_big
+	elseif (string.find(enemyname, "behemoth")) then
+		stm = stm * spawning_time_behemoth
+	elseif (string.find(enemyname, "boss")) then
+		stm = stm * spawning_time_boss
+	end
 	
- }
- return res[2][1],res[1][1]
+	-- meaty loot
+	local droppedloot = nil
+	if(settings.startup["settings-chunks-probability"].value ~= 0) then
+		droppedloot = createmeatyloot(enemyscale,enemytier)
+	end
+
+	local res
+	res = 
+	{
+		{ 
+		   {
+			type = "unit",
+			name = enemyname,
+			icons = {{ icon = "__base__/graphics/icons/small-biter.png", icon_size = 64, tint = enemytint }},
+			flags = _flags,
+			max_health = enemyhealth * enemy_health_scale,
+			order = "b-a-a",
+			subgroup="enemies",
+			resistances = enemyresistances,
+			spawning_time_modifier = stm,
+			healing_per_tick = hpt,
+			collision_box = {{-enemyscale, -enemyscale}, {enemyscale, enemyscale}},
+			selection_box = {{-enemyscale, -enemyscale}, {enemyscale, enemyscale}},
+			damaged_trigger_effect = hit_effects.biter(),
+			affected_by_tiles = abt,
+			attack_parameters = ap,
+			loot = droppedloot,	 
+			vision_distance = 20 * (1 + (enemytier/5)),
+			movement_speed = bms + ( ams * (enemytier-1) ),
+			distance_per_frame = 0.125 * enemyscale,
+			absorptions_to_join_attack = { pollution = spawning_base_pollution_cost * enemyscale },
+			distraction_cooldown = 300,
+			min_pursue_time = 10 * 20 * (1 + (enemytier/5)),
+			max_pursue_distance = 30 * (1 + (enemytier/5)),
+			corpse = cor,
+			dying_explosion = "small-biter-die",
+			dying_sound =  sounds.biter_dying(0.2*enemyscale),
+			working_sound =  sounds.biter_calls(0.4*enemyscale),
+			run_animation = ra,
+			running_sound_animation_positions = {2,},
+			walking_sound = sounds.biter_walk(0.2*enemyscale),
+			ai_settings = biter_ai_settings,
+			water_reflection = biter_water_reflection(enemyscale),
+			dying_trigger_effect = dte,
+			light = lt,
+			hide_resistances = false,
+		  },
+	  },
+	  {_da},
+		
+	 }
+	 return res[2][1],res[1][1]
   end
 
 data:extend({

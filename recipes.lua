@@ -1909,6 +1909,19 @@ end
     },
     results = {{type="item", name="charcoal", amount=10}},
   },
+   {
+    type = "recipe",
+    name = "uzi-gun",
+	enabled = false,
+    energy_required = 8,
+    ingredients =
+    {
+      {type="item", name="steel-plate", amount=2},
+	  {type="item", name="iron-gear-wheel", amount=6},
+	  {type = "item", name = "iron-plate", amount = 8},
+    },
+    results = {{type="item", name="uzi-gun", amount=1}},
+  },
     {
     type = "recipe",
     name = "magnum",

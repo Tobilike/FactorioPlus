@@ -71,6 +71,7 @@ data:extend(
 		subgroup = "flags",
 		order = "d-flags[ir]"
 	},
+	------
 	{
 		type = "virtual-signal",
 		name = "signal-flag-it",
@@ -140,6 +141,77 @@ data:extend(
 		icon = "__factorioplus__/graphics/icons/signal/signal_flag_nw.png",
 		subgroup = "flags",
 		order = "d-flags[nw]"
+	},	
+	------
+		{
+		type = "virtual-signal",
+		name = "signal-flag-lt",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_lt.png",
+		subgroup = "flags",
+		order = "d-flags[lt]"
+	},
+	{
+		type = "virtual-signal",
+		name = "signal-flag-es",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_es.png",
+		subgroup = "flags",
+		order = "d-flags[es]"
+	},
+	{
+		type = "virtual-signal",
+		name = "signal-flag-li",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_li.png",
+		subgroup = "flags",
+		order = "d-flags[li]"
+	},
+	{
+		type = "virtual-signal",
+		name = "signal-flag-br",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_br.png",
+		subgroup = "flags",
+		order = "d-flags[br]"
+	},
+	{
+		type = "virtual-signal",
+		name = "signal-flag-ag",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_ag.png",
+		subgroup = "flags",
+		order = "d-flags[ag]"
+	},	
+	{
+		type = "virtual-signal",
+		name = "signal-flag-th",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_th.png",
+		subgroup = "flags",
+		order = "d-flags[th]"
+	},	
+	{
+		type = "virtual-signal",
+		name = "signal-flag-sp",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_sp.png",
+		subgroup = "flags",
+		order = "d-flags[sp]"
+	},	
+	{
+		type = "virtual-signal",
+		name = "signal-flag-id",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_id.png",
+		subgroup = "flags",
+		order = "d-flags[id]"
+	},	
+	{
+		type = "virtual-signal",
+		name = "signal-flag-ml",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_ml.png",
+		subgroup = "flags",
+		order = "d-flags[ml]"
+	},	
+	{
+		type = "virtual-signal",
+		name = "signal-flag-ph",
+		icon = "__factorioplus__/graphics/icons/signal/signal_flag_ph.png",
+		subgroup = "flags",
+		order = "d-flags[ph]"
 	},	
 	  -------------------------------- SYMBOLS --------------------------------
 	{

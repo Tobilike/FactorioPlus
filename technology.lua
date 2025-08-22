@@ -3248,7 +3248,8 @@ table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{
 })
 
 table.insert(data.raw["technology"]["military-2"].effects,{type = "unlock-recipe",recipe = "magnum"})
- 
+table.insert(data.raw["technology"]["military-2"].effects,{type = "unlock-recipe",recipe = "uzi-gun"})
+
 table.removetablewithmatchingentry(data.raw["technology"]["electronics"].effects, "recipe", "lab") 
 table.insert(data.raw["technology"]["electronics"].effects,{type = "unlock-recipe",recipe = "basic-lab"})
 table.insert(data.raw["technology"]["electronics"].effects,{type = "unlock-recipe",recipe = "listening-post"})

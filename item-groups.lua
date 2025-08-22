@@ -51,15 +51,21 @@
   },
    {
     type = "item-subgroup",
-    name = "cars",
+    name = "simple-vehicles",
     group = "transport",
-    order = "a"
+    order = "aa"
+  },
+	{
+    type = "item-subgroup",
+    name = "utility-vehicles",
+    group = "transport",
+    order = "ab"
   },
   {
     type = "item-subgroup",
-    name = "tanks",
+    name = "military-vehicles",
     group = "transport",
-    order = "b"
+    order = "ac"
   },
   {
     type = "item-subgroup",

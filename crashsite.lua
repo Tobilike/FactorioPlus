@@ -85,10 +85,12 @@ data.raw["container"]["crash-site-spaceship-wreck-medium-1"].inventory_size = 2
 data.raw["container"]["crash-site-spaceship-wreck-medium-2"].inventory_size = 2
 data.raw["container"]["crash-site-spaceship-wreck-medium-3"].inventory_size = 2
 
+data.raw["container"]["crash-site-chest-1"].inventory_size = 10
+data.raw["container"]["crash-site-chest-2"].inventory_size = 10
 
-data.raw["container"]["crash-site-spaceship"].inventory_size = 8
+data.raw["container"]["crash-site-spaceship"].inventory_size = 10
 data.raw["container"]["crash-site-spaceship"].minable = nil
-data.raw["container"]["crash-site-spaceship"].max_health = 2500
+data.raw["container"]["crash-site-spaceship"].max_health = 10000
 
 
 data:extend

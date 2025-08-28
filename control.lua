@@ -153,6 +153,29 @@ local ship = game.surfaces[1].find_entities_filtered{name="crash-site-spaceship"
 	end
 end
 
+local robotitems =
+{
+	{name="modular-harness", count=1},
+	{name="harness-generator-equipment", count=1},
+	{name="harness-battery-equipment", count=1},
+	{name="harness-roboport-equipment", count=1},	
+	{name="construction-robot", count=10},
+}
+
+function PlaceShipContainer(items) 
+
+	local csc = "crash-site-chest-1" 
+	if math.random() > 0.5 then
+		csc = "crash-site-chest-2" 
+	end
+	thisPosition = {math.random(-12,4),math.random(6, 9)}
+	_pos = game.surfaces[1].find_non_colliding_position( csc , thisPosition, 10, 3, true )
+	_obj = game.surfaces[1].create_entity{ position = _pos, name = csc , force = "player" } 
+			
+	if items then
+		InsertItemsStack(items, _obj)
+	end
+end
 
 local extra_loot_ship = nil
 local extra_loot_large_wreck = nil
@@ -194,6 +217,8 @@ extra_loot_ship = {
 	}
 end
 
+
+
 function InsertGoodies(objects, items) 
 --local ship = game.surfaces[1].find_entities_filtered{name="crash-site-spaceship"}
 	if objects and items then
@@ -217,8 +242,7 @@ end
 
 
 function OnPlayerCreated()
-	if ( remote.interfaces["freeplay"] and  settings.startup["settings-crashsite"].value == true and storage.crashsiteplaced == nil
-	 ) then
+	if ( remote.interfaces["freeplay"] and  settings.startup["settings-crashsite"].value == true and storage.crashsiteplaced == nil) then
 		PlaceShipParts() 
 		if settings.startup["settings-crashsite-bonus"].value ~= "normal" then
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship"},extra_loot_ship)
@@ -227,6 +251,9 @@ function OnPlayerCreated()
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-1"},extra_loot_medium_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-2"},extra_loot_medium_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-3"},extra_loot_medium_wreck)
+		end
+		if settings.startup["settings-crashsite-robots"].value then
+			PlaceShipContainer(robotitems) 
 		end
 		storage.crashsiteplaced = true
 	end	

@@ -258,7 +258,7 @@ data:extend({
       },
       projectile_creation_distance = 1.125,
       range = math.floor(range_smg / 1.5),
-      sound = sounds.submachine_gunshot
+      sound = soundsnew.gun_uzi
 	  
     },
     stack_size = 5
@@ -482,12 +482,12 @@ data:extend({
       cooldown = firerate_blunderbuss,
 	  ammo_consumption_modifier = ammo_consumption_rate_blunderbuss,
 	  damage_modifier = damage_modifier_blunderbuss,
-	  movement_slow_down_cooldown = firerate_shotgun/2,
-      movement_slow_down_factor = 0.75,
+	  movement_slow_down_cooldown = firerate_shotgun/1.5,
+      movement_slow_down_factor = 0.8,
       projectile_creation_distance = 1.125,
       range = range_shotgun,
       min_range = 1,
-      sound = sounds.shotgun
+      sound = soundsnew.gun_blunderbuss
     },
     stack_size = 5
   },

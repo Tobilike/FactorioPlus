@@ -1,14 +1,43 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.3.6
-Date: 2025.08.22
+Version: 2.3.7
+Date: 
+  Space Age:
+    - 
+  Additions:
+    - 
   Graphics:
     - 
   Balance:
     - 
   Fixes:
-    - 
+    - Stopped Flamer biters from visually setting themselves on fire.
+  Localization:
+    - Added Latvian translations. (SafeShows)
   Settings:
-    - Added settings to scale the spawn times of Nauvis enemy spawners.
+    - 
+---------------------------------------------------------------------------------------------------
+Version: 2.3.6
+Date: 2025.08.22
+  Space Age:
+    - Bio labs can now accept bio science packs.
+  Additions:
+    - Added a close range SMG weapon - a Machine pistol.
+  Graphics:
+    - Added 10 more signal flags.
+  Balance:
+    - Updated abandonments scaling and increased randomness, which should help spawn more items.
+    - Added smelters to abandonment loot list.
+    - Increased potency of larger abandoned laser turrets as there are less that are generated from their footprint.
+    - Reduced autoplace spacing for Blaster spawners so they are a little more likely to spawn.
+    - Flattened health increase curve for Tankers and decreased some resistances - but increased their health regeneration according to size.
+    - Larger enemies have a greater health regen, with Bosses getting an additional bonus.
+    - Added slight laser damage resistances to all armours; getting better with higher tier armours.
+    - All 'road' vehicles have been re-ordered into Base vehicles, Utility vehicles and Military vehicles.
+    - Hovercraft requires Low density structure instead of Aluminium.
+  Fixes:
+    - Shotgun pellets will hit bounding box edges instead of the center.
+  Settings:
+    - Added ability to set "Alien chunks probability" to 0, stopping any from being dropped.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.5
 Date: 2025.08.08

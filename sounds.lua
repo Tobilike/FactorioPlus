@@ -9,11 +9,52 @@ sounds.gun_turret_gunshot_light =
 
 
 
--- sounds.gun_turret_gunshot_heavy =
--- {
-  -- variations = sound_variations_speed("__factorio__/sounds/turret-heavy-gunshot", 4, 0.6, 0.7, {volume_multiplier("main-menu", 0.9), volume_multiplier("space-platform", 0.5)}),
-  -- aggregation = {max_count = 8, remove = true, count_already_playing = true, priority = "newest"}
--- }
+sounds.gun_uzi =
+{
+  variations = sound_variations_speed
+  ("__factorioplus__/sounds/uzi-gunshot", 
+  3, -- how many variations (appends "-1" "-2" "-3" etc to file path.
+  0.5, -- volume 
+  1.3, -- base speed
+  0.1, -- increment sound speed each variation by this much.
+	  {
+		  volume_multiplier("main-menu", 0.9), 
+		  volume_multiplier("space-platform", 0.5)
+	  }
+  ),
+  aggregation = 
+  {
+	  max_count = 6, 
+	  remove = true, 
+	  count_already_playing = true, 
+	  priority = "newest"
+  }
+ 
+}
+
+sounds.gun_blunderbuss =
+{
+  variations = sound_variations_speed
+  ("__factorioplus__/sounds/blunderbuss-gunshot", 
+  2, -- how many variations (appends "-1" "-2" "-3" etc to file path.
+  0.7, -- volume 
+  1, -- base speed
+  -0.05, -- increment sound speed each variation by this much.
+	  {
+		  volume_multiplier("main-menu", 0.9), 
+		  volume_multiplier("space-platform", 0.5)
+	  }
+  ),
+  aggregation = 
+  {
+	  max_count = 6, 
+	  remove = true, 
+	  count_already_playing = true, 
+	  priority = "newest"
+  }
+ 
+}
+
 
 sounds.gun_turret_gunshot_heavy =
 {
@@ -35,12 +76,7 @@ sounds.gun_turret_gunshot_heavy =
 	  count_already_playing = true, 
 	  priority = "newest"
   }
-  
-   -- {
-      -- filename = "__factorioplus__/sounds/turret-heavy-gunshot.ogg",
-      -- volume = 0.5,
-	  -- speed = 0.6
-    -- },
+ 
 }
 
 sounds.car_horn =

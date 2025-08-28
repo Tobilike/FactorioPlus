@@ -274,8 +274,8 @@ bullet_uranium_piercing = 12
 bullet_uranium_magazinesize = 40
 bullet_uranium_stacksize = 50
 
-bullet_nuke_physical = 8
-bullet_nuke_explosive = 45
+bullet_nuke_physical = 12
+bullet_nuke_explosive = 55
 bullet_nuke_radius = 4
 bullet_nuke_magazinesize = 25
 bullet_nuke_stacksize = 25
@@ -308,9 +308,9 @@ firerate_shotgun = 60 / 0.75
 shotgun_damage_modifier = 1.5
 range_shotgun = 24
 
-firerate_blunderbuss = 60 / 20
+firerate_blunderbuss = 60 / 40
 ammo_consumption_rate_blunderbuss = 4
-damage_modifier_blunderbuss = 4
+damage_modifier_blunderbuss = 3
 
 firerate_combatshotgun = 60 / 1.85
 range_combatshotgun = 28

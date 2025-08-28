@@ -40,7 +40,8 @@ data:extend({
 		setting_type = "startup",
 		allowed_values = {0, 5, 10, 25, 50, 100},
 		default_value = 10,
-    },
+    },	
+	-- Crashsite Stuff (Equipment, Scrap, Items etc.)
     {
         type = "bool-setting",
         name = "settings-crashsite",
@@ -53,6 +54,12 @@ data:extend({
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal", "more", "extra"},
+    },
+	{
+        type = "bool-setting",
+        name = "settings-crashsite-robots",
+        setting_type = "startup",
+		default_value = false,
     },
 	-- Biter Stuff
 	{

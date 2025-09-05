@@ -1,4 +1,5 @@
 require("stats")
+local soundsnew = require("sounds")
 
 function util.insert_mini_corner_icon(main_icon, mini_icon)
   local icons =
@@ -11,7 +12,7 @@ function util.insert_mini_corner_icon(main_icon, mini_icon)
       icon = mini_icon,
       icon_size = 64,
       scale = 0.25,
-      shift = {8, 8}
+      shift = {-8, 8}
     }
   }
   return icons
@@ -720,6 +721,8 @@ data:extend
     smoke = capsule_smoke
   },
   
+  -----------
+  
   {
     type = "capsule",
     name = "distractor-capsule",
@@ -834,6 +837,124 @@ data:extend
     },
     smoke = capsule_smoke
   },
+  
+    -----------
+  
+  {
+    type = "capsule",
+    name = "denier-capsule",
+	icons = util.insert_mini_corner_icon("__base__/graphics/icons/distractor.png","__factorioplus__/graphics/icons/magazine-piercing.png"),
+    icon_size = 64, icon_mipmaps = 4,
+    capsule_action =
+    {
+      type = "throw",
+      attack_parameters =
+      {
+        type = "projectile",
+        activation_type = "throw",
+        ammo_category = "capsule",
+        cooldown = robot_deploy_cooldown,
+        projectile_creation_distance = 0.6,
+        range = robot_deploy_range,
+        ammo_type =
+        {
+          category = "capsule",
+          target_type = "position",
+          action =
+          {
+            {
+              type = "direct",
+              action_delivery =
+              {
+                type = "projectile",
+                projectile = "denier-capsule",
+                starting_speed = 0.3
+              }
+            },
+            {
+              type = "direct",
+              action_delivery =
+              {
+                type = "instant",
+                target_effects =
+                {
+                  {
+                    type = "play-sound",
+                    sound = sounds.throw_projectile
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    subgroup = "capsule",
+    order = "e[defender-capsule]",
+    stack_size = robot_stacksize
+  },
+  
+  
+  {
+    type = "projectile",
+    name = "denier-capsule",
+    flags = {"not-on-map"},
+    acceleration = 0.005,
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          {
+            type = "create-entity",
+            show_in_tooltip = true,
+            entity_name = "denier",
+            offsets = {{0, 0}}
+          }
+        }
+      }
+    },
+    light = {intensity = 0.5, size = 4},
+    enable_drawing_with_mask = true,
+    animation =
+    {
+      layers =
+      {
+        {
+          filename = "__base__/graphics/entity/combat-robot-capsule/distractor-capsule.png",
+          flags = { "no-crop" },
+          frame_count = 1,
+          width = 36,
+          height = 30,
+          priority = "high"
+        },
+        {
+          filename = "__base__/graphics/entity/combat-robot-capsule/distractor-capsule-mask.png",
+          flags = { "no-crop" },
+          frame_count = 1,
+          width = 36,
+          height = 30,
+          priority = "high",
+          apply_runtime_tint = true
+        }
+      }
+    },
+    shadow =
+    {
+      filename = "__base__/graphics/entity/combat-robot-capsule/distractor-capsule-shadow.png",
+      flags = { "no-crop" },
+      frame_count = 1,
+      width = 40,
+      height = 26,
+      priority = "high"
+    },
+    smoke = capsule_smoke
+  },
+  
+  ----------
   
   {
     type = "capsule",
@@ -953,9 +1074,9 @@ data:extend
     energy_required = 15,
     ingredients =
     {
-      {type="item", name="piercing-rounds-magazine", amount=40},
-      {type="item", name="electronic-circuit", amount=40},
-      {type="item", name="iron-gear-wheel", amount=40}
+      {type="item", name="firearm-magazine", amount=30},
+      {type="item", name="electronic-circuit", amount=30},
+      {type="item", name="iron-gear-wheel", amount=30}
     },
     results = {{type="item", name="defender-capsule", amount=1}},
   },
@@ -968,7 +1089,7 @@ data:extend
     {
       {type="item", name="defender-capsule", amount=1},
 	  {type="item", name="laser", amount=20},
-      {type="item", name="advanced-circuit", amount=40}
+      {type="item", name="advanced-circuit", amount=30}
     },
     results = {{type="item", name="distractor-capsule", amount=1}},
   },
@@ -980,21 +1101,34 @@ data:extend
     ingredients =
     {
       {type="item", name="defender-capsule", amount=1},
-	  {type="item", name="rocket", amount=60},
-      {type="item", name="advanced-circuit", amount=40}
+	  {type="item", name="rocket", amount=50},
+      {type="item", name="advanced-circuit", amount=30}
     },
     results = {{type="item", name="disruptor-capsule", amount=1}},
   },
   {
     type = "recipe",
+    name = "denier-capsule",
+    enabled = false,
+    energy_required = 30,
+    ingredients =
+    {
+      {type="item", name="defender-capsule", amount=1},
+	  {type="item", name="piercing-rounds-magazine", amount=50},
+      {type="item", name="advanced-circuit", amount=30}
+    },
+    results = {{type="item", name="denier-capsule", amount=1}},
+  },
+  {
+    type = "recipe",
     name = "destroyer-capsule",
     enabled = false,
-    energy_required = 45,
+    energy_required = 60,
     ingredients =
     {
       {type="item", name="distractor-capsule", amount=1},
 	  {type="item", name="accumulator", amount=30},
-	  {type="item", name="processing-unit", amount=40} 
+	  {type="item", name="processing-unit", amount=30} 
     },
     results = {{type="item", name="destroyer-capsule", amount=1}},
   },
@@ -1036,7 +1170,7 @@ local robots = {
     dying_explosion = "defender-robot-explosion",
     time_to_live = robot_lifetime,
     follows_player = true,
-    friction = 0.01,
+    friction = 0.025,
     range_from_player = 6.0,
     speed = robot_defender_speed,
     working_sound =
@@ -1165,8 +1299,8 @@ local robots = {
 	follows_player = true,
     speed = robot_distractor_speed,
     follows_player = true,
-    friction = 0.01,
-    range_from_player = 6.0,
+    friction = 0.02,
+    range_from_player = 4.0,
     working_sound =
     {
       sound =
@@ -1274,8 +1408,8 @@ local robots = {
 	follows_player = true,
     speed = robot_distractor_speed,
     follows_player = true,
-    friction = 0.01,
-    range_from_player = 8.0,
+    friction = 0.02,
+    range_from_player = 6.0,
     working_sound =
     {
       sound =
@@ -1304,9 +1438,9 @@ local robots = {
       ammo_category = "rocket",
       cooldown = firerate_rocketlauncher * 2.25,
       cooldown_deviation = 0.1,
-      damage_modifier = 0.5,
-	  min_range = robot_distractor_range/6,
-      range = robot_distractor_range * 1.35,
+      damage_modifier = robot_disruptor_damage_modifier,
+	  min_range = robot_disruptor_range/6,
+      range = robot_disruptor_range,
       sound = 
       {
         {
@@ -1335,6 +1469,140 @@ local robots = {
 			}
 		  }
 		},
+    },
+    water_reflection = robot_reflection(1),
+    idle = robot_animations.distractor.idle,
+    in_motion = robot_animations.distractor.in_motion,
+    shadow_idle = robot_animations.distractor.shadow_idle,
+    shadow_in_motion = robot_animations.distractor.shadow_in_motion
+  },
+  
+   --------------------------------------------------- DENIER ROBOT  -------------------------------------------------------
+
+-- names: disruptor, dispenser, disarmer, director, detonator, deterrer, devestator, defiler, disparager, devourer, defamer, defier, denier, denouncer, demolisher
+  {
+    type = "combat-robot",
+    name = "denier",
+    icon = "__base__/graphics/icons/distractor.png",
+    icon_size = 64, icon_mipmaps = 4,
+    flags = {
+	"placeable-player", 
+	"player-creation", 
+	"placeable-off-grid", 
+	"not-on-map", 
+	"not-repairable"
+	},
+    resistances =
+    {
+		{
+        type = "physical",
+        decrease = 4,
+        percent = 20
+      },
+      {
+        type = "fire",
+	    decrease = 5,
+        percent = 98
+      },
+      {
+        type = "acid",
+        decrease = 0,
+        percent = 85
+      },
+
+    },
+    subgroup="capsule",
+    order="e-a-b",
+    max_health = robot_distractor_hp,
+	healing_per_tick = 0.25,
+    alert_when_damaged = false,
+    collision_box = {{0, 0}, {0, 0}},
+    selection_box = {{-0.5, -1.5}, {0.5, -0.5}},
+    hit_visualization_box = {{-0.1, -1.1}, {0.1, -1.0}},
+    damaged_trigger_effect = hit_effects.flying_robot(),
+    dying_explosion = "distractor-robot-explosion",
+    time_to_live = robot_lifetime,
+	follows_player = true,
+    speed = robot_distractor_speed,
+    friction = 0.02,
+    range_from_player = 4.0,
+    working_sound =
+    {
+      sound =
+      {
+        filename = "__base__/sound/fight/distractor-robot-loop.ogg",
+        volume = 0.7
+      },
+      persistent = true
+    },
+    destroy_action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        source_effects =
+        {
+          type = "create-entity",
+          entity_name = "distractor-robot-explosion"
+        }
+      }
+    },
+   attack_parameters =
+    {
+      type = "projectile",
+	  ammo_category = "bullet",
+      cooldown = firerate_pistol/2,
+      cooldown_deviation = 0.2,
+	  damage_modifier = robot_denier_damage_modifier,
+      projectile_center = {0, 1},
+      projectile_creation_distance = 0.6,
+      range = robot_denier_range,
+      sound = soundsnew.gun_uzi,
+      ammo_type =
+      {
+        category = "bullet",
+        action =
+        {
+          type = "direct",
+          action_delivery =
+          {
+			  {
+				-- Bullet trail
+				type = "beam",
+				beam = "piercing_bullet_trail",
+				max_length = 100,
+				duration = 2,
+				source_offset = {0, -0.0 },
+				add_to_shooter = false,
+				destroy_with_source_or_target = false
+			 },
+			  {
+				type = "instant",
+				source_effects =
+				{
+				  type = "create-explosion",
+				  entity_name = "explosion-gunshot-small"
+				},
+				target_effects =
+				{
+				  {
+					type = "create-entity",
+					entity_name = "explosion-hit"
+				  },
+				  {
+					type = "damage",
+					damage = { amount = bullet_piercing_physical , type = "physical"}
+				  },
+				  {
+					type = "damage",
+					damage = { amount = bullet_piercing_piercing , type = "piercing"}
+				  },
+				}
+			  },
+          }
+        }
+      }
     },
     water_reflection = robot_reflection(1),
     idle = robot_animations.distractor.idle,
@@ -1375,9 +1643,9 @@ local robots = {
     damaged_trigger_effect = hit_effects.flying_robot(),
     dying_explosion = "destroyer-robot-explosion",
     time_to_live = robot_lifetime ,
-    speed =robot_destroyer_speed,
+    speed = robot_destroyer_speed,
     follows_player = true,
-    friction = 0.01,
+    friction = 0.015,
     range_from_player = 6.0,
     working_sound =
     {
@@ -1639,6 +1907,34 @@ data:extend(robots)
       scale = 0.5
     })
   },
+  
+    {
+    type = "corpse",
+    name = "denier-remnants",
+    icon = "__base__/graphics/icons/distractor.png",
+    flags = {"placeable-neutral", "not-on-map", "placeable-off-grid"},
+    hidden_in_factoriopedia = true,
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+    tile_width = 3,
+    tile_height = 3,
+    selectable_in_game = false,
+    subgroup = "remnants",
+    order="d[remnants]-a[generic]-a[small]",
+    time_before_removed = 60 * 60 * 15, -- 15 minutes
+    final_render_layer = "remnants",
+    remove_on_tile_placement = false,
+    animation = make_rotated_animation_variations_from_sheet (3,
+    {
+      filename = "__base__/graphics/entity/distractor-robot/remnants/distractor-robot-remnants.png",
+      line_length = 1,
+      width = 112,
+      height = 110,
+      direction_count = 1,
+      shift = util.by_pixel(-0.5, 0),
+      scale = 0.5
+    })
+  },
+  
  })
   
 

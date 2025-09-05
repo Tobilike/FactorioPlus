@@ -519,6 +519,14 @@ data:extend
         type = "unlock-recipe",
         recipe = "healing-capsule"
       },
+	  {
+        type = "unlock-recipe",
+        recipe = "rocket-slowdown"
+      },
+	  {
+        type = "unlock-recipe",
+        recipe = "rocket-poison"
+      },
     },
 	prerequisites = {"military-4","sulfur-processing","bio-weaponry-1"},
     unit =
@@ -3279,7 +3287,7 @@ data.raw["technology"]["military-3"].unit =
     }
 	
 table.insert(data.raw["technology"]["distractor"].effects,{type = "unlock-recipe",recipe = "disruptor-capsule"})
-
+table.insert(data.raw["technology"]["distractor"].effects,{type = "unlock-recipe",recipe = "denier-capsule"})
 
 table.insert(data.raw["technology"]["gun-turret"].effects,{type = "unlock-recipe",recipe = "shotgun-turret"})
 data.raw["technology"]["gun-turret"].icon = "__factorioplus__/graphics/technology/smg-turret.png"
@@ -4895,8 +4903,47 @@ data.extend({
   }
 })
 
------------------------------------------- OVERRIDE ARTILLERY ------------------------------------------
+------------------------------------------ POISON ------------------------------------------
 
+-- data.extend({
+-- {
+    -- type = "technology",
+    -- name = "poison-damage-1",
+    -- icon_size = 256, icon_mipmaps = 4,
+    -- icons = util.technology_icon_constant_damage("__factorioplus__/graphics/technology/poison.png"),
+    -- effects =
+    -- {
+      -- {
+		-- type = "ammo-damage",
+		-- ammo_category = "poison-rocket",
+		-- modifier = 0.2
+      -- },
+	  -- {
+		-- type = "ammo-damage",
+		-- ammo_category = "poison-capsule",
+		-- modifier = 0.2
+      -- },
+    -- },
+    -- prerequisites = {"bio-weaponry-2"},
+    -- unit =
+    -- {
+      -- count = 100*2,
+      -- ingredients =
+      -- {
+        -- {"automation-science-pack", 1},
+        -- {"logistic-science-pack", 1},
+        -- {"chemical-science-pack", 1},
+        -- {"military-science-pack", 1},
+        -- {"bio-science-pack", 1},
+      -- },
+      -- time = 60
+    -- },
+    -- upgrade = true,
+    -- order = "e-l-f"
+  -- }
+-- })
+
+------------------------------------------ OVERRIDE ARTILLERY ------------------------------------------
 
 data:extend({
   {

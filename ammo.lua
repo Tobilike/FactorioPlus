@@ -187,6 +187,18 @@ data:extend({
 	icon = "__factorioplus__/graphics/icons/ammo-category-plasma.png",
 	subgroup = "ammo-category"
   },
+    -- {
+    -- type = "ammo-category",
+    -- name = "poison-rocket",
+	-- icon = "__factorioplus__/graphics/icons/ammo-category-poison.png",
+	-- subgroup = "ammo-category"
+  -- },
+      -- {
+    -- type = "ammo-category",
+    -- name = "poison-capsule",
+	-- icon = "__factorioplus__/graphics/icons/ammo-category-poison.png",
+	-- subgroup = "ammo-category"
+  -- },
 
 ----------------------------- NAPALM AMMO -----------------------------  
 
@@ -799,7 +811,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="firearm-magazine", amount=1},
-      {type="item", name="explosives", amount=1},
+      {type="item", name="explosives", amount=2},
     },
     results = {{type="item", name="explosive-rounds-magazine", amount=1}},
   },
@@ -2120,7 +2132,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="shotgun-shell", amount=1},
-      {type="item", name="explosives", amount=2}
+      {type="item", name="explosives", amount=4}
     },
     results = {{type="item", name="explosive-shotgun-shell", amount=1}},
   },
@@ -2535,7 +2547,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="explosive-shotgun-shell", amount=1},
-      {type="item", name="explosives", amount=4},
+      {type="item", name="explosives", amount=6},
 	  {type="item", name="uranium-235", amount=1}
     },
     results = {{type="item", name="nuke-shotgun-shell", amount=1}},
@@ -3383,7 +3395,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 8,
     ingredients =
     {
-      {type="item", name="grenade", amount=3},
+      {type="item", name="grenade", amount=6},
       {type="item", name="plastic-bar", amount=3},
       {type="item", name="steel-plate", amount=1}
     },
@@ -3664,7 +3676,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
   },
   
   --- MORTAR FIRE EXPLOSION STICKER
-firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firestickerapplyradius, mortar_napalm_firedps, mortar_napalm_fireburnsticker_time, 0.75, nil, nil),
+	firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firestickerapplyradius, mortar_napalm_firedps, mortar_napalm_fireburnsticker_time, 0.75, nil, nil),
   
   
   fireutil.add_basic_fire_graphics_and_effects_definitions
@@ -3764,7 +3776,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
         {
           {
             type = "create-entity",
-            entity_name = "grenade-explosion"
+            entity_name = "big-explosion"
           },
           {
             type = "damage",
@@ -3777,6 +3789,26 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
 			force = "not-same",
             damage = {amount = rocket_damage_physical, type = "physical"}
           },
+		  {
+			type = "create-trivial-smoke",
+			smoke_name = "artillery-smoke",
+			initial_height = 0,
+			speed_from_center = 0.05,
+			speed_from_center_deviation = 0.005,
+			offset_deviation = {{-4, -4}, {4, 4}},
+			max_radius = 2.5,
+			repeat_count = 2 * 4 * 8
+			},
+		  {
+			type = "create-trivial-smoke",
+			smoke_name = "artillery-smoke",
+			initial_height = 0,
+			speed_from_center = 0.2,
+			speed_from_center_deviation = 0.01,
+			offset_deviation = {{-4, -4}, {4, 4}},
+			max_radius = 4.5,
+			repeat_count = 2 * 4 * 8
+			},
           {
             type = "create-entity",
             entity_name = "small-scorchmark-tintable",
@@ -3906,7 +3938,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       --{type="item", name="electronic-circuit", amount=1},
-      {type="item", name="explosives", amount=2},
+      {type="item", name="explosives", amount=4},
       {type="item", name="iron-plate", amount=2}
     },
     results = {{type="item", name="rocket", amount=1}},
@@ -4156,11 +4188,268 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="rocket", amount=1},
-      {type="item", name="explosives", amount=12}
+      {type="item", name="explosives", amount=14}
     },
     results = {{type="item", name="explosive-rocket", amount=1}},
   },
   
+  
+ ----------------------------- POISON ROCKET ----------------------------
+ 
+ {
+    type = "ammo",
+    name = "rocket-poison",
+    icon = "__factorioplus__/graphics/icons/poison-rocket.png",
+    icon_size = 64, icon_mipmaps = 4,
+	ammo_category = "rocket",
+    ammo_type =
+    {
+      category = "rocket",
+	  range_modifier = rocket_utility_range_modifier,
+	  cooldown_modifier = rocket_utility_cooldown_modifier,
+      action =
+      {
+        type = "direct",
+        action_delivery =
+        {
+          type = "projectile",
+          projectile = "rocket-poison",
+          starting_speed = rocket_speed_initial,
+          source_effects =
+          {
+            type = "create-entity",
+            entity_name = "explosion-hit",
+          }
+        }
+      }
+    },
+    subgroup = "ammo",
+    order = "d[rocket-launcher]-a[basic]",
+    stack_size = rocket_utility_stacksize,
+    weight = 40*kg
+  },
+  
+ {
+    type = "projectile",
+    name = "rocket-poison",
+    flags = {"not-on-map"},
+    acceleration = rocket_speed_acceleration,
+    turn_speed = 0.003,
+    turning_speed_increases_exponentially_with_projectile_speed = true,
+    action =
+    {
+	  {
+      type = "direct",
+      action_delivery =
+		  {
+			type = "instant",
+			target_effects =
+			{
+			  {
+				type = "create-entity",
+				entity_name = "grenade-explosion"
+			  },
+			  {
+				type = "damage",
+				force = "same",
+				show_in_tooltip = false,
+				damage = {amount = rocket_damage_physical * friendly_fire_modifier, type = "physical"}
+			  },
+			 {
+				type = "damage",
+				force = "not-same",
+				damage = {amount = rocket_damage_physical, type = "physical"}
+			  },
+			  {
+				type = "create-entity",
+				entity_name = "small-scorchmark-tintable",
+				check_buildability = true
+			  },
+			  {
+				type = "invoke-tile-trigger",
+				repeat_count = 1,
+			  },
+			  {
+				type = "destroy-decoratives",
+				from_render_layer = "decorative",
+				to_render_layer = "object",
+				include_soft_decoratives = true, -- soft decoratives are decoratives with grows_through_rail_path = true
+				include_decals = false,
+				invoke_decorative_trigger = true,
+				decoratives_with_trigger_only = false, -- if true, destroys only decoratives that have trigger_effect set
+				radius = 1.5 -- large radius for demostrative purposes
+			  },
+			   {
+                  type = "create-smoke",
+                  show_in_tooltip = true,
+                  entity_name = "poison-cloud-large",
+                  initial_height = 0
+				},
+				{
+				  type = "create-particle",
+				  particle_name = "poison-capsule-metal-particle",
+				  repeat_count = 8,
+				  initial_height = 1,
+				  initial_vertical_speed = 0.1,
+				  initial_vertical_speed_deviation = 0.05,
+				  offset_deviation = {{-0.1, -0.1}, {0.1, 0.1}},
+				  speed_from_center = 0.05,
+				  speed_from_center_deviation = 0.01
+				}
+			}
+		  }
+	  },
+    },
+    light = {intensity = 0.5, size = 4},
+    animation = require("__base__.prototypes.entity.rocket-projectile-pictures").animation({1, 0.8, 0.3}),
+    shadow = require("__base__.prototypes.entity.rocket-projectile-pictures").shadow,
+    smoke = require("__base__.prototypes.entity.rocket-projectile-pictures").smoke,
+  },
+  
+  {
+    type = "recipe",
+    name = "rocket-poison",
+    enabled = false,
+    energy_required = 16,
+    ingredients =
+    {
+      --{type="item", name="electronic-circuit", amount=1},
+      {type="item", name="rocket", amount=1},
+      {type="item", name="poison-capsule", amount=2}
+    },
+    results = {{type="item", name="rocket-poison", amount=1}},
+  },
+  
+   ----------------------------- POISON ROCKET ----------------------------
+ 
+ {
+    type = "ammo",
+    name = "rocket-slowdown",
+    icon =  "__factorioplus__/graphics/icons/slowdown-rocket.png",
+    icon_size = 64, icon_mipmaps = 4,
+	ammo_category = "rocket",
+	
+    ammo_type =
+    {
+	  range_modifier = rocket_utility_range_modifier,
+	  cooldown_modifier = rocket_utility_cooldown_modifier,
+      category = "rocket",
+      action =
+      {
+        type = "direct",
+        action_delivery =
+        {
+          type = "projectile",
+          projectile = "rocket-slowdown",
+          starting_speed = rocket_speed_initial,
+          source_effects =
+          {
+            type = "create-entity",
+            entity_name = "explosion-hit",
+          }
+        }
+      }
+    },
+    subgroup = "ammo",
+    order = "d[rocket-launcher]-a[basic]",
+    stack_size = rocket_utility_stacksize,
+    weight = 30*kg
+  },
+  
+ {
+    type = "projectile",
+    name = "rocket-slowdown",
+    flags = {"not-on-map"},
+    acceleration = rocket_speed_acceleration,
+    turn_speed = 0.003,
+    turning_speed_increases_exponentially_with_projectile_speed = true,
+    action =
+    {
+	   {
+				type = "area",
+				radius = 15,
+				force = "enemy",
+				action_delivery =
+				{
+					type = "instant",
+					target_effects =
+					{
+						{
+						type = "create-sticker",
+						sticker = "slowdown-sticker"
+						}
+					}
+				}
+		},
+	  {
+      type = "direct",
+      action_delivery =
+		  {
+			type = "instant",
+			target_effects =
+			{
+			  {
+				type = "create-entity",
+				entity_name = "grenade-explosion"
+			  },
+			  {
+				type = "damage",
+				force = "same",
+				show_in_tooltip = false,
+				damage = {amount = rocket_damage_physical * friendly_fire_modifier, type = "physical"}
+			  },
+			 {
+				type = "damage",
+				force = "not-same",
+				damage = {amount = rocket_damage_physical, type = "physical"}
+			  },
+			  {
+				type = "create-entity",
+				entity_name = "small-scorchmark-tintable",
+				check_buildability = true
+			  },
+			  {
+				type = "invoke-tile-trigger",
+				repeat_count = 1,
+			  },
+			  {
+				type = "destroy-decoratives",
+				from_render_layer = "decorative",
+				to_render_layer = "object",
+				include_soft_decoratives = true, -- soft decoratives are decoratives with grows_through_rail_path = true
+				include_decals = false,
+				invoke_decorative_trigger = true,
+				decoratives_with_trigger_only = false, -- if true, destroys only decoratives that have trigger_effect set
+				radius = 1.5 -- large radius for demostrative purposes
+			  },
+			   {
+              type = "create-entity",
+              entity_name = "slowdown-capsule-explosion"
+              },
+			
+			}
+		  }
+	  },
+    },
+    light = {intensity = 0.5, size = 4},
+    animation = require("__base__.prototypes.entity.rocket-projectile-pictures").animation({1, 0.8, 0.3}),
+    shadow = require("__base__.prototypes.entity.rocket-projectile-pictures").shadow,
+    smoke = require("__base__.prototypes.entity.rocket-projectile-pictures").smoke,
+  },
+  
+  {
+    type = "recipe",
+    name = "rocket-slowdown",
+    enabled = false,
+    energy_required = 16,
+    ingredients =
+    {
+      --{type="item", name="electronic-circuit", amount=1},
+      {type="item", name="rocket", amount=1},
+      {type="item", name="slowdown-capsule", amount=2}
+    },
+    results = {{type="item", name="rocket-slowdown", amount=1}},
+  },
   ----------------------------- NUKE ROCKET ----------------------------
   
   {
@@ -4639,7 +4928,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
   {
 	{type="item", name="steel-plate", amount=6},
 	{type="item", name="plastic-bar", amount=4},
-	{type="item", name="explosives", amount=1}
+	{type="item", name="explosives", amount=2}
   },
   results = {{type="item", name="cannon-shell", amount=1}},
   },
@@ -4752,7 +5041,7 @@ firestickerutil.makefiresticker("mortar-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
 	  {type="item", name="cannon-shell", amount=1},
-	  {type="item", name="explosives", amount=16}
+	  {type="item", name="explosives", amount=18}
     },
     results = {{type="item", name="explosive-cannon-shell", amount=1}},
   },

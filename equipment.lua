@@ -367,6 +367,7 @@ data:extend({
     order = "11[modular-harness]",
     stack_size = 1,
     infinite = true,
+	hidden = true,
 	equipment_grid = "small-equipment-grid",
   },
   
@@ -430,6 +431,7 @@ data:extend({
   	{
     type = "item",
     name = "harness-roboport-equipment",
+	hidden = true,
     icon = "__factorioplus__/graphics/icons/equipment-harness-roboport-icon.png",
     icon_size = 64, icon_mipmaps = 4,
     place_as_equipment_result = "harness-roboport-equipment",
@@ -470,6 +472,7 @@ data:extend({
     {
     type = "item",
     name = "harness-generator-equipment",
+	hidden = true,
     icon = "__factorioplus__/graphics/icons/equipment-harness-generator-icon.png",
     icon_size = 64, icon_mipmaps = 4,
     place_as_equipment_result = "harness-generator-equipment",
@@ -510,6 +513,7 @@ data:extend({
   {
     type = "item",
     name = "harness-battery-equipment",
+	hidden = true,
     icon = "__factorioplus__/graphics/icons/equipment-harness-battery-icon.png",
 	 icon_size = 64, icon_mipmaps = 4,
     place_as_equipment_result = "harness-battery-equipment",

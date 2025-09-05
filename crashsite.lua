@@ -9,15 +9,15 @@ local crash_site_sprite_priority = "very-low"
 
 local cs_craft_speed = 0.5
 local cs_wreckage_loot = nil
-local cs_power_amount = "400kW"
+local cs_power_amount = "500kW"
 local cs_ship_gear = nil
 
-if settings.startup["settings-crashsite-bonus"].value == "more" then
-	cs_craft_speed = 1.0
-	 cs_power_amount = "1000kW"
-elseif settings.startup["settings-crashsite-bonus"].value == "extra" then
+if settings.startup["settings-crashsite-bonus-buildingstats"].value == "more" then
 	cs_craft_speed = 2.0
-	cs_power_amount = "3000kW"
+	 cs_power_amount = "1500kW"
+elseif settings.startup["settings-crashsite-bonus-buildingstats"].value == "extra" then
+	cs_craft_speed = 4.0
+	cs_power_amount = "4000kW"
 end
 
 local wreck_flags =
@@ -87,6 +87,7 @@ data.raw["container"]["crash-site-spaceship-wreck-medium-3"].inventory_size = 2
 
 data.raw["container"]["crash-site-chest-1"].inventory_size = 10
 data.raw["container"]["crash-site-chest-2"].inventory_size = 10
+data.raw["container"]["crash-site-chest-2"].minable = { mining_time = 1 }
 
 data.raw["container"]["crash-site-spaceship"].inventory_size = 10
 data.raw["container"]["crash-site-spaceship"].minable = nil

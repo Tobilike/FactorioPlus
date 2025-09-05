@@ -162,14 +162,14 @@ local robotitems =
 	{name="construction-robot", count=10},
 }
 
-function PlaceShipContainer(items) 
+function PlaceShipContainer(items, position) 
 
 	local csc = "crash-site-chest-1" 
 	if math.random() > 0.5 then
 		csc = "crash-site-chest-2" 
 	end
-	thisPosition = {math.random(-12,4),math.random(6, 9)}
-	_pos = game.surfaces[1].find_non_colliding_position( csc , thisPosition, 10, 3, true )
+	thisPosition = position 
+	_pos = game.surfaces[1].find_non_colliding_position( csc , thisPosition, 15, 2, true )
 	_obj = game.surfaces[1].create_entity{ position = _pos, name = csc , force = "player" } 
 			
 	if items then
@@ -180,7 +180,7 @@ end
 local extra_loot_ship = nil
 local extra_loot_large_wreck = nil
 local extra_loot_medium_wreck = nil
-if settings.startup["settings-crashsite-bonus"].value == "more" then
+if settings.startup["settings-crashsite-bonus-equipment"].value == "more" then
 	extra_loot_ship = {
 		{name="med-pack", count=5},
 		{name="repair-pack", count=20},
@@ -188,14 +188,7 @@ if settings.startup["settings-crashsite-bonus"].value == "more" then
 		{name="light-armor", count=1},
 		{name="firearm-magazine", count=40},
 	}
-	extra_loot_large_wreck = {
-		{name="iron-plate", count=30},
-		{name="iron-gear-wheel", count=15},
-	}
-	extra_loot_medium_wreck = {
-		{name="iron-plate", count=10},
-	}
-elseif settings.startup["settings-crashsite-bonus"].value == "extra" then
+elseif settings.startup["settings-crashsite-bonus-equipment"].value == "extra" then
 extra_loot_ship = {
 		{name="med-pack", count=20},
 		{name="repair-pack", count=80},
@@ -206,6 +199,17 @@ extra_loot_ship = {
 		{name="defender-capsule", count=5},
 		
 	}
+end
+
+if settings.startup["settings-crashsite-bonus-scrap"].value == "more" then
+	extra_loot_large_wreck = {
+		{name="iron-plate", count=30},
+		{name="iron-gear-wheel", count=15},
+	}
+	extra_loot_medium_wreck = {
+		{name="iron-plate", count=10},
+	}
+elseif settings.startup["settings-crashsite-bonus-scrap"].value == "extra" then
 	extra_loot_large_wreck = {
 		{name="iron-plate", count=80},
 		{name="copper-plate", count=20},
@@ -216,7 +220,6 @@ extra_loot_ship = {
 		{name="iron-gear-wheel", count=30},
 	}
 end
-
 
 
 function InsertGoodies(objects, items) 
@@ -244,16 +247,27 @@ end
 function OnPlayerCreated()
 	if ( remote.interfaces["freeplay"] and  settings.startup["settings-crashsite"].value == true and storage.crashsiteplaced == nil) then
 		PlaceShipParts() 
-		if settings.startup["settings-crashsite-bonus"].value ~= "normal" then
-			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship"},extra_loot_ship)
+		if settings.startup["settings-crashsite-bonus-scrap"].value ~= "normal" then
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-big-1"},extra_loot_large_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-big-2"},extra_loot_large_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-1"},extra_loot_medium_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-2"},extra_loot_medium_wreck)
 			InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship-wreck-medium-3"},extra_loot_medium_wreck)
 		end
+		if settings.startup["settings-crashsite-bonus-equipment"].value ~= "normal" then
+			i = settings.startup["settings-crashsite-x-players"].value
+			while ( i > 0 ) do
+				PlaceShipContainer(extra_loot_ship, {math.random(-12,6),math.random(-16, -10)} ) 
+				i = i - 1
+			end
+			--InsertGoodies(game.surfaces[1].find_entities_filtered{name="crash-site-spaceship"},extra_loot_ship)
+		end
 		if settings.startup["settings-crashsite-robots"].value then
-			PlaceShipContainer(robotitems) 
+			i = settings.startup["settings-crashsite-x-players"].value
+			while ( i > 0 ) do
+				PlaceShipContainer(robotitems, {math.random(-12,6),math.random(6, 10)} ) 
+				i = i - 1
+			end
 		end
 		storage.crashsiteplaced = true
 	end	

@@ -1,20 +1,20 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.7
-Date: 
-  Space Age:
-    - 
-  Additions:
-    - 
-  Graphics:
-    - 
+Date: 2025.08.28
+  Sounds:
+    - Added unique gunfire sounds for the Machine pistol and Blunderbuss
   Balance:
-    - 
+    - Reduced explosive shotgun round range by -2
+    - Piercing and Uranium shotgun round range deviation increased from 0.3 to 0.5
+    - Increased nuke shotgun round damage by +20%
+    - Reduced Blunderbuss damage modifier from +300% -> +200%.
   Fixes:
     - Stopped Flamer biters from visually setting themselves on fire.
+    - Nuke shotgun rounds correctly uses their range_modifier round (x1.5 range)
   Localization:
     - Added Latvian translations. (SafeShows)
   Settings:
-    - 
+    - Added starting construction robot setting, giving the player a basic modular harness with 10 construction robots.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.6
 Date: 2025.08.22

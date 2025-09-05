@@ -66,6 +66,9 @@ nw.attack_parameters.damage_modifier = dm * r.scale
 return nw
 end
 
+	----- WEAPON CATEGORY -----
+
+local rocketlauncher_ammo_categories = {"rocket"}
  
 data:extend({
   -----------------------------  PISTOL  -----------------------------
@@ -1831,6 +1834,7 @@ data:extend({
         range = range_grenade + capsule_throw_extra_range,
         ammo_type =
         {
+		  
           category = "capsule",
           target_type = "position",
 		  clamp_position = true,
@@ -2321,6 +2325,163 @@ data.extend({
       }
     }
   },
+  
+  --- CLOUDS
+  
+  {
+    name = "poison-cloud-large",
+    type = "smoke-with-trigger",
+    flags = {"not-on-map"},
+    hidden = true,
+    show_when_smoke_off = true,
+    particle_count = 24,
+    particle_spread = { 3.6 * 1.05, 3.6 * 0.6 * 1.05 },
+    particle_distance_scale_factor = 0.5,
+    particle_scale_factor = { 1, 0.707 },
+    wave_speed = { 1/80, 1/60 },
+    wave_distance = { 0.3, 0.2 },
+    spread_duration_variation = 20,
+    particle_duration_variation = 60 * 3,
+    render_layer = "object",
+
+    affected_by_wind = false,
+    cyclic = true,
+    duration = poison_grenade_duration,
+    fade_away_durastion = 2 * 60,
+    spread_duration = 20,
+    color = {0.239, 0.875, 0.992, 0.690}, -- #3ddffdb0,
+
+    animation =
+    {
+      width = 152,
+      height = 120,
+      line_length = 5,
+      frame_count = 60,
+      shift = {-0.53125, -0.4375},
+      priority = "high",
+      animation_speed = 0.25,
+      filename = "__base__/graphics/entity/smoke/smoke.png",
+      flags = { "smoke" }
+    },
+
+    created_effect =
+    {
+      {
+        type = "cluster",
+        cluster_count = 10*1.5,
+        distance = 4 *1.5,
+        distance_deviation = 5 *1.5,
+        action_delivery =
+        {
+          type = "instant",
+          target_effects =
+          {
+            {
+              type = "create-smoke",
+              show_in_tooltip = false,
+              entity_name = "poison-cloud-large-visual-dummy",
+              initial_height = 0
+            },
+            {
+              type = "play-sound",
+              sound = sounds.poison_capsule_explosion
+            }
+          }
+        }
+      },
+      {
+        type = "cluster",
+        cluster_count = 11 *1.5 ,
+        distance = 8 * 1.5,
+        distance_deviation = 2,
+        action_delivery =
+        {
+          type = "instant",
+          target_effects =
+          {
+            {
+              type = "create-smoke",
+              show_in_tooltip = false,
+              entity_name = "poison-cloud-visual-dummy",
+              initial_height = 0
+            }
+          }
+        }
+      }
+    },
+    action =
+    {
+      type = "direct",
+      action_delivery =
+      {
+        type = "instant",
+        target_effects =
+        {
+          type = "nested-result",
+          action =
+          {
+            type = "area",
+            radius = 11 * 1.5,
+            entity_flags = {"breaths-air"},
+            action_delivery =
+            {
+              type = "instant",
+              target_effects =
+              {
+                type = "damage",
+                damage = { amount = poison_grenade_damage, type = "poison"}
+              }
+            }
+          }
+        }
+      }
+    },
+    action_cooldown = poison_grenade_tick_duration
+  },
+  
+  {
+    type = "smoke-with-trigger",
+    name = "poison-cloud-large-visual-dummy",
+    flags = {"not-on-map"},
+    hidden = true,
+    show_when_smoke_off = true,
+    particle_count = 16 * 2,
+    particle_spread = { 3.6 * 1.05, 3.6 * 0.6 * 1.05 },
+    particle_distance_scale_factor = 0.5 *1.5,
+    particle_scale_factor = { 1, 0.707 },
+    particle_duration_variation = 60 * 3,
+    wave_speed = { 0.5 / 80, 0.5 / 60 },
+    wave_distance = { 1, 0.5 },
+    spread_duration_variation = 300 - 20,
+
+    render_layer = "object",
+
+    affected_by_wind = false,
+    cyclic = true,
+    duration = poison_grenade_duration,
+    fade_away_duration = 3 * 60,
+    spread_duration = (300 - 20) / 2 ,
+    color = {0.014, 0.358, 0.395, 0.322}, -- #035b6452
+
+    animation =
+    {
+      width = 152,
+      height = 120,
+      line_length = 5,
+      frame_count = 60,
+      shift = {-0.53125, -0.4375},
+      priority = "high",
+      animation_speed = 0.25,
+      filename = "__base__/graphics/entity/smoke/smoke.png",
+      flags = { "smoke" }
+    },
+    working_sound =
+    {
+      sound = {filename = "__base__/sound/fight/poison-cloud.ogg", volume = 0.5, audible_distance_modifier = 0.8},
+      max_sounds_per_prototype = 1,
+      match_volume_to_activity = true
+    }
+  },
    
 -----------------------------  HEALING GRENADE  -----------------------------
   
@@ -2792,7 +2953,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+      ammo_categories = rocketlauncher_ammo_categories,
       movement_slow_down_factor = 0.75,
       cooldown =  firerate_rocketlauncher,
       projectile_creation_distance = 0.6,
@@ -2832,7 +2993,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+      ammo_categories = rocketlauncher_ammo_categories,
       movement_slow_down_factor = 0.75,
       cooldown =  firerate_rocketlauncher * attack_speed_vehicle_bonus,
       projectile_creation_distance = 0.6,
@@ -2865,7 +3026,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+      ammo_categories = rocketlauncher_ammo_categories,
       movement_slow_down_factor = 0.8,
       cooldown =  firerate_rocketlauncher/4 ,
       projectile_creation_distance = 0.6,
@@ -2905,7 +3066,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+      ammo_categories = rocketlauncher_ammo_categories,
       cooldown =  firerate_rocketlauncher_spidertron,
       range = range_rocketlauncher_spidertron,
       projectile_creation_distance = -0.5,
@@ -2933,7 +3094,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+       ammo_categories = rocketlauncher_ammo_categories,
       cooldown =  firerate_rocketlauncher_spidertron,
       range = range_rocketlauncher_spidertron,
       projectile_creation_distance = -0.5,
@@ -2961,7 +3122,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+       ammo_categories = rocketlauncher_ammo_categories,
       cooldown =  firerate_rocketlauncher_spidertron,
       range = range_rocketlauncher_spidertron,
       projectile_creation_distance = -0.5,
@@ -2990,7 +3151,7 @@ data:extend({
     attack_parameters =
     {
       type = "projectile",
-      ammo_category = "rocket",
+       ammo_categories = rocketlauncher_ammo_categories,
       cooldown =  firerate_rocketlauncher_spidertron,
       range = range_rocketlauncher_spidertron,
       projectile_creation_distance = -0.5,

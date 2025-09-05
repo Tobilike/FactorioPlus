@@ -3736,7 +3736,6 @@ data:extend({
     dying_explosion = "gun-turret-explosion",
     collision_box = {{-1.25, -1.25 }, {1.25, 1.25}},
     selection_box = {{-1.5, -1.5 }, {1.5, 1.5}},
-	--diagonal_tile_grid_size = {0.2, 0.2 },
     damaged_trigger_effect = hit_effects.entity(),
     rotation_speed = 0.001,
     preparing_speed = 0.5,

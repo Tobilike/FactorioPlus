@@ -48,9 +48,23 @@ data:extend({
         setting_type = "startup",
         default_value = true
     },
+		{
+        type = "string-setting",
+        name = "settings-crashsite-bonus-buildingstats",
+        setting_type = "startup",
+		default_value = "normal",
+		allowed_values = {"normal", "more", "extra"},
+    },
 	{
         type = "string-setting",
-        name = "settings-crashsite-bonus",
+        name = "settings-crashsite-bonus-equipment",
+        setting_type = "startup",
+		default_value = "normal",
+		allowed_values = {"normal", "more", "extra"},
+    },
+	{
+        type = "string-setting",
+        name = "settings-crashsite-bonus-scrap",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal", "more", "extra"},
@@ -60,6 +74,13 @@ data:extend({
         name = "settings-crashsite-robots",
         setting_type = "startup",
 		default_value = false,
+    },
+	{
+        type = "int-setting",
+        name = "settings-crashsite-x-players",
+        setting_type = "startup",
+		allowed_values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		default_value = 1,
     },
 	-- Biter Stuff
 	{

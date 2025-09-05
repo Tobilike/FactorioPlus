@@ -90,13 +90,13 @@ autoplace_spacing_stinger = {0.55, 7}
 
 -- BASE SPAWN AMOUNTS
 
-spawning_amount_biter = 5
+spawning_amount_biter = 4
 spawning_amount_spitter = 4
-spawning_amount_swarmer = 10
+spawning_amount_swarmer = 8
 spawning_amount_blaster = 3
 spawning_amount_tanker = 3
 spawning_amount_flamer = 3
-spawning_amount_stinger = 6
+spawning_amount_stinger = 5
 
 -- SPAWN TIME
 
@@ -203,7 +203,7 @@ big_flamer_scale    	= 1.25
 behemoth_flamer_scale  = 1.6
 boss_flamer_scale  	= 2.25
 
-blaster_spawner_scale = 1.25
+blaster_spawner_scale = 1.1
 
 small_blaster_scale   	= 0.6
 medium_blaster_scale    = 0.9
@@ -243,7 +243,7 @@ big_tanker_scale      = 1.2
 behemoth_tanker_scale = 1.6
 boss_tanker_scale     = 2.3
 
-stinger_spawner_scale = 1.25
+stinger_spawner_scale = 1.1
 
 -- ATTACKS & DAMAGE
 
@@ -636,14 +636,14 @@ end
 
 function blasterresistances(v)
 local ntv = v - 1
-local dinc = {1,10}
-local einc = {10,5}
+local dinc = {1,15}
+local einc = {15,5}
 return 
 {
 {
 	type = "physical",
 	decrease = 1 + ( ntv * dinc[1] ) ,
-	percent = 0 + ( ntv * dinc[2] ) ,
+	percent = 10 + ( ntv * dinc[2] ) ,
 	},
 	{
 	type = "explosion",

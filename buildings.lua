@@ -155,8 +155,139 @@ if (data.raw["transport-belt"]["fast-transport-belt"].resistances == nil)
 
 data.raw["offshore-pump"]["offshore-pump"].pumping_speed = 6
 
----------------------------------------------------  AIR SCRUBBER  ------------------------------------------------------------
 
+local lft_pipespacing = 3
+local lft_pipespacing_y = lft_pipespacing - 0.5
+
+---------------------------------------------------  LARGE FLUID TANK  ------------------------------------------------------------
+data.extend({
+{
+    type = "storage-tank",
+    name = "storage-tank-large",
+    icon = "__base__/graphics/icons/storage-tank.png",
+    flags = {"placeable-player", "player-creation"},
+    minable = {mining_time = 0.5, result = "storage-tank"},
+    max_health = 4000,
+    corpse = "storage-tank-remnants",
+    dying_explosion = "storage-tank-explosion",
+    collision_box = {{-1.9*2, -1.9*2}, {1.9*2, 1.9*2}},
+    selection_box = {{-2*2, -2*2}, {2*2, 2*2}},
+    fast_replaceable_group = "storage-tank",
+    damaged_trigger_effect = hit_effects.entity(),
+    icon_draw_specification = {scale = 1.5, shift = {0, -0.3}},
+    fluid_box =
+    {
+      volume = 25000 * 10,
+      pipe_covers = pipecoverspictures(),
+      pipe_connections =
+      {
+        { direction = defines.direction.north, position = {-lft_pipespacing_y, -lft_pipespacing} },
+		{ direction = defines.direction.north, position = {lft_pipespacing_y, -lft_pipespacing} },
+        { direction = defines.direction.east, position = {lft_pipespacing, lft_pipespacing_y} },
+		{ direction = defines.direction.east, position = {lft_pipespacing,-lft_pipespacing_y} },
+        { direction = defines.direction.south, position = {-lft_pipespacing_y, lft_pipespacing} },
+		 { direction = defines.direction.south, position = {lft_pipespacing_y, lft_pipespacing} },
+        { direction = defines.direction.west, position = {-lft_pipespacing, lft_pipespacing_y} },
+		{ direction = defines.direction.west, position = {-lft_pipespacing, -lft_pipespacing_y} },
+      },
+      hide_connection_info = true
+    },
+    two_direction_only = true,
+    window_bounding_box = {{-0.125, 0.6875}, {0.1875, 1.1875}},
+    pictures =
+    {
+      picture =
+      {
+        sheets =
+        {
+          {
+            filename = "__factorioplus__/graphics/largefluidtank.png",
+            priority = "extra-high",
+            frames = 1,
+            width = 440,
+            height = 458,
+            shift = util.by_pixel(-0.25, -1.25),
+            scale = 0.65
+          },
+          -- {
+            -- filename = "__base__/graphics/entity/storage-tank/storage-tank-shadow.png",
+            -- priority = "extra-high",
+            -- frames = 2,
+            -- width = 291,
+            -- height = 153,
+            -- shift = util.by_pixel(29.75, 22.25),
+            -- scale = 0.5,
+            -- draw_as_shadow = true
+          -- }
+        }
+      },
+      fluid_background =
+      {
+        filename = "__base__/graphics/entity/storage-tank/fluid-background.png",
+        priority = "extra-high",
+        width = 32,
+        height = 15
+      },
+      window_background =
+      {
+        filename = "__base__/graphics/entity/storage-tank/window-background.png",
+        priority = "extra-high",
+        width = 34,
+        height = 48,
+        scale = 0.5
+      },
+      flow_sprite =
+      {
+        filename = "__base__/graphics/entity/pipe/fluid-flow-low-temperature.png",
+        priority = "extra-high",
+        width = 160,
+        height = 20
+      },
+      gas_flow =
+      {
+        filename = "__base__/graphics/entity/pipe/steam.png",
+        priority = "extra-high",
+        line_length = 10,
+        width = 48,
+        height = 30,
+        frame_count = 60,
+        animation_speed = 0.25,
+        scale = 0.5
+      }
+    },
+    flow_length_in_ticks = 360,
+    impact_category = "metal-large",
+    open_sound = sounds.metal_large_open,
+    close_sound = sounds.metal_large_close,
+    working_sound =
+    {
+      sound = {filename = "__base__/sound/storage-tank.ogg", volume = 0.6, audible_distance_modifier = 0.5},
+      match_volume_to_activity = true,
+      max_sounds_per_prototype = 3
+    },
+
+    circuit_connector = circuit_connector_definitions["storage-tank"],
+    circuit_wire_max_distance = default_circuit_wire_max_distance,
+    water_reflection =
+    {
+      pictures =
+      {
+        filename = "__base__/graphics/entity/storage-tank/storage-tank-reflection.png",
+        priority = "extra-high",
+        width = 24,
+        height = 24,
+        shift = util.by_pixel(5, 35),
+        variation_count = 1,
+        scale = 5
+      },
+      rotate = false,
+      orientation_to_variation = false
+    }
+  },
+})
+
+---------------------------------------------------  AIR SCRUBBER  ------------------------------------------------------------
+  
 data.extend({
 {
     type = "electric-energy-interface",

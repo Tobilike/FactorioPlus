@@ -76,12 +76,13 @@ end
 data:extend{naturalgasdecal}
 
 ---------------------------------------------------  RESOURCE VARS  ------------------------------------------------------------
-local iron_ore_spotsperkm2 = 1.1
-local ironpure_spotsrelativetoiron = 1/4 -- how many spots of pure iron compared to regular iron
+local iron_ore_spotsperkm2 = 1/1
+local ironpure_spotsrelativetoiron = 1/10 -- how many spots of pure iron compared to regular iron
 
-local goblin_ore_spotsperkm2 = 1.5 -- this is /3 as there are 3 types of goblin ore
+local goblin_ore_spotsperkm2 = 1/1000
+local goblin_ore_numberof = 3 -- How many types of goblin ore are there?
 
-local sand_ore_spotsperkm2 = 0.8
+local sand_ore_spotsperkm2 = 1/2
 ---------------------------------------------------  BASE RESOURCE OVERRIDES  ------------------------------------------------------------
 data.raw["resource"]["iron-ore"].autoplace = resource_autoplace.resource_autoplace_settings
     {
@@ -427,11 +428,11 @@ data:extend
       name = "bauxite-ore",
       order = "c",
       base_density = 0.6,
-      base_spots_per_km2 = 0.6,
+      base_spots_per_km2 = 0.5,
       has_starting_area_placement = false,
       random_spot_size_minimum = 1,
-      random_spot_size_maximum = 3,
-      regular_rq_factor_multiplier = 1
+      random_spot_size_maximum = 4,
+      regular_rq_factor_multiplier = 1.1
     },
     stage_counts = {20000, 10000, 5000, 2500, 1250, 750, 400, 200},
     stages =
@@ -493,7 +494,7 @@ data:extend
 	resource_patch_search_radius = 10,
     minable =
     {
-	-- IRON RICHEST, COPPER RICH, COAL LOW, STONE MED
+	
       mining_particle = "stone-particle",
       mining_time = 1.5,
       results = 
@@ -501,25 +502,25 @@ data:extend
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.22/0.65,
+			probability = 0.25,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "iron-ore",
-			probability = 0.26/0.65,
+			probability = 0.26,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "copper-ore",
-			probability = 0.22/0.65,
+			probability = 0.21,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "coal",
-			probability = 0.20/0.65,
+			probability = 0.22,
 			amount = 1
 		},
 	  },
@@ -531,16 +532,16 @@ data:extend
       name = "goblin-ore",
 	  seed1 = 100,
       order = "c",
-      base_density = 6,
-      base_spots_per_km2 = goblin_ore_spotsperkm2*3,
+      base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+      base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
-      random_spot_size_minimum = 2,
-      random_spot_size_maximum = 5,
+      random_spot_size_minimum = 3,
+      random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 0.5,
-	  richness_post_multiplier = 0.05, 
+	  regular_rq_factor_multiplier = 1.1,
+	  richness_post_multiplier = 0.5, 
     },
-    stage_counts = {20000, 10000, 5000, 2900, 1550, 1150, 700, 300},
+    stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
     stages =
     {
       sheet =
@@ -624,16 +625,16 @@ data:extend
 	  patch_set_name = "goblin-ore-2",
 	  seed1 = 101,
       order = "c",
-      base_density = 6,
-      base_spots_per_km2 =  goblin_ore_spotsperkm2*3,
+       base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+      base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
-      random_spot_size_minimum = 2,
-      random_spot_size_maximum = 5,
+      random_spot_size_minimum = 3,
+      random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 0.5,
-	  richness_post_multiplier = 0.05, 
+	  regular_rq_factor_multiplier = 1.1,
+	  richness_post_multiplier = 0.5, 
     },
-    stage_counts = {20000, 10000, 5000, 2900, 1550, 1150, 700, 300},
+    stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
     stages =
     {
       sheet =
@@ -686,19 +687,19 @@ data:extend
 		{
 		type = "item",
 			name = "stone",
-			probability = 0.12,
+			probability = 0.13,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "iron-ore",
-			probability = 0.42,
+			probability = 0.45,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "copper-ore",
-			probability = 0.37,
+			probability = 0.4,
 			amount = 1
 		},
 		{
@@ -717,16 +718,16 @@ data:extend
 	  patch_set_name = "goblin-ore-3",
 	  seed1 = 102,
       order = "c",
-      base_density = 6,
-      base_spots_per_km2 =  goblin_ore_spotsperkm2*3,
+       base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+      base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
-      random_spot_size_minimum = 2,
-      random_spot_size_maximum = 5,
+      random_spot_size_minimum = 3,
+      random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 0.5,
-	  richness_post_multiplier = 0.05, 
+	  regular_rq_factor_multiplier = 1.1,
+	  richness_post_multiplier = 0.5, 
     },
-    stage_counts = {20000, 10000, 5000, 2900, 1550, 1150, 700, 300},
+    stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
     stages =
     {
       sheet =
@@ -801,16 +802,16 @@ data:extend
     {
       name = "sand-ore",
       order = "c",
-      base_density = 6,
+      base_density = 3 * sand_ore_spotsperkm2,
       base_spots_per_km2 = sand_ore_spotsperkm2,
       has_starting_area_placement = false,
       random_spot_size_minimum = 1,
-      random_spot_size_maximum = 2,
+      random_spot_size_maximum = 4,
 	  regular_blob_amplitude_multiplier =  17, -- 1
-      regular_rq_factor_multiplier = 0.5,
-	  richness_post_multiplier = 0.005, 
+      regular_rq_factor_multiplier = 1,
+	  richness_post_multiplier = 0.01, 
     },
-    stage_counts = {12000, 8000, 4000, 2000, 1200, 600, 300, 100},
+    stage_counts = {12000/2, 8000/2, 4000/2, 2000/2, 1200/2, 600/2, 300/2, 100/2},
     stages =
     {
       sheet =
@@ -1582,16 +1583,16 @@ data:extend
       order = "c",
 	  patch_set_name = "iron-ore-pure",
 	  seed1 = 69, -- hehe
-      base_density = 7,
-      base_spots_per_km2 = iron_ore_spotsperkm2 / ironpure_spotsrelativetoiron ,
-      has_starting_area_placement = false,
-	  random_spot_size_minimum = 10,
-      random_spot_size_maximum = 20,
+      base_density = 0.4 *  (iron_ore_spotsperkm2 * ironpure_spotsrelativetoiron),
+      base_spots_per_km2 = iron_ore_spotsperkm2 *  ironpure_spotsrelativetoiron  ,
+      has_starting_area_placsement = false,
+	  random_spot_size_minimum = 2,
+      random_spot_size_maximum = 3,
 	  regular_blob_amplitude_multiplier =  1.5,
-      regular_rq_factor_multiplier = 0.3,
-      starting_rq_factor_multiplier = 0.3,
+      regular_rq_factor_multiplier = 1.1,
+      starting_rq_factor_multiplier = 0.2,
       candidate_spot_count = 8,
-	  richness_post_multiplier = 0.2, 
+	  richness_post_multiplier = 2, 
       --tile_restriction = autoplace_parameters.tile_restriction
     },
     stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},

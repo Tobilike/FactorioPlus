@@ -63,8 +63,10 @@ end
 -- --data.raw["cliff"]["cliff-gleba"].cliff_explosive = "cliff-explosives"
 -- end
 
-local pollution_ocean = { pollution = 0.000035 }
+local pollution_ocean = { pollution = 0.000065 }
+local pollution_deepwater = { pollution = 0.000035 }
  
+data.raw["tile"]["water"].walking_speed_modifier = walking_speed_stone
 data.raw["tile"]["stone-path"].walking_speed_modifier = walking_speed_stone
 data.raw["tile"]["concrete"].walking_speed_modifier = walking_speed_concrete
 data.raw["tile"]["hazard-concrete-left"].walking_speed_modifier = walking_speed_concrete
@@ -324,6 +326,7 @@ data:extend
 table.insert(data.raw["tile"]["deepwater"].collision_mask, { deep_water_tile = true } )
 
 data.raw["tile"]["deepwater"].autoplace = {probability_expression = "water_base(-3, 100)"}
+data.raw["tile"]["deepwater"].absorptions_per_second = pollution_deepwater
 data.raw["tile"]["deepwater"].walking_speed_modifier = 0.4
 data.raw["tile"]["deepwater"].effect_color = {21, 99, 111}
 data.raw["tile"]["deepwater"].effect_color_secondary = { 35, 68, 45 }

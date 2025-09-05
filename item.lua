@@ -71,134 +71,37 @@ local tarmac_icon = {
   data.raw["item"]["steam-engine"].subgroup = "fluidpower"
   data.raw["item"]["boiler"].subgroup = "fluidpower"
   
-data:extend({
- {
-    type = "item-with-entity-data",
-    name = "locomotive",
-    icon = "__base__/graphics/icons/locomotive.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "trains",
-    order = "a[train-system]-f[locomotive]",
-    place_result = "locomotive",
-    stack_size = 5
-  },
-  {
-    type = "item-with-entity-data",
-    name = "cargo-wagon",
-    icon = "__base__/graphics/icons/cargo-wagon.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "trains",
-    order = "a[train-system]-g[cargo-wagon]",
-    place_result = "cargo-wagon",
-    stack_size = 5
-  },
+   data.raw["item-with-entity-data"]["locomotive"].subgroup = "trains"  
+   data.raw["item-with-entity-data"]["cargo-wagon"].subgroup = "trains"  
+   data.raw["item-with-entity-data"]["fluid-wagon"].subgroup = "trains"  
+   data.raw["item-with-entity-data"]["artillery-wagon"].subgroup = "trains"
+   
+   data.raw["item"]["pumpjack"].subgroup = "fluidextraction"
+   data.raw["item"]["chemical-plant"].subgroup = "fluidprocessing"
+   data.raw["item"]["oil-refinery"].subgroup = "fluidprocessing"
+   
+   data.raw["item"]["pump"].subgroup = "pumps"
+   data.raw["item"]["offshore-pump"].subgroup = "pumps"
+   
+   data.raw["item"]["storage-tank"].subgroup = "pipes"
+   data.raw["item"]["pipe"].subgroup = "pipes"
+   data.raw["item"]["pipe-to-ground"].subgroup = "pipes"
 
-
-
-   {
-    type = "item-with-entity-data",
-    name = "fluid-wagon",
-    icon = "__base__/graphics/icons/fluid-wagon.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "trains",
-    order = "a[train-system]-h[fluid-wagon]",
-    place_result = "fluid-wagon",
-    stack_size = 5
-  },
-  {
-    type = "item-with-entity-data",
-    name = "artillery-wagon",
-    icon = "__base__/graphics/icons/artillery-wagon.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "trains",
-    order = "a[train-system]-i[artillery-wagon]",
-    place_result = "artillery-wagon",
-    stack_size = 5
-  },
- {
-    type = "item",
-    name = "pumpjack",
-    icon = "__base__/graphics/icons/pumpjack.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "fluidextraction",
-    order = "b[fluids]-b[pumpjack]",
-    place_result = "pumpjack",
-    stack_size = 20
-  },
-  {
-    type = "item",
-    name = "chemical-plant",
-    icon = "__base__/graphics/icons/chemical-plant.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "fluidprocessing",
-    order = "e[chemical-plant]",
-    place_result = "chemical-plant",
-    stack_size = 10
-  },
+ ---------------------------------------------------  FACTORIOPLUS STUFF  ------------------------------------------------------------
+data:extend
+({ 
    {
     type = "item",
-    name = "oil-refinery",
-    icon = "__base__/graphics/icons/oil-refinery.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "fluidprocessing",
-    order = "d[refinery]",
-    place_result = "oil-refinery",
-    stack_size = 10
-  },
-  {
-    type = "item",
-    name = "pump",
-    icon = "__base__/graphics/icons/pump.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "pumps",
-    order = "b[pipe]-c[pump]",
-    place_result = "pump",
-    stack_size = 50
-  },
-  {
-    type = "item",
-    name = "offshore-pump",
-    icon = "__base__/graphics/icons/offshore-pump.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "pumps",
-    order = "b[fluids]-a[offshore-pump]",
-    place_result = "offshore-pump",
-    stack_size = 20
-  },
-    {
-    type = "item",
-    name = "storage-tank",
+    name = "storage-tank-large",
     icon = "__base__/graphics/icons/storage-tank.png",
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "pipes",
     order = "b[fluid]-a[storage-tank]",
-    place_result = "storage-tank",
-    stack_size = 50
+    place_result = "storage-tank-large",
+	 pick_sound = item_sounds.metal_large_inventory_pickup,
+    drop_sound = item_sounds.metal_large_inventory_move,
+    stack_size = 25
   },
-  {
-    type = "item",
-    name = "pipe",
-    icon = "__base__/graphics/icons/pipe.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "pipes",
-    order = "a[pipe]-a[pipe]",
-    place_result = "pipe",
-    stack_size = 100
-  },
-  {
-    type = "item",
-    name = "pipe-to-ground",
-    icon = "__base__/graphics/icons/pipe-to-ground.png",
-    icon_size = 64, icon_mipmaps = 4,
-    subgroup = "pipes",
-    order = "a[pipe]-b[pipe-to-ground]",
-    place_result = "pipe-to-ground",
-    stack_size = 50
-  },
-})
- ---------------------------------------------------  FACTORIOPLUS STUFF  ------------------------------------------------------------
-data:extend
-({ 
   {
     type = "item",
     name = "listening-post",

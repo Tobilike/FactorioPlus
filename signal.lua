@@ -249,4 +249,40 @@ data:extend(
 		subgroup = "virtual-signal",
 		order = "z[star]"
 	},
+	-------------------------------- GLYPHS --------------------------------
+	{
+		type = "virtual-signal",
+		name = "signal-miner",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_mining.png",
+		subgroup = "pictographs",
+		order = "a[fuel]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-train",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_train.png",
+		subgroup = "pictographs",
+		order = "a[fuel]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-factory",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_factory.png",
+		subgroup = "pictographs",
+		order = "a[fuel]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-home",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_home.png",
+		subgroup = "pictographs",
+		order = "a[fuel]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-turret",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_turret.png",
+		subgroup = "pictographs",
+		order = "a[fuel]"
+	},
 })

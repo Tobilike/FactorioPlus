@@ -30,8 +30,8 @@ return
 	allow_try_return_to_spawner = true,
 	do_separation = true,
 	join_attacks = true,
-	path_resolution_modifier = 1 - scale, -- larger units should use a worse resolution
-	size_in_group = 0.5 + ( scale * 0.5 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
+	path_resolution_modifier = math.floor( 2 - (scale * 2) ), -- larger units should use a worse resolution
+	size_in_group = 0.25 + ( scale * 0.75 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
 }
 end
 
@@ -2164,7 +2164,7 @@ function makeenemysbiter(enemyname, enemyhealth, enemyrange, enemydamage, enemys
 			run_animation = ra,
 			running_sound_animation_positions = {2,},
 			walking_sound = sounds.biter_walk(0.2*enemyscale),
-			ai_settings = biter_ai_settings,
+			ai_settings = Create_AISettings(enemyscale),
 			water_reflection = biter_water_reflection(enemyscale),
 			dying_trigger_effect = dte,
 			light = lt,

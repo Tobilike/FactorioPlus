@@ -378,25 +378,25 @@ beltfed_projectile_maxrange = 60
 
 -- Mortar
 
-firerate_grenadelauncher = 60 / 0.6
+firerate_grenadelauncher = 60 * 3
 
 mortar_reloadtime = 60 * 1.5
 mortar_magazinesize = 6
 mortar_stacksize = 25
 
-range_mortar = 120
+range_mortar = 6 * 32
 
-mortar_hit_physicaldamage = 40
-mortar_regular_explosivedamage = 80
+mortar_hit_physicaldamage = 100
+mortar_regular_explosivedamage = 100
 
 mortar_regular_damageradius = 6.0
 
-mortar_napalm_explosivedamage = 25
+mortar_napalm_explosivedamage = 40
 mortar_napalm_explosivedamageradius = 4
 mortar_napalm_firedps = 30
-mortar_napalm_fireground_time = 30
+mortar_napalm_fireground_time = 40
 
-mortar_napalm_bomblet_count = 6
+mortar_napalm_bomblet_count = 8
 mortar_napalm_bomblet_scatter_radius = 3
 mortar_napalm_bomblet_scatter_deviation = 6
 
@@ -495,6 +495,12 @@ rocket_explosive_damage_explosive = 400
 rocket_explosive_radius = 8.0
 rocket_explosive_cooldown_modifier = 2.0
 rocket_explosive_stacksize = 50
+
+-- util
+
+rocket_utility_stacksize = 50
+rocket_utility_range_modifier =  1.5
+rocket_utility_cooldown_modifier = 3
 
 -- nuke
 
@@ -634,28 +640,28 @@ firerate_turret_laser = 80 / 4
 range_turret_laser = 28
 health_turret_laser = 500
 
-firerate_turret_rocket = firerate_rocketlauncher / 0.5
-rangemin_turret_rocket = 16
+firerate_turret_rocket = firerate_rocketlauncher / 0.3
+rangemin_turret_rocket = 22
 range_turret_rocket = 42
-health_turret_rocket = 700
+health_turret_rocket = 750
 
 firerate_turret_cannon =  60 / 0.2
 rangemin_turret_cannon = 20
 range_turret_cannon = 70
-health_turret_cannon = 2500
+health_turret_cannon = 3500
 
 firerate_turret_minigun = 60 / 15
 range_turret_minigun = 42
-rangemin_turret_minigun = 6
-health_turret_minigun = 1500
+rangemin_turret_minigun = 4
+health_turret_minigun = 1700
 
-turnrange_mortar = 1/2.5
+turnrange_mortar = 1/4
 firerate_mortar_factor = 2
-range_turret_mortar = 6 * 32
-rangemin_turret_mortar = 2 * 32
-health_turret_mortar = 600
+range_turret_mortar = 8 * 32
+rangemin_turret_mortar = 2 * 32 
+health_turret_mortar = 800
 
-firerate_turret_sniper = 60 * 5
+firerate_turret_sniper = 60 * 6
 range_turret_sniper = 4 * 32
 rangemin_turret_sniper = 1 * 32
 health_turret_sniper = 300
@@ -673,7 +679,7 @@ artillery_shell_damage_explosion = 500
 
 -- Roborts
 
-robot_lifetime = 8 * 60 * 60 * 60
+robot_lifetime = 10 * 60 * 60 * 60
 robot_deploy_cooldown = 60
 robot_deploy_range = 15
 robot_stacksize = 25
@@ -681,17 +687,25 @@ robot_stacksize = 25
 robot_defender_hp = 100
 robot_defender_damage_modifier = 0.75 -- uses pistol/piercing mag stats
 robot_defender_range = 18
-robot_defender_speed = 0.008
+robot_defender_speed = 0.01
+
 
 robot_distractor_hp = 250
 robot_distractor_damage_modifier = 1.75 -- uses laser stats
 robot_distractor_range = 26
-robot_distractor_speed = 0.007
+robot_distractor_speed = 0.009
+
+robot_disruptor_damage_modifier = 0.5 
+robot_disruptor_range = 36
+
+robot_denier_damage_modifier = 0.85 
+robot_denier_range = 20
+
 
 robot_destroyer_hp = 600
 robot_destroyer_damage_modifier = 2.5  -- uses electric beam stats
-robot_destroyer_range = 20
-robot_destroyer_speed = 0.006
+robot_destroyer_range = 22
+robot_destroyer_speed = 0.008
 
 -- Capsules
 

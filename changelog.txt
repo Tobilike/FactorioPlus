@@ -1,4 +1,29 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.8
+Date: 2025.09.05
+  Additions:
+    - Added poison and slowdown rockets, gained from Bio weaponry 2 tech.
+    - Added SMG distractor robot capsules.
+  Graphics:
+    - Regular rocket explosions look and sound a bit more relative to their explosive radius/damage.
+    - Added 5 new pictograph signals.
+  Balance:
+    - All explosive ammo require more explosives in their recipes.
+    - Some enemies have less spawn amounts so their are not as many units building up in their bases. (Optimizations)
+    - Increased Blaster physical and explosive damage resistances.
+    - Most Factorioplus ores have been tweaked to improve their placement spacing and density better. 
+    - Defender capsules require Firearm magazines instead of Piercing rounds.
+    - All combat robots updated to fly tighter and closer to the player.
+    - Increased mortar damage, but reduced their fire rate and view angle.
+    - Reduced the firerate of rocket turrets by ~40%
+    - Ocean and Deepwater tiles have had their pollution absorbtion rates increased by 2x.
+  Fixes:
+    - AI settings now take the unit scale into account to increase/descrease their pathfinding resolution according to their size.
+    - Fixed combat robot icons so the weapon appears on the bottom left of the icon so it isn't blocked by item count.
+  Settings:
+    - Crashsite settings split out into Equipment, Scrap and Building so they can be tweaked seperately.
+    - Added Crashsite Player count, so that equipment/robots have additional containers for each player.
+---------------------------------------------------------------------------------------------------
 Version: 2.3.7
 Date: 2025.08.28
   Sounds:

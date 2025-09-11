@@ -2,6 +2,7 @@ local enemy_autoplace = require ("__base__.prototypes.entity.enemy-autoplace-uti
 local hit_effects = require ("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
 local soundsnew = require("sounds")
+local item_sounds = require("__base__.prototypes.item_sounds")
 
 -- turret stats
 require("stats")
@@ -150,15 +151,87 @@ picture =
 
 ---------------------------------------------------  TURRET OVERRIDES  ------------------------------------------------------------
 
--- data.raw["fluid-turret"]["flamethrower-turret"].attack_parameters.fluids =
-      -- {
-        -- {type = "crude-oil"},
-        -- {type = "heavy-oil", damage_modifier = 1.1},
-        -- {type = "light-oil", damage_modifier = 1.2},
-		-- {type = "natural-gas"}
-      -- }
+--------------------------------- ROCKET BATTERY --------------------------------
+if (mods["space-age"]) then
 
- 
+	local _rocketbattery = util.copy(data.raw["ammo-turret"]["rocket-turret"])
+	_rocketbattery.name = "rocket-battery" 
+	_rocketbattery.minable.result = "rocket-battery" 
+	_rocketbattery.placeable_by = {item = "rocket-battery" , count = 1}
+	_rocketbattery.max_health = health_rocket_battery
+	_rocketbattery.inventory_size = 4
+	_rocketbattery.attack_parameters.cooldown = firerate_rocket_battery
+	_rocketbattery.attack_parameters.range = range_rocket_battery
+	_rocketbattery.attack_parameters.min_range = rangemin_rocket_battery
+	_rocketbattery.attack_parameters.damage_modifier = 1.0	
+	_rocketbattery.hide_resistances = false
+	_rocketbattery.resistances =
+    {
+      {
+        type = "fire",
+        decrease = 2,
+        percent = 20
+      },
+       {
+        type = "physical",
+        percent = 20
+      },
+      {
+        type = "impact",
+        decrease = 20,
+        percent = 10
+      },
+      {
+        type = "explosion",
+        decrease = 25,
+        percent = 60
+      },
+      {
+        type = "acid",
+		decrease = 2,
+        percent = 50
+      }
+    },
+	data:extend({_rocketbattery})
+	
+	data:extend
+	({
+		{
+			type = "recipe",
+			name = "rocket-battery" ,
+			enabled = false,
+			energy_required = 25,
+			ingredients =
+			{
+				{type = "item", name = "rocket-turret", amount = 1},	
+				{type = "item", name = "rocket-launcher", amount = 2},
+				{type = "item", name = "processing-unit", amount = 4},
+				{type = "item", name = "carbon-fiber", amount = 20},		
+			},
+			results = {{type="item", name="rocket-battery", amount=1}},
+		},  	
+	})
+	
+	 data.extend
+	({
+		{
+			type = "item",
+			name = "rocket-battery",
+			icon = "__space-age__/graphics/icons/rocket-turret.png",
+			icon_size = 64, icon_mipmaps = 4,
+			subgroup = "turret",
+			order = "b[turret]-cb[rocket-battery]",
+			inventory_move_sound = item_sounds.turret_inventory_move,
+			pick_sound = item_sounds.turret_inventory_pickup,
+			drop_sound = item_sounds.turret_inventory_move,
+			place_result = "rocket-battery",
+			stack_size = 10,
+			weight = 100*kg
+		},
+	}) 
+end
+
+--------------------------------- FLAME TURRET --------------------------------
 
 function fireutil.flamethrower_turret_extension_animation(shft, opts)
   local m_line_length = 5
@@ -3341,7 +3414,6 @@ data:extend({
  
   --------------------------------------------------- SMALL ROCKET TURRET ------------------------------------------------------------
 
-if not (mods["space-age"]) then
 
 local rocket_turret_x = 1824/8
 local rocket_turret_y = 1720/8
@@ -3597,10 +3669,6 @@ data:extend({
   },
 })
 	
-else 
-	data.raw["ammo-turret"]["rocket-turret"].attack_parameters.damage_modifier = 1.0
-	
-end 
 --------------------------------- MORTAR(GRENADE) TURRET --------------------------------
 
 function mortar_turret_extension(inputs)
@@ -4631,7 +4699,13 @@ data:extend({
 require("veteran-turrets")
 
  if (mods["space-age"]) then
- 
+
+turretVetGroupings["rocket-battery"] = {
+    "rocket-battery-veterancy-1",
+    "rocket-battery-veterancy-2",
+    "rocket-battery-veterancy-3",
+    "rocket-battery-veterancy-4"
+  }
 turretVetGroupings["railgun-turret"] = {
     "railgun-turret-veterancy-1",
     "railgun-turret-veterancy-2",
@@ -4651,14 +4725,17 @@ turretsToVet = { {"ammo-turret","pistol-turret"},{"ammo-turret","shotgun-turret"
 
 if (mods["space-age"]) then
 	table.insert( turretsToVet , {"ammo-turret","railgun-turret"} )
-	table.insert( turretsToVet , {"electric-turret","tesla-turret"} )
 	data.raw["ammo-turret"]["railgun-turret"].attack_parameters.damage_modifier = 1.0
+	
+	table.insert( turretsToVet , {"electric-turret","tesla-turret"} )
 	data.raw["electric-turret"]["tesla-turret"].attack_parameters.damage_modifier = 1.0	
+	
+	table.insert( turretsToVet , {"ammo-turret", "rocket-battery"} )
+	data.raw["ammo-turret"]["rocket-battery"].attack_parameters.damage_modifier = 1.0	
 end
 
 
 local tempVetGroupings = {}
-local turretValueIncreaseAmount = {0.1,0.2,0.3,0.5}
 
 function createAllTurrets()
 
@@ -4685,9 +4762,9 @@ function createTurretVeterancys(turrettype, turret, level)
 
   result.localised_name = {"entity-name.".. result.name}
   result.name = result.name .. "-veterancy-" .. level
-  result.hidden = true
- 
+  result.hidden = true 
   result.max_health = result.max_health * (1 + turretValueIncreaseAmount[level]  )
+  result.healing_per_tick = (result.max_health / 10000 ) * turretValueIncreaseAmount[level]
   result.attack_parameters.cooldown = result.attack_parameters.cooldown / (1 + turretValueIncreaseAmount[level]  ) 
   result.attack_parameters.range = math.ceil(  result.attack_parameters.range * (1 + turretValueIncreaseAmount[level]  ) )
   result.attack_parameters.damage_modifier = result.attack_parameters.damage_modifier * (1 + turretValueIncreaseAmount[level] ) 

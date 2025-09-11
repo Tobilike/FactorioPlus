@@ -1768,7 +1768,15 @@ data.extend({
       {
         type = "unlock-recipe",
         recipe = "accumulator-battery"
-      }
+      },
+	   {
+        type = "worker-robot-battery",
+        modifier = 0.5
+      },
+	   {
+        type = "follower-robot-lifetime",
+        modifier = 0.5
+      },
     },
 	prerequisites = {"electric-energy-accumulators", "chemical-science-pack"},
     unit =
@@ -1795,7 +1803,15 @@ data.extend({
       {
         type = "unlock-recipe",
         recipe = "adv-accumulator-battery"
-      }
+      },
+	  {
+        type = "worker-robot-battery",
+        modifier = 0.5
+      },
+	   {
+        type = "follower-robot-lifetime",
+        modifier = 0.5
+      },
     },
 	prerequisites = {"electric-energy-accumulators-2", "processing-unit", "utility-science-pack"},
     unit =
@@ -2800,7 +2816,7 @@ end
         recipe = "electric-grinder"
       }
     },
-    prerequisites = {"efficiency-module","productivity-module","mining-productivity-1","lubricant"},
+    prerequisites = {"efficiency-module","productivity-module","mining-productivity-1"},
     unit =
     {
       count = 300,
@@ -2808,7 +2824,6 @@ end
       {
          {"automation-science-pack", 1},
         {"logistic-science-pack", 1},
-		{"chemical-science-pack", 1}
       },
       time = 60
     },
@@ -3196,7 +3211,7 @@ table.insert(data.raw["technology"]["logistics-2"].effects,{type = "unlock-recip
  
 table.insert(data.raw["technology"]["steel-processing"].effects,{type = "unlock-recipe",recipe = "large-burner-mining-drill"})
 
-table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{type = "unlock-recipe",recipe = "personal-long-range-roboport-equipment"})
+-- table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{type = "unlock-recipe",recipe = "personal-long-range-roboport-equipment"})
 
   data:extend
 ({
@@ -3222,6 +3237,32 @@ table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{
       time = 5
     },
     order = "c-a"
+  },
+  
+   {
+    type = "technology",
+    name = "personal-longrangeroboport-equipment",
+    icons = util.technology_icon_constant_equipment("__base__/graphics/technology/personal-roboport-equipment.png"),
+    effects =
+    {
+      {
+        type = "unlock-recipe",
+        recipe = "personal-long-range-roboport-equipment"
+      }
+    },
+    prerequisites = {"personal-roboport-equipment", "low-density-structure", "processing-unit", "production-science-pack"},
+    unit =
+    {
+      count = 150,
+      ingredients =
+      {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+		{"production-science-pack", 1},
+      },
+      time = 30
+    }
   },
   
   {
@@ -3254,6 +3295,8 @@ table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{
   },
   
 })
+
+-- table.insert(data.raw["technology"]["military"].effects,{type = "unlock-recipe",recipe = "basic-explosive"})
 
 table.insert(data.raw["technology"]["military-2"].effects,{type = "unlock-recipe",recipe = "magnum"})
 table.insert(data.raw["technology"]["military-2"].effects,{type = "unlock-recipe",recipe = "uzi-gun"})
@@ -3955,11 +3998,11 @@ table.removeentry(data.raw["technology"]["power-armor-mk2"].prerequisites, "mili
 table.insert(data.raw["technology"]["power-armor-mk2"].prerequisites,"military-5")
 
 
-if (mods["space-age"]) then
+-- Updated Rocket Turrets and Space age
 
-else
 data:extend
 ({    
+
 	{
 		type = "technology",
 		name = "rocket-turret",
@@ -3975,7 +4018,7 @@ data:extend
 		prerequisites = {"rocketry"},
 		unit =
 		{
-		  count = 150,
+		  count = 200,
 		  ingredients =       
 		  {
 			{"automation-science-pack", 1},
@@ -3987,8 +4030,47 @@ data:extend
 		order = "a-j-a"
 	}
 })
+
+
+if (mods["space-age"]) then
+data:extend
+({    
+	{
+    type = "technology",
+    name = "rocket-battery",
+    icon = "__space-age__/graphics/technology/rocket-turret.png",
+    icon_size = 256,
+    effects =
+    {
+      {
+        type = "unlock-recipe",
+        recipe = "rocket-battery"
+      },
+      {
+        type = "unlock-recipe",
+        recipe = "coal-synthesis"
+      }
+    },
+    prerequisites = {"rocket-turret", "carbon-fiber", "stronger-explosives-2"},
+    unit =
+    {
+      ingredients =
+      {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"military-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"space-science-pack", 1},
+        {"agricultural-science-pack", 1}
+      },
+      time = 30,
+      count = 1000
+    }
+  },
+})
 end
-   
+
+ 
 data:extend
 ({    
   
@@ -4661,7 +4743,7 @@ data.raw.technology["physical-projectile-damage-5"].effects =
   {
 	type = "ammo-damage",
 	ammo_category = "sniper-shell",
-	modifier = 0.5
+	modifier = 0.2
   },
 }
 
@@ -4680,7 +4762,7 @@ data.raw.technology["physical-projectile-damage-6"].effects =
 	{
 	type = "ammo-damage",
 	ammo_category = "sniper-shell",
-	modifier = 0.5
+	modifier = 0.2
 	},
 	{
 	type = "ammo-damage",
@@ -4704,7 +4786,7 @@ data.raw.technology["physical-projectile-damage-7"].effects =
 	{
 	type = "ammo-damage",
 	ammo_category = "sniper-shell",
-	modifier = 0.5
+	modifier = 0.2
 	},
 	{
 	type = "ammo-damage",

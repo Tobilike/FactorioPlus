@@ -669,6 +669,26 @@ local damage_type = data.damage_type or "acid"
           }
         }
       },
+	  {
+		type = "cluster",
+		cluster_count = 1 + math.floor(2 * data.spit_radius),
+		distance = data.spit_radius / 2,
+		distance_deviation = data.spit_radius / 3,
+		 action_delivery =
+		 {
+			type = "instant",
+          target_effects =
+		  {
+		    {
+              type = "create-fire",
+              entity_name = data.splash_fire_name,
+			  probability = 0.5,
+              tile_collision_mask = {layers={ water_tile=true }},
+              show_in_tooltip = true
+            },
+		  },
+		 },
+	  },
       {
         type = "area",
         radius = data.spit_radius,
@@ -910,6 +930,7 @@ function acid_splash_fire(data)
 
 local pics
 local pics2
+local _scale = 0.2 + (0.2 * data.scale)
 
 if string.find(data.name,"web" ) then 
 pics = 
@@ -926,9 +947,9 @@ pics =
               width = 210,
               height = 224,
               frame_count = 26,
-              shift = util.mul_shift(util.by_pixel(-12, -8), data.scale),
+              shift = util.mul_shift(util.by_pixel(-12, -8), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -939,9 +960,9 @@ pics =
               width = 266,
               height = 188,
               frame_count = 26,
-              shift = util.mul_shift(util.by_pixel(2, 2), data.scale),
+              shift = util.mul_shift(util.by_pixel(2, 2), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -958,9 +979,9 @@ pics =
               width = 174,
               height = 150,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(-9, -17), data.scale),
+              shift = util.mul_shift(util.by_pixel(-9, -17), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -971,9 +992,9 @@ pics =
               width = 238,
               height = 266,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(6, 29), data.scale),
+              shift = util.mul_shift(util.by_pixel(6, 29), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -990,9 +1011,9 @@ pics =
               width = 236,
               height = 208,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(22, -16), data.scale),
+              shift = util.mul_shift(util.by_pixel(22, -16), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1003,9 +1024,9 @@ pics =
               width = 214,
               height = 140,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(17, 2), data.scale),
+              shift = util.mul_shift(util.by_pixel(17, 2), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -1022,9 +1043,9 @@ pics =
               width = 252,
               height = 154,
               frame_count = 24,
-              shift = util.mul_shift(util.by_pixel(17, -19), data.scale),
+              shift = util.mul_shift(util.by_pixel(17, -19), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1035,15 +1056,15 @@ pics =
               width = 248,
               height = 160,
               frame_count = 24,
-              shift = util.mul_shift(util.by_pixel(18, -16), data.scale),
+              shift = util.mul_shift(util.by_pixel(18, -16), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
       }
     }
-	
+
 else 
 pics = 
 {
@@ -1059,9 +1080,9 @@ pics =
               width = 210,
               height = 224,
               frame_count = 26,
-              shift = util.mul_shift(util.by_pixel(-12, -8), data.scale),
+              shift = util.mul_shift(util.by_pixel(-12, -8), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1072,9 +1093,9 @@ pics =
               width = 266,
               height = 188,
               frame_count = 26,
-              shift = util.mul_shift(util.by_pixel(2, 2), data.scale),
+              shift = util.mul_shift(util.by_pixel(2, 2), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -1091,9 +1112,9 @@ pics =
               width = 174,
               height = 150,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(-9, -17), data.scale),
+              shift = util.mul_shift(util.by_pixel(-9, -17), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1104,9 +1125,9 @@ pics =
               width = 238,
               height = 266,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(6, 29), data.scale),
+              shift = util.mul_shift(util.by_pixel(6, 29), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale =  _scale
 
           }
         }
@@ -1123,9 +1144,9 @@ pics =
               width = 236,
               height = 208,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(22, -16), data.scale),
+              shift = util.mul_shift(util.by_pixel(22, -16), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1136,9 +1157,9 @@ pics =
               width = 214,
               height = 140,
               frame_count = 29,
-              shift = util.mul_shift(util.by_pixel(17, 2), data.scale),
+              shift = util.mul_shift(util.by_pixel(17, 2), _scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -1155,9 +1176,9 @@ pics =
               width = 252,
               height = 154,
               frame_count = 24,
-              shift = util.mul_shift(util.by_pixel(17, -19), data.scale),
+              shift = util.mul_shift(util.by_pixel(17, -19), _scale),
               tint = data.tint,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           },
           {
@@ -1168,9 +1189,9 @@ pics =
               width = 248,
               height = 160,
               frame_count = 24,
-              shift = util.mul_shift(util.by_pixel(18, -16), data.scale),
+              shift = util.mul_shift(util.by_pixel(18, -16),_scale),
               draw_as_shadow = true,
-              scale = 0.5 * data.scale
+              scale = _scale
 
           }
         }
@@ -1194,9 +1215,9 @@ if string.find(data.name,"webber" )
 				  width = 210,
 				  height = 224,
 				  frame_count = 26,
-				  shift = util.mul_shift(util.by_pixel(-12, -8), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(-12, -8), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1207,9 +1228,9 @@ if string.find(data.name,"webber" )
 				  width = 266,
 				  height = 188,
 				  frame_count = 26,
-				  shift = util.mul_shift(util.by_pixel(2, 2), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(2, 2), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale =_scale
 				
 			  }
 			}
@@ -1226,9 +1247,9 @@ if string.find(data.name,"webber" )
 				  width = 174,
 				  height = 150,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(-9, -17), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(-9, -17), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1239,9 +1260,9 @@ if string.find(data.name,"webber" )
 				  width = 238,
 				  height = 266,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(6, 29), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(6, 29), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale =  _scale
 				
 			  }
 			}
@@ -1258,9 +1279,9 @@ if string.find(data.name,"webber" )
 				  width = 236,
 				  height = 208,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(22, -16), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(22, -16), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1271,9 +1292,9 @@ if string.find(data.name,"webber" )
 				  width = 214,
 				  height = 140,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(17, 2), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(17, 2), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1290,9 +1311,9 @@ if string.find(data.name,"webber" )
 				  width = 252,
 				  height = 154,
 				  frame_count = 24,
-				  shift = util.mul_shift(util.by_pixel(17, -19), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(17, -19),_scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1303,9 +1324,9 @@ if string.find(data.name,"webber" )
 				  width = 248,
 				  height = 160,
 				  frame_count = 24,
-				  shift = util.mul_shift(util.by_pixel(18, -16), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(18, -16), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1325,9 +1346,9 @@ if string.find(data.name,"webber" )
 				  width = 210,
 				  height = 224,
 				  frame_count = 26,
-				  shift = util.mul_shift(util.by_pixel(-12, -8), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(-12, -8),_scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1338,9 +1359,9 @@ if string.find(data.name,"webber" )
 				  width = 266,
 				  height = 188,
 				  frame_count = 26,
-				  shift = util.mul_shift(util.by_pixel(2, 2), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(2, 2), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1357,9 +1378,9 @@ if string.find(data.name,"webber" )
 				  width = 174,
 				  height = 150,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(-9, -17), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(-9, -17), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1370,9 +1391,9 @@ if string.find(data.name,"webber" )
 				  width = 238,
 				  height = 266,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(6, 29), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(6, 29), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1389,9 +1410,9 @@ if string.find(data.name,"webber" )
 				  width = 236,
 				  height = 208,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(22, -16), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(22, -16), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 
 			  },
 			  {
@@ -1402,9 +1423,9 @@ if string.find(data.name,"webber" )
 				  width = 214,
 				  height = 140,
 				  frame_count = 29,
-				  shift = util.mul_shift(util.by_pixel(17, 2), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(17, 2), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1421,9 +1442,9 @@ if string.find(data.name,"webber" )
 				  width = 252,
 				  height = 154,
 				  frame_count = 24,
-				  shift = util.mul_shift(util.by_pixel(17, -19), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(17, -19), _scale),
 				  tint = util.multiply_color(data.tint , data.patch_tint_multiplier),
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  },
 			  {
@@ -1434,9 +1455,9 @@ if string.find(data.name,"webber" )
 				  width = 248,
 				  height = 160,
 				  frame_count = 24,
-				  shift = util.mul_shift(util.by_pixel(18, -16), data.ground_patch_scale),
+				  shift = util.mul_shift(util.by_pixel(18, -16), _scale),
 				  draw_as_shadow = true,
-				  scale = 0.5 * data.ground_patch_scale
+				  scale = _scale
 				
 			  }
 			}
@@ -1463,7 +1484,7 @@ return
     localised_name = {"entity-name.acid-splash"},
     flags = {"placeable-off-grid", "not-on-map"},
     damage_per_tick = {amount = data.damage or 0, type = damage_type},
-    maximum_damage_multiplier = 2,
+    maximum_damage_multiplier = 1,
     damage_multiplier_increase_per_added_fuel = 1,
     damage_multiplier_decrease_per_tick = 0.005,
 
@@ -1632,7 +1653,7 @@ data:extend({
     scale = small_spitter_scale,
     tint = spitter_spawner_tint,
     corpse_name = "acid-splash-spitter-small",
-    spit_radius = stream_radius_spitter_small,
+    spit_radius = stream_radius_spitter_small * spitter_hit_splash_radius_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "acid-splash-fire-spitter-small",
@@ -1642,9 +1663,9 @@ data:extend({
   acid_stream({
     name = "acid-stream-medium-spitter",
     scale = medium_spitter_scale,
-    tint = stream_tint_spitter_medium,
+    tint = stream_tint_spitter_medium ,
     corpse_name = "acid-splash-spitter-medium",
-    spit_radius = stream_radius_spitter_medium,
+    spit_radius = stream_radius_spitter_medium * spitter_hit_splash_radius_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "acid-splash-fire-spitter-medium",
@@ -1656,7 +1677,7 @@ data:extend({
     scale = big_spitter_scale,
     tint = stream_tint_spitter_big,
     corpse_name = "acid-splash-spitter-big",
-    spit_radius = stream_radius_spitter_big,
+    spit_radius = stream_radius_spitter_big * spitter_hit_splash_radius_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "acid-splash-fire-spitter-big",
@@ -1668,7 +1689,7 @@ data:extend({
     scale = behemoth_spitter_scale,
     tint = stream_tint_spitter_behemoth,
     corpse_name = "acid-splash-spitter-behemoth",
-    spit_radius = stream_radius_spitter_behemoth,
+    spit_radius = stream_radius_spitter_behemoth * spitter_hit_splash_radius_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "acid-splash-fire-spitter-behemoth",
@@ -1680,7 +1701,7 @@ data:extend({
     scale = boss_spitter_scale,
     tint = spitter_spawner_tint,
     corpse_name = "acid-splash-spitter-behemoth",
-    spit_radius = stream_radius_spitter_boss,
+    spit_radius = stream_radius_spitter_boss * spitter_hit_splash_radius_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "acid-splash-fire-spitter-behemoth",
@@ -1901,7 +1922,7 @@ data:extend({
     scale = small_webber_scale,
     tint = webber_web_tint,
     corpse_name = "acid-splash-webber-small",
-    spit_radius = stream_radius_webber_small,
+    spit_radius = stream_radius_webber_small * ground_patch_scale_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "web-splash-fire-web-small",
@@ -1913,7 +1934,7 @@ data:extend({
     scale = medium_webber_scale,
     tint = webber_web_tint,
     corpse_name = "acid-splash-webber-medium",
-    spit_radius = stream_radius_webber_medium,
+    spit_radius = stream_radius_webber_medium * ground_patch_scale_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "web-splash-fire-web-medium",
@@ -1925,7 +1946,7 @@ data:extend({
     scale = big_webber_scale,
     tint = webber_web_tint,
     corpse_name = "acid-splash-webber-big",
-    spit_radius = stream_radius_webber_big,
+    spit_radius = stream_radius_webber_big * ground_patch_scale_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "web-splash-fire-web-big",
@@ -1937,7 +1958,7 @@ data:extend({
     scale = behemoth_webber_scale,
     tint = webber_web_tint,
     corpse_name = "acid-splash-webber-behemoth",
-    spit_radius = stream_radius_webber_behemoth,
+    spit_radius = stream_radius_webber_behemoth * ground_patch_scale_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "web-splash-fire-web-behemoth",
@@ -1949,7 +1970,7 @@ data:extend({
     scale = boss_webber_scale,
     tint = webber_web_tint,
     corpse_name = "acid-splash-webber-boss",
-    spit_radius = stream_radius_webber_boss,
+    spit_radius = stream_radius_webber_boss * ground_patch_scale_modifier,
     particle_spawn_interval = 1,
     particle_spawn_timeout = 6,
     splash_fire_name = "web-splash-fire-web-boss",

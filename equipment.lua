@@ -1,6 +1,7 @@
 local item_sounds = require("__base__.prototypes.item_sounds")
 local sounds = require("__base__.prototypes.entity.sounds")
 local simulations = require("__base__.prototypes.factoriopedia-simulations")
+--local util = require("__core__.lualib.util")
 
 --------------------------------------------------- INVENTORY ARMOR OVERRIDES  ------------------------------------------------------------
 
@@ -76,6 +77,7 @@ data.raw["battery-equipment"]["battery-mk2-equipment"].energy_source.buffer_capa
 data.raw["battery-equipment"]["battery-mk2-equipment"].shape.width = 2
 data.raw["battery-equipment"]["battery-mk2-equipment"].shape.height = 3
 data.raw["battery-equipment"]["battery-mk2-equipment"].sprite.scale = 0.85
+
 if (mods["space-age"]) then
 	data.raw["battery-equipment"]["battery-mk3-equipment"].energy_source.buffer_capacity = "400MJ"
 	data.raw["battery-equipment"]["battery-mk3-equipment"].shape.width = 2
@@ -99,7 +101,7 @@ data.raw["active-defense-equipment"]["personal-laser-defense-equipment"].attack_
 --------------------------------------------------- EXOSKELETON OVERRIDE  ------------------------------------------------------------
 
 data.raw["movement-bonus-equipment"]["exoskeleton-equipment"].energy_consumption = "125kW"
-data.raw["movement-bonus-equipment"]["exoskeleton-equipment"].movement_bonus = 0.15
+data.raw["movement-bonus-equipment"]["exoskeleton-equipment"].movement_bonus = 0.15 -- this is less because you can research base movement speed upgrades in this mod.
 
 --------------------------------------------------- SHIELD OVERRIDE  ------------------------------------------------------------
 data.raw["energy-shield-equipment"]["energy-shield-equipment"].sprite.filename = "__factorioplus__/graphics/icons/energy-shield-equipment-mk1-equipment.png"
@@ -803,7 +805,7 @@ data:extend({
       filename = "__factorioplus__/graphics/icons/fuel-generator-equipment.png",
       width = 192,
       height = 128,
-	  scale = 0.8,
+	  scale = 0.7,
       priority = "medium"
     },
     shape =
@@ -817,7 +819,7 @@ data:extend({
       type = "electric",
       usage_priority = "primary-output"
     },
-    power = "100kW",
+    power = "125kW",
     categories = {"armor"}
   },
   
@@ -851,7 +853,7 @@ data:extend({
     type = "technology",
     name = "fuel-generator-equipment",
     icon_size = 256,
-    icon = "__factorioplus__/graphics/technology/personalgenerator.png",
+    icons = util.technology_icon_constant_equipment("__factorioplus__/graphics/technology/personalgenerator.png"),
     effects =
     {
       {

@@ -77,7 +77,7 @@ data:extend{naturalgasdecal}
 
 ---------------------------------------------------  RESOURCE VARS  ------------------------------------------------------------
 local iron_ore_spotsperkm2 = 1/1
-local ironpure_spotsrelativetoiron = 1/10 -- how many spots of pure iron compared to regular iron
+local ironpure_spotsrelativetoiron = 1/8 -- how many spots of pure iron compared to regular iron
 
 local goblin_ore_spotsperkm2 = 1/1000
 local goblin_ore_numberof = 3 -- How many types of goblin ore are there?
@@ -532,13 +532,13 @@ data:extend
       name = "goblin-ore",
 	  seed1 = 100,
       order = "c",
-      base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+      base_density = 1 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
       base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
       random_spot_size_minimum = 3,
       random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 1.1,
+	  regular_rq_factor_multiplier = 1,
 	  richness_post_multiplier = 0.5, 
     },
     stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
@@ -625,13 +625,13 @@ data:extend
 	  patch_set_name = "goblin-ore-2",
 	  seed1 = 101,
       order = "c",
-       base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+       base_density = 1 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
       base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
       random_spot_size_minimum = 3,
       random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 1.1,
+	  regular_rq_factor_multiplier = 1,
 	  richness_post_multiplier = 0.5, 
     },
     stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
@@ -718,13 +718,13 @@ data:extend
 	  patch_set_name = "goblin-ore-3",
 	  seed1 = 102,
       order = "c",
-       base_density = 1.5 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
+       base_density = 1 * (goblin_ore_spotsperkm2 / goblin_ore_numberof),
       base_spots_per_km2 = goblin_ore_spotsperkm2 / goblin_ore_numberof,
       has_starting_area_placement = false,
       random_spot_size_minimum = 3,
       random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  5,
-	  regular_rq_factor_multiplier = 1.1,
+	  regular_rq_factor_multiplier = 1,
 	  richness_post_multiplier = 0.5, 
     },
     stage_counts = {30000, 15000, 7000, 3200, 1800, 1200, 700, 300},
@@ -973,7 +973,7 @@ data:extend
       random_spot_size_maximum = 5, 
       additional_richness = 1690000, -- this increases the total everywhere, so base_density needs to be decreased to compensate
       has_starting_area_placement = false,
-      regular_rq_factor_multiplier =1
+      regular_rq_factor_multiplier =1.1
     },
 	stage_counts = {4000000, 1200000 ,500000, 100000},
     stages =
@@ -1097,11 +1097,11 @@ data:extend
 		tile_restriction = "",
 		name = "forest",
 		order = "b",
-		base_density = 5,
-		random_probability = 1/3, -- 1
-		base_spots_per_km2 = 1.25, -- 2.5
-		random_spot_size_minimum = 0.02, -- 0.25 scales with km
-		random_spot_size_maximum = 0.04, -- 2.0 scales with km
+		base_density = 1,
+		random_probability = 1/4, -- 1
+		base_spots_per_km2 = 0.9, -- 2.5
+		random_spot_size_minimum = 0.15, -- 0.25 scales with km
+		random_spot_size_maximum = 0.6, -- 2.0 scales with km
 		candidate_spot_count = 2, --21
 		
 		regular_blob_amplitude_multiplier =  18, -- 1
@@ -1111,14 +1111,14 @@ data:extend
 		
 		additional_richness = 0, -- 0
 		minimum_richness = 0, -- 0
-		richness_post_multiplier = 0.1, 
+		richness_post_multiplier = 0.075, 
 		-- 1 * control setting
 		
-		regular_rq_factor = 0.01, -- 1
-		starting_rq_factor = 1.55, --1 
+		regular_rq_factor = 1.3, -- 1
+		starting_rq_factor = 1.8, --1 
 
     },
-    stage_counts = {6000,2000,500,200,100},
+    stage_counts = {9000,4000,900,300,100},
     stages =
     {
       sheets =
@@ -1268,7 +1268,7 @@ data:extend
     flow_color = {r=0.0, g=1, b=1},
     order = "a[fluid]-e[crude-oil]",
     gas_temperature = 15,
-    auto_barrel = false
+    auto_barrel = true
   },
   {
 	type = "autoplace-control",
@@ -1322,14 +1322,14 @@ data:extend
     {
       name = "natural-gas",
       order = "c", -- Other resources are "b"; oil won't get placed if something else is already there.
-      base_density = 0.4,
+      base_density = 0.3,
       base_spots_per_km2 = 2,
       random_probability = 1/50,
       random_spot_size_minimum = 3,
       random_spot_size_maximum = 7, -- how random are the sizes?
       additional_richness = 190000, -- this increases the total everywhere, so base_density needs to be decreased to compensate
       has_starting_area_placement = false,
-      regular_rq_factor_multiplier = 1,
+      regular_rq_factor_multiplier = 1.1,
     },
     stage_counts = {2000000, 800000 ,300000, 50000},
     stages =
@@ -1583,19 +1583,19 @@ data:extend
       order = "c",
 	  patch_set_name = "iron-ore-pure",
 	  seed1 = 69, -- hehe
-      base_density = 0.4 *  (iron_ore_spotsperkm2 * ironpure_spotsrelativetoiron),
+      base_density = 0.1 *  (iron_ore_spotsperkm2 * ironpure_spotsrelativetoiron),
       base_spots_per_km2 = iron_ore_spotsperkm2 *  ironpure_spotsrelativetoiron  ,
       has_starting_area_placsement = false,
 	  random_spot_size_minimum = 2,
-      random_spot_size_maximum = 3,
+      random_spot_size_maximum = 6,
 	  regular_blob_amplitude_multiplier =  1.5,
-      regular_rq_factor_multiplier = 1.1,
-      starting_rq_factor_multiplier = 0.2,
-      candidate_spot_count = 8,
-	  richness_post_multiplier = 2, 
+      regular_rq_factor_multiplier = 1.2,
+      starting_rq_factor_multiplier = 0.3,
+      candidate_spot_count = 4,
+	  richness_post_multiplier = 5, 
       --tile_restriction = autoplace_parameters.tile_restriction
     },
-    stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},
+    stage_counts = {22000*2, 12000*2, 6500*2, 3200*2, 1700*2, 700*2, 400*2, 200*2},
     stages =
     {
       sheet =

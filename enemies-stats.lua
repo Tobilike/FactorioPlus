@@ -109,13 +109,13 @@ spawning_time_behemoth = 32
 spawning_time_boss = 64
 
 spawning_time_scalar_spitter = 1.2
-spawning_time_scalar_swarmer = 0.45
-spawning_time_scalar_biter = 0.9
+spawning_time_scalar_swarmer = 0.5
+spawning_time_scalar_biter = 1
 spawning_time_scalar_blaster = 2.0
 spawning_time_scalar_tanker = 1.75
 spawning_time_scalar_webber = 1.5
 spawning_time_scalar_flamer = 1.65
-spawning_time_scalar_stinger = 0.6
+spawning_time_scalar_stinger = 0.7
 
 -- TILE RESTRICTIONS
 -- Restrictions state what tiles can spawners be placed on.
@@ -166,10 +166,10 @@ health_boss_spitter     = 1900
 
 health_spawner_tanker   = 400
 
-health_small_tanker    	= 150
-health_medium_tanker  	= 300
-health_big_tanker		= 800
-health_behemoth_tanker 	= 1200
+health_small_tanker    	= 300
+health_medium_tanker  	= 600
+health_big_tanker		= 1000
+health_behemoth_tanker 	= 1400
 health_boss_tanker     	= 2500
 
 health_spawner_stinger   = 250
@@ -237,11 +237,11 @@ boss_spitter_scale      = 2.0
 
 tanker_spawner_scale = 1.2
 
-small_tanker_scale    = 0.6
-medium_tanker_scale   = 0.9
-big_tanker_scale      = 1.2
-behemoth_tanker_scale = 1.6
-boss_tanker_scale     = 2.3
+small_tanker_scale    = 0.8
+medium_tanker_scale   = 1.1
+big_tanker_scale      = 1.4
+behemoth_tanker_scale = 1.7
+boss_tanker_scale     = 2.2
 
 stinger_spawner_scale = 1.1
 
@@ -293,7 +293,7 @@ damage_modifier_spitter_small    = 10
 damage_modifier_spitter_medium   = 20
 damage_modifier_spitter_big      = 40
 damage_modifier_spitter_behemoth = 60
-damage_modifier_spitter_boss     = 150
+damage_modifier_spitter_boss     = 120
 
 damage_splash_spitter_small    	= damage_modifier_spitter_small / 60
 damage_splash_spitter_medium   	= damage_modifier_spitter_medium / 60 / 1.5
@@ -305,7 +305,7 @@ stream_radius_spitter_small    = 0.8
 stream_radius_spitter_medium   = 1.2
 stream_radius_spitter_big      = 1.5
 stream_radius_spitter_behemoth = 1.9
-stream_radius_spitter_boss 	= 2.5
+stream_radius_spitter_boss 	= 2.2
 
 spitter_hit_splash_radius_modifier = 2.0
 
@@ -326,17 +326,17 @@ range_spitter_boss 	   = 38
 
 attack_speed_flamer_base = 200
 
-damage_modifier_flamer_small    = 15
-damage_modifier_flamer_medium   = 25
+damage_modifier_flamer_small    = 20
+damage_modifier_flamer_medium   = 30
 damage_modifier_flamer_big      = 40
 damage_modifier_flamer_behemoth = 50
-damage_modifier_flamer_boss     = 75
+damage_modifier_flamer_boss     = 80
 
 cluster_amount_flamer_small    = 5
 cluster_amount_flamer_medium   = 9
 cluster_amount_flamer_big      = 14
 cluster_amount_flamer_behemoth = 22
-cluster_amount_flamer_boss     = 30
+cluster_amount_flamer_boss     = 36
 
 damage_dps_flamer_small    	= damage_modifier_flamer_small / 60
 damage_dps_flamer_medium   	= damage_modifier_flamer_medium / 60 
@@ -409,9 +409,9 @@ stream_radius_webber_boss 	= 2.8
 
 damage_webber_small    = 4
 damage_webber_medium   = 8
-damage_webber_big      = 16
-damage_webber_behemoth = 32
-damage_webber_boss 	   = 48
+damage_webber_big      = 12
+damage_webber_behemoth = 20
+damage_webber_boss 	   = 32
 
 	-- WEBBER STATS
 	
@@ -550,24 +550,24 @@ tint_2_spitter_boss = spitter_spawner_tint
 function tankerresistances(v)
 local ntv = v
 local dinc = {4,5}
-local pinc = {2,6}
-local einc = {2,5}
+local pinc = {2,8}
+local einc = {0,5}
 return 
 {
 	{
 	type = "physical",
-	decrease = 2 + ( ntv * dinc[1] ) ,
+	decrease = 0 + ( ntv * dinc[1] ) ,
 	percent = 50 + ( ntv * dinc[2] ) ,
 	},
 	{
 	type = "piercing",
-	decrease = 2 + ( ntv * pinc[1] ),
-	percent = 50 + ( ntv * pinc[2] ),
+	decrease = 1 + ( ntv * pinc[1] ),
+	percent = 40 + ( ntv * pinc[2] ),
 	},
 	{
 	type = "explosion",
-	decrease = 1 + ( ntv * einc[1] ), 
-	percent = 10 + ( ntv * einc[2] ),
+	decrease = 0 + ( ntv * einc[1] ), 
+	percent = 15 + ( ntv * einc[2] ),
 	},
 }
 end
@@ -575,7 +575,7 @@ end
 function biterresistances(v)
 local ntv = v - 1
 local dinc = {2,15}
-local einc = {1,5}
+local einc = {1,15}
 local linc = {1,5}
 local pinc = {1,5}
 return 

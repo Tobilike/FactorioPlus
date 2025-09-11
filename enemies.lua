@@ -30,7 +30,15 @@ return
 	allow_try_return_to_spawner = true,
 	do_separation = true,
 	join_attacks = true,
-	path_resolution_modifier = math.floor( 2 - (scale * 2) ), -- larger units should use a worse resolution
+	path_resolution_modifier = math.ceil( 1 - (scale * 1.25) ), 
+	-- Defines how coarse the pathfinder's grid is, 
+	-- where smaller values mean a coarser grid. Defaults to 0, 
+	-- which equals a resolution of 1x1 tiles, centered on tile centers. 
+	-- Values range from -8 to 8 inclusive, 
+	-- where each integer increment doubles/halves the resolution. 
+	-- So, a resolution of -8 equals a grid of 256x256 tiles, 
+	-- and a resolution of 8 equals 1/256 of a tile.
+	-- 1 = 1/2x1/2 0 = 1x1, -1 = 2x2, -2 =4x4, -3 = 8x8
 	size_in_group = 0.25 + ( scale * 0.75 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
 }
 end

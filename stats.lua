@@ -354,9 +354,9 @@ shell_nuke_stacksize = 25
 shell_nuke_cooldown_modifier = 2
 shell_nuke_arc = shell_arc_wide
 
-shell_magazinesize = 8
+shell_magazinesize = 10
 shell_stacksize = 50
-shell_reloadtime = 2 * 60
+shell_reloadtime = 2.5 * 60
 
 -- Chainguns
  
@@ -373,7 +373,7 @@ beltfed_piercing_pellets = 3
 
 beltfed_magazinesize = 800
 beltfed_stacksize = 10
-beltfed_reloadtime = 60 * 5
+beltfed_reloadtime = 60 * 6
 beltfed_projectile_maxrange = 60
 
 -- Mortar
@@ -458,10 +458,13 @@ firerate_flamethrower = 60 / 15
 
 firerate_rocketlauncher = 60 / 1
 firerate_rocketlauncher_spidertron = firerate_rocketlauncher
-firerate_rocketlauncher_battery = firerate_rocketlauncher / 2
+firerate_rocketlauncher_multi = firerate_rocketlauncher / 3
 
-range_rocketlauncher = 44
+range_rocketlauncher = 42
 range_rocketlauncher_spidertron = range_rocketlauncher + 4 -- Because it's higher up.
+range_rocketlauncher_multi = math.ceil(range_rocketlauncher * 0.8)
+
+min_range_rocketlauncher = 6
 
 -- regular
  
@@ -543,7 +546,7 @@ plasma_stun_movement_modifier = 0.2
 --- plasma cell
 
 plasmagun_magazinesize = 80
-plasmagun_stacksize = 20
+plasmagun_stacksize = 25
 plasmagun_reloadtime = 60 * 5
 
 -- Cannons
@@ -599,13 +602,7 @@ laserbeam_red_large_firerate = 60 * 8
 laserbeam_red_large_damage_interval =  60 * 8 
 laserbeam_red_large_duration =  60 * 0.1
 
-firerate_turret_laser_large = 60 * 8 
-range_turret_laser_large = 50
-health_turret_laser_large = 2500
-
--- Blue Lasers
-
--- Electricity 
+-- Electricity (AKA Blue laser)
 
 laserbeam_electric_damage = 12
 laserbeam_electric_firerate = 60 / 6 
@@ -616,50 +613,63 @@ laserbeam_electric_duration = 60 / 3
 
 firerate_turret_pistol = firerate_pistol
 range_turret_pistol = range_pistol + 2
-health_turret_pistol = 200
+health_turret_pistol = 150
 
 firerate_turret_smg = 60 / 5
 range_turret_smg = range_smg + 2
-health_turret_smg = 500
+health_turret_smg = 300
 
 turret_heavysmg_modifier = 1.5
 firerate_turret_heavysmg = firerate_turret_smg / turret_heavysmg_modifier
 range_turret_heavysmg =  math.ceil(range_turret_smg * (turret_heavysmg_modifier - ((turret_heavysmg_modifier-1)/2)))
-health_turret_heavysmg = health_turret_smg * turret_heavysmg_modifier 
+health_turret_heavysmg = math.ceil(health_turret_smg * turret_heavysmg_modifier)
 damagemodifier_turret_heavysmg = turret_heavysmg_modifier
 
 firerate_turret_shotgun = 60 / 0.75
 range_turret_shotgun = 20
-health_turret_shotgun = 600
+health_turret_shotgun = 400
 
 firerate_turret_flamethrower = 60 / 15
 range_turret_flamethrower = 28
-health_turret_flamethrower = 1400
+health_turret_flamethrower = 500
 
 firerate_turret_laser = 80 / 4 
 range_turret_laser = 28
-health_turret_laser = 500
+health_turret_laser = 350
+
+firerate_turret_laser_large = 60 * 8 
+range_turret_laser_large = 50
+health_turret_laser_large = 1200
 
 firerate_turret_rocket = firerate_rocketlauncher / 0.3
 rangemin_turret_rocket = 22
-range_turret_rocket = 42
-health_turret_rocket = 750
+range_turret_rocket = range_rocketlauncher + 2 -- because it's higher up
+health_turret_rocket = 450
+
+-- Space age rocket turret
+
+firerate_rocket_battery = firerate_rocketlauncher / 2
+rangemin_rocket_battery = rangemin_turret_rocket
+range_rocket_battery = range_rocketlauncher_multi + 2 -- because it's higher up
+health_rocket_battery = 600
+
+--
 
 firerate_turret_cannon =  60 / 0.2
 rangemin_turret_cannon = 20
 range_turret_cannon = 70
-health_turret_cannon = 3500
+health_turret_cannon = 1600
 
 firerate_turret_minigun = 60 / 15
 range_turret_minigun = 42
 rangemin_turret_minigun = 4
-health_turret_minigun = 1700
+health_turret_minigun = 1000
 
 turnrange_mortar = 1/4
 firerate_mortar_factor = 2
 range_turret_mortar = 8 * 32
 rangemin_turret_mortar = 2 * 32 
-health_turret_mortar = 800
+health_turret_mortar = 500
 
 firerate_turret_sniper = 60 * 6
 range_turret_sniper = 4 * 32
@@ -671,7 +681,7 @@ artillery_manual_range_modifier = 2.0
 artillery_turret_rotation_speed = 0.001
 artillery_turret_range = 8 * 32
 artillery_turret_min_range = 2 * 32
-health_turret_artillery = 2000
+health_turret_artillery = 1200
 
 artillery_shell_radius = 8.0
 artillery_shell_damage_physical = 500
@@ -687,13 +697,12 @@ robot_stacksize = 25
 robot_defender_hp = 100
 robot_defender_damage_modifier = 0.75 -- uses pistol/piercing mag stats
 robot_defender_range = 18
-robot_defender_speed = 0.01
-
+robot_defender_speed = 0.012
 
 robot_distractor_hp = 250
 robot_distractor_damage_modifier = 1.75 -- uses laser stats
 robot_distractor_range = 26
-robot_distractor_speed = 0.009
+robot_distractor_speed = 0.011
 
 robot_disruptor_damage_modifier = 0.5 
 robot_disruptor_range = 36
@@ -705,9 +714,9 @@ robot_denier_range = 20
 robot_destroyer_hp = 600
 robot_destroyer_damage_modifier = 2.5  -- uses electric beam stats
 robot_destroyer_range = 22
-robot_destroyer_speed = 0.008
+robot_destroyer_speed = 0.010
 
--- Capsules
+-- Capsules 
 
 capsule_throw_extra_range = 8
 

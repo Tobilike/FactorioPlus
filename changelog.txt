@@ -1,4 +1,21 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.3.9
+Date: 2025.09.12
+  Space Age:
+    - Alien chunks now spoil into nothing and will disappear.
+    - Factorioplus Rocket turrets are now part of Space age, with Space age rocket turrets now renamed "Rocket battery".
+    - Added Rocket battery, an improved - faster firing - version of a rocket turret.
+  Additions:
+    - 
+  Graphics:
+    - 
+  Balance:
+    - 
+  Fixes:
+    -
+  Settings:
+    - 
+---------------------------------------------------------------------------------------------------
 Version: 2.3.8
 Date: 2025.09.05
   Additions:

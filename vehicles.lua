@@ -4156,10 +4156,7 @@ local twingun_turret_shift_xy = {0, -40 }
     flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-flammable"},
 	collision_mask = 
 	{
-	layers = 
-		{ 
-		is_object = true
-		}
+		layers = { is_object = true, train=true, out_of_map=true}
 	},
     minable = {mining_time = 0.4, result = "hovercraft"},
     mined_sound = {filename = "__core__/sound/deconstruct-medium.ogg",volume = 0.8},

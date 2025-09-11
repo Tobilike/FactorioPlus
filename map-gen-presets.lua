@@ -172,5 +172,24 @@ data.raw["map-gen-presets"]["default"]["oasis"] =
       },
 }
 
+data.raw["map-gen-presets"]["default"]["goblin-mode"] = 
+{
+	order = "c",
+      basic_settings =
+      {
+        starting_area = 2,
+       
+        autoplace_controls =
+        {
+          ["iron-ore"] = {  frequency = 0.0, size = 0.0, richness = 0},
+          ["copper-ore"] = {  frequency = 0, size =  0,richness = 0},
+          ["stone"] = { frequency = 0, size =  0, richness = 0},
+          ["coal"] = {  frequency = 0, size =  0, richness = 0},
+		  ["goblin-ore"] = { frequency = 8, size =  6, richness = 0.1},
+          ["enemy-base"] = { frequency = 0.5, size = 3},
+        },
+      },
+}
+
 
    

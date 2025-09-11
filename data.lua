@@ -28,6 +28,7 @@ require("explosions")
 require("map-gen-presets")
 require("abandonments")
 require("abandonments-noise-expressions")
+require("collision-masks")
 
 if (mods["space-age"]) then
 require("recipes-sa")

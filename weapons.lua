@@ -762,7 +762,7 @@ data:extend({
       attack_parameters =
       {
         type = "projectile",
-        ammo_category = "grenade",
+        ammo_category = "brick",
         cooldown = firerate_brick,
         projectile_creation_distance = 0.5,
 		min_range = range_grenade_min,
@@ -858,10 +858,10 @@ data:extend({
 				},
 				{
 					type = "create-particle",
-					repeat_count = 4,
+					repeat_count = 8,
 					particle_name = "explosion-stone-particle-small",
 					offset_deviation = { { -0.25, -0.25 }, { 0.2, 0.5 } },
-					initial_height = 0.5,
+					initial_height = 0.25,
 					initial_height_deviation = 0.6,
 					initial_vertical_speed = 0.1,
 					initial_vertical_speed_deviation = 0.05,
@@ -1011,6 +1011,19 @@ data:extend({
       draw_as_shadow = true,
     },
   },
+  
+   -- {
+    -- type = "recipe",
+    -- name = "grenade",
+    -- enabled = false,
+    -- energy_required = 8,
+    -- ingredients =
+    -- {
+      -- {type = "item", name = "iron-plate", amount = 2},
+      -- {type = "item", name = "basic-explosive", amount = 2}
+    -- },
+    -- results = {{type="item", name="grenade", amount=1}}
+  -- },
   
     -----------------------------  CLUSTER GRENADE  -----------------------------
   
@@ -2958,7 +2971,7 @@ data:extend({
       cooldown =  firerate_rocketlauncher,
       projectile_creation_distance = 0.6,
       range = range_rocketlauncher,
-	  min_range = math.ceil(range_rocketlauncher/6),
+	  min_range = min_range_rocketlauncher,
       projectile_center = {-0.17, 0},
       sound =
       {
@@ -2999,7 +3012,7 @@ data:extend({
       projectile_creation_distance = 0.6,
 	  damage_modifier = damage_modifier_vehicle_bonus,
       range = range_rocketlauncher * range_modifier_vehicle_bonus,
-	  min_range = math.ceil(range_rocketlauncher/6),
+	  min_range =  math.ceil( min_range_rocketlauncher * range_modifier_vehicle_bonus),
       projectile_center = {-0.17, 0},
       sound =
       {
@@ -3028,10 +3041,10 @@ data:extend({
       type = "projectile",
       ammo_categories = rocketlauncher_ammo_categories,
       movement_slow_down_factor = 0.8,
-      cooldown =  firerate_rocketlauncher/4 ,
+      cooldown = firerate_rocketlauncher_multi,
       projectile_creation_distance = 0.6,
-      range = range_rocketlauncher*0.8,
-	  min_range = math.ceil(range_rocketlauncher/6),
+      range = range_rocketlauncher_multi,
+	  min_range = min_range_rocketlauncher,
       projectile_center = {-0.17, 0},
       sound =
       {

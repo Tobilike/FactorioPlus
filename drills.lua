@@ -549,8 +549,8 @@ data:extend({
 					height = 720,
 					repeat_count = 4,
 					draw_as_shadow = true,
-					shift = util.by_pixel(2, 2),
-					scale = 0.225
+					shift = util.by_pixel(3, 5),
+					scale = 0.2275
 			   }
            }
         },
@@ -578,8 +578,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -607,8 +607,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -636,8 +636,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -683,8 +683,8 @@ data:extend({
 					height = 720,
 					repeat_count = 4,
 					draw_as_shadow = true,
-					shift = util.by_pixel(2, 2),
-					scale = 0.225
+					shift = util.by_pixel(3, 5),
+					scale = 0.2275
 			   }
            }
         },
@@ -712,8 +712,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -741,8 +741,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -770,8 +770,8 @@ data:extend({
 				height = 720,
 				repeat_count = 4,
 				draw_as_shadow = true,
-				shift = util.by_pixel(2, 2),
-				scale = 0.225
+				shift = util.by_pixel(3, 5),
+				scale = 0.2275
            }
            }
         },
@@ -784,9 +784,11 @@ data:extend({
 	},	
 
     mining_speed = 0.15,
-	effect_receiver = {
-		base_effect = {
-			productivity = 2.75,
+	effect_receiver = 
+	{
+		base_effect = 
+		{
+			productivity = 3,
 		}
 	},
 	

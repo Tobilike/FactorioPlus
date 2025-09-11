@@ -3647,7 +3647,6 @@ data.extend({
     supply_area_distance = 5,
 	impact_category = "wood",
     --vehicle_impact_sound = sounds.car_wood_impact(0.5),
-	impact_category = "wood",
     open_sound = sounds.electric_network_open,
     close_sound = sounds.electric_network_close,
     track_coverage_during_build_by_moving = true,

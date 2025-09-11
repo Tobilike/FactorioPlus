@@ -25,18 +25,7 @@
 -- }) 
 
 
-if (mods["space-age"]) then
-
-data.raw["recipe"]["rocket-turret"].ingredients = {
-	{type = "item", name = "rocket-launcher", amount = 4},
-	{type = "item", name = "processing-unit", amount = 4},
-	{type = "item", name = "carbon-fiber", amount = 20},
-	{type = "item", name = "turret-base", amount = 4},
-}
-
-else
- 
-  data.extend({
+data.extend({
    {
     type = "recipe",
     name = "rocket-turret",
@@ -44,24 +33,29 @@ else
     energy_required = 15,
       ingredients =
 	{
-		{type="item", name="turret-base", amount=3},
+		{type="item", name="turret-base", amount=2},
 		{type="item", name="rocket-launcher", amount=1},	
 	},
 	results = {{type="item", name="rocket-turret", amount=1}},
   },
 }) 
 
-end
 
 
+----------- BASIC RECIPE OVERRIDES ----------
+
+-- data.raw["recipe"]["explosives"].ingredients =
+    -- {
+      -- {type = "item", name = "sulfur", amount = 1},
+      -- {type = "item", name = "basic-explosive", amount = 4},
+      -- {type = "fluid", name = "water", amount = 15}
+    -- }
 
 data.raw["recipe"]["iron-stick"].enabled = true
-  
   
 data.raw["recipe"]["pistol"].enabled = true
 data.raw["recipe"]["pistol"].hidden = false
 data.raw["recipe"]["pistol"].ingredients[1].amount = 2
-
 
  ---------------------------------------------------  INSERTER OVERRIDES  ------------------------------------------------------------
 
@@ -95,8 +89,6 @@ data.raw["recipe"]["speed-module"].ingredients = { {type = "item", name = "elect
 data.raw["recipe"]["productivity-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
 data.raw["recipe"]["efficiency-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
 
- 
-
 data.raw["recipe"]["speed-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "speed-module", amount = 4}  }
 data.raw["recipe"]["productivity-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "productivity-module", amount = 4}  }
 data.raw["recipe"]["efficiency-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "efficiency-module", amount = 4}  }
@@ -105,6 +97,7 @@ if (mods["quality"]) then
 	data.raw["recipe"]["quality-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
 	data.raw["recipe"]["quality-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "quality-module", amount = 4}  }
 end
+
 
  ---------------------------------------------------  MACHINEPRESS OVERRIDES  ------------------------------------------------------------
 
@@ -344,7 +337,7 @@ data:extend
       {
         {type="item", name="productivity-module-3", amount=4},
 		{type="item", name="assembling-machine-2", amount=6},
-		{type="item", name="concrete", amount=100},
+		{type="item", name="concrete", amount=140},
       },
       results = {{type="item", name="factory-large", amount=1}},
 
@@ -371,6 +364,7 @@ data:extend
       ingredients =
       {
         {type="item", name="steel-plate", amount=20},
+		{type="item", name="iron-gear-wheel", amount=20},
 		{type="fluid", name="lubricant", amount=80},
         {type="item", name="productivity-module-2", amount=8}
       },
@@ -590,8 +584,8 @@ data:extend
 	enabled = false,
     ingredients = {
 	{type="item", name="steel-furnace", amount=2}, 
-	{type="item", name="concrete", amount=20},
-	{type="item", name="steel-plate", amount=10}
+	{type="item", name="concrete", amount=40},
+	{type="item", name="steel-plate", amount=20}
 	},
     results = {{type="item", name="steel-forge", amount=1}},
 },
@@ -604,7 +598,7 @@ data:extend
 	{type="item", name="electric-furnace", amount=4}, 
 	{type="item", name="productivity-module-2", amount=4}, 
 	{type="item", name="speed-module-2", amount=2}, 
-	{type="item", name="concrete", amount=50}
+	{type="item", name="concrete", amount=60}
 	},
     results = {{type="item", name="electric-foundry", amount=1}},
 },
@@ -675,7 +669,7 @@ data:extend
   {
     type = "recipe",
     name = "floor-lamp",
-	energy_required = 3,
+	energy_required = 2,
 	enabled = false,
     ingredients =
     {
@@ -761,6 +755,20 @@ data:extend
 	icon = "__factorioplus__/graphics/icons/steamtowater.png",
     icon_size = 64, icon_mipmaps = 4,
   },
+    -- {
+    -- type = "recipe",
+    -- name = "basic-explosive",
+	-- enabled = false,
+    -- category = "crafting",
+    -- energy_required = 2,
+    -- ingredients =  
+	-- {
+	  -- {type="item", name="coal", amount=4},
+      -- {type="item", name="iron-plate", amount=1},
+    -- },
+    -- results = {{type="item", name="basic-explosive", amount=1}},
+	-- allow_productivity = true,
+  -- },
   {
     type = "recipe",
     name = "silicon-wafer",
@@ -779,8 +787,8 @@ data:extend
     category = "crafting-with-fluid",
     ingredients =
     {
-      {type="item", name="concrete", amount=5},
-      {type="item", name="sand-ore", amount=5},
+      {type="item", name="concrete", amount=4},
+      {type="item", name="sand-ore", amount=10},
       {type="fluid", name="light-oil", amount=20}
     },
 	results = {{type="item", name="tarmac", amount=10}},
@@ -790,10 +798,10 @@ data:extend
     name = "landfill-deep",
 	enabled = false,
     energy_required = 10,
-    category = "crafting",
+    category = "advanced-crafting",
     ingredients =
     {
-	  {type="item", name="sand-ore", amount=4},
+	  {type="item", name="sand-ore", amount=6},
       {type="item", name="landfill", amount=1},
 	  {type="item", name="concrete", amount=2}
     },
@@ -1043,11 +1051,10 @@ data.extend({
     name = "electric-grinder",
 	enabled = false,
     energy_required = 10,
-	category = "crafting-with-fluid",
     ingredients =
       {    
         {type="item", name="electric-mining-drill", amount=2},
-        {type="fluid", name="lubricant", amount=40},
+        {type="item", name="iron-gear-wheel", amount=20},
 		{type="item", name="efficiency-module", amount=4},
 		{type="item", name="productivity-module", amount=8},
       },
@@ -1693,7 +1700,7 @@ end
 	enabled = false,
     ingredients =
     {
-      {type="item", name="substation", amount=2},
+      {type="item", name="substation", amount=1},
       {type="item", name="processing-unit", amount=8},
       {type="item", name="accumulator", amount=2}
     },

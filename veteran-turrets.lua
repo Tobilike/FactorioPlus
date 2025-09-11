@@ -1,5 +1,7 @@
-
+turretValueIncreaseAmount = {0.1,0.2,0.3,0.5}
 turretKillLevels = {100, 250, 500, 1000}
+turretDamageLevels = {10000, 25000, 50000, 100000}
+
 turretVetIcons = {"icon-veterancy-1", "icon-veterancy-2", "icon-veterancy-3", "icon-veterancy-4"}
 
 
@@ -91,6 +93,12 @@ turretVetGroupings = {
     "tesla-turret-veterancy-2",
     "tesla-turret-veterancy-3",
     "tesla-turret-veterancy-4"
+  },
+    ["rocket-battery"] = {
+    "rocket-battery-veterancy-1",
+    "rocket-battery-veterancy-2",
+    "rocket-battery-veterancy-3",
+    "rocket-battery-veterancy-4"
   }
   
 }

@@ -1726,7 +1726,8 @@ data:extend(robots)
         {
           {
             type = "create-entity",
-            entity_name = "grenade-explosion"
+            entity_name = "explosion",
+			only_when_visible = true
           },
           {
             type = "damage",

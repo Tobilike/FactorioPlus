@@ -538,6 +538,16 @@ data.extend({
     place_result = "floodlight-lamp",
     stack_size = 50
   },
+   -- {
+    -- type = "item",
+    -- name = "basic-explosive",
+    -- icon = "__factorioplus__/graphics/icons/basic-explosive.png",
+    -- icon_size = 64, icon_mipmaps = 4,
+    -- subgroup = "raw-material",
+    -- order = "b[chemistry]-e[explosives]",
+    -- stack_size = 100,
+	-- weight = 0.5*kg
+  -- },
     {
     type = "item",
     name = "aluminium-plate",
@@ -580,7 +590,6 @@ data.extend({
     {
       result = "landfill",
       condition_size = 1,
-      --condition = { "ground-tile", "layer-13" },
 	  condition = {layers={ground_tile=true}},
 	  tile_condition = {"water", "water-green", "water-shallow", "water-mud"},
     },
@@ -598,7 +607,6 @@ data.extend({
     {
       result = "water",
       condition_size = 1,
-      --condition = { "ground-tile" },
 	  condition = {layers={ground_tile=true}},
 	  tile_condition = {"deepwater", "deepwater-green"},
     },
@@ -616,10 +624,10 @@ data.extend({
     {
       result = "water",
       condition_size = 1,
-	  condition = {layers={floor=true, water_tile=true}},
+	  condition = {layers={water_tile=true, flooring_tile=true}},
     },
   },
-  
+
    {
     type = "item",
     name = "accumulator-battery",
@@ -885,10 +893,8 @@ data.extend({
 
 })
 
-if (mods["space-age"]) then
-
-else 
-  data.extend({
+  data.extend
+({
   {
     type = "item",
     name = "rocket-turret",
@@ -897,10 +903,9 @@ else
     subgroup = "turret",
     order = "b[turret]-ca[rocket-turret]",
     place_result = "rocket-turret",
-    stack_size = 10
+    stack_size = 15
   },
 }) 
-end
 
   
    data.extend({  
@@ -1383,9 +1388,9 @@ data.extend({
 
 if (mods["space-age"]) then
 data.raw.capsule["meaty-chunks"].spoil_ticks = 2 * 60 * 60 * 60
-data.raw.capsule["meaty-chunks"].spoil_result = "spoilage"
-data.raw.capsule["chunky-meat"].spoil_ticks = 6 * 60 * 60 * 60
-data.raw.capsule["chunky-meat"].spoil_result = "spoilage"
+data.raw.capsule["meaty-chunks"].spoil_result = null
+data.raw.capsule["chunky-meat"].spoil_ticks = 4 * 60 * 60 * 60
+data.raw.capsule["chunky-meat"].spoil_result = null
 end
 
 data.raw.capsule["raw-fish"].capsule_action.attack_parameters.cooldown = healing_cooldown
@@ -1441,7 +1446,7 @@ data.extend({
 }) 
 
 if (mods["space-age"]) then
-data.raw.capsule["cooked-fish"].spoil_ticks = 6 * 60 * 60 * 60
+data.raw.capsule["cooked-fish"].spoil_ticks = 4 * 60 * 60 * 60
 data.raw.capsule["cooked-fish"].spoil_result = "spoilage"
 end
 

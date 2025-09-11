@@ -7,11 +7,11 @@ local fireutil = require("__base__.prototypes.fire-util")
 local firestickerutil = require("__factorioplus__.util-fire-stickers")
 local beams = require("__base__.prototypes.entity.beams")
 require ("__factorioplus__.util-attack-helpers")
+require("stats")
 
 data.raw["beam"]["laser-beam"].working_sound.sound.speed = 2.0
 
-require("stats")
-
+local shotgun_hit_layers = {layers={ train=true, is_object=true, trigger_target=true}}
 
 local bullet_trail_blend_mode = "additive-soft"
 
@@ -171,9 +171,14 @@ data:extend({
     type = "ammo-category",
     name = "railgun"
   },
-     {
+  {
     type = "ammo-category",
     name = "battery-ammo"
+  },
+  {
+    type = "ammo-category",
+    name = "brick",
+	hidden = true
   },
      {
     type = "ammo-category",
@@ -673,7 +678,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="firearm-magazine", amount=1},
-      {type="item", name="aluminium-plate", amount=3},
+      {type="item", name="aluminium-plate", amount=4},
     },
     results = {{type="item", name="longrange-rounds-magazine", amount=1}},
   },
@@ -1058,7 +1063,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 20,
     ingredients =
     {
-      {type="item", name="explosive-rounds-magazine", amount=1},
+      {type="item", name="explosive-rounds-magazine", amount=2},
       {type="item", name="explosives", amount=4},
       {type="item", name="uranium-235", amount=1}
     },
@@ -1543,6 +1548,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "shotgun-pellet",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -1594,7 +1600,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="copper-plate", amount=2},
-      {type="item", name="iron-plate", amount=2}
+      {type="item", name="iron-plate", amount=3}
     },
     results = {{type="item", name="shotgun-shell", amount=1}},
   },
@@ -1637,9 +1643,9 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
             starting_speed = 1,
             starting_speed_deviation = 0.15,
             direction_deviation = shell_regular_arc*2,
-            range_deviation = 4.5,
-            max_range = shell_range
-          }
+            range_deviation = 5,
+            max_range = shell_range / 2
+          } 
         },
       }
     },
@@ -1657,6 +1663,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "shotgun-pellet-birdshot",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -1714,7 +1721,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="shotgun-shell", amount=4},
-      {type="item", name="aluminium-plate", amount=4}
+      {type="item", name="aluminium-plate", amount=5}
     },
     results = {{type="item", name="shotgun-shell-birdshot", amount=1}},
   },
@@ -1807,6 +1814,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "piercing-shotgun-pellet",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -1865,7 +1873,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     ingredients =
     {
       {type="item", name="shotgun-shell", amount=1},
-      {type="item", name="copper-plate", amount=4},
+      {type="item", name="copper-plate", amount=6},
       {type="item", name="steel-plate", amount=2}
     },
     results = {{type="item", name="piercing-shotgun-shell", amount=1}},
@@ -1945,6 +1953,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "explosive-shotgun-pellet",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -2131,7 +2140,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 12,
     ingredients =
     {
-      {type="item", name="shotgun-shell", amount=1},
+      {type="item", name="shotgun-shell", amount=2},
       {type="item", name="explosives", amount=4}
     },
     results = {{type="item", name="explosive-shotgun-shell", amount=1}},
@@ -2208,6 +2217,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "depleted-shotgun-pellet",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -2266,10 +2276,10 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 16,
     ingredients =
     {
-      {type="item", name="piercing-shotgun-shell", amount=1},
-      {type="item", name="uranium-238", amount=1},
+      {type="item", name="piercing-shotgun-shell", amount=2},
+      {type="item", name="uranium-238", amount=3},
     },
-    results = {{type="item", name="depleted-shotgun-shell", amount=1}},
+    results = {{type="item", name="depleted-shotgun-shell", amount=2}},
   },
   
    ----------------------------- NUKE SHOTGUN SHELL -----------------------------
@@ -2345,6 +2355,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     name = "nuke-shotgun-pellet",
     flags = {"not-on-map"},
     collision_box = {{-0.05, -0.25}, {0.05, 0.25}},
+	hit_collision_mask = shotgun_hit_layers,
     acceleration = 0,
     direction_only = true,
 	hit_at_collision_position = true,
@@ -2546,11 +2557,11 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 12,
     ingredients =
     {
-      {type="item", name="explosive-shotgun-shell", amount=1},
-      {type="item", name="explosives", amount=6},
-	  {type="item", name="uranium-235", amount=1}
+      {type="item", name="explosive-shotgun-shell", amount=3},
+      {type="item", name="explosives", amount=8},
+	  {type="item", name="uranium-235", amount=2}
     },
-    results = {{type="item", name="nuke-shotgun-shell", amount=1}},
+    results = {{type="item", name="nuke-shotgun-shell", amount=2}},
   },
   
    -----------------------------  LASER (UNUSED?) -----------------------------
@@ -3355,7 +3366,12 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
           },
 		  {
             type = "create-entity",
-            entity_name =  "small-scorchmark-tintable"
+            entity_name =  "small-scorchmark-tintable",
+			check_buildability = true
+          },
+          {
+            type = "invoke-tile-trigger",
+            repeat_count = 1,
           },	 
         },
       },
@@ -3637,7 +3653,12 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
           },
 		   {
             type = "create-entity",
-            entity_name =  "small-scorchmark-tintable"
+            entity_name =  "small-scorchmark-tintable",
+			check_buildability = true
+          },
+          {
+            type = "invoke-tile-trigger",
+            repeat_count = 1,
           },	
 		  {
               type = "create-fire",
@@ -3776,7 +3797,8 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
         {
           {
             type = "create-entity",
-            entity_name = "big-explosion"
+            entity_name = "grenade-explosion",
+            only_when_visible = true
           },
           {
             type = "damage",

@@ -164,13 +164,13 @@ health_big_spitter      = 250
 health_behemoth_spitter = 450
 health_boss_spitter     = 1900
 
-health_spawner_tanker   = 400
+health_spawner_tanker   = 450
 
-health_small_tanker    	= 300
-health_medium_tanker  	= 600
-health_big_tanker		= 1000
-health_behemoth_tanker 	= 1400
-health_boss_tanker     	= 2500
+health_small_tanker    	= 350
+health_medium_tanker  	= 700
+health_big_tanker		= 1200
+health_behemoth_tanker 	= 1600
+health_boss_tanker     	= 2600
 
 health_spawner_stinger   = 250
 
@@ -239,9 +239,9 @@ tanker_spawner_scale = 1.2
 
 small_tanker_scale    = 0.8
 medium_tanker_scale   = 1.1
-big_tanker_scale      = 1.4
-behemoth_tanker_scale = 1.7
-boss_tanker_scale     = 2.2
+big_tanker_scale      = 1.5
+behemoth_tanker_scale = 1.9
+boss_tanker_scale     = 2.3
 
 stinger_spawner_scale = 1.1
 
@@ -291,21 +291,21 @@ damage_modifier_biter_boss     = 250
 
 damage_modifier_spitter_small    = 10
 damage_modifier_spitter_medium   = 20
-damage_modifier_spitter_big      = 40
-damage_modifier_spitter_behemoth = 60
-damage_modifier_spitter_boss     = 120
+damage_modifier_spitter_big      = 35
+damage_modifier_spitter_behemoth = 50
+damage_modifier_spitter_boss     = 100
 
 damage_splash_spitter_small    	= damage_modifier_spitter_small / 60
 damage_splash_spitter_medium   	= damage_modifier_spitter_medium / 60 / 1.5
-damage_splash_spitter_big      	= damage_modifier_spitter_big / 60 / 3
-damage_splash_spitter_behemoth 	= damage_modifier_spitter_behemoth / 60 / 4.5
-damage_splash_spitter_boss 		= damage_modifier_spitter_boss / 60 / 6
+damage_splash_spitter_big      	= damage_modifier_spitter_big / 60 / 2
+damage_splash_spitter_behemoth 	= damage_modifier_spitter_behemoth / 60 / 3
+damage_splash_spitter_boss 		= damage_modifier_spitter_boss / 60 / 4
 
-stream_radius_spitter_small    = 0.8
-stream_radius_spitter_medium   = 1.2
-stream_radius_spitter_big      = 1.5
-stream_radius_spitter_behemoth = 1.9
-stream_radius_spitter_boss 	= 2.2
+stream_radius_spitter_small    = 0.7
+stream_radius_spitter_medium   = 1.0
+stream_radius_spitter_big      = 1.3
+stream_radius_spitter_behemoth = 1.6
+stream_radius_spitter_boss 	= 2.0
 
 spitter_hit_splash_radius_modifier = 2.0
 
@@ -549,14 +549,14 @@ tint_2_spitter_boss = spitter_spawner_tint
 
 function tankerresistances(v)
 local ntv = v
-local dinc = {4,5}
+local dinc = {3,5}
 local pinc = {2,8}
 local einc = {0,5}
 return 
 {
 	{
 	type = "physical",
-	decrease = 0 + ( ntv * dinc[1] ) ,
+	decrease = 2 + ( ntv * dinc[1] ) ,
 	percent = 50 + ( ntv * dinc[2] ) ,
 	},
 	{

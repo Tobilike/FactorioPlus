@@ -27,8 +27,24 @@ table.insert(data.raw["technology"]["planet-discovery-aquilo"].effects , {type =
 
 data.raw["furnace"]["recycler"].result_inventory_size = 14,
 
+data.extend({
+ {
+    type = "recipe",
+    name = "process-biter-egg-to-chunks",
+    category = "crafting-with-fluid",
+    enabled = false,
+    allow_productivity = true,
+    energy_required = 6,
+    ingredients =
+    {
+      {type = "item", name = "biter-egg", amount = 1},
+      {type="fluid", name="water", amount=50}
+    },
+    results = {{type="item", name="meaty-chunks", amount=5}}
+  },
+  })
 
-data.extend{(
+data.extend({
   {
     type = "recipe",
     name = "ammonia-rocket-fuel-2",
@@ -54,7 +70,7 @@ data.extend{(
       quaternary = {r = 0.656, g = 0.362, b = 0.264, a = 1.000}, -- #a78f43ff
     }
   }
- )}
+ })
  
 data.raw["recipe"]["ammonia-rocket-fuel"].localised_name = {"recipe-name.ammonia-rocket-fuel"}
 

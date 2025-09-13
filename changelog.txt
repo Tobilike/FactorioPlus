@@ -1,20 +1,72 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.3.9
+Version: 2.4.1
+Date: 2025.09.13
+  Balance:
+    - Both Alien chunks now spoil into nothing and will disappear.
+  Fixes:
+    - Both Alien chunks now spoil into nothing and will disappear.
+---------------------------------------------------------------------------------------------------
+Version: 2.4.0
 Date: 2025.09.12
   Space Age:
-    - Alien chunks now spoil into nothing and will disappear.
+    - Both Alien chunks now spoil into nothing and will disappear.
     - Factorioplus Rocket turrets are now part of Space age, with Space age rocket turrets now renamed "Rocket battery".
     - Added Rocket battery, an improved - faster firing - version of a rocket turret.
+    - Biter eggs can be processed into Alien chunks (1 egg -> 5 alien chunks).
   Additions:
-    - 
+    - Added map preset "Goblin mode" where all base common ores are removed and Goblin ore patches are numerous and large.
+    - Veteran turrets gain slow health regeneration - increasing with rank.
+    - Researching Battery accumulators and Advanced accumulators will increase the battery size of robots by +50% and the lifespan of combat robots by +50%
   Graphics:
-    - 
+    - Reverted rocket explosion change from 2.3.8 for being obnoxious.
+    - Distractor rocket explosions graphic reduced to small 'explosion' instead of medium 'grenade explosion' 
+    - Fixed Electric grinder shadow from being slightly too small.
   Balance:
-    - 
+    - Shotgun pellets do not collide with wall objects.
+    - Long range magazine recipe aluminium cost increased from 3 -> 4
+    - Nuke magazine recipe explosive ammo cost increased from 1 -> 2
+    - Shotgun shell recipe iron plate cost increased from 2 -> 3
+    - Reduced Birdshot pellet range by 1/2 as the large range deviation made it shoot 2x further overall.
+    - Birdshot shell recipe aluminium cost increased from 4 -> 5
+    - Piercing shotgun shell recipe copper plate cost increased from 4 -> 6
+    - Uranium shotgun shell recipe piercing shell and uranium 238 cost increased from 1 -> 2 and 2 -> 3 respectively.	
+    - Shotgun, piercing and uranium shotgun shell magazine size increased from 8 -> 10
+    - Nuke shotgun shell recipe changed to be a little more expensive overall, but gives 2x results.
+    - Increased Electric miner productivity from +275% -> +300%
+    - Increased Biter, Stinger and Swarmer spawn time by +10-20%
+    - Rebalanced Tanker health so smaller Tankers have more health. (from 150, 300, 800, 1200, 2500 -> 300, 600, 1000, 1400, 2500).
+    - Increased smaller Flamer damage amounts by 20-40%.
+    - Reduced larger Webber damage by around 20-40%.
+    - Removed Tanker explosive damage amount reduction (They still have explosive damage percent reduction).
+    - Increased Biter explosive damage percent resistances from 5% to 15% per tier.
+    - Petroleum generator equipment energy increased from 100kW -> 125kW.
+    - Increased Rocket turret stack size from 10 -> 15.
+    - Reduced Rocket turret recipe turret base cost from 3 -> 2.
+    - Increased Concrete recipe cost for Factory, Steel forge and Electric foundry by around +40-100%
+    - Electric grinder technology now doesn't require lubricant technology, making it accessible prior to Chemical(blue) science packs.
+    - Electric grinder recipe 40 lubricant changed for 20 iron gears.
+    - Reduced Electric grid recipe substation cost from 2 -> 1.
+    - Increased Tarmac recipe overall concrete and sand cost.
+    - High powered machine press recipe cost now also requires 20 iron gears.
+    - Landfill deep recipe sand cost increased from 4 -> 6.
+    - Updated resource map generation for Goblin ore, Wood(Deadwood fields), Pure iron and Natural Gas so they won't overall reduce in density over distance.
+    - Multirocket launcher attack speed reduced by 25%.
+    - Reduced rocket launcher range from 44 -> 42.
+    - Reduced health for nearly all turrets to line up with Space age advanced turrets. (about 20-50% reduction).
+    - Personal long range roboport equipment moved into its own technology, which instead requires Production science (instead of Utility).
+    - Sniper shell damage upgrades reduced from +50% to +20% like other projectiles.
   Fixes:
-    -
-  Settings:
-    - 
+    - Thowing bricks removed from grenade ammo_type. 
+    - Fixed mortar explosions from creating a scorchmark on the water surface.
+    - Placing a Waterfill barrel will not remove flooring tiles (e.g. stone-path, concrete, refined concrete floors)
+    - Spitters/Webbers and Worms create more acid/web pools on the ground instead of just 1 to better represent their 'splash' radius.
+    - Fixed Sniper shooting speed modifier missing localization entry.
+    - Fixed missing SMG Distractor localization entry.
+    - Deepwater landfill counts as advanced crafting so it cannot be crafted in hand.
+    - Natural gas can be barreled.
+    - Hovercraft now collides with out of map bounds and trains.
+  Localization:
+    - Updated Polish (PL) localization (S3BA & GPDiwka)
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.8
 Date: 2025.09.05
@@ -26,7 +78,7 @@ Date: 2025.09.05
     - Added 5 new pictograph signals.
   Balance:
     - All explosive ammo require more explosives in their recipes.
-    - Some enemies have less spawn amounts so their are not as many units building up in their bases. (Optimizations)
+    - Some enemies have less spawn amounts so there are not as many units building up in their bases. (Optimizations)
     - Increased Blaster physical and explosive damage resistances.
     - Most Factorioplus ores have been tweaked to improve their placement spacing and density better. 
     - Defender capsules require Firearm magazines instead of Piercing rounds.

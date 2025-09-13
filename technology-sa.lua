@@ -1,5 +1,11 @@
 -- Space age overrides
 
+table.insert(data.raw["technology"]["captivity"].effects, 
+	{
+		type = "unlock-recipe",
+		recipe = "process-biter-egg-to-chunks"
+	})
+
 data.extend({
 	{
     type = "technology",

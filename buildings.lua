@@ -312,7 +312,7 @@ data.extend({
       input_flow_limit = "275kW",
       output_flow_limit = "0kW",
 	  drain = "20kW",
-      emissions_per_minute = {pollution = -4},	  
+      emissions_per_minute = {pollution = -6},	  
     },
 	
     energy_usage = "275kW",	
@@ -358,7 +358,7 @@ data.extend({
 })
 
 if (mods["space-age"]) then  
-data.raw["electric-energy-interface"]["air-scrubber"].energy_source.emissions_per_minute = {pollution = -4, spores = -2 }
+data.raw["electric-energy-interface"]["air-scrubber"].energy_source.emissions_per_minute = {pollution = -6, spores = -4 }
 end
 
 
@@ -390,7 +390,7 @@ data.extend({
       input_flow_limit = "550kW",
       output_flow_limit = "0kW",
 	  drain = "50kW",
-      emissions_per_minute = {pollution = -54},	  
+      emissions_per_minute = {pollution = -64},	  
     },
     energy_usage = "550kW",	
 	
@@ -434,7 +434,7 @@ data.extend({
 })
 
 if (mods["space-age"]) then  
-data.raw["electric-energy-interface"][ "air-scrubber-large"].energy_source.emissions_per_minute = {pollution = -54, spores = -20 }
+data.raw["electric-energy-interface"][ "air-scrubber-large"].energy_source.emissions_per_minute = {pollution = -64, spores = -32 }
 end
 
 

@@ -631,15 +631,15 @@ health_turret_shotgun = 400
 
 firerate_turret_flamethrower = 60 / 15
 range_turret_flamethrower = 28
-health_turret_flamethrower = 500
+health_turret_flamethrower = 600
 
 firerate_turret_laser = 80 / 4 
 range_turret_laser = 28
-health_turret_laser = 350
+health_turret_laser = 400
 
 firerate_turret_laser_large = 60 * 8 
 range_turret_laser_large = 50
-health_turret_laser_large = 1200
+health_turret_laser_large = 1400
 
 firerate_turret_rocket = firerate_rocketlauncher / 0.3
 rangemin_turret_rocket = 22
@@ -658,18 +658,18 @@ health_rocket_battery = 600
 firerate_turret_cannon =  60 / 0.2
 rangemin_turret_cannon = 20
 range_turret_cannon = 70
-health_turret_cannon = 1600
+health_turret_cannon = 2000
 
 firerate_turret_minigun = 60 / 15
 range_turret_minigun = 42
 rangemin_turret_minigun = 4
-health_turret_minigun = 1000
+health_turret_minigun = 1200
 
 turnrange_mortar = 1/4
 firerate_mortar_factor = 2
 range_turret_mortar = 8 * 32
 rangemin_turret_mortar = 2 * 32 
-health_turret_mortar = 500
+health_turret_mortar = 400
 
 firerate_turret_sniper = 60 * 6
 range_turret_sniper = 4 * 32
@@ -681,7 +681,7 @@ artillery_manual_range_modifier = 2.0
 artillery_turret_rotation_speed = 0.001
 artillery_turret_range = 8 * 32
 artillery_turret_min_range = 2 * 32
-health_turret_artillery = 1200
+health_turret_artillery = 1500
 
 artillery_shell_radius = 8.0
 artillery_shell_damage_physical = 500

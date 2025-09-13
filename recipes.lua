@@ -1636,6 +1636,7 @@ end
     results = {{type="item", name="bio-science-pack", amount=2}},
 	allow_productivity = true,
   },
+  
    {
     type = "recipe",
     name = "chunky-meat-processing",

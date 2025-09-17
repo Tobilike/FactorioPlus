@@ -233,7 +233,7 @@ createnewrareweapon("submachine-gun", "epic"),
 createnewrareweapon("submachine-gun", "legendary"),
 })
 
-  -----------------------------  UZI GUN  -----------------------------
+  -----------------------------  MACHINE PISTOL GUN -----------------------------
 data:extend({
    {
     type = "gun",
@@ -247,6 +247,8 @@ data:extend({
       type = "projectile",
       ammo_category = "bullet",
       cooldown = firerate_smg / 1.75,
+	  ammo_consumption_modifier = 0.75,
+	  damage_modifier = 0.75,
       movement_slow_down_factor = 0.25,
       shell_particle =
       {

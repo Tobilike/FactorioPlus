@@ -1001,7 +1001,7 @@ data.extend({
     energy_required = 10,
       ingredients =
 	{
-		{type="item", name="turret-base", amount=2},
+		{type="item", name="turret-base", amount=1},
 		{type="item", name="shotgun", amount=1},		
 	},
 	results = {{type="item", name="shotgun-turret", amount=1}},
@@ -2329,145 +2329,145 @@ data.extend({
 
 if settings.startup["settings-recipe-cost"].value == "easy" then
 
-data.raw["recipe"]["automation-science-pack"].ingredients =
-	{
-		{type = "item", name = "copper-plate", amount = 1},
-		{type = "item", name = "iron-plate", amount = 1}
-	}
-
-data.raw["recipe"]["logistic-science-pack"].ingredients =
-	{
-      {type = "item", name = "burner-inserter", amount = 1},
-      {type = "item", name = "basic-transport-belt", amount = 1}
-    }
-data.raw["recipe"]["military-science-pack"].ingredients =	
-	{
-      {type = "item", name = "firearm-magazine", amount = 1},
-      {type = "item", name = "grenade", amount = 1},
-      {type = "item", name = "stone-wall", amount = 1}
-    }
-data.raw["recipe"]["bio-science-pack"].ingredients =	
-	{
-      {type="item", name="wood", amount= 5},
-      {type="item", name="meaty-chunks", amount = 10},
-    }
-data.raw["recipe"]["chemical-science-pack"].ingredients =	
- {
-      {type = "item", name = "steel-plate", amount = 3},
-      {type = "item", name = "plastic-bar", amount = 3},
-      {type = "item", name = "petroleum-fuel", amount = 1}
-    }
-data.raw["recipe"]["production-science-pack"].ingredients =	
-	{
-      {type = "item", name = "advanced-circuit", amount = 4},
-      {type = "item", name = "basic-electric-furnace", amount = 1},
-      {type = "item", name = "rail", amount = 20}
-    }
-data.raw["recipe"]["utility-science-pack"].ingredients =	
-	{
-      {type = "item", name = "aluminium-plate", amount = 6},
-      {type = "item", name = "processing-unit", amount = 2},
-      {type = "item", name = "electric-engine-unit", amount = 1}
-    }
+	data.raw["recipe"]["automation-science-pack"].ingredients =
+		{
+			{type = "item", name = "copper-plate", amount = 1},
+			{type = "item", name = "iron-plate", amount = 1}
+		}
+	data.raw["recipe"]["logistic-science-pack"].ingredients =
+		{
+		  {type = "item", name = "burner-inserter", amount = 1},
+		  {type = "item", name = "basic-transport-belt", amount = 1}
+		}
+	data.raw["recipe"]["military-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "firearm-magazine", amount = 1},
+		  {type = "item", name = "grenade", amount = 1},
+		  {type = "item", name = "stone-wall", amount = 1}
+		}
+	data.raw["recipe"]["bio-science-pack"].ingredients =	
+		{
+		  {type="item", name="wood", amount= 5},
+		  {type="item", name="meaty-chunks", amount = 10},
+		}
+	data.raw["recipe"]["chemical-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "steel-plate", amount = 3},
+		  {type = "item", name = "plastic-bar", amount = 3},
+		  {type = "item", name = "petroleum-fuel", amount = 1}
+		}
+	data.raw["recipe"]["production-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "advanced-circuit", amount = 4},
+		  {type = "item", name = "basic-electric-furnace", amount = 1},
+		  {type = "item", name = "rail", amount = 20}
+		}
+	data.raw["recipe"]["utility-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "aluminium-plate", amount = 6},
+		  {type = "item", name = "processing-unit", amount = 2},
+		  {type = "item", name = "electric-engine-unit", amount = 1}
+		}
+		
 elseif settings.startup["settings-recipe-cost"].value == "hard" then
 
-data.raw["recipe"]["automation-science-pack"].ingredients =
-	{
-		{type = "item", name = "electronic-circuit", amount = 1},
-		{type = "item", name = "iron-gear-wheel", amount = 1}
-	}
-data.raw["recipe"]["logistic-science-pack"].ingredients =
-	{
-      {type = "item", name = "inserter", amount = 1},
-      {type = "item", name = "transport-belt", amount = 1},
-	   {type = "item", name = "small-electric-pole", amount = 1}
-    }
-data.raw["recipe"]["military-science-pack"].ingredients =	
-	{
-      {type = "item", name = "piercing-rounds-magazine", amount = 1},
-	  {type = "item", name = "submachine-gun", amount = 1},
-      {type = "item", name = "grenade", amount = 1},
-      {type = "item", name = "stone-wall", amount = 2}
-    }
-data.raw["recipe"]["bio-science-pack"].ingredients =	
-	{
-		{type="item", name="charcoal", amount= 10},
-		{type="item", name="meaty-chunks", amount = 20},
-		{type="item", name = "cooked-fish", amount = 1},
-    }
-data.raw["recipe"]["chemical-science-pack"].ingredients =	
- {
-      {type = "item", name = "engine-unit", amount = 2},
-      {type = "item", name = "advanced-circuit", amount = 3},
-	  {type = "item", name = "silicon-wafer", amount = 2},
-      {type = "item", name = "sulfur", amount = 1}
-    }
-data.raw["recipe"]["production-science-pack"].ingredients =	
-	{
-      {type = "item", name = "electric-furnace", amount = 1},
-      {type = "item", name = "productivity-module", amount = 1},
-      {type = "item", name = "rail", amount = 30},
-	  {type = "item", name = "concrete", amount = 10},
-    }
-data.raw["recipe"]["utility-science-pack"].ingredients =	
-	{
-      {type = "item", name = "low-density-structure", amount = 3},
-      {type = "item", name = "processing-unit", amount = 2},
-      {type = "item", name = "flying-robot-frame", amount = 1},
-	  {type = "item", name = "laser", amount = 1}
-    }
+	data.raw["recipe"]["automation-science-pack"].ingredients =
+		{
+			{type = "item", name = "electronic-circuit", amount = 1},
+			{type = "item", name = "iron-gear-wheel", amount = 1}
+		}
+	data.raw["recipe"]["logistic-science-pack"].ingredients =
+		{
+		  {type = "item", name = "inserter", amount = 1},
+		  {type = "item", name = "transport-belt", amount = 1},
+		   {type = "item", name = "small-electric-pole", amount = 2}
+		}
+	data.raw["recipe"]["military-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "piercing-rounds-magazine", amount = 1},
+		  {type = "item", name = "submachine-gun", amount = 1},
+		  {type = "item", name = "grenade", amount = 2},
+		  {type = "item", name = "stone-wall", amount = 2}
+		}
+	data.raw["recipe"]["bio-science-pack"].ingredients =	
+		{
+			{type="item", name="charcoal", amount= 10},
+			{type="item", name="meaty-chunks", amount = 20},
+			{type="item", name = "cooked-fish", amount = 1},
+		}
+	data.raw["recipe"]["chemical-science-pack"].ingredients =	
+	 {
+		  {type = "item", name = "engine-unit", amount = 2},
+		  {type = "item", name = "advanced-circuit", amount = 3},
+		  {type = "item", name = "silicon-wafer", amount = 2},
+		  {type = "item", name = "sulfur", amount = 1}
+		}
+	data.raw["recipe"]["production-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "electric-furnace", amount = 1},
+		  {type = "item", name = "productivity-module", amount = 1},
+		  {type = "item", name = "rail", amount = 30},
+		  {type = "item", name = "concrete", amount = 10},
+		}
+	data.raw["recipe"]["utility-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "low-density-structure", amount = 3},
+		  {type = "item", name = "processing-unit", amount = 2},
+		  {type = "item", name = "flying-robot-frame", amount = 1},
+		  {type = "item", name = "laser", amount = 1}
+		}
 	
 elseif settings.startup["settings-recipe-cost"].value == "extreme" then
 
-data.raw["recipe"]["automation-science-pack"].ingredients =
-	{
-		{type = "item", name = "electronic-circuit", amount = 1},
-		{type = "item", name = "iron-stick", amount = 2},
-		{type = "item", name = "iron-gear-wheel", amount = 1}
-	}
-data.raw["recipe"]["logistic-science-pack"].ingredients =
-	{
-      {type = "item", name = "inserter", amount = 1},
-      {type = "item", name = "transport-belt", amount = 1},
-		{type = "item", name = "small-lamp", amount = 1},
-	   {type = "item", name = "small-electric-pole", amount = 1}
-    }
-data.raw["recipe"]["military-science-pack"].ingredients =	
-	{
-      {type = "item", name = "piercing-rounds-magazine", amount = 1},
-	  {type = "item", name = "gun-turret", amount = 1},
-      {type = "item", name = "grenade", amount = 1},
-      {type = "item", name = "stone-wall", amount = 2}
-    }
-data.raw["recipe"]["bio-science-pack"].ingredients =	
-	{
-		{type="item", name="charcoal", amount= 10},
-		{type="item", name="meaty-chunks", amount = 20},
-		{type="item", name="nat-gas-fuel", amount = 1},
-		{type = "item", name = "cooked-fish", amount = 1},
-    }
-data.raw["recipe"]["chemical-science-pack"].ingredients =	
- {
-      {type = "item", name = "engine-unit", amount = 2},
-      {type = "item", name = "advanced-circuit", amount = 3},
-	  {type = "item", name = "silicon-wafer", amount = 2},
-      {type = "item", name = "battery", amount = 1}
-    }
-data.raw["recipe"]["production-science-pack"].ingredients =	
-	{
-      {type = "item", name = "electric-furnace", amount = 1},
-      {type = "item", name = "productivity-module", amount = 1},
-      {type = "item", name = "rail", amount = 30},
-	  {type = "item", name = "landfill-deep", amount = 5},
-    }
-data.raw["recipe"]["utility-science-pack"].ingredients =	
-	{
-      {type = "item", name = "low-density-structure", amount = 3},
-      {type = "item", name = "processing-unit", amount = 2},
-      {type = "item", name = "logistic-robot", amount = 1},
-      {type = "item", name = "construction-robot", amount = 1},
-	  {type = "item", name = "laser", amount = 1}
-    }
+	data.raw["recipe"]["automation-science-pack"].ingredients =
+		{
+			{type = "item", name = "electronic-circuit", amount = 1},
+			{type = "item", name = "stone-brick", amount = 1},
+			{type = "item", name = "iron-gear-wheel", amount = 1}
+		}
+	data.raw["recipe"]["logistic-science-pack"].ingredients =
+		{
+			{type = "item", name = "inserter", amount = 1},
+			{type = "item", name = "transport-belt", amount = 1},
+			{type = "item", name = "small-lamp", amount = 2},
+			{type = "item", name = "small-electric-pole", amount = 2}
+		}
+	data.raw["recipe"]["military-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "piercing-rounds-magazine", amount = 1},
+		  {type = "item", name = "gun-turret", amount = 1},
+		  {type = "item", name = "grenade", amount = 2},
+		  {type = "item", name = "stone-wall", amount = 2}
+		}
+	data.raw["recipe"]["bio-science-pack"].ingredients =	
+		{
+			{type="item", name="charcoal", amount= 10},
+			{type="item", name="meaty-chunks", amount = 20},
+			{type="item", name="nat-gas-fuel", amount = 1},
+			{type = "item", name = "cooked-fish", amount = 1},
+		}
+	data.raw["recipe"]["chemical-science-pack"].ingredients =	
+	 {
+		  {type = "item", name = "engine-unit", amount = 2},
+		  {type = "item", name = "advanced-circuit", amount = 3},
+		  {type = "item", name = "silicon-wafer", amount = 2},
+		  {type = "item", name = "battery", amount = 1}
+		}
+	data.raw["recipe"]["production-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "electric-furnace", amount = 1},
+		  {type = "item", name = "productivity-module", amount = 1},
+		  {type = "item", name = "rail", amount = 30},
+		  {type = "item", name = "landfill-deep", amount = 6},
+		}
+	data.raw["recipe"]["utility-science-pack"].ingredients =	
+		{
+		  {type = "item", name = "low-density-structure", amount = 3},
+		  {type = "item", name = "processing-unit", amount = 2},
+		  {type = "item", name = "logistic-robot", amount = 1},
+		  {type = "item", name = "construction-robot", amount = 1},
+		  {type = "item", name = "laser", amount = 1}
+		}
 	
 end
 

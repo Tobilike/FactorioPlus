@@ -1336,7 +1336,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     {
       {type="item", name="sniper-shell", amount=1},
       {type="item", name="copper-plate", amount=8},
-	  {type="item", name="steel-plate", amount=6},
+	  {type="item", name="steel-plate", amount=4},
     },
     results = {{type="item", name="sniper-shell-piercing", amount=1}},
   },
@@ -1599,7 +1599,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     energy_required = 3,
     ingredients =
     {
-      {type="item", name="copper-plate", amount=2},
+      {type="item", name="copper-plate", amount=3},
       {type="item", name="iron-plate", amount=3}
     },
     results = {{type="item", name="shotgun-shell", amount=1}},
@@ -5228,7 +5228,7 @@ firestickerutil.makefiresticker("napalm-fire-sticker", mortar_napalm_firesticker
     {
 	  {type="item", name="cannon-shell", amount=1},
 	  {type="item", name="steel-plate", amount=6},
-	  {type="item", name="copper-plate", amount=12}
+	  {type="item", name="copper-plate", amount=14}
     },
     results = {{type="item", name="piercing-cannon-shell", amount=1}},
   },
@@ -6415,7 +6415,7 @@ data:extend({
     {
       {type="item", name="firearm-magazine", amount=50},
       {type="item", name="aluminium-plate", amount=10},
-      {type="item", name="copper-plate", amount=6}
+      {type="item", name="copper-plate", amount=10}
     },
     results = {{type="item", name="chaingun-ammo", amount=1}},
   },

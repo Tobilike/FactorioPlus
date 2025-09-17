@@ -6633,9 +6633,9 @@ end
 -- replace logos
  
 if (mods["space-age"]) then
-data.raw["container"]["factorio-logo-11tiles"].picture.filename = "__factorioplus__/graphics/icons/factorioplus-space-age-logo-11tiles.png"
+	data.raw["container"]["factorio-logo-11tiles"].picture.filename = "__factorioplus__/graphics/icons/factorioplus-space-age-logo-11tiles.png"
 else 
-data.raw["container"]["factorio-logo-11tiles"].picture.filename = "__factorioplus__/graphics/icons/factorioplus-logo-11tiles.png"
+	data.raw["container"]["factorio-logo-11tiles"].picture.filename = "__factorioplus__/graphics/icons/factorioplus-logo-11tiles.png"
 end 
   
 data.extend({
@@ -6646,7 +6646,7 @@ data.extend({
     flags = {"placeable-neutral", "player-creation"},
     --hidden = true,
     minable = {mining_time = 0.1},
-    max_health = 69,
+    max_health = 100,
     collision_box = {{-3, -3}, {3, 3}},
     selection_box = {{-3, -3}, {3, 3}},
     inventory_size = 1,
@@ -6714,13 +6714,13 @@ data.extend({
     },
   },
   
-      {
+  {
     type = "item",
     name = "factorioplus-logo",
     icon = "__factorioplus__/graphics/icons/factorioplus-logo.png",
     icon_size = 64, icon_mipmaps = 4,
 	place_result = "factorioplus-logo",
-    stack_size = 69
+    stack_size = 1
   },
   
 })

@@ -12,25 +12,6 @@ local weapon_shooting_speed_2_icon = "__base__/graphics/technology/weapon-shooti
 local weapon_shooting_speed_3_icon = "__base__/graphics/technology/weapon-shooting-speed-3.png"
 local laser_shooting_speed_icon = "__base__/graphics/technology/laser-shooting-speed.png"
 
--- if a table has this entry, then delete it.
-function table.removetablewithmatchingentry(t, key, value) 
-    for i,v in pairs(t) do
-		if (v[key] == value) then	
-			table.remove(t,i)
-			break
-		end
-    end
-end
-
-function table.removeentry(t, e) 
-    for i,v in pairs(t) do
-        if v == e then
-            table.remove(t,i)
-            break
-        end
-    end
-end
-
 function util.technology_icon_constant_health(technology_icon)
   local icons =
   {
@@ -3250,7 +3231,7 @@ table.insert(data.raw["technology"]["steel-processing"].effects,{type = "unlock-
         recipe = "personal-long-range-roboport-equipment"
       }
     },
-    prerequisites = {"personal-roboport-equipment", "low-density-structure", "processing-unit", "production-science-pack"},
+    prerequisites = {"personal-roboport-equipment", "low-density-structure", "production-science-pack"},
     unit =
     {
       count = 150,
@@ -3277,7 +3258,7 @@ table.insert(data.raw["technology"]["steel-processing"].effects,{type = "unlock-
         recipe = "personal-roboport-mk3-equipment"
       },
     },
-    prerequisites = { "personal-roboport-mk2-equipment", "production-science-pack"},
+    prerequisites = { "personal-roboport-mk2-equipment", "production-science-pack", "construction-robotics-2"},
     unit =
     {
       count = 300,
@@ -3524,10 +3505,15 @@ data.raw["technology"]["laser"].effects =
 
 --error("table block => " .. serpent.block(data.raw["technology"]["lamp"].prerequisites))
 
-if  data.raw["technology"]["lamp"].prerequisites then
-	table.insert( data.raw["technology"]["lamp"].prerequisites, "glass-processing" )
+-- aai industry support -> check for glass processing.
+if table.contains(data.raw["technology"]["lamp"].prerequisites,"glass-processing" ) then
+	-- do nothing
 	else
-	data.raw["technology"]["lamp"].prerequisites = {"glass-processing"}
+	if  data.raw["technology"]["lamp"].prerequisites then
+		table.insert( data.raw["technology"]["lamp"].prerequisites, "glass-processing" )
+		else
+		data.raw["technology"]["lamp"].prerequisites = {"glass-processing"}
+	end
 end
  
  data:extend
@@ -3791,7 +3777,7 @@ data:extend
     },
 	unit =
     {
-      count = 20,
+      count = 10,
       ingredients = {{"automation-science-pack", 1}},
       time = 15
     },

@@ -1057,20 +1057,20 @@ end
 data:extend{
 generate_storage_hut ("buildings-poles-0", loothutboundingbox, 1.15,
 {
-	{item = "medium-wooden-electric-pole", probability = 1, count_min = 20, count_max = 30},
+	{item = "medium-wooden-electric-pole", probability = 1, count_min = 20, count_max = 40},
 	{item = "medium-wooden-electric-pole", probability = 0.5, count_min = 10, count_max = 20},
 	{item = "medium-electric-pole", probability = 0.25, count_min = 10, count_max = 20},
 }),
 generate_storage_hut ("buildings-poles-1", loothutboundingbox, 1.25,
 {
-	{item = "medium-electric-pole", probability = 1, count_min = 20, count_max = 30},
-	{item = "medium-electric-pole", probability = 0.5, count_min = 20, count_max = 30},
-	{item = "medium-electric-pole", probability = 0.25, count_min = 20, count_max = 30},
+	{item = "medium-electric-pole", probability = 1, count_min = 20, count_max = 50},
+	{item = "medium-electric-pole", probability = 0.5, count_min = 20, count_max = 40},
+	{item = "medium-electric-pole", probability = 0.25, count_min = 20, count_max = 40},
 }),
 generate_storage_hut ("buildings-poles-2", loothutboundingbox, 3.35,
 {
-	{item = "medium-electric-pole", probability = 1, count_min = 20, count_max = 40},
-	{item = "medium-electric-pole", probability = 0.5, count_min = 10, count_max = 30},
+	{item = "medium-electric-pole", probability = 1, count_min = 20, count_max = 70},
+	{item = "big-electric-pole", probability = 0.5, count_min = 10, count_max = 30},
 	{item = "big-electric-pole", probability = 0.25, count_min = 10, count_max = 20},
 }),
 generate_storage_hut ("buildings-poles-3", loothutboundingbox, 5.35,
@@ -1081,7 +1081,14 @@ generate_storage_hut ("buildings-poles-3", loothutboundingbox, 5.35,
 }),
 generate_storage_hut ("buildings-poles-4", loothutboundingbox, 8.35,
 {
+	{item = "huge-electric-pole", probability = 1, count_min = 10, count_max = 30},
 	{item = "substation", probability = 1, count_min = 10, count_max = 30},
+	{item = "substation", probability = 0.5, count_min = 10, count_max = 20},
+	{item = "substation", probability = 0.25, count_min = 10, count_max = 20},
+}),
+generate_storage_hut ("buildings-poles-4", loothutboundingbox, 10.35,
+{
+	{item = "electrical-distributor", probability = 1, count_min = 10, count_max = 30},
 	{item = "substation", probability = 0.5, count_min = 10, count_max = 20},
 	{item = "substation", probability = 0.25, count_min = 10, count_max = 20},
 }),
@@ -1825,9 +1832,9 @@ generate_storage_hut ("weapons4-magnum", loothutboundingbox, 5.22,
 {
 	{item = "magnum-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 25, count_max = 40},
-	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 25, count_max = 45},
 }),
-generate_storage_hut ("weapons0-smg", loothutboundingbox, 1.93,
+generate_storage_hut ("weapons0-smg", loothutboundingbox, 1.73,
 {
 	{item = "submachine-gun", probability = 1, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
@@ -1849,13 +1856,43 @@ generate_storage_hut ("weapons3-smg", loothutboundingbox, 4.93,
 {
 	{item = "submachine-gun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
-	{item = "explosive-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
 }),
 generate_storage_hut ("weapons4-smg", loothutboundingbox, 6.03,
 {
 	{item = "submachine-gun-legendary", probability = 0.1, count_min = 1, count_max = 1},
+	{item = "uranium-rounds-magazine", probability = 1, count_min = 10, count_max = 30},
+	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+}),
+generate_storage_hut ("weapons0-uzi", loothutboundingbox, 1.93,
+{
+	{item = "uzi-gun", probability = 1, count_min = 1, count_max = 1},
+	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
+	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+}),
+generate_storage_hut ("weapons1-uzi", loothutboundingbox, 2.93,
+{
+	{item = "uzi-gun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
+	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
+	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+}),
+generate_storage_hut ("weapons2-uzi", loothutboundingbox, 3.93,
+{
+	{item = "uzi-gun-rare", probability = 0.4, count_min = 1, count_max = 1},
+	{item = "piercing-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
+	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+}),
+generate_storage_hut ("weapons3-uzi", loothutboundingbox, 5.03,
+{
+	{item = "uzi-gun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
-	{item = "explosive-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+}),
+generate_storage_hut ("weapons4-uzi", loothutboundingbox, 6.23,
+{
+	{item = "uzi-gun-legendary", probability = 0.1, count_min = 1, count_max = 1},
+	{item = "uranium-rounds-magazine", probability = 1, count_min = 10, count_max = 30},
+	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
 }),
 generate_storage_hut ("weapons0-shotgun", loothutboundingbox, 2.04,
 {
@@ -2876,7 +2913,7 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-depleted-shotgun-shell-1", 7.129, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-depleted-shotgun-shell-1", 7.129, 4, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -2888,6 +2925,8 @@ data:extend({
 	})
 })
 
+data:extend({create_warehouse_package_set("abandonment-package-nuke-shotgun-shell-1", 9.129, 3, 2)})
+
 data:extend({
 	create_abandonment_package({
 	item = "rocket",
@@ -2898,7 +2937,7 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-rocket-1", 4, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-rocket-1", 4, 4, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -2922,20 +2961,20 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-rocket-micro-1", 6, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-rocket-micro-1", 6, 4, 2)})
 
 data:extend({
 	create_abandonment_package({
 	item = "landfill",
 	tier = 1,
-	count = 400,
+	count = 600,
 	tint = {60 , 40 , 30 },
 	tint_item = {60 , 40 , 30 } ,
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-landfill-1", 2, 2, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-landfill-1", 5, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-landfill-1", 2.122, 3, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-landfill-1", 5.122, 6, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -2947,8 +2986,8 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-cliff-explosives-1", 3, 2, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-cliff-explosives-1", 6, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-cliff-explosives-1", 3.123, 3, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-cliff-explosives-1", 6.123, 5, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -2960,22 +2999,22 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-landfill-deep-1", 5, 3, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-landfill-deep-1", 10, 5, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-landfill-deep-1", 5.134, 3, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-landfill-deep-1", 10.134, 5, 2)})
 
 
 data:extend({
 	create_abandonment_package({
 	item = "waterfill-barrel",
 	tier = 1,
-	count = 200,
+	count = 500,
 	tint = {60 , 70 , 190 },
 	tint_item = {100 , 100 , 100 } ,
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-waterfill-barrel-1", 5, 3, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-waterfill-barrel-1", 10, 5, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-waterfill-barrel-1", 5.145, 5, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-waterfill-barrel-1", 10.145, 7, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -2987,9 +3026,9 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 1, 3, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 3, 5, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 6, 7, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 1.156, 3, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 3.156, 5, 2)})
+data:extend({create_warehouse_package_set("abandonment-package-stone-brick-1", 6.156, 7, 3)})
 
 data:extend({
 	create_abandonment_package({
@@ -3001,8 +3040,8 @@ data:extend({
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-concrete-1", 3, 4, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-concrete-1", 7, 8, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-concrete-1", 3.167, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-concrete-1", 7.167, 8, 2)})
 
 data:extend({
 	create_abandonment_package({
@@ -3010,11 +3049,26 @@ data:extend({
 	tier = 1,
 	count = 400,
 	tint = {120 , 120 , 120 },
-	tint_item = {120 , 120 , 120 } ,
+	tint_item = {150 , 150 , 150 } ,
 	})
 })
 
-data:extend({create_warehouse_package_set("abandonment-package-refined-concrete-1", 4, 4, 1)})
-data:extend({create_warehouse_package_set("abandonment-package-refined-concrete-1", 9, 8, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-refined-concrete-1", 4.178, 4, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-refined-concrete-1", 9.178, 8, 2)})
+
+
+data:extend({
+	create_abandonment_package({
+	item = "rail",
+	tier = 1,
+	count = 400,
+	tint = {120 , 120 , 120 },
+	tint_item = {100 , 80 , 40 } ,
+	})
+})
+
+data:extend({create_warehouse_package_set("abandonment-package-rail-1", 2.187, 3, 1)})
+data:extend({create_warehouse_package_set("abandonment-package-rail-1", 4.487, 5, 2)})
+data:extend({create_warehouse_package_set("abandonment-package-rail-1", 6.887, 7, 3)})
 
 end

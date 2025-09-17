@@ -81,6 +81,7 @@ local ironpure_spotsrelativetoiron = 1/8 -- how many spots of pure iron compared
 
 local goblin_ore_spotsperkm2 = 1/1000
 local goblin_ore_numberof = 3 -- How many types of goblin ore are there?
+local goblin_ore_scalar = 1.25 -- For balancing, multiplies all ratios by this
 
 local sand_ore_spotsperkm2 = 1/2
 ---------------------------------------------------  BASE RESOURCE OVERRIDES  ------------------------------------------------------------
@@ -502,25 +503,25 @@ data:extend
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.25,
+			probability = 0.25*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "iron-ore",
-			probability = 0.26,
+			probability = 0.26*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "copper-ore",
-			probability = 0.21,
+			probability = 0.21*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "coal",
-			probability = 0.22,
+			probability = 0.22*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -594,25 +595,25 @@ data:extend
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.45,
+			probability = 0.48*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "iron-ore",
-			probability = 0.2,
+			probability = 0.2*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "copper-ore",
-			probability = 0.15,
+			probability = 0.15*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.36,
+			probability = 0.38*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -687,25 +688,25 @@ data:extend
 		{
 		type = "item",
 			name = "stone",
-			probability = 0.13,
+			probability = 0.13*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "iron-ore",
-			probability = 0.45,
+			probability = 0.6*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "copper-ore",
-			probability = 0.4,
+			probability = 0.4*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.15,
+			probability = 0.15*goblin_ore_scalar,
 			amount = 1
 		},
 	  },

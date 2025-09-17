@@ -1,10 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.4.2
+Date: 2025.09.19
+  Balance:
+    - Hello
+  Fixes:
+    - My
+  Other Mods:
+    - Friend
+---------------------------------------------------------------------------------------------------
 Version: 2.4.1
 Date: 2025.09.13
   Balance:
-    - Both Alien chunks now spoil into nothing and will disappear.
+    - Increased Air scrubber pollution absorption rate from -4 to -6.
+    - Increased Large Air scrubber pollution absorption rate from -54 to -64.
+    - Increased Small, Medium and Large tanker health by +20% and increased their initial physical damage reduction from 0 to 2. 
+    - Increased torque/max power of Electric train from 360kW to 500kW.
+    - Increased Equipment wagon inventory size from 20 -> 30, its weight from 2000 -> 2500 and hitpoints from 2500 -> 3000.
   Fixes:
-    - Both Alien chunks now spoil into nothing and will disappear.
+    - Fixed missing localization text for Crashsite bonus setting values.
+    - Fixed missing localization text for Long range roboport equipment technology.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.0
 Date: 2025.09.12

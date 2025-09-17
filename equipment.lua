@@ -403,7 +403,7 @@ data:extend({
     charging_energy = "2000kW",
 
     robot_limit = 10,
-    construction_radius = 20,
+    construction_radius = 15,
     spawn_and_station_height = 0.4,
     spawn_and_station_shadow_height_offset = 0.5,
     charge_approach_distance = 2.6,
@@ -615,8 +615,9 @@ data:extend({
     ingredients =
 		{
 		  {type="item", name="personal-roboport-mk2-equipment", amount=2},
-		  {type="item", name="cpu-item", amount=40},
-		  {type="item", name="radar-large", amount=5}
+		  {type="item", name="roboport-major", amount=1},
+		  {type="item", name="cpu-item", amount=100},
+		  {type="item", name="low-density-structure", amount=100}
 		},
 		results = {{type="item", name="personal-roboport-mk3-equipment", amount=1}}, 
 	},
@@ -695,7 +696,7 @@ data:extend({
     ingredients =
     {
       {type="item", name="personal-roboport-equipment", amount=2},
-      {type="item", name="processing-unit", amount=50},
+      {type="item", name="advanced-circuit", amount=100},
       {type="item", name="low-density-structure", amount=20},
 	  {type="item", name="radar", amount=20}
     },

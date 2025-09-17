@@ -1,5 +1,6 @@
 --data.lua
 
+require("util-generic")
 require("signal")
 require("item-groups")
 require("buildings")

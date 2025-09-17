@@ -1,12 +1,31 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.2
-Date: 2025.09.19
+Date: 2025.09.17
   Balance:
-    - Hello
+    - Added Rail package filled abandonment warehouses to the loot table.
+    - Added Machine pistol to abandonment loot tables.
+    - Reduced Piercing sniper shell recipe Steel cost from 6 -> 4.
+    - Increased Shotgun shell recipe Copper cost from 2 -> 3.
+    - Increased Piecing cannon shell recipe Copper cost from 12 -> 14.
+    - Increased Chaingun ammo recipe Copper cost from 6 -> 10.
+    - Reduced Crashsite robotport construction radius from 20 -> 15
+    - Changed Personal roboport MK3 equipment recipe -> 2 MK2 Personal roboport equipment, 1 Super roboport, 100 Low density structure, 100 Computing units.
+    - Personal long range roboport equipment requires 100 Advanced circuits intead of 50 Processing units.
+    - Reduced Shotgun Turret recipe Turret base cost from 2 -> 1.
+    - Increased Hard/Extreme Science cost for Military science pack from 1 Grenade to 2 Grenades.
+    - Increased Hard/Extreme Science cost for Logistic science pack from 1 Small electric pole to 2 Small electric pole.
+    - Changed Extreme Science cost for Automation science pack from 2 Iron sticks to 1 Stone brick.
+    - Increased Extreme Science cost for Logistic science pack from 1 Lamp to 2 Lamps.
+    - Increased Extreme Science cost for Production science pack from 5 Deep landfill to 6 Deep landfill.
+    - Goblin ore ratios reworked and increased overall by +25%. (More chance of being able to successfully mine multiple ores at once)
+    - Machine pistol now does 75% damage and consumes -25% ammo. 
   Fixes:
-    - My
+    - All walls won't stop shotgun projectiles, including additional ones from other mods.
+    - Added aai-industries and Dectorio as hidden dependencies.
   Other Mods:
-    - Friend
+    - Added basic support for aai-industries.
+    - Factorioplus Glass/Sand should appear in aai-industries (but will recieve better support down the line so that only 1 sand/glass exists between mods)
+    - Added basic support for Dectorio.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.1
 Date: 2025.09.13

@@ -483,7 +483,7 @@ data.raw["tile"]["water"].walking_speed_modifier = 0.6
 data.raw["tile"]["water"].vehicle_friction_modifier = water_vehicle_friction_modifier
 data.raw["tile"]["water"].autoplace = {probability_expression = "water_base(-1, 50)"}
 data.raw["tile"]["water"].walking_sound = shallow_water_sound
-data.raw["tile"]["water"].destroys_dropped_items = true
+data.raw["tile"]["water"].destroys_dropped_items = false
 data.raw["tile"]["water"].collision_mask = 
 {layers={
 	  water_tile=true,
@@ -495,7 +495,7 @@ data.raw["tile"]["water"].collision_mask =
 
 data.raw["tile"]["water-green"].walking_speed_modifier = 0.5
 data.raw["tile"]["water-green"].walking_sound = shallow_water_sound
-data.raw["tile"]["water-green"].destroys_dropped_items = true
+data.raw["tile"]["water-green"].destroys_dropped_items = false
 data.raw["tile"]["water-green"].collision_mask =
 {layers={
 	  water_tile=true,
@@ -511,8 +511,8 @@ data.raw["tile"]["water-green"].collision_mask =
 data.raw["planet"]["nauvis"].map_gen_settings.autoplace_settings["tile"].settings["water-shallow"] = {}
 data.raw["tile"]["water-shallow"].walking_speed_modifier = 0.8
 data.raw["tile"]["water-shallow"].vehicle_friction_modifier = water_shallow_vehicle_friction_modifier
-data.raw["tile"]["water-shallow"].tint ={r=01, g=1, b=1, a=1}
---data.raw["tile"]["water-shallow"].allowed_neighbors = { "water-mud" }
+data.raw["tile"]["water-shallow"].tint ={r=1, g=1, b=1, a=1}
+--data.raw["tile"]["water-shallow"].allowed_neighbors = { "water" }
 data.raw["tile"]["water-shallow"].autoplace = {probability_expression = "water_base(0, 5)"}  
 data.raw["tile"]["water-shallow"].collision_mask =
 {layers={

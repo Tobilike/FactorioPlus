@@ -1,0 +1,7 @@
+{
+ "recipe":
+  [
+	["solid-fuel-from-nat-gas", "nat-gas-fuel"],
+	["solid-fuel-from-petroleum-gas", "petroleum-fuel"]
+  ]
+}

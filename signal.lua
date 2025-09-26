@@ -285,4 +285,40 @@ data:extend(
 		subgroup = "pictographs",
 		order = "a[fuel]"
 	},
+	-------------------------------- EMOTES --------------------------------
+	{
+		type = "virtual-signal",
+		name = "signal-smile",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_smile.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-frown",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_frown.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-laugh",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_laugh.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-thumb-up",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_thumb_up.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-thumb-down",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_thumb_down.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
 })

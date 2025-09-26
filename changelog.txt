@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.4.4
+Date: 2025.09.19
+  Additions:
+    - Added Incinerators and ther Technology.
+  Balance:
+    - More rebalancing of Goblin ore, increased other ore amounts as Incinerators can now be used to burn off extra resources.
+  Fixes:
+    - Fixed alt ammo icon size for Gun and Shotgun turrets.
+---------------------------------------------------------------------------------------------------
+Version: 2.4.3
+Date: 2025.09.18
+  Balance:
+    - Rebalancing Goblin ore ratios from feedback & Goblin mode. (Iron ratio higher, Copper lower)
+  Fixes:
+    - Fixed water tiles being able to destroy dropped items.
+---------------------------------------------------------------------------------------------------
 Version: 2.4.2
 Date: 2025.09.17
   Balance:

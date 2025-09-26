@@ -85,17 +85,54 @@ data.raw["recipe"]["assembling-machine-3"].energy_required = 4
 
  ---------------------------------------------------  MODULE OVERRIDES  ------------------------------------------------------------
 
-data.raw["recipe"]["speed-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
-data.raw["recipe"]["productivity-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
-data.raw["recipe"]["efficiency-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
+data.raw["recipe"]["speed-module"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10}, 
+	{type = "item", name = "plastic-bar", amount = 2} 
+}
+data.raw["recipe"]["productivity-module"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10}, 
+	{type = "item", name = "plastic-bar", amount = 2} 
+}
 
-data.raw["recipe"]["speed-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "speed-module", amount = 4}  }
-data.raw["recipe"]["productivity-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "productivity-module", amount = 4}  }
-data.raw["recipe"]["efficiency-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "efficiency-module", amount = 4}  }
+data.raw["recipe"]["efficiency-module"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10 },
+	{type = "item", name = "plastic-bar", amount = 2} 
+}
+
+data.raw["recipe"]["speed-module-2"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10}, 
+	{type = "item", name = "advanced-circuit", amount = 5}, 
+	{type = "item", name = "speed-module", amount = 4}
+}
+data.raw["recipe"]["productivity-module-2"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10}, 
+	{type = "item", name = "advanced-circuit", amount = 5}, 
+	{type = "item", name = "productivity-module", amount = 4}  
+}
+data.raw["recipe"]["efficiency-module-2"].ingredients = 
+{ 
+	{type = "item", name = "electronic-circuit", amount = 10}, 
+	{type = "item", name = "advanced-circuit", amount = 5}, 
+	{type = "item", name = "efficiency-module", amount = 4}  
+}
 
 if (mods["quality"]) then
-	data.raw["recipe"]["quality-module"].ingredients = { {type = "item", name = "electronic-circuit", amount = 20} }
-	data.raw["recipe"]["quality-module-2"].ingredients = { {type = "item", name = "electronic-circuit", amount = 10}, {type = "item", name = "advanced-circuit", amount = 5}, {type = "item", name = "quality-module", amount = 4}  }
+	data.raw["recipe"]["quality-module"].ingredients = 
+	{ 
+		{type = "item", name = "electronic-circuit", amount = 10}, 
+		{type = "item", name = "plastic-bar", amount = 2} 
+	}
+	data.raw["recipe"]["quality-module-2"].ingredients = 
+	{ 
+		{type = "item", name = "electronic-circuit", amount = 10}, 
+		{type = "item", name = "advanced-circuit", amount = 5}, 
+		{type = "item", name = "quality-module", amount = 4}  
+	}
 end
 
 
@@ -150,10 +187,61 @@ data:extend
 })
 
  ---------------------------------------------------  FACTORIOPLUS RECIPES  ------------------------------------------------------------
+
+--  BASIC PIPE RECIPES --	
+ 
+ data.extend({  
+  {
+    type = "recipe",
+    name = "pipe-basic",
+    ingredients = {{type = "item", name = "iron-plate", amount = 1}},
+    results = {{type="item", name="pipe-basic", amount=2}},
+    enabled = false
+  },
+  
+  {
+    type = "recipe",
+    name = "pipe-to-ground-basic",
+    enabled = false,
+    ingredients =
+    {
+      {type = "item", name = "pipe-basic", amount = 6},
+      {type = "item", name = "iron-plate", amount = 2}
+    },
+    results = {{type="item", name="pipe-to-ground-basic", amount=2}}
+  },
+})
+
+ 
+ data.extend({  
+  {
+    type = "recipe",
+    name = "pipe-reinforced",
+    ingredients = 
+	{
+		{type = "item", name = "pipe", amount = 1},
+		{type = "item", name = "steel-plate", amount = 1}
+	},
+    results = {{type="item", name="pipe-reinforced", amount=1}},
+    enabled = false
+  },
+  
+  {
+    type = "recipe",
+    name = "pipe-to-ground-reinforced",
+    enabled = false,
+    ingredients =
+    {
+      {type = "item", name = "pipe-reinforced", amount = 24},
+      {type = "item", name = "steel-plate", amount = 6}
+    },
+    results = {{type="item", name="pipe-to-ground-reinforced", amount=1}}
+  },
+})
+
+
 data:extend
 ({
-
-
 	{
 	type = "recipe",
 	name = "fish-processing",
@@ -410,6 +498,20 @@ data:extend
 		{type="item", name="stone-brick", amount=16}
       },
       results = {{type="item", name="storage-hut", amount=1}},
+},
+{
+    type = "recipe",
+    name = "storage-tank-large",
+	energy_required = 8,
+	enabled = false,
+
+      ingredients =
+      {
+		{type="item", name="storage-tank", amount=2},
+		{type="item", name="steel-plate", amount=12},
+		{type="item", name="concrete", amount=60}
+      },
+      results = {{type="item", name="storage-tank-large", amount=1}},
 },
 {
     type = "recipe",
@@ -821,7 +923,9 @@ data:extend
     },
 	results = {{type="item", name="waterfill-barrel", amount=10}},
   },
-})
+}) 
+
+
  
 if (mods["space-age"]) then  
 
@@ -1056,7 +1160,7 @@ data.extend({
         {type="item", name="electric-mining-drill", amount=2},
         {type="item", name="iron-gear-wheel", amount=20},
 		{type="item", name="efficiency-module", amount=4},
-		{type="item", name="productivity-module", amount=8},
+		{type="item", name="productivity-module", amount=4},
       },
       results = {{type="item", name="electric-grinder", amount=1}},
     },

@@ -1204,6 +1204,8 @@ data.extend({
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
+-- table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-launcher"})
+-- table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-rounds"})
 
 {
     type = "technology",
@@ -1216,16 +1218,23 @@ data.extend({
         type = "unlock-recipe",
         recipe = "mortar-turret"
       },
+	  {
+        type = "unlock-recipe",
+        recipe = "grenade-launcher"
+      },
+	  {
+        type = "unlock-recipe",
+        recipe = "grenade-rounds"
+      },
     },
-	prerequisites = {"military-4",},
+	prerequisites = {"military-3","stronger-explosives-2"},
     unit =
     {
-      count = 200,
+      count = 150,
       ingredients =
       {
         {"automation-science-pack", 1},
         {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1},
         {"military-science-pack", 1}
       },
       time = 30
@@ -2687,7 +2696,7 @@ data.extend({
       },
       {
         type = "unlock-recipe",
-        recipe = "solid-fuel-from-nat-gas"
+        recipe = "nat-gas-fuel"
       },
 	  {
         type = "unlock-recipe",
@@ -2712,8 +2721,30 @@ data.extend({
     -- },
     order = "d-a",
   },
-}) 
+
+
+	{
+    type = "technology",
+    name = "fluid-handling-advanced",
+    icon = "__factorioplus__/graphics/technology/largefluidtank.png",
+    icon_size = 256,
+    prerequisites = {"fluid-handling", "concrete", "chemical-science-pack"},
+    effects =
+    {
+      {
+        type = "unlock-recipe",
+        recipe = "storage-tank-large"
+      },
+    },
+    unit =
+    {
+      count = 50,
+      ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}, {"chemical-science-pack", 1} },
+      time = 15
+    }
+	},
   
+}) 
   ------------------------------------------ TRUE ROCKET FUEL ------------------------------------------
   
   if (mods["space-age"]) then
@@ -2800,7 +2831,7 @@ end
     prerequisites = {"efficiency-module","productivity-module","mining-productivity-1"},
     unit =
     {
-      count = 300,
+      count = 150,
       ingredients =
       {
          {"automation-science-pack", 1},
@@ -3295,6 +3326,8 @@ table.insert(data.raw["technology"]["military-3"].effects,{type = "unlock-recipe
 table.insert(data.raw["technology"]["military-3"].effects,{type = "unlock-recipe",recipe = "flak-grenade"})
 table.insert(data.raw["technology"]["military-3"].effects,{type = "unlock-recipe",recipe = "blunderbuss"})
 
+
+
 table.removeentry(data.raw["technology"]["military-3"].prerequisites, "chemical-science-pack") 
 table.insert(data.raw["technology"]["military-3"].prerequisites,"military-2")
 
@@ -3319,8 +3352,7 @@ data.raw["technology"]["gun-turret"].prerequisites = {"military"}
 
 table.removetablewithmatchingentry(data.raw["technology"]["military-4"].effects, "recipe", "piercing-shotgun-shell") 
 
-table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-launcher"})
-table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "grenade-rounds"})
+
 table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "combat-shotgun"})
 table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "shotgun-shell-birdshot"})
 table.insert(data.raw["technology"]["military-4"].effects,{type = "unlock-recipe",recipe = "sniper-rifle"})
@@ -4110,10 +4142,10 @@ data:extend
         recipe = "heavygun-turret",
       },
     },
-    prerequisites = { "military-3", "chemical-science-pack"},
+    prerequisites = { "military-4", "chemical-science-pack"},
     unit =
     {
-       count = 400,
+       count = 200,
       ingredients =
       {
         {"automation-science-pack", 1},
@@ -4164,6 +4196,8 @@ data:extend
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 
+data.raw["technology"]["modules"].prerequisites = { "plastics", "electronics"}
+  
 data.raw["technology"]["automation-science-pack"].research_trigger = 
 {
   type = "craft-item",

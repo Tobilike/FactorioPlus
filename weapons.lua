@@ -247,9 +247,9 @@ data:extend({
       type = "projectile",
       ammo_category = "bullet",
       cooldown = firerate_smg / 1.75,
-	  ammo_consumption_modifier = 0.75,
-	  damage_modifier = 0.75,
-      movement_slow_down_factor = 0.25,
+	  ammo_consumption_modifier = 0.6,
+	  damage_modifier = 0.7,
+      movement_slow_down_factor = 0.2,
       shell_particle =
       {
         name = "shell-particle",
@@ -515,7 +515,7 @@ data:extend({
       damage_modifier = 1,
       projectile_creation_distance = 1.125,
       range = range_combatshotgun,
-      sound = sounds.shotgun
+      sound = soundsnew.gun_autoshotgun
     },
     stack_size = 5
   },
@@ -563,7 +563,7 @@ data:extend({
       damage_modifier = damage_modifier_vehicle_bonus,
       projectile_creation_distance = 1.125,
       range = range_combatshotgun * range_modifier_vehicle_bonus,
-      sound = sounds.shotgun
+      sound = soundsnew.gun_autoshotgun
     },
     stack_size = 1
   },

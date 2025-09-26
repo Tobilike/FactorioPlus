@@ -1,3 +1,4 @@
+-- If a table has this element, return true
 function table.contains(table, element)
   for _, value in pairs(table) do
     if value == element then
@@ -17,6 +18,7 @@ function table.removetablewithmatchingentry(t, key, value)
     end
 end
 
+-- Remove an element inside a table
 function table.removeentry(t, e) 
     for i,v in pairs(t) do
         if v == e then
@@ -26,6 +28,7 @@ function table.removeentry(t, e)
     end
 end
 
+-- Switch out an old recipe with a replacement new one.
 function switchrecipeingredient(old_item,new_item)
 	for k, v in pairs(data.raw["recipe"]) do
 		if (v.ingredients ~= nil) then
@@ -38,3 +41,21 @@ function switchrecipeingredient(old_item,new_item)
 	end
 end
 
+-- Place one icon on top of another.
+function iconoverlayontop(icon_base, icon_overlay, base_size, overlay_size, overlay_scale)
+  local icons =
+  {
+    {
+      icon = icon_base,
+      icon_size = size,
+	  icon_mipmaps = 4
+    },
+    {
+      icon = icon_overlay,
+      icon_size = size,
+	  icon_mipmaps = 4,
+      scale = overlay_scale,
+    }
+  }
+  return icons
+end

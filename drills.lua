@@ -165,7 +165,7 @@ data:extend({
     max_health = 450,
     corpse = "burner-mining-drill-remnants",
     dying_explosion = "burner-mining-drill-explosion",
-    collision_box = {{ -1.4, -1.4}, {1.4, 1.4}},
+    collision_box = {{ -1.3, -1.3}, {1.3, 1.3}},
     selection_box = {{ -1.5, -1.5}, {1.5, 1.5}},
     damaged_trigger_effect = hit_effects.entity(),
     mining_speed = 1.0,
@@ -788,9 +788,11 @@ data:extend({
 	{
 		base_effect = 
 		{
-			productivity = 3,
+			productivity = 2,
 		}
 	},
+	module_slots = 3,
+	resource_drain_rate_percent = 50,
 	
     energy_source =
     {
@@ -798,10 +800,10 @@ data:extend({
       emissions_per_minute ={pollution = 4},
       usage_priority = "secondary-input"
     },
+	
     energy_usage = "125kW",
     resource_searching_radius = 5.5,
     vector_to_place_result = {0, -2.75},
-    module_slots = 3,
     radius_visualisation_picture =
     {
       filename = "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-radius-visualization.png",
@@ -1175,6 +1177,7 @@ data:extend({
     },
     energy_usage = "75kW",
     resource_searching_radius = 10.0,
+	resource_searching_offset = {0, -6}, -- Waiting for patch 2.0.69
     vector_to_place_result = {0, -2.75},
     module_slots = 2,
 
@@ -1306,7 +1309,8 @@ data:extend({
       fade_out_ticks = 10,
     },
     --fast_replaceable_group = "pumpjack",
-
+	-- NO MODULES ALLOWED!
+	allowed_effects = {},
 	circuit_connector = circuit_connector_definitions["extractor"],
    circuit_wire_max_distance = default_circuit_wire_max_distance,
   },

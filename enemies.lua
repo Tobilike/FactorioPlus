@@ -39,7 +39,7 @@ return
 	-- So, a resolution of -8 equals a grid of 256x256 tiles, 
 	-- and a resolution of 8 equals 1/256 of a tile.
 	-- 1 = 1/2x1/2 0 = 1x1, -1 = 2x2, -2 =4x4, -3 = 8x8
-	size_in_group = 0.25 + ( scale * 0.75 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
+	size_in_group = 0.25 + ( scale * 1 ) -- smaller units take up less space, larger take up more space. Generally this is related to power.
 }
 end
 

@@ -2342,6 +2342,7 @@ function create_abandonment_package(data)
 		collision_box = {{-0.8, -0.8}, {0.8, 0.8}},
 		selection_box = {{-1, -1}, {1, 1}},
 		
+		hidden = true,
 		damaged_trigger_effect = hit_effects.entity(),
 		impact_category = "metal",
 		dying_explosion = "steel-chest-explosion",

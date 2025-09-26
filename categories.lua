@@ -19,5 +19,9 @@ data:extend({
 		type = "recipe-category",
 		name = "alien-furnace"
 	},
+    {
+		type = "recipe-category",
+		name = "incineration"
+    },
   
 })

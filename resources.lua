@@ -1,6 +1,8 @@
 local sounds = require ("__base__.prototypes.entity.sounds")
 local resource_autoplace = require("resource-autoplace")
 local tile_sounds = require("__base__.prototypes.tile.tile-sounds")
+local item_sounds = require("__base__.prototypes.item_sounds")
+local item_tints = require("__base__.prototypes.item-tints")
 
 --
 
@@ -270,7 +272,8 @@ data:extend
 ({
  {
     type = "recipe",
-    name = "solid-fuel-from-petroleum-gas",
+	name = "petroleum-fuel",
+    --name = "solid-fuel-from-petroleum-gas",
     category = "chemistry",
     energy_required = 2,
     ingredients =
@@ -286,6 +289,7 @@ data:extend
 	enabled = false,
     subgroup = "fuel-product",
     order = "b[vehicle-fuel]",
+	
 	allow_productivity = true,
     crafting_machine_tint =
     {
@@ -306,6 +310,9 @@ data:extend
     fuel_top_speed_multiplier = 1.1,
     subgroup = "fuel-product",
     order = "b[vehicle-fuel]",
+	inventory_move_sound = item_sounds.fuel_cell_inventory_move,
+    pick_sound = item_sounds.fuel_cell_inventory_pickup,
+    drop_sound = item_sounds.fuel_cell_inventory_move,
     stack_size = 35,
 	weight = 5 * kg,
   },
@@ -338,6 +345,9 @@ data:extend
     fuel_top_speed_multiplier = 1.75,
     subgroup = "fuel-product",
     order = "d[vehicle-fuel]",
+	inventory_move_sound = item_sounds.fuel_cell_inventory_move,
+    pick_sound = item_sounds.fuel_cell_inventory_pickup,
+    drop_sound = item_sounds.fuel_cell_inventory_move,
     stack_size = 10,
 	weight = 10 * kg,
   },
@@ -371,6 +381,9 @@ data:extend
 	fuel_emissions_multiplier = 0.2,
     subgroup = "fuel-product",
     order = "b[vehicle-fuel]",
+	inventory_move_sound = item_sounds.fuel_cell_inventory_move,
+    pick_sound = item_sounds.fuel_cell_inventory_pickup,
+    drop_sound = item_sounds.fuel_cell_inventory_move,
     stack_size = 25,
 	weight = 10 * kg,
   },
@@ -386,6 +399,9 @@ data:extend
       { size = 64, filename = "__factorioplus__/graphics/icons/bauxite-ore-2.png", scale = 0.5, mipmap_count = 3 },
 	  { size = 64, filename = "__factorioplus__/graphics/icons/bauxite-ore-3.png", scale = 0.5, mipmap_count = 3 },
     },
+	inventory_move_sound = item_sounds.resource_inventory_move,
+    pick_sound = item_sounds.resource_inventory_pickup,
+    drop_sound = item_sounds.resource_inventory_move,
     order = "e[iron-ore]",
     stack_size = 50,
 	weight = 2 * kg,	
@@ -460,11 +476,11 @@ data:extend
    type = "item",
     name = "goblin-ore",
     icon = "__factorioplus__/graphics/icons/goblin-ore.png",
-	hidden=true,
+	hidden = true,
     icon_size = 64,
     icon_mipmaps = 4,
     subgroup = "raw-resource",
-    order = "e[iron-ore]",
+    order = "g[uranium-ore]",
     stack_size = 50  
 },
 {
@@ -503,25 +519,25 @@ data:extend
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.25*goblin_ore_scalar,
+			probability = 0.17*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "iron-ore",
-			probability = 0.26*goblin_ore_scalar,
+			probability = 0.27*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "copper-ore",
-			probability = 0.21*goblin_ore_scalar,
+			probability = 0.22*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "coal",
-			probability = 0.22*goblin_ore_scalar,
+			probability = 0.21*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -595,7 +611,7 @@ data:extend
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.48*goblin_ore_scalar,
+			probability = 0.45*goblin_ore_scalar,
 			amount = 1
 		},
 		{
@@ -607,13 +623,13 @@ data:extend
 		{
 		type = "item",
 			name = "copper-ore",
-			probability = 0.15*goblin_ore_scalar,
+			probability = 0.1*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.38*goblin_ore_scalar,
+			probability = 0.35*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -688,25 +704,25 @@ data:extend
 		{
 		type = "item",
 			name = "stone",
-			probability = 0.13*goblin_ore_scalar,
+			probability = 0.05*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "iron-ore",
-			probability = 0.6*goblin_ore_scalar,
+			probability = 0.65*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "copper-ore",
-			probability = 0.4*goblin_ore_scalar,
+			probability = 0.28*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.15*goblin_ore_scalar,
+			probability = 0.16*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -760,9 +776,12 @@ data:extend
       { size = 64, filename = "__factorioplus__/graphics/icons/sand-1.png", scale = 0.5, mipmap_count = 3 },
 	  { size = 64, filename = "__factorioplus__/graphics/icons/sand-2.png", scale = 0.5, mipmap_count = 3 },
     },
+	 inventory_move_sound = item_sounds.sulfur_inventory_move,
+    pick_sound = item_sounds.resource_inventory_pickup,
+    drop_sound = item_sounds.sulfur_inventory_move,
     subgroup = "raw-resource",
     order = "e[iron-ore]",
-    stack_size = 100,
+    stack_size = 200,
 	weight = 1 * kg,	
 },
 {
@@ -854,6 +873,7 @@ data:extend
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral"},
     category = "basic-fluid",
+    subgroup = "mineable-fluids",
     order="a-b-a",
     infinite = true,
     highlight = true,
@@ -931,10 +951,11 @@ data:extend
    {
     type = "resource",
     name = "geothermal-vent",
-    icon = "__base__/graphics/icons/crude-oil-resource.png",
+    icon = "__factorioplus__/graphics/icons/resource-geothermal.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral"},
-    category = "pressurized-gas",
+    category = "basic-fluid",
+    subgroup = "mineable-fluids",
     order="a-b-a",
     infinite = true,
     highlight = true,
@@ -1058,10 +1079,11 @@ data:extend
 {
     type = "resource",
     name = "forest",
-    icon = "__base__/graphics/icons/wood.png",
+    icon = "__factorioplus__/graphics/icons/resource-forest.png",
     icon_size = 64,
     icon_mipmaps = 4,
 	category = "wood-solid";
+	subgroup = "trees",
 	minimum = 1,
     normal = 1,
 	resource_patch_search_radius = 42,
@@ -1260,6 +1282,7 @@ data:extend
    {
     type = "fluid",
     name = "natural-gas",
+	subgroup = "fluid",
     default_temperature = 25,
     max_temperature = 100,
  --   heat_capacity = "0.1KJ",
@@ -1288,10 +1311,11 @@ data:extend
    {
     type = "resource",
     name = "natural-gas",
-    icon = "__factorioplus__/graphics/icons/natural-gas.png",
+    icon = "__factorioplus__/graphics/icons/resource-natural-gas.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral"},
-    category = "pressurized-gas",
+    category = "basic-fluid",
+	subgroup = "mineable-fluids",
     order="a-b-a",
     infinite = true,
     highlight = true,
@@ -1417,13 +1441,17 @@ data:extend
 	fuel_emissions_multiplier = 0.9,
     subgroup = "fuel-product",
     order = "p[rocket-fuel]",
+	inventory_move_sound = item_sounds.fuel_cell_inventory_move,
+    pick_sound = item_sounds.fuel_cell_inventory_pickup,
+    drop_sound = item_sounds.fuel_cell_inventory_move,
     stack_size = 40,
 	weight = 5 * kg,
   },
   
    {
     type = "recipe",
-    name = "solid-fuel-from-nat-gas",
+	name = "nat-gas-fuel",
+    --name = "solid-fuel-from-nat-gas",
     category = "chemistry",
     energy_required = 4,
 	enabled = false,
@@ -1435,29 +1463,6 @@ data:extend
     {
       {type="item", name="nat-gas-fuel", amount=1}
     },
-    {
-    icon = "__base__/graphics/icons/fluid/barreling/barrel-empty.png",
-    icon_size = 32
-  },
-  {
-    icon = "__base__/graphics/icons/fluid/barreling/barrel-empty-side-mask.png",
-    icon_size = 32,
-    tint = { a = 0.75, b = 0, g = 0, r = 0 }
-  },
-  {
-    icon = "__base__/graphics/icons/fluid/barreling/barrel-empty-top-mask.png",
-    icon_size = 32,
-    tint = { a = 0.75, b = 0.5, g = 0.5, r = 0.5 }
-  },
-  {
-    icon = "__factorioplus__/graphics/icons/natural-gas.png",
-    icon_size = 32,
-    scale = 0.5,
-    shift = {7, 8 }
-  },
-    icon_mipmaps = 4,
-    subgroup = "fuel-product",
-    order = "a[vehicle-fuel]",
 	allow_productivity = true,
     crafting_machine_tint =
     {
@@ -1488,6 +1493,9 @@ data:extend
 	fuel_acceleration_multiplier = 0.4,
     fuel_top_speed_multiplier = 0.6,
 	fuel_emissions_multiplier = 1.1,
+	inventory_move_sound = item_sounds.sulfur_inventory_move,
+    pick_sound = item_sounds.resource_inventory_pickup,
+    drop_sound = item_sounds.sulfur_inventory_move,
     subgroup = "raw-material",
     order = "9[charcoal]",
     stack_size = 200,
@@ -1515,7 +1523,7 @@ data:extend
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "fluid-recipes",
     order = "a[oil-processing]-a[basic-oil-processing]",
-    main_product = ""
+    --main_product = ""
   },
 })  
 
@@ -1550,7 +1558,10 @@ data:extend
 	  { size = 128, filename = "__factorioplus__/graphics/icons/iron-ore-pure-1.png", scale = 0.35, mipmap_count = 3 },
     },
     subgroup = "raw-resource",
-    order = "e[iron-ore]",
+    order = "eb[iron-ore]",
+	inventory_move_sound = item_sounds.resource_inventory_move,
+    pick_sound = item_sounds.resource_inventory_pickup,
+    drop_sound = item_sounds.resource_inventory_move,
     stack_size = 50,
 	weight = 1 * kg,	
 	},

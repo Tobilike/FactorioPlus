@@ -93,7 +93,7 @@ data:extend
    {
     type = "item",
     name = "storage-tank-large",
-    icon = "__base__/graphics/icons/storage-tank.png",
+    icon = "__factorioplus__/graphics/icons/storage-tank-large.png",
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "pipes",
     order = "b[fluid]-a[storage-tank]",
@@ -536,7 +536,7 @@ data.extend({
     subgroup = "circuit-network",
     order = "a[light]-ab[floodlight-lamp]",
     place_result = "floodlight-lamp",
-    stack_size = 50
+    stack_size = 25
   },
    -- {
     -- type = "item",
@@ -555,6 +555,9 @@ data.extend({
     icon_size = 64, icon_mipmaps = 3,
     subgroup = "raw-material",
     order = "b[iron-plate]",
+	inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
     stack_size = 100,
 	eight = 0.25 * kg,
   },
@@ -565,6 +568,9 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "raw-material",
     order = "b[iron-plate]",
+	inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
     stack_size = 100,
 	 weight = 2*kg
   },
@@ -575,6 +581,9 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "raw-material",
     order = "b[iron-plate]",
+	inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
     stack_size = 100,
 	weight = 1*kg
   },
@@ -585,6 +594,9 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "terrain",
     order = "c[landfill]-a[dirt]",
+	 inventory_move_sound = item_sounds.landfill_inventory_move,
+    pick_sound = item_sounds.landfill_inventory_pickup,
+    drop_sound = item_sounds.landfill_inventory_move,
     stack_size = 100,
     place_as_tile =
     {
@@ -602,6 +614,9 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     subgroup = "terrain",
     order = "c[landfill]-a[dirt]",
+	 inventory_move_sound = item_sounds.landfill_inventory_move,
+    pick_sound = item_sounds.landfill_inventory_pickup,
+    drop_sound = item_sounds.landfill_inventory_move,
     stack_size = 50,
     place_as_tile =
     {
@@ -1601,8 +1616,81 @@ data.extend({
     place_result = "cargo-wagon-equipment",
     stack_size = 5
   },
+})  
+
+-- BASIC PIPE ITEMS --	
+
+data.extend({  
+  {
+  	hidden = true, -- REMOVE ONCE IMPLEMENTED
+    type = "item",
+    name = "pipe-basic",
+    icon = "__base__/graphics/icons/pipe.png",
+    subgroup = "pipes",
+    order = "a[pipe]-a[pipe]",
+    inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
+    place_result = "pipe-basic",
+    stack_size = 100,
+    weight = 5 * kg,
+    random_tint_color = item_tints.iron_rust
+  },
   
-  ----------------------------------------------------- OVERRIDE -----------------------------------------------------
+  {
+	hidden = true, -- REMOVE ONCE IMPLEMENTED
+    type = "item",
+    name = "pipe-to-ground-basic",
+    icon = "__base__/graphics/icons/pipe-to-ground.png",
+    subgroup = "pipes",
+    order = "a[pipe]-b[pipe-to-ground]",
+    inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
+    place_result = "pipe-to-ground-basic",
+    stack_size = 50,
+    random_tint_color = item_tints.iron_rust
+  },
+})
+
+-- REINFORCED PIPE ITEMS --	
+
+data.extend({  
+  {
+	hidden = true, -- REMOVE ONCE IMPLEMENTED
+    type = "item",
+    name = "pipe-reinforced",
+    icon = "__base__/graphics/icons/pipe.png",
+    subgroup = "pipes",
+    order = "a[pipe]-a[pipe]",
+    inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
+    place_result = "pipe-reinforced",
+    stack_size = 100,
+    weight = 5 * kg,
+    random_tint_color = item_tints.iron_rust
+  },
+  
+  {
+	hidden = true, -- REMOVE ONCE IMPLEMENTED
+    type = "item",
+    name = "pipe-to-ground-reinforced",
+    icon = "__base__/graphics/icons/pipe-to-ground.png",
+    subgroup = "pipes",
+    order = "a[pipe]-b[pipe-to-ground]",
+    inventory_move_sound = item_sounds.metal_small_inventory_move,
+    pick_sound = item_sounds.metal_small_inventory_pickup,
+    drop_sound = item_sounds.metal_small_inventory_move,
+    place_result = "pipe-to-ground-reinforced",
+    stack_size = 50,
+    random_tint_color = item_tints.iron_rust
+  },
+})
+
+  ----------------------------------------------------- OVERRIDES -----------------------------------------------------
+ 
+data.extend({   
   {
     type = "item",
     name = "gun-turret",

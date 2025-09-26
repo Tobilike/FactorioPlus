@@ -156,8 +156,8 @@ if (data.raw["transport-belt"]["fast-transport-belt"].resistances == nil)
 data.raw["offshore-pump"]["offshore-pump"].pumping_speed = 6
 
 
-local lft_pipespacing = 3
-local lft_pipespacing_y = lft_pipespacing - 0.5
+local lft_pipespacing = 2.5
+local lft_pipespacing_y = lft_pipespacing - 1
 
 ---------------------------------------------------  LARGE FLUID TANK  ------------------------------------------------------------
 data.extend({
@@ -166,15 +166,15 @@ data.extend({
     name = "storage-tank-large",
     icon = "__base__/graphics/icons/storage-tank.png",
     flags = {"placeable-player", "player-creation"},
-    minable = {mining_time = 0.5, result = "storage-tank"},
+    minable = {mining_time = 0.5, result = "storage-tank-large"},
     max_health = 4000,
     corpse = "storage-tank-remnants",
     dying_explosion = "storage-tank-explosion",
-    collision_box = {{-1.9*2, -1.9*2}, {1.9*2, 1.9*2}},
-    selection_box = {{-2*2, -2*2}, {2*2, 2*2}},
-    fast_replaceable_group = "storage-tank",
+    collision_box = {{-2.9, -2.9}, {2.9, 2.9}},
+    selection_box = {{-3.0, -3.0}, {3.0, 3.0}},
+    fast_replaceable_group = "storage-tank-large",
     damaged_trigger_effect = hit_effects.entity(),
-    icon_draw_specification = {scale = 1.5, shift = {0, -0.3}},
+    icon_draw_specification = {scale = 2, shift = {0, -0.3}},
     fluid_box =
     {
       volume = 25000 * 10,
@@ -193,7 +193,7 @@ data.extend({
       hide_connection_info = true
     },
     two_direction_only = true,
-    window_bounding_box = {{-0.125, 0.6875}, {0.1875, 1.1875}},
+    window_bounding_box = {{0.5, 0.9}, {0.55, 2.55}},
     pictures =
     {
       picture =
@@ -204,21 +204,21 @@ data.extend({
             filename = "__factorioplus__/graphics/largefluidtank.png",
             priority = "extra-high",
             frames = 1,
-            width = 440,
-            height = 458,
-            shift = util.by_pixel(-0.25, -1.25),
-            scale = 0.65
+            width = 391,
+            height = 400,
+            shift = util.by_pixel(-0.25, 0),
+            scale = 0.5
           },
-          -- {
-            -- filename = "__base__/graphics/entity/storage-tank/storage-tank-shadow.png",
-            -- priority = "extra-high",
-            -- frames = 2,
-            -- width = 291,
-            -- height = 153,
-            -- shift = util.by_pixel(29.75, 22.25),
-            -- scale = 0.5,
-            -- draw_as_shadow = true
-          -- }
+            {
+            filename = "__factorioplus__/graphics/largefluidtank-shadow.png",
+            priority = "extra-high",
+            frames = 1,
+			draw_as_shadow = true,
+            width = 512,
+            height = 348,
+            shift = util.by_pixel(32, 0),
+            scale = 0.5
+          },
         }
       },
       fluid_background =
@@ -230,11 +230,11 @@ data.extend({
       },
       window_background =
       {
-        filename = "__base__/graphics/entity/storage-tank/window-background.png",
+        filename = "__factorioplus__/graphics/largefluidtank-fluid.png",
         priority = "extra-high",
-        width = 34,
-        height = 48,
-        scale = 0.5
+        width = 48,
+        height = 192,
+        scale = 0.3
       },
       flow_sprite =
       {
@@ -6628,6 +6628,843 @@ table.insert(data.raw.lab["lab-large"].inputs, "cryogenic-science-pack")
 table.insert(data.raw.lab["lab-large"].inputs, "promethium-science-pack")
 end
 
+  --------------------------------------------------- NEW PIPES ------------------------------------------------------------
+
+
+
+
+local function make_visualization(i)
+  return
+  {
+    filename = "__base__/graphics/entity/pipe/visualization.png",
+    priority = "extra-high",
+    x = i * 64,
+    size = 64,
+    scale = 0.5,
+    flags = {"icon"},
+  }
+end
+
+local function make_disabled_visualization(i)
+  return
+  {
+    filename = "__base__/graphics/entity/pipe/disabled-visualization.png",
+    priority = "extra-high",
+    x = i * 64,
+    size = 64,
+    scale = 0.5,
+    flags = {"icon"},
+  }
+end
+
+function pipespicture(pipetint,path)
+  return
+  {
+    straight_vertical_single =
+    {
+      filename = path .. "pipe-straight-vertical-single.png",
+      priority = "extra-high",
+      width = 160,
+      height = 160,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    straight_vertical =
+    {
+      filename = path .. "pipe-straight-vertical.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    straight_vertical_window =
+    {
+      filename = path .. "pipe-straight-vertical-window.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    straight_horizontal_window =
+    {
+      filename = path .. "pipe-straight-horizontal-window.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    straight_horizontal =
+    {
+      filename = path .. "pipe-straight-horizontal.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    corner_up_right =
+    {
+      filename = path .. "pipe-corner-up-right.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    corner_up_left =
+    {
+      filename = path .. "pipe-corner-up-left.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    corner_down_right =
+    {
+      filename = path .. "pipe-corner-down-right.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    corner_down_left =
+    {
+      filename = path .. "pipe-corner-down-left.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    t_up =
+    {
+      filename = path .. "pipe-t-up.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    t_down =
+    {
+      filename = path .. "pipe-t-down.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    t_right =
+    {
+      filename = path .. "pipe-t-right.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    t_left =
+    {
+      filename = path .. "pipe-t-left.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    cross =
+    {
+      filename = path .. "pipe-cross.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    ending_up =
+    {
+      filename = path .. "pipe-ending-up.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    ending_down =
+    {
+      filename = path .. "pipe-ending-down.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    ending_right =
+    {
+      filename = path .. "pipe-ending-right.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    ending_left =
+    {
+      filename = path .. "pipe-ending-left.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+	  tint = pipetint
+    },
+    straight_vertical_single_visualization = make_visualization(0),
+    straight_vertical_visualization = make_visualization(5),
+    straight_vertical_window_visualization = make_visualization(5),
+    straight_horizontal_window_visualization = make_visualization(10),
+    straight_horizontal_visualization = make_visualization(10),
+    corner_up_right_visualization = make_visualization(3),
+    corner_up_left_visualization = make_visualization(9),
+    corner_down_right_visualization = make_visualization(6),
+    corner_down_left_visualization = make_visualization(12),
+    t_up_visualization = make_visualization(11),
+    t_down_visualization = make_visualization(14),
+    t_right_visualization = make_visualization(7),
+    t_left_visualization = make_visualization(13),
+    cross_visualization = make_visualization(15),
+    ending_up_visualization = make_visualization(1),
+    ending_down_visualization = make_visualization(4),
+    ending_right_visualization = make_visualization(2),
+    ending_left_visualization = make_visualization(8),
+    straight_vertical_single_disabled_visualization = make_disabled_visualization(0),
+    straight_vertical_disabled_visualization = make_disabled_visualization(5),
+    straight_vertical_window_disabled_visualization = make_disabled_visualization(5),
+    straight_horizontal_window_disabled_visualization = make_disabled_visualization(10),
+    straight_horizontal_disabled_visualization = make_disabled_visualization(10),
+    corner_up_right_disabled_visualization = make_disabled_visualization(3),
+    corner_up_left_disabled_visualization = make_disabled_visualization(9),
+    corner_down_right_disabled_visualization = make_disabled_visualization(6),
+    corner_down_left_disabled_visualization = make_disabled_visualization(12),
+    t_up_disabled_visualization = make_disabled_visualization(11),
+    t_down_disabled_visualization = make_disabled_visualization(14),
+    t_right_disabled_visualization = make_disabled_visualization(7),
+    t_left_disabled_visualization = make_disabled_visualization(13),
+    cross_disabled_visualization = make_disabled_visualization(15),
+    ending_up_disabled_visualization = make_disabled_visualization(1),
+    ending_down_disabled_visualization = make_disabled_visualization(4),
+    ending_right_disabled_visualization = make_disabled_visualization(2),
+    ending_left_disabled_visualization = make_disabled_visualization(8),
+    horizontal_window_background =
+    {
+      filename = "__base__/graphics/entity/pipe/pipe-horizontal-window-background.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5
+    },
+    vertical_window_background =
+    {
+      filename = "__base__/graphics/entity/pipe/pipe-vertical-window-background.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5
+    },
+    fluid_background =
+    {
+      filename = "__base__/graphics/entity/pipe/fluid-background.png",
+      priority = "extra-high",
+      width = 64,
+      height = 40,
+      scale = 0.5
+    },
+    low_temperature_flow =
+    {
+      filename = "__base__/graphics/entity/pipe/fluid-flow-low-temperature.png",
+      priority = "extra-high",
+      width = 160,
+      height = 18
+    },
+    middle_temperature_flow =
+    {
+      filename = "__base__/graphics/entity/pipe/fluid-flow-medium-temperature.png",
+      priority = "extra-high",
+      width = 160,
+      height = 18
+    },
+    high_temperature_flow =
+    {
+      filename = "__base__/graphics/entity/pipe/fluid-flow-high-temperature.png",
+      priority = "extra-high",
+      width = 160,
+      height = 18
+    },
+    gas_flow =
+    {
+      filename = "__base__/graphics/entity/pipe/steam.png",
+      priority = "extra-high",
+      line_length = 10,
+      width = 48,
+      height = 30,
+      frame_count = 60
+    }
+  }
+end
+
+local basicpipe_distance = 6
+local pipe_distance = 12
+local reinforcedpipe_distance = 24
+
+-- BASE PIPE OVERRIDE 
+data.raw["pipe-to-ground"]["pipe-to-ground"].fluid_box.pipe_connections[2].max_underground_distance = pipe_distance
+
+
+data.raw["pipe"]["pipe"].max_health = 200
+table.insert(data.raw["pipe"]["pipe"].resistances,
+	{
+		type = "physical",
+		percent = 25
+	}
+)
+
+data.raw["pipe-to-ground"]["pipe-to-ground"].max_health = 250
+table.insert(data.raw["pipe-to-ground"]["pipe-to-ground"].resistances,
+	{
+		type = "physical",
+		percent = 25
+	}
+)
+
+
+
+
+-- F+ PIPES --
+
+
+local basicpipetint = { 1, 1, 1 } 
+local reinforcedpipetint = { 1, 1, 1 } 
+
+data.extend({  
+{
+    type = "pipe",
+    name = "pipe-basic",
+    icons = { {icon = "__base__/graphics/icons/pipe.png", tint = basicpipetint} }, 
+    flags = {"placeable-neutral", "player-creation"},
+    minable = {mining_time = 0.1, result = "pipe"},
+    max_health = 100,
+    corpse = "pipe-remnants",
+    dying_explosion = "pipe-explosion",
+    icon_draw_specification = {scale = 0.5},
+    resistances =
+    {
+      {
+        type = "fire",
+        percent = 50
+      },
+      {
+        type = "impact",
+        percent = 20
+      }
+    },
+    fast_replaceable_group = "pipe",
+    collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+    damaged_trigger_effect = hit_effects.entity(),
+    fluid_box =
+    {
+      volume = 50,
+      pipe_covers = pipecoverspictures(), -- in case a real pipe is connected to a ghost
+      pipe_connections =
+      {
+        { direction = defines.direction.north, position = {0, 0} },
+        { direction = defines.direction.east, position = {0, 0} },
+        { direction = defines.direction.south, position = {0, 0} },
+        { direction = defines.direction.west, position = {0, 0} }
+      },
+      hide_connection_info = true
+    },
+    impact_category = "metal",
+    pictures = pipespicture(basicpipetint, "__factorioplus__/graphics/basic-pipe/"),
+    working_sound = sounds.pipe,
+    open_sound = sounds.metal_small_open,
+    close_sound = sounds.metal_small_close,
+
+    horizontal_window_bounding_box = {{-0.25, -0.28125}, {0.25, 0.15625}},
+    vertical_window_bounding_box = {{-0.28125, -0.5}, {0.03125, 0.125}}
+  },
+  
+  {
+    type = "pipe-to-ground",
+    name = "pipe-to-ground-basic",
+	icons = { {icon = "__base__/graphics/icons/pipe-to-ground.png", tint = basicpipetint} }, 
+    flags = {"placeable-neutral", "player-creation"},
+    minable = {mining_time = 0.1, result = "pipe-to-ground"},
+    max_health = 150,
+    corpse = "pipe-to-ground-remnants",
+    dying_explosion = "pipe-to-ground-explosion",
+    -- factoriopedia_simulation = simulations.factoriopedia_pipe_to_ground,
+    icon_draw_specification = {scale = 0.5},
+    resistances =
+    {
+      {
+        type = "fire",
+        percent = 50
+      },
+      {
+        type = "impact",
+        percent = 20
+      }
+
+    },
+    fast_replaceable_group = "pipe",
+    collision_box = {{-0.29, -0.29}, {0.29, 0.2}},
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+    damaged_trigger_effect = hit_effects.entity(),
+    fluid_box =
+    {
+      volume = 50,
+      pipe_covers = pipecoverspictures(),
+      pipe_connections =
+      {
+        { direction = defines.direction.north, position = {0, 0} },
+        {
+          connection_type = "underground",
+          direction = defines.direction.south,
+          position = {0, 0},
+          max_underground_distance = basicpipe_distance
+        }
+      },
+      hide_connection_info = true
+    },
+    impact_category = "metal",
+    working_sound = sounds.pipe,
+    open_sound = sounds.metal_small_open,
+    close_sound = sounds.metal_small_close,
+    pictures =
+    {
+      north =
+      {
+        filename = "__factorioplus__/graphics/basic-pipe/pipe-to-ground-up.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = basicpipetint
+      },
+      south =
+      {
+        filename = "__factorioplus__/graphics/basic-pipe/pipe-to-ground-down.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = basicpipetint
+      },
+      west =
+      {
+        filename = "__factorioplus__/graphics/basic-pipe/pipe-to-ground-left.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = basicpipetint
+      },
+      east =
+      {
+        filename = "__factorioplus__/graphics/basic-pipe/pipe-to-ground-right.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = basicpipetint
+      }
+    },
+    visualization =
+    {
+      north =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 64,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      south =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 192,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      west =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 256,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      east =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 128,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+    },
+    disabled_visualization =
+    {
+      north =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 64,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      south =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 192,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      west =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 256,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      east =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 128,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+    },
+  },
+})
+  
+  
+
+
+ 
+
+
+-- PIPE TECHNOLOGY OVERRIDE --	
+
+table.removetablewithmatchingentry(data.raw["technology"]["fluid-handling"].effects, "recipe", "pipe") 
+table.removetablewithmatchingentry(data.raw["technology"]["fluid-handling"].effects, "recipe", "pipe-to-ground")
+
+table.insert(data.raw["technology"]["steam-power"].effects,
+	{
+		type = "unlock-recipe",
+		recipe = "pipe-basic"
+	}
+)
+
+table.insert(data.raw["technology"]["steam-power"].effects,
+	{
+		type = "unlock-recipe",
+		recipe = "pipe-basic"
+	}
+)
+
+table.insert(data.raw["technology"]["fluid-handling"].effects,
+	{
+		type = "unlock-recipe",
+		recipe = "pipe"
+	}
+)
+
+table.insert(data.raw["technology"]["fluid-handling"].effects,
+	{
+		type = "unlock-recipe",
+		recipe = "pipe-to-ground"
+	}
+)
+
+-- PIPE RECIPE OVERRIDE --	
+
+-- data.raw["recipe"]["pipe"].ingredients = 
+-- {
+	-- {type = "item", name = "pipe-basic", amount = 2},
+	-- {type = "item", name = "copper-plate", amount = 2},
+-- }
+-- data.raw["recipe"]["pipe"].results = 
+-- {
+	-- {type="item", name="pipe", amount=2}
+-- }
+
+
+-- data.raw["recipe"]["pipe-to-ground"].ingredients =
+-- {
+  -- {type = "item", name = "pipe", amount = 12},
+  -- {type = "item", name = "iron-plate", amount = 4}
+-- }
+
+-- data.raw["recipe"]["pipe-to-ground"].results = 
+-- {
+	-- {type="item", name="pipe-to-ground", amount=2}
+-- }
+
+
+-- REINFORCED PIPES --	
+
+data.extend({ 
+{
+    type = "pipe",
+    name = "pipe-reinforced",
+    icons = { {icon = "__base__/graphics/icons/pipe.png", tint = reinforcedpipetint} }, 
+    flags = {"placeable-neutral", "player-creation"},
+    minable = {mining_time = 0.1, result = "pipe"},
+    max_health = 400,
+    corpse = "pipe-remnants",
+    dying_explosion = "pipe-explosion",
+    icon_draw_specification = {scale = 0.5},
+    resistances =
+    {
+      {
+        type = "fire",
+        percent = 90
+      },
+      {
+        type = "impact",
+        percent = 60
+      },
+	  {
+        type = "physical",
+        percent = 40
+      },
+	  {
+        type = "explosion",
+        percent = 40
+      }
+    },
+    fast_replaceable_group = "pipe",
+    collision_box = {{-0.29, -0.29}, {0.29, 0.29}},
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+    damaged_trigger_effect = hit_effects.entity(),
+    fluid_box =
+    {
+      volume = 50,
+      pipe_covers = pipecoverspictures(), -- in case a real pipe is connected to a ghost
+      pipe_connections =
+      {
+        { direction = defines.direction.north, position = {0, 0} },
+        { direction = defines.direction.east, position = {0, 0} },
+        { direction = defines.direction.south, position = {0, 0} },
+        { direction = defines.direction.west, position = {0, 0} }
+      },
+      hide_connection_info = true
+    },
+    impact_category = "metal",
+    pictures = pipespicture(reinforcedpipetint,  "__factorioplus__/graphics/reinforced-pipe/"),
+    working_sound = sounds.pipe,
+    open_sound = sounds.metal_small_open,
+    close_sound = sounds.metal_small_close,
+
+    horizontal_window_bounding_box = {{-0.25, -0.28125}, {0.25, 0.15625}},
+    vertical_window_bounding_box = {{-0.28125, -0.5}, {0.03125, 0.125}}
+  },
+  
+  {
+    type = "pipe-to-ground",
+    name = "pipe-to-ground-reinforced",
+	icons = { {icon = "__base__/graphics/icons/pipe-to-ground.png", tint = reinforcedpipetint} }, 
+    flags = {"placeable-neutral", "player-creation"},
+    minable = {mining_time = 0.1, result = "pipe-to-ground"},
+    max_health = 500,
+    corpse = "pipe-to-ground-remnants",
+    dying_explosion = "pipe-to-ground-explosion",
+    -- factoriopedia_simulation = simulations.factoriopedia_pipe_to_ground,
+    icon_draw_specification = {scale = 0.5},
+    resistances =
+    {
+      {
+        type = "fire",
+        percent = 90
+      },
+      {
+        type = "impact",
+        percent = 60
+      },
+	  {
+        type = "physical",
+        percent = 40
+      },
+	  {
+        type = "explosion",
+        percent = 40
+      }
+
+    },
+    fast_replaceable_group = "pipe",
+    collision_box = {{-0.29, -0.29}, {0.29, 0.2}},
+    selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
+    damaged_trigger_effect = hit_effects.entity(),
+    fluid_box =
+    {
+      volume = 200,
+      pipe_covers = pipecoverspictures(),
+      pipe_connections =
+      {
+        { direction = defines.direction.north, position = {0, 0} },
+        {
+          connection_type = "underground",
+          direction = defines.direction.south,
+          position = {0, 0},
+          max_underground_distance = reinforcedpipe_distance
+        }
+      },
+      hide_connection_info = true
+    },
+    impact_category = "metal",
+    working_sound = sounds.pipe,
+    open_sound = sounds.metal_small_open,
+    close_sound = sounds.metal_small_close,
+    pictures =
+    {
+      north =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/pipe-to-ground-up.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = reinforcedpipetint
+      },
+      south =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/pipe-to-ground-down.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = reinforcedpipetint
+      },
+      west =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/pipe-to-ground-left.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = reinforcedpipetint
+      },
+      east =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/pipe-to-ground-right.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        scale = 0.5,
+		tint = reinforcedpipetint
+      }
+    },
+    visualization =
+    {
+      north =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 64,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      south =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 192,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      west =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 256,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      east =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/visualization.png",
+        priority = "extra-high",
+        x = 128,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+    },
+    disabled_visualization =
+    {
+      north =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 64,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      south =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 192,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      west =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 256,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+      east =
+      {
+        filename = "__base__/graphics/entity/pipe-to-ground/disabled-visualization.png",
+        priority = "extra-high",
+        x = 128,
+        size = 64,
+        scale = 0.5,
+        flags = {"icon"}
+      },
+    },
+  },
+  
+})
+
+
+  
   --------------------------------------------------- F+ ICON ------------------------------------------------------------
  
 -- replace logos

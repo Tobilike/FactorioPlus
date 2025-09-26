@@ -1820,6 +1820,7 @@ data:extend({
       sound = soundsnew.gun_turret_gunshot_light,
     },
 
+	icon_draw_specification = { scale = 0.75},
     call_for_help_radius = 40,
     water_reflection =
     {
@@ -2350,7 +2351,7 @@ data:extend({
       range = range_turret_shotgun,
       sound = sounds.shotgun,
     },
-
+	icon_draw_specification = { scale = 0.75},
     call_for_help_radius = 40,
     water_reflection =
     {

@@ -101,6 +101,9 @@ data.raw["resource"]["iron-ore"].autoplace = resource_autoplace.resource_autopla
 --data.raw["resource"]["crude-oil"].created_effect = {create_decoratives("sand-decal", 8 ,1.0, 2),create_tiles("dirt-5", 5)},
 ---------------------------------------------------  FUEL OVERRIDES  ------------------------------------------------------------
 
+
+
+
 data.raw["item"]["wood"].fuel_acceleration_multiplier = 0.5
 data.raw["item"]["wood"].fuel_top_speed_multiplier = 0.5
 data.raw["item"]["coal"].fuel_acceleration_multiplier = 0.7
@@ -302,7 +305,7 @@ data:extend
     {
     type = "item",
     name = "petroleum-fuel",
-   icons = gasicon,
+	icons = gasicon,
 	icon_mipmaps = 4,
     fuel_category = "chemical",
     fuel_value = "10MJ",

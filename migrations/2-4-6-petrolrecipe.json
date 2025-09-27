@@ -1,0 +1,10 @@
+{
+ "recipe":
+  [
+	["solid-fuel-from-petroleum-gas", "petroleum-fuel"]
+  ],
+   "item":
+  [
+	["solid-fuel-from-petroleum-gas", "petroleum-fuel"]
+  ]
+}

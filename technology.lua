@@ -2694,17 +2694,17 @@ data.extend({
         type = "unlock-recipe",
         recipe = "chemical-plant"
       },
+	  {
+        type = "unlock-recipe",
+        recipe = "basic-natural-gas-processing"
+      },
       {
         type = "unlock-recipe",
         recipe = "nat-gas-fuel"
       },
 	  {
         type = "unlock-recipe",
-        recipe = "basic-natural-gas-processing"
-      },
-	  {
-        type = "unlock-recipe",
-        recipe = "solid-fuel-from-petroleum-gas"
+        recipe = "petroleum-fuel"
       },
 
     },
@@ -2872,6 +2872,9 @@ end
     order = "e-p-b-c"
   },
   })
+  
+
+	
   ------------------------------------------ NUKE POWER OVERRIDE ------------------------------------------
   
 table.insert(data.raw["technology"]["sulfur-processing"].effects, { type = "mining-with-fluid", modifier = true} )
@@ -3225,6 +3228,20 @@ table.insert(data.raw["technology"]["steel-processing"].effects,{type = "unlock-
 
 -- table.insert(data.raw["technology"]["personal-roboport-mk2-equipment"].effects,{type = "unlock-recipe",recipe = "personal-long-range-roboport-equipment"})
 
+  ------------------------------------------ OIL PROCESSING OVERRIDE ------------------------------------------
+
+-- Remove the base game solid petrol fuel things
+
+--table.removetablewithmatchingentry(data.raw["technology"]["oil-processing"].effects, "recipe", "solid-fuel-from-petroleum-gas")
+data.raw["recipe"]["solid-fuel-from-petroleum-gas"].hidden = true
+--data.raw["item"]["solid-fuel-from-petroleum-gas"].hidden = true 
+
+-- Insert our own petrol vehicle fuel item.
+table.insert(data.raw["technology"]["oil-processing"].effects,{type = "unlock-recipe",recipe = "petroleum-fuel"})
+
+  
+    ------------------------------------------ LOGISTIC SCIENCE PACK OVERRIDE ------------------------------------------
+	
   data:extend
 ({
 	{
@@ -4195,6 +4212,8 @@ data:extend
 ------------------------------------------ OVERRIDE BASE GAME ------------------------------------------
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
+
+
 
 data.raw["technology"]["modules"].prerequisites = { "plastics", "electronics"}
   

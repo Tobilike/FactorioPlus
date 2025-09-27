@@ -1,4 +1,36 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.4.6
+Date: 2025.09.27
+  Fixes:
+    - Updated Incinerators to make unique icons for the object being burned if possible.
+    - Fixed Petrol fuel issue with base game factorio and switched back to Factorio+'s version.
+---------------------------------------------------------------------------------------------------
+Version: 2.4.5
+Date: 2025.09.26
+  Graphics:
+    - Added 5 emote signals.
+    - Updated F+ added pictograph signals so that they match the base game off-white color.
+  Additions:
+    - Added Large kiquid storage tanks and the associated technology.
+  Balance:
+    - Reduced collision box of Large burner mining drill so that it's easier to fit between them.
+    - Reduced collision box of Eletric grinder miners so that it's easier to fit between them.
+    - Electric grinder miners productiviy reduced from +300% to +200%.
+    - Electric griner miners drain resources at 50% rate (was 100%).
+    - Larger biters now take up more space inside a group being made for attacks.
+    - Underground pipe range increased from 10 -> 12.
+    - Changed module 1 recipes to 10 electronic circuits and 2 plastic bars (was 20 electronic circuits)
+    - Module technology is now researched earlier (Plastics) and doesn't require Advanced circuit tech. 
+    - Reduced Electric grinder miner cost of 8 productivity modules to 4
+    - Sand stack size increased from 100 -> 200
+    - Mortar technology is now researchable after military-3 & stronger-explosives-2 (was military-4)
+    - Machine pistol damage modifier reduced to 70% (was 75%) and ammo consumption modifier is improved to 60% (was 75%)
+  Fixes:
+    - Gas extractors cannot be affected by Beacon effects now.
+    - Fixed many items missing move / inventory sounds.
+    - Fixed petroleum and natural gas fuel having split recipe/item entries.
+    - Fixed order, icons and categorizations for F+ resources.
+---------------------------------------------------------------------------------------------------
 Version: 2.4.4
 Date: 2025.09.19
   Additions:

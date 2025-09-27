@@ -185,6 +185,8 @@ data.extend({
 
  })
 
+
+-- Todo make a function to loop through all these object types
 local itemtypes = {"item","capsule","item-with-entity-data","tool","ammo","armor","gun"}
 
 
@@ -203,8 +205,10 @@ local itemtypes = {"item","capsule","item-with-entity-data","tool","ammo","armor
 for i,v in pairs(data.raw["item"]) do
 
 	if (v.flags ~= nil and table.contains(v.flags, "only-in-cursor")) then
-	
-	else
+		-- DO NOTHING
+	elseif ( v.iconsize ~= nil and v.iconsize < 64 ) then -- Icons that are defined but don't have an icon size default to 64.
+		-- DO NOTHING
+	else 
 
 		local _icons, _icon, _iconsize
 		

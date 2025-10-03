@@ -1,6 +1,7 @@
 require ("__base__.prototypes.entity.entity-util")
 local resource_autoplace = require("resource-autoplace")
 
+local tile_sounds = require("__base__/prototypes/tile/tile-sounds")
 local tile_trigger_effects = require("__base__.prototypes.tile.tile-trigger-effects")
 local tile_graphics = require("__base__/prototypes/tile/tile-graphics")
 local tile_spritesheet_layout = tile_graphics.tile_spritesheet_layout
@@ -66,7 +67,6 @@ end
 local pollution_ocean = { pollution = 0.000065 }
 local pollution_deepwater = { pollution = 0.000035 }
  
-data.raw["tile"]["water"].walking_speed_modifier = walking_speed_stone
 data.raw["tile"]["stone-path"].walking_speed_modifier = walking_speed_stone
 data.raw["tile"]["concrete"].walking_speed_modifier = walking_speed_concrete
 data.raw["tile"]["hazard-concrete-left"].walking_speed_modifier = walking_speed_concrete
@@ -479,10 +479,13 @@ data.raw["tile"]["oceanwater-green"].variants =
 
 ---------------------------------- WATER ------------------------------------
 
+
 data.raw["tile"]["water"].walking_speed_modifier = 0.6
 data.raw["tile"]["water"].vehicle_friction_modifier = water_vehicle_friction_modifier
 data.raw["tile"]["water"].autoplace = {probability_expression = "water_base(-1, 50)"}
-data.raw["tile"]["water"].walking_sound = shallow_water_sound
+data.raw["tile"]["water"].walking_sound = tile_sounds.walking.shallow_water
+data.raw["tile"]["water"].driving_sound = tile_sounds.driving.shallow_water
+data.raw["tile"]["water"].trigger_effect = tile_trigger_effects.water_trigger_effect()
 data.raw["tile"]["water"].destroys_dropped_items = false
 data.raw["tile"]["water"].collision_mask = 
 {layers={
@@ -494,7 +497,9 @@ data.raw["tile"]["water"].collision_mask =
 }}
 
 data.raw["tile"]["water-green"].walking_speed_modifier = 0.5
-data.raw["tile"]["water-green"].walking_sound = shallow_water_sound
+data.raw["tile"]["water-green"].walking_sound = tile_sounds.walking.shallow_water
+data.raw["tile"]["water-green"].driving_sound = tile_sounds.driving.shallow_water
+data.raw["tile"]["water-green"].trigger_effect = tile_trigger_effects.water_trigger_effect()
 data.raw["tile"]["water-green"].destroys_dropped_items = false
 data.raw["tile"]["water-green"].collision_mask =
 {layers={
@@ -512,7 +517,6 @@ data.raw["planet"]["nauvis"].map_gen_settings.autoplace_settings["tile"].setting
 data.raw["tile"]["water-shallow"].walking_speed_modifier = 0.8
 data.raw["tile"]["water-shallow"].vehicle_friction_modifier = water_shallow_vehicle_friction_modifier
 data.raw["tile"]["water-shallow"].tint ={r=1, g=1, b=1, a=1}
---data.raw["tile"]["water-shallow"].allowed_neighbors = { "water" }
 data.raw["tile"]["water-shallow"].autoplace = {probability_expression = "water_base(0, 5)"}  
 data.raw["tile"]["water-shallow"].collision_mask =
 {layers={

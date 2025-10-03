@@ -192,6 +192,7 @@ data:extend
  
  data.extend({  
   {
+	hidden = true, -- REMOVE ONCE IMPLEMENTED
     type = "recipe",
     name = "pipe-basic",
     ingredients = {{type = "item", name = "iron-plate", amount = 1}},
@@ -200,6 +201,7 @@ data:extend
   },
   
   {
+	hidden = true, -- REMOVE ONCE IMPLEMENTED
     type = "recipe",
     name = "pipe-to-ground-basic",
     enabled = false,
@@ -2015,6 +2017,7 @@ end
     name = "charcoal",
 	category = "smelting",
     energy_required = 15,
+	allow_productivity = true,
     ingredients =
     {
       {type="item", name="wood", amount=4},

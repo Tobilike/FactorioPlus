@@ -12,6 +12,42 @@ local tank_shift_y = 6
 local fireutil = require("__base__.prototypes.fire-util")	
 local math3d = require "math3d" 
 
+local mediumturretbase =
+{
+	{
+		filename = "__factorioplus__/graphics/medium-turret-base.png",
+		priority = "high",
+		width = 282,
+		height = 256,
+		direction_count = 1,
+		frame_count = 1,
+		shift = util.by_pixel(-0.5, 2),
+		scale = 0.35
+	},
+	{
+		filename = "__factorioplus__/graphics/medium-turret-base-tint.png",
+		line_length = 1,
+		width = 282,
+		height = 256,
+		apply_runtime_tint = true,
+		direction_count = 1,
+		frame_count = 1,
+		shift = util.by_pixel(-0.5, 2),
+		scale = 0.35
+	},
+	{
+		filename = "__factorioplus__/graphics/medium-turret-base-shadow.png",
+		line_length = 1,
+		width = 282,
+		height = 256,
+		draw_as_shadow = true,
+		direction_count = 1,
+		frame_count = 1,
+		shift = util.by_pixel(0, 3),
+		scale = 0.35
+	}
+}
+
 ---------------------------------------------------  VETERANCY ICONS  ------------------------------------------------------------
 
 data:extend({ 
@@ -2026,30 +2062,7 @@ data:extend({
 		{
 		 animation =
         {
-		  layers =
-		  {
-			{
-				filename = "__base__/graphics/entity/laser-turret/laser-turret-base.png",
-				priority = "high",
-				width = 138,
-				height = 104,
-				direction_count = 1,
-				frame_count = 1,
-				shift = util.by_pixel(-0.5, 2),
-				scale = 0.75
-			},
-			{
-				filename = "__base__/graphics/entity/laser-turret/laser-turret-base-shadow.png",
-				line_length = 1,
-				width = 132,
-				height = 82,
-				draw_as_shadow = true,
-				direction_count = 1,
-				frame_count = 1,
-				shift = util.by_pixel(6, 3),
-				scale = 0.75
-			}
-		  }
+		  layers = mediumturretbase,
 		},
 		},
 	},
@@ -2102,21 +2115,22 @@ data:extend({
 })
 
 ---------------------------------------- SHOTGUN TURRET ----------------------------------------
+shotgun_turret_scale = 0.4
 
 function shotgun_turret_extension(inputs)
 return
 {
   filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret.png",
   priority = "medium",
-  width = 236,
-  height = 250,
+  width = 1328/8,
+  height = 1208/8,
   direction_count = 8,
   frame_count = 1,
   line_length = 0,
   run_mode = inputs.run_mode or "forward",
   shift = util.by_pixel(2-2, -16 ),
   axially_symmetrical = false,
-  scale =  0.3,
+  scale =  shotgun_turret_scale,
 }
 end
 
@@ -2125,8 +2139,8 @@ return
 {
   filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret-mask.png",
   flags = { "mask" },
-  width = 236,
-  height = 250,
+  width = 1328/8,
+  height = 1208/8,
   direction_count = 8,
   frame_count = 1,
   line_length = 0,
@@ -2134,16 +2148,16 @@ return
   shift = util.by_pixel(2-2, -16 ),
   axially_symmetrical = false,
   apply_runtime_tint = true,
-  scale =  0.3,
+  scale =  shotgun_turret_scale,
 }
 end
 
 function shotgun_turret_extension_shadow(inputs)
 return
 {
-  filename = "__base__/graphics/entity/tank/tank-turret-shadow.png",
-  width = 97,
-  height = 67,
+  filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret-shadow.png",
+  width = 1328/8,
+  height = 1208/8,
   direction_count = 8,
   frame_count = 1,
   line_length = 0,
@@ -2151,21 +2165,7 @@ return
   shift = util.by_pixel(19, 2),
   axially_symmetrical = false,
   draw_as_shadow = true,
-  scale =  0.6,
-  hr_version =
-  {
-    filename = "__base__/graphics/entity/tank/hr-tank-turret-shadow.png",
-    width = 193,
-    height = 134,
-    direction_count = 8,
-    frame_count = 1,
-    line_length = 0,
-    run_mode = inputs.run_mode or "forward",
-    shift = util.by_pixel(19, 2.5),
-    axially_symmetrical = false,
-    draw_as_shadow = true,
-    scale =  0.3
-  }
+  scale =  shotgun_turret_scale,
 }
 end
 
@@ -2179,19 +2179,19 @@ return
           filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret.png",
           priority = "low",
           line_length = 8,
-          width = 236,
-          height = 250,
+		width = 1328/8,
+		height = 1208/8,
           frame_count = 1,
           direction_count = 64,
           shift = util.by_pixel(2-2, -16 ),
           animation_speed = 8,
-		  scale =  0.3,
+		  scale =  shotgun_turret_scale,
 		},
 		{
 		  filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret-mask.png",
-		  flags = { "mask" },
-		  width = 236,
-          height = 250,
+			flags = { "mask" },
+			width = 1328/8,
+			height = 1208/8,
 		  direction_count = 64,
 		  frame_count = 1,
 		  line_length = 8,
@@ -2199,8 +2199,21 @@ return
 		  shift = util.by_pixel(2-2, -16 ),
 		  axially_symmetrical = false,
 		  apply_runtime_tint = true,
-		  scale =  0.3,
+		  scale =  shotgun_turret_scale,
 		},
+		{
+		  filename = "__factorioplus__/graphics/shotgun-turret/shotgun-turret-shadow.png",
+		  width = 1328/8,
+		  height = 1208/8,
+		  direction_count = 64,
+		  frame_count = 1,
+		  line_length = 8,
+		  run_mode = inputs.run_mode or "forward",
+		  shift = util.by_pixel(19, 2),
+		  axially_symmetrical = false,
+		  draw_as_shadow = true,
+		  scale =  shotgun_turret_scale,
+		}
   }
 }
 end
@@ -2790,7 +2803,7 @@ data:extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = { "placeable-player", "placeable-enemy", "player-creation"},
     minable = { mining_time = 1.5, result = "large-laser-turret" },
-    max_health = 1500,
+    max_health = health_turret_laser_large,
 	hide_resistances = false,
 	resistances =
     {
@@ -3600,30 +3613,7 @@ data:extend({
       {
         animation =
 		{
-      layers =
-      {
-        {
-            filename = "__base__/graphics/entity/laser-turret/laser-turret-base.png",
-            priority = "high",
-            width = 138,
-            height = 104,
-            direction_count = 1,
-            frame_count = 1,
-            shift = util.by_pixel(-0.5, 2),
-            scale = 0.75,
-        },
-        {
-            filename = "__base__/graphics/entity/laser-turret/laser-turret-base-shadow.png",
-            line_length = 1,
-            width = 132,
-            height = 82,
-            draw_as_shadow = true,
-            direction_count = 1,
-            frame_count = 1,
-            shift = util.by_pixel(6, 3),
-            scale = 0.75
-        }
-      }
+      layers = mediumturretbase,
     },
 	},
 	},
@@ -3853,31 +3843,7 @@ data:extend({
       {
         animation =
         {
-          layers =
-          {
-            {
-               filename = "__base__/graphics/entity/laser-turret/laser-turret-base.png",
-				priority = "high",
-				width = 138,
-				height = 104,
-				direction_count = 1,
-				frame_count = 1,
-				shift = util.by_pixel(-0.5, 2),
-				scale = 0.75,
-            },
-            {
-              filename = "__base__/graphics/entity/laser-turret/laser-turret-base-shadow.png",
-				line_length = 1,
-				width = 132,
-				height = 82,
-				draw_as_shadow = true,
-				direction_count = 1,
-				frame_count = 1,
-				shift = util.by_pixel(6, 3),
-				scale = 0.75
-
-           }
-		   }
+          layers = mediumturretbase,
         }
       }
     },
@@ -4765,7 +4731,7 @@ function createTurretVeterancys(turrettype, turret, level)
   result.name = result.name .. "-veterancy-" .. level
   result.hidden = true 
   result.max_health = result.max_health * (1 + turretValueIncreaseAmount[level]  )
-  result.healing_per_tick = (result.max_health / 10000 ) * turretValueIncreaseAmount[level]
+  result.healing_per_tick = (result.max_health / 10000 ) * (turretValueIncreaseAmount[level] * 2 )
   result.attack_parameters.cooldown = result.attack_parameters.cooldown / (1 + turretValueIncreaseAmount[level]  ) 
   result.attack_parameters.range = math.ceil(  result.attack_parameters.range * (1 + turretValueIncreaseAmount[level]  ) )
   result.attack_parameters.damage_modifier = result.attack_parameters.damage_modifier * (1 + turretValueIncreaseAmount[level] ) 

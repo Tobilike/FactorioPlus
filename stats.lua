@@ -610,6 +610,8 @@ laserbeam_electric_damage_interval = 60 / 3
 laserbeam_electric_duration = 60 / 3 
 
 -- Turrets
+health_turret_medium_additional = 300 -- add this health to any turrets with a medium base.
+health_turret_heavy_additional = 600 -- add this heath to any turrets with a heavy base.
 
 firerate_turret_pistol = firerate_pistol
 range_turret_pistol = range_pistol + 2
@@ -622,12 +624,12 @@ health_turret_smg = 300
 turret_heavysmg_modifier = 1.5
 firerate_turret_heavysmg = firerate_turret_smg / turret_heavysmg_modifier
 range_turret_heavysmg =  math.ceil(range_turret_smg * (turret_heavysmg_modifier - ((turret_heavysmg_modifier-1)/2)))
-health_turret_heavysmg = math.ceil(health_turret_smg * turret_heavysmg_modifier)
+health_turret_heavysmg = math.ceil(health_turret_smg * turret_heavysmg_modifier) + health_turret_medium_additional
 damagemodifier_turret_heavysmg = turret_heavysmg_modifier
 
 firerate_turret_shotgun = 60 / 0.75
 range_turret_shotgun = 20
-health_turret_shotgun = 400
+health_turret_shotgun = 500
 
 firerate_turret_flamethrower = 60 / 15
 range_turret_flamethrower = 28
@@ -639,37 +641,37 @@ health_turret_laser = 400
 
 firerate_turret_laser_large = 60 * 8 
 range_turret_laser_large = 50
-health_turret_laser_large = 1400
+health_turret_laser_large = 2000 + health_turret_heavy_additional
 
 firerate_turret_rocket = firerate_rocketlauncher / 0.3
 rangemin_turret_rocket = 22
 range_turret_rocket = range_rocketlauncher + 2 -- because it's higher up
-health_turret_rocket = 450
+health_turret_rocket = 300 + health_turret_medium_additional
 
 -- Space age rocket turret
 
 firerate_rocket_battery = firerate_rocketlauncher / 2
 rangemin_rocket_battery = rangemin_turret_rocket
 range_rocket_battery = range_rocketlauncher_multi + 2 -- because it's higher up
-health_rocket_battery = 600
+health_rocket_battery = 600 + health_turret_medium_additional
 
 --
 
 firerate_turret_cannon =  60 / 0.2
 rangemin_turret_cannon = 20
 range_turret_cannon = 70
-health_turret_cannon = 2000
+health_turret_cannon = 1500 + health_turret_heavy_additional
 
 firerate_turret_minigun = 60 / 15
 range_turret_minigun = 42
 rangemin_turret_minigun = 4
-health_turret_minigun = 1200
+health_turret_minigun = 1200 + health_turret_heavy_additional
 
 turnrange_mortar = 1/4
 firerate_mortar_factor = 2
 range_turret_mortar = 8 * 32
 rangemin_turret_mortar = 2 * 32 
-health_turret_mortar = 400
+health_turret_mortar = 200 + health_turret_medium_additional
 
 firerate_turret_sniper = 60 * 6
 range_turret_sniper = 4 * 32
@@ -681,7 +683,7 @@ artillery_manual_range_modifier = 2.0
 artillery_turret_rotation_speed = 0.001
 artillery_turret_range = 8 * 32
 artillery_turret_min_range = 2 * 32
-health_turret_artillery = 1500
+health_turret_artillery = 1500 + health_turret_heavy_additional
 
 artillery_shell_radius = 8.0
 artillery_shell_damage_physical = 500

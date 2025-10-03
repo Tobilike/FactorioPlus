@@ -645,7 +645,7 @@ data:extend({
 	  
 	  working_visualisations =
 		{
-		electric_mininer_grinder_status_leds_working_visualisation(),
+			electric_mininer_grinder_status_leds_working_visualisation(),
 		},
 	},	
 	
@@ -779,11 +779,11 @@ data:extend({
 	  
 	  working_visualisations =
 		{
-		electric_mininer_grinder_status_leds_working_visualisation(),
+			electric_mininer_grinder_status_leds_working_visualisation(),
 		},
 	},	
 
-    mining_speed = 0.15,
+    mining_speed = 0.2,
 	effect_receiver = 
 	{
 		base_effect = 
@@ -1166,6 +1166,53 @@ data:extend({
           }
         },
       },
+	  working_visualisations =
+	  {
+		{	 
+		-- BIG SMOKE
+          fadeout = true,
+          constant_speed = true,
+          north_position = util.by_pixel_hr(-22, 18),
+          east_position = util.by_pixel_hr(-76, -60),
+          south_position = util.by_pixel_hr(20-8-6, -100-4),
+          west_position = util.by_pixel_hr(76, -40),
+          render_layer = "wires",
+          animation =
+          {
+            filename = "__base__/graphics/entity/chemical-plant/chemical-plant-smoke-outer.png",
+            frame_count = 47,
+            line_length = 16,
+            width = 90,
+            height = 188,
+            animation_speed = 0.2,
+            shift = util.by_pixel(-2, -40),
+            scale = 0.2,
+			tint = {0.6, 0.6, 0.6},
+          }
+        },
+        {
+		-- WEE SMOKE
+          fadeout = true,
+          constant_speed = true,
+          north_position = util.by_pixel_hr(-3, -6),
+          east_position = util.by_pixel_hr(-76, -72),
+          south_position = util.by_pixel_hr(30-4-4, -138),
+          west_position = util.by_pixel_hr(76, -62),
+          render_layer = "wires",
+          animation =
+          {
+            filename = "__base__/graphics/entity/chemical-plant/chemical-plant-smoke-inner.png",
+            frame_count = 47,
+            line_length = 16,
+            width = 40,
+            height = 84,
+            animation_speed = 0.4,
+            shift = util.by_pixel(0, -14),
+            scale = 0.25,
+			tint = {0.8, 0.8, 0.8},
+          }
+        }
+	  }
 	},
     
     mining_speed = 0.25,
@@ -1176,10 +1223,10 @@ data:extend({
       usage_priority = "secondary-input"
     },
     energy_usage = "75kW",
-    resource_searching_radius = 10.0,
-	resource_searching_offset = {0, -6}, -- Waiting for patch 2.0.69
+    resource_searching_radius = 8.0,
+	resource_searching_offset = {0, 7}, -- Waiting for patch 2.0.69
     vector_to_place_result = {0, -2.75},
-    module_slots = 2,
+    module_slots = 3,
 
     radius_visualisation_picture =
     {
@@ -1288,7 +1335,52 @@ data:extend({
 			},
           }
         }
-      }
+      },
+	  working_visualisations =
+	  {
+		{
+          apply_recipe_tint = "tertiary",
+          fadeout = true,
+          constant_speed = true,
+          north_position = util.by_pixel_hr(120, -128),
+          east_position = util.by_pixel_hr(120, -128),
+          south_position = util.by_pixel_hr(120, -128),
+          west_position = util.by_pixel_hr(120, -128),
+          render_layer = "wires",
+          animation =
+          {
+            filename = "__base__/graphics/entity/chemical-plant/chemical-plant-smoke-outer.png",
+            frame_count = 47,
+            line_length = 16,
+            width = 90,
+            height = 188,
+            animation_speed = 1,
+            shift = util.by_pixel(-2, -40),
+            scale = 0.3
+          }
+        },
+        {
+          apply_recipe_tint = "quaternary",
+          fadeout = true,
+          constant_speed = true,
+          north_position = util.by_pixel_hr(120, -128),
+          east_position = util.by_pixel_hr(120, -128),
+          south_position = util.by_pixel_hr(120, -128),
+          west_position = util.by_pixel_hr(120, -128),
+          render_layer = "wires",
+          animation =
+          {
+            filename = "__base__/graphics/entity/chemical-plant/chemical-plant-smoke-inner.png",
+            frame_count = 47,
+            line_length = 16,
+            width = 40,
+            height = 84,
+            animation_speed = 1,
+            shift = util.by_pixel(0, -14),
+            scale = 0.3
+          }
+        }
+		}
     },
 	
 	vehicle_impact_sound = sounds.generic_impact,

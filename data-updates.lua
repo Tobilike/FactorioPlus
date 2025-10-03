@@ -15,13 +15,15 @@ end
 -- aai-industry
 if mods["aai-industry"] then
 	-- Do glass stuff
-
-	-- switchrecipeingredient("glass","glass-plate")
-	-- data.raw["recipe"]["glass"] = nil
-	-- data.raw["item"]["glass"] = nil
-	-- table.removetablewithmatchingentry(data.raw["technology"]["glass-processing"].effects,"recipe", "glass") 
+	switchrecipeingredient("glass","glass-plate")
+	data.raw["recipe"]["glass"].hidden = true
+	data.raw["item"]["glass"].hidden = true
+	table.removetablewithmatchingentry(data.raw["technology"]["glass-processing"].effects,"recipe", "glass") 
 	 
 	 -- Do sand stuff
+	switchrecipeingredient("sand","sand-ore")
+	data.raw["recipe"]["sand"].hidden = true
+	data.raw["item"]["sand"].hidden = true
 end
 
 -- Dectorio

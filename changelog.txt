@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.4.8
+Date: 2025.09.28
+  Fixes:
+    - Fixed icon generation issue with Incinerators where it conflicted with other mod icons.
+  Other Mods:
+    - Fixed up glass and sand in Factorio+ and aai-industries where it now only uses one sand and glass item for all recipes.
+---------------------------------------------------------------------------------------------------
+Version: 2.4.7
+Date: 2025.09.27
+  Balance:
+    - Turrets veterancy heals 2x faster than before.
+  Fixes:
+    - Fixed issue where Gas extractors couldn't mine pressurized gas (geothermal/natural gas).
+    - Charcoal recipe now supports productivity modules.
+    - non implemented pipes & their recipes should now be hidden.
+---------------------------------------------------------------------------------------------------
 Version: 2.4.6
 Date: 2025.09.27
   Fixes:

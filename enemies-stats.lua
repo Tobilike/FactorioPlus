@@ -46,9 +46,9 @@ range_worm_small    	= 25
 range_worm_medium_min  	= 6
 range_worm_medium   	= 35
 range_worm_big_min     	= 8
-range_worm_big      	= 55
+range_worm_big      	= 50
 range_worm_behemoth_min	= 10
-range_worm_behemoth 	= 90
+range_worm_behemoth 	= 80
 
 prepare_range_worm_small    = 8
 prepare_range_worm_medium   = 12
@@ -327,16 +327,16 @@ range_spitter_boss 	   = 38
 attack_speed_flamer_base = 200
 
 damage_modifier_flamer_small    = 20
-damage_modifier_flamer_medium   = 30
-damage_modifier_flamer_big      = 40
-damage_modifier_flamer_behemoth = 50
+damage_modifier_flamer_medium   = 28
+damage_modifier_flamer_big      = 36
+damage_modifier_flamer_behemoth = 48
 damage_modifier_flamer_boss     = 80
 
 cluster_amount_flamer_small    = 5
 cluster_amount_flamer_medium   = 9
 cluster_amount_flamer_big      = 14
-cluster_amount_flamer_behemoth = 22
-cluster_amount_flamer_boss     = 36
+cluster_amount_flamer_behemoth = 24
+cluster_amount_flamer_boss     = 38
 
 damage_dps_flamer_small    	= damage_modifier_flamer_small / 60
 damage_dps_flamer_medium   	= damage_modifier_flamer_medium / 60 

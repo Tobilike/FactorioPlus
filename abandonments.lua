@@ -3,79 +3,11 @@ local sounds = require("__base__.prototypes.entity.sounds")
 local abandonments_autoplace = require ("__factorioplus__.abandonments-autoplace-util")
 require ("stats")
 
-local function create_decoratives(decorative, rad, probability)
-  return {
-		type = "direct",
-		action_delivery =
-		{
-			type = "instant",
-			target_effects =
-			{
-				{
-					type = "create-decorative",
-					decorative = decorative,
-					probability = probability or 1,
-					spawn_min = math.floor(rad / 4),
-					spawn_max = math.ceil(rad / 2),
-					spawn_min_radius = 1,
-					spawn_max_radius = rad + 2 or 2,
-					spread_evenly = true,
-				}
-			}
-		}
-	}
-end
 
-local function create_entity(entity, rad, probability, amount)
-	return	
-	{
-	  type = "cluster",
-	  cluster_count = amount,
-	  distance = rad/2,
-	  distance_deviation = rad/2,
-	  action_delivery =
-	  {
-		type = "instant",
-		target_effects =
-		{
-		  {
-				type = "create-entity",
-				entity_name = entity,
-				
-				probability = probability or 1,
-				--repeat_count = amount or 2,
-				--repeat_count_deviation = math.ceil( amount),
-				
-				check_buildability = true,
-				find_non_colliding_position  = true,
-				non_colliding_search_precision  = 0.25,
-				non_colliding_search_radius = 3,
-				tile_collision_mask  = {not_colliding_with_itself = true, layers = {object = true} }
-			}
-		}
-	  }
-	}
-end
 
-local function create_tiles(tilename, rad, probability)
-  return {
-		type = "direct",
-		action_delivery =
-		{
-			type = "instant",
-			target_effects =
-			{
-				{
-					type = "set-tile",	
-					tile_name = tilename,
-					probability = probability or 1,
-					radius = rad or 1,
-					apply_projectionoptional = true,
-				},
-			}
-		}
-	}
-end
+
+
+
 
 if (settings.startup["settings-warehouse-abandonments"].value) then
 
@@ -627,7 +559,13 @@ local function generate_storage_hut (newname, boundingspace, distance, loottable
 		s.enemy_map_color = abandonments_barren_color_map
 	end
 	
-	s.created_effect = {create_tiles("nuclear-ground", 6, 1.0), create_tiles("stone-path-abandonment", 5, 1.0), create_tiles("stone-path-abandonment", 6.5, 0.25) }
+	s.created_effect = 
+	{
+		create_tiles("nuclear-ground", 6, 1.0), 
+		create_tiles("stone-path-abandonment", 3, 1.0), 
+		create_tiles("stone-path-abandonment", 4.5, 0.25),
+		create_clustertiles("stone-path-abandonment", 4, 0.25, 10)	
+	}
 	s.map_generator_bounding_box = {{ -boundingspace, -boundingspace}, {boundingspace, boundingspace}}	
 	
 	s.autoplace = abandonments_autoplace.abandonments_loot_autoplace(loot_autoplace(_autoplace_distance))
@@ -656,6 +594,13 @@ newpole.name = "abandonment".."-"..newpole.name
 newpole.maximum_wire_distance = 14
 newpole.supply_area_distance = 12
 newpole.flags = {"placeable-off-grid"}
+newpole.resistances =
+    {
+      {
+        type = "fire",
+        percent = 90
+      }
+    }
 newpole.max_health = newpole.max_health * enemy_health_scale
 --newpole.autoplace = abandonments_autoplace.abandonment_poles_autoplace(1.25)
 newpole.autoplace = abandonments_autoplace.abandonments_poles_autoplace("abandonments_autoplace_base(100, 1.00)")
@@ -730,6 +675,7 @@ local function makeNewAbandonmentTurret(data)
 		create_tiles("stone-path-abandonment", 1.5 * _scale, 0.5), 
 		create_entity("small-scorchmark-tintable", 8 * _scale, 1, 4 * _scale),
 		create_decoratives("abandonment-debris-medium-decal-1", 7 * _scale, 1),
+		create_clustertiles("stone-path-abandonment", 2 * _scale, 0.25, 4 * _scale)	
 	}
 	
 	newturret.attack_parameters.range = math.ceil(newturret.attack_parameters.range * data.range_modifier) or newturret.attack_parameters.range
@@ -877,7 +823,7 @@ newturret2.build_base_evolution_requirement = 10
 newturret2.remove_decoratives = "false"
 newturret2.hidden = true
 newturret2.enemy_map_color = abandonments_force_color_map
-newturret2.created_effect = { create_tiles("nuclear-ground", 3.5, 1.0), create_tiles("stone-path-abandonment", 3, 0.5)}
+newturret2.created_effect = { create_tiles("nuclear-ground", 3.5, 1.0), create_tiles("stone-path-abandonment", 3, 0.5), 	create_clustertiles("stone-path-abandonment", 3, 0.25, 3 * 2)	}
 newturret2.loot =
     {
       {item = "electronic-circuit", probability =1, count_min = 0, count_max = 4},
@@ -904,7 +850,7 @@ newturret3.build_base_evolution_requirement = 10
 newturret3.remove_decoratives = "false"
 newturret3.hidden = true
 newturret3.enemy_map_color = abandonments_force_color_map
-newturret3.created_effect = { create_tiles("nuclear-ground", 4, 1.0), create_tiles("stone-path-abandonment", 3.5, 0.5)}
+newturret3.created_effect = { create_tiles("nuclear-ground", 4, 1.0), create_tiles("stone-path-abandonment", 3.5, 0.5), 	create_clustertiles("stone-path-abandonment", 3, 0.25, 3 * 2)	}
 newturret3.loot =
     {
       {item = "electronic-circuit", probability =1, count_min = 0, count_max = 4},
@@ -941,7 +887,7 @@ newsolarpanel.autoplace = abandonments_autoplace.abandonments_buildings_autoplac
 newsolarpanel.map_generator_bounding_box = solarpanel1_autoplace
 newsolarpanel.enemy_map_color = abandonments_force_color_map
 newsolarpanel.remove_decoratives = "false"
-newsolarpanel.created_effect = { create_tiles("nuclear-ground", 4.5, 1.0), create_tiles("stone-path-abandonment", 4, 0.5)}
+newsolarpanel.created_effect = { create_tiles("nuclear-ground", 4.5, 1.0), create_tiles("stone-path-abandonment", 3.5, 0.5), 	create_clustertiles("stone-path-abandonment", 4.5, 0.25, 3 * 2)	}
 newsolarpanel.loot =
     {
       {item = "steel-plate", probability = 1, count_min = 0, count_max = 8},
@@ -974,7 +920,7 @@ newsolarpanel2.autoplace = abandonments_autoplace.abandonments_buildings2_autopl
 newsolarpanel2.map_generator_bounding_box = solarpanel2_autoplace
 newsolarpanel2.enemy_map_color = abandonments_force_color_map
 newsolarpanel2.remove_decoratives = "false"
-newsolarpanel2.created_effect = { create_tiles("nuclear-ground", 4, 1.0), create_tiles("stone-path-abandonment", 3.5, 0.5)}
+newsolarpanel2.created_effect = { create_tiles("nuclear-ground", 4, 1.0), create_tiles("stone-path-abandonment", 3, 0.5), create_clustertiles("stone-path-abandonment", 4, 0.25, 3 * 2)	}
 newsolarpanel2.loot =
     {
       {item = "steel-plate", probability = 1, count_min = 0, count_max = 6},
@@ -1006,7 +952,7 @@ newsolarpanel3.autoplace = abandonments_autoplace.abandonments_buildings2_autopl
 newsolarpanel3.map_generator_bounding_box = solarpanel3_autoplace
 newsolarpanel3.enemy_map_color = abandonments_force_color_map
 newsolarpanel3.remove_decoratives = "false"
-newsolarpanel3.created_effect ={ create_tiles("nuclear-ground", 3, 1.0), create_tiles("stone-path-abandonment", 2.5, 0.5)} 
+newsolarpanel3.created_effect ={ create_tiles("nuclear-ground", 3, 1.0), create_tiles("stone-path-abandonment", 2.5, 0.5),	create_clustertiles("stone-path-abandonment", 3, 0.25, 3 * 2)	} 
 newsolarpanel3.loot =
     {
       {item = "steel-plate", probability = 1, count_min = 0, count_max = 2},

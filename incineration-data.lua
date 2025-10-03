@@ -185,11 +185,43 @@ data.extend({
 
  })
 
+local incineration_icon = "__base__/graphics/icons/explosion.png"
+local incineration_icon_size = 0.6
 
--- Todo make a function to loop through all these object types
-local itemtypes = {"item","capsule","item-with-entity-data","tool","ammo","armor","gun"}
 
+function generate_incinerator_recipe_icons_from_item(item)
+	local _icons = {}
+	
+	if  item.icons == nil then
+		_icons = 
+		{
+			{
+				icon = incineration_icon,
+			},
+			{
+				icon = item.icon,
+				icon_size = item.icon_size,
+				scale = (0.5 * defines.default_icon_size / (item.icon_size or defines.default_icon_size)) * incineration_icon_size,
+			}	
+		}
+	else
+		_icons =
+		{
+		  {
+			icon = incineration_icon
+		  }
+		}
+		for i = 1, #item.icons do
+		  local icon = table.deepcopy(item.icons[i]) 
+		  icon.scale = ((icon.scale == nil) and (0.5 * defines.default_icon_size / (icon.icon_size or defines.default_icon_size)) or icon.scale) * incineration_icon_size
+		  icon.shift = util.mul_shift(icon.shift, 0.8)
+		  _icons[#_icons + 1] = icon
+		end		
+	end
+	return _icons	
+end
 
+-- local itemtypes = {"item","capsule","item-with-entity-data","tool","ammo","armor","gun"}
 
  function getitemrecipeenergytime(itemname)
 	if (data.raw["recipe"][itemname] ~= nil ) then
@@ -201,45 +233,25 @@ local itemtypes = {"item","capsule","item-with-entity-data","tool","ammo","armor
  end
  
  
+-- Go through all items in the game (and mods) and make incinerator versions of them.
+-- All it does it put the firey background behind the icon/icons
  
-for i,v in pairs(data.raw["item"]) do
-
-	if (v.flags ~= nil and table.contains(v.flags, "only-in-cursor")) then
-		-- DO NOTHING
-	elseif ( v.iconsize ~= nil and v.iconsize < 64 ) then -- Icons that are defined but don't have an icon size default to 64.
-		-- DO NOTHING
-	else 
-
-		local _icons, _icon, _iconsize
-		
-		if (v.icon_size ~= nil) then
-			_iconsize = v.icon_size
-		else 
-			_iconsize = 64
-		end
-		
-		if (v.icon ~= nil) then
-			_icon = nil
-			_icons = iconoverlayontop  ("__base__/graphics/icons/explosion.png", v.icon, 64, _iconsize, 0.3 )
-		else
-			_icons = { { icon = "__base__/graphics/icons/explosion.png", icon_size = 64, icon_mipmaps = 4 } }
-		end
-			
-		_newrecipe = 
-		{ 
-			type = "recipe",
-			icon = nil,
-			icons = _icons,
-			icon_size = 64,
-			name = v.name .. "-incinerate",
-			enabled = true,
-			hidden = true,
-			auto_recycle = false,
-			category = "incineration",
-			energy_required = math.max( (getitemrecipeenergytime(v.name)), 2 ),
-			ingredients = {{type="item", name=v.name, amount=1}},
-		}
-		data.extend({ _newrecipe })
-	end
+for k,v in pairs(data.raw["item"]) do
+	
+	local _newrecipe = 
+	{ 
+		type = "recipe",
+		icon = nil,
+		icons = generate_incinerator_recipe_icons_from_item(v) ,
+		icon_size = 64,
+		name = v.name .. "-incinerate",
+		enabled = true,
+		hidden = true,
+		auto_recycle = false,
+		category = "incineration",
+		energy_required = math.max( (getitemrecipeenergytime(v.name)), 2 ),
+		ingredients = {{type="item", name=v.name, amount=1}},
+	}
+	data.extend({ _newrecipe })	
+	
 end
- 

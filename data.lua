@@ -1,6 +1,9 @@
 --data.lua
 
+-- put any helper functions first that you always want available for any lua files below.
 require("util-generic")
+
+-- Main data group of STUFF AND THINGS
 require("signal")
 require("item-groups")
 require("buildings")
@@ -31,6 +34,7 @@ require("abandonments")
 require("abandonments-noise-expressions")
 require("collision-masks")
 
+-- If you can isolate space age things, then put them here.
 if (mods["space-age"]) then
 require("recipes-sa")
 require("item-sa")
@@ -39,4 +43,5 @@ require("entities-sa")
 require("buildings-sa")
 end
 
+-- Anything to blanket update the data in this mod specifically.
 require("blanket-data-updates")

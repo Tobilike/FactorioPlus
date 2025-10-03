@@ -3218,7 +3218,7 @@ data.extend({
    {
     type = "lamp",
     name = "floodlight-lamp",
-    icon = "__base__/graphics/icons/small-lamp.png",
+    icon = "__factorioplus__/graphics/icons/floodlight.png",
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "player-creation"},
     minable = {mining_time = 0.75, result = "floodlight-lamp"},

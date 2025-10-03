@@ -1,6 +1,24 @@
 data.raw["character"]["character"].mining_categories = {"basic-solid","wood-solid"}
 data.raw["character"]["character"].inventory_size = 50
 data.raw["character"]["character"].synced_footstep_particle_triggers = require("movement_triggers").character
+table.insert(
+	data.raw["character"]["character"].synced_footstep_particle_triggers,
+	{
+		tiles = { "water", "water-green"},
+
+		type = "create-particle",
+		repeat_count = 8,
+		particle_name = "tintable-water-particle",
+		apply_tile_tint = "primary",
+		initial_height = 0.2,
+		speed_from_center = 0.0075,
+		speed_from_center_deviation = 0.05,
+		initial_vertical_speed = 0.05,
+		initial_vertical_speed_deviation = 0.05,
+		offset_deviation = {{-0.2, -0.2}, {0.2, 0.2}},
+		tail_length = 4
+	}
+)
 
 ---- NEW CHARACTER ----
 

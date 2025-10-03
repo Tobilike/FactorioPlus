@@ -59,3 +59,101 @@ function iconoverlayontop(icon_base, icon_overlay, base_size, overlay_size, over
   }
   return icons
 end
+
+function create_decoratives(decorative, rad, probability)
+  return {
+		type = "direct",
+		action_delivery =
+		{
+			type = "instant",
+			target_effects =
+			{
+				{
+					type = "create-decorative",
+					decorative = decorative,
+					probability = probability or 1,
+					spawn_min = math.floor(rad / 4),
+					spawn_max = math.ceil(rad / 2),
+					spawn_min_radius = 1,
+					spawn_max_radius = rad + 2 or 2,
+					spread_evenly = true,
+				}
+			}
+		}
+	}
+end
+
+function create_entity(entity, rad, probability, amount)
+	return	
+	{
+	  type = "cluster",
+	  cluster_count = amount,
+	  distance = rad/2,
+	  distance_deviation = rad/2,
+	  action_delivery =
+	  {
+		type = "instant",
+		target_effects =
+		{
+		  {
+				type = "create-entity",
+				entity_name = entity,
+				
+				probability = probability or 1,
+				--repeat_count = amount or 2,
+				--repeat_count_deviation = math.ceil( amount),
+				
+				check_buildability = true,
+				find_non_colliding_position  = true,
+				non_colliding_search_precision  = 0.25,
+				non_colliding_search_radius = 3,
+				tile_collision_mask  = {not_colliding_with_itself = true, layers = {object = true} }
+			}
+		}
+	  }
+	}
+end
+
+function create_tiles(tilename, rad, probability)
+  return {
+		type = "direct",
+		action_delivery =
+		{
+			type = "instant",
+			target_effects =
+			{
+				{
+					type = "set-tile",	
+					tile_name = tilename,
+					probability = probability or 1,
+					radius = rad or 1,
+					apply_projectionoptional = true,
+				},
+			}
+		}
+	}
+end
+
+function create_clustertiles(tilename, rad, probability, amount)
+	return	
+	{
+	  type = "cluster",
+	  cluster_count = amount,
+	  distance = rad/2 or 1,
+	  distance_deviation = rad/3 or 1,
+	  action_delivery =
+	  {
+			type = "instant",
+			target_effects =
+			{
+				{
+					type = "set-tile",	
+					tile_name = tilename,
+					probability = probability or 1,
+					radius = rad or 1,
+					apply_projectionoptional = true,
+				},
+			}
+		}
+	}
+end

@@ -700,8 +700,8 @@ data:extend
 	energy_required = 20,
     ingredients = {
 	{type="item", name="electric-furnace", amount=4}, 
-	{type="item", name="productivity-module-2", amount=4}, 
-	{type="item", name="speed-module-2", amount=2}, 
+	{type="item", name="productivity-module-2", amount=6}, 
+	{type="item", name="speed-module-2", amount=4}, 
 	{type="item", name="concrete", amount=60}
 	},
     results = {{type="item", name="electric-foundry", amount=1}},
@@ -2112,29 +2112,29 @@ data:extend({
 
 })
   
---data.raw["rocket-silo"]["rocket-silo"].rocket_parts_required = 50
+--
 
 if (mods["space-age"]) then
 
-data.raw.recipe["rocket-part"].energy_required = data.raw.recipe["rocket-part"].energy_required * 2
-data.raw["rocket-silo"]["rocket-silo"].rocket_parts_required = 20
+	data.raw.recipe["rocket-part"].energy_required = data.raw.recipe["rocket-part"].energy_required * 2
+	data.raw["rocket-silo"]["rocket-silo"].rocket_parts_required = 20
 
-data.raw.recipe["rocket-part"].ingredients =
-{
-  {type = "item", name = "processing-unit", amount = 2},
-  {type = "item", name = "low-density-structure", amount = 2},
-  {type = "item", name = "true-rocket-fuel", amount = 1}
-}
+	data.raw.recipe["rocket-part"].ingredients =
+	{
+	  {type = "item", name = "processing-unit", amount = 2},
+	  {type = "item", name = "low-density-structure", amount = 2},
+	  {type = "item", name = "true-rocket-fuel", amount = 1}
+	}
 
 else
-
-data.raw.recipe["rocket-part"].energy_required = settings.startup["settings-rocket-recipe-energy"].value
-data.raw.recipe["rocket-part"].ingredients =
-{
-	  {type="item", name="processing-unit", amount=settings.startup["settings-rocket-recipe"].value},
-      {type="item", name="low-density-structure", amount=settings.startup["settings-rocket-recipe"].value},
-      {type="item", name="true-rocket-fuel", amount=math.floor( settings.startup["settings-rocket-recipe"].value/2 ) }
-}
+	-- Multiply by the mod settings.
+	data.raw.recipe["rocket-part"].energy_required = data.raw.recipe["rocket-part"].energy_required * settings.startup["settings-rocket-recipe-energy"].value
+	data.raw.recipe["rocket-part"].ingredients =
+	{
+		  {type="item", name="processing-unit", amount=10*settings.startup["settings-rocket-recipe"].value},
+		  {type="item", name="low-density-structure", amount=10*settings.startup["settings-rocket-recipe"].value},
+		  {type="item", name="true-rocket-fuel", amount=5*settings.startup["settings-rocket-recipe"].value }
+	}
 end
 
 

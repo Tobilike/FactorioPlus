@@ -1,6 +1,47 @@
-turretValueIncreaseAmount = {0.1,0.2,0.3,0.5}
-turretKillLevels = {100, 250, 500, 1000}
-turretDamageLevels = {10000, 25000, 50000, 100000}
+-- Initial default values set.
+local tVIAF = 1
+local tVLF = 1
+local tDLF = 1
+
+if (settings.startup["settings-turrets-vet-bonus-increase"].value == "half" ) then
+	tVIAF = 0.5
+elseif (settings.startup["settings-turrets-vet-bonus-increase"].value == "double" ) then
+	tVIAF = 2
+else
+	--do nothing (default)
+end
+
+turretValueIncreaseAmount = {0.1 * tVIAF ,0.2 * tVIAF,0.3 * tVIAF,0.5 * tVIAF}
+
+
+
+if (settings.startup["settings-turrets-vet-damage-milestones"].value == "half" ) then
+	tDLF = 0.5
+elseif (settings.startup["settings-turrets-vet-damage-milestones"].value == "double" ) then
+	tDLF = 2
+else
+	--do nothing (default)
+end
+
+turretDamageLevels = {2500 * tDLF, 5000 * tDLF, 12500 * tDLF, 32500 * tDLF}
+
+
+
+
+
+if (settings.startup["settings-turrets-vet-kill-milestones"].value == "half" ) then
+	tVLF = 0.5
+elseif (settings.startup["settings-turrets-vet-kill-milestones"].value == "double" ) then
+	tVLF = 2
+else
+	--do nothing (default)
+end
+
+turretKillLevels = {50 * tVLF, 150 * tVLF, 250 * tVLF, 650 * tVLF}
+
+
+
+---
 
 turretVetIcons = {"icon-veterancy-1", "icon-veterancy-2", "icon-veterancy-3", "icon-veterancy-4"}
 

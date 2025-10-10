@@ -321,4 +321,39 @@ data:extend(
 		subgroup = "pictographs",
 		order = "z[emotes]"
 	},
+	{
+		type = "virtual-signal",
+		name = "signal-sadmad",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_sadmad.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-cheeky",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_cheeky.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-biter",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_biters.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-biter-expansion",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_biters_expansion.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
+		{
+		type = "virtual-signal",
+		name = "signal-biter-group",
+		icon = "__factorioplus__/graphics/icons/signal/signal_glyph_biters_group.png",
+		subgroup = "pictographs",
+		order = "z[emotes]"
+	},
 })

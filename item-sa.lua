@@ -14,9 +14,6 @@ data.raw["ammo"]["capture-robot-rocket"].ammo_type.target_filter = {
 "swarmer-spawner-1","swarmer-spawner-2","swarmer-spawner-3","swarmer-spawner-4","swarmer-spawner-5",
 }
 
-data.raw["rail-planner"]["rail-ramp"].subgroup = "train-infrastructure"  
-data.raw["item"]["rail-support"].subgroup = "train-infrastructure"  
-
 table.insert(data.raw["technology"]["bacteria-cultivation"].effects ,  { type = "unlock-recipe",  recipe = "alumina-bacteria-cultivation" } )
 table.insert(data.raw["technology"]["biochamber"].effects ,  { type = "unlock-recipe",  recipe = "alumina-bacteria" } )
 

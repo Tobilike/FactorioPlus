@@ -83,9 +83,15 @@ local tarmac_icon = {
    data.raw["item"]["pump"].subgroup = "pumps"
    data.raw["item"]["offshore-pump"].subgroup = "pumps"
    
-   data.raw["item"]["storage-tank"].subgroup = "pipes"
+   data.raw["item"]["storage-tank"].subgroup = "pipes"	
    data.raw["item"]["pipe"].subgroup = "pipes"
    data.raw["item"]["pipe-to-ground"].subgroup = "pipes"
+  
+-- If elevated rails is in the game, then push them into the rail subgroup tab
+if (mods["elevated-rails"]) then  
+	data.raw["rail-planner"]["rail-ramp"].subgroup = "train-infrastructure"  
+	data.raw["item"]["rail-support"].subgroup = "train-infrastructure"  
+end
 
  ---------------------------------------------------  FACTORIOPLUS STUFF  ------------------------------------------------------------
 data:extend

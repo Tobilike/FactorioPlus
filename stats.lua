@@ -362,16 +362,17 @@ shell_reloadtime = 2.5 * 60
  
 firerate_minigun = 60 / 30
 range_minigun = 50
+damage_modifier_minigun = 0.25
  
-beltfed_regular_physical = 12
-beltfed_regular_piercing = 2
+beltfed_regular_physical = 16
+beltfed_regular_piercing = 4
 beltfed_regular_pellets = 3
 
-beltfed_piercing_physical = 6
-beltfed_piercing_piercing = 14
+beltfed_piercing_physical = 8
+beltfed_piercing_piercing = 16
 beltfed_piercing_pellets = 3
 
-beltfed_magazinesize = 800
+beltfed_magazinesize = 1000
 beltfed_stacksize = 10
 beltfed_reloadtime = 60 * 6
 beltfed_projectile_maxrange = 60

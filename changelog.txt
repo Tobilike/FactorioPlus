@@ -1,4 +1,30 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.5.0
+Date: 2025.10.00
+  Graphics:
+    - Hello!
+---------------------------------------------------------------------------------------------------
+Version: 2.4.9
+Date: 2025.10.03
+  Graphics:
+    - Added working visualization smoke to Sawmills. 
+    - Medium turrets use a heavier looking base.
+    - Updated shotgun turret.
+  Fixes:
+    - Abandonment stone tiles use a cluster scatter method, making the tiles a little more random.
+    - Abandonment power poles don't have 100% fire resistance, so that fire spitters won't get distracted by them forever. 
+    - Added info to Glass processing to where sand can be mined.
+    - Water  creates footstep effects and noises.
+    - Fixed Gauss turret not using the health stat value.
+  Balance:
+    - Increased Electric grinder minder speed from 0.15 to 0.2 so that it matches roughly the old output speed from before.
+    - Increased Sawmill module count form 2 -> 3.
+    - Reduced Sawmill radius from 10 to 8
+    - Sawmill uses resource offset, so their resource catchment radius is placed behind it where the blades are.
+    - Medium and Heavy turrets now have an additional health amount given to them.
+  Other Mods:
+    - Elevated rails moved to the transport tab.
+---------------------------------------------------------------------------------------------------
 Version: 2.4.8
 Date: 2025.09.28
   Fixes:

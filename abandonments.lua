@@ -500,6 +500,103 @@ local building_solararray_abandoned_3 =
   }
 }
 
+local building_accumulator_abandoned =     
+{
+  layers =
+  {
+	{
+	  filename = "__factorioplus__/graphics/abandonment-accumulator.png",
+	  priority = "extra-high",
+	  width = 256,
+	  height = 298,
+	  shift = util.by_pixel(0, -16),
+	  scale = 0.45,
+	  variation_count = 1,
+	},
+	{
+		filename = "__factorioplus__/graphics/abandonment-accumulator-shadow.png",
+		priority = "extra-high",
+		width = 246,
+		height = 128,
+		shift = util.by_pixel(32, 6),
+		scale = 0.75,
+		draw_as_shadow = true,
+		variation_count = 1,
+	}
+  }
+}
+
+
+local building_pole_abandoned =     
+{
+  layers =
+  {
+	{
+	  filename = "__factorioplus__/graphics/abandonment-electric-pole.png",
+	  priority = "extra-high",
+	  width = 512/4,
+	  height = 328,
+	  direction_count = 4,
+	  shift = util.by_pixel(0, -50),
+	  scale = 0.45,
+	},
+	{
+		filename = "__factorioplus__/graphics/abandonment-electric-pole-shadow.png",
+		priority = "extra-high",
+		width = 572/4,
+		height = 50,
+		shift = util.by_pixel(34, 0),
+		scale = 0.9,
+		direction_count = 4,
+		draw_as_shadow = true,
+	}
+  }
+}
+
+local building_pole_abandoned_connections =
+{
+  {
+	shadow =
+	{
+	  copper = util.by_pixel_hr(229, -13)
+	},
+	wire =
+	{
+	  copper = util.by_pixel_hr(13-29, -204-15)
+	}
+  },
+  {
+	shadow =
+	{
+	  copper = util.by_pixel_hr(229, -13)
+	},
+	wire =
+	{
+	  copper = util.by_pixel_hr(19-18, -206-26)
+	}
+  },
+  {
+	shadow =
+	{
+	  copper = util.by_pixel_hr(229, -13)
+	},
+	wire =
+	{
+	  copper = util.by_pixel_hr(20, -218)
+	}
+  },
+  {
+	shadow =
+	{
+	  copper = util.by_pixel_hr(229, -13)
+	},
+	wire =
+	{
+	  copper = util.by_pixel_hr(6, -206)
+	}
+  }
+}
+
 -- LOOT FUNCTIONS
 local loothutboundingbox = _warehouse_spacing_scale 
 
@@ -590,28 +687,46 @@ end
 
 local newpole = util.copy(data.raw["electric-pole"]["medium-electric-pole"])
 newpole.localised_name = {"",abandonment_loc, " ", {"entity-name." .. newpole.name} }
+newpole.collision_box = {{-0.25, -0.25}, {0.25, 0.25}}
+newpole.selection_box = {{-0.6, -0.6}, {0.6, 0.6}}
+newpole.pictures = building_pole_abandoned
+newpole.connection_points = building_pole_abandoned_connections
 newpole.name = "abandonment".."-"..newpole.name  
-newpole.maximum_wire_distance = 14
-newpole.supply_area_distance = 12
+newpole.maximum_wire_distance = 12
+newpole.supply_area_distance = 10
 newpole.flags = {"placeable-off-grid"}
+-- newpole.light = 
+-- {
+	-- intensity = 0.5, 
+	-- --minimum_darkness = 0.5,
+	-- size = 8, 
+	-- color={r=1, g=1, b =1}
+-- }
 newpole.resistances =
-    {
-      {
-        type = "fire",
-        percent = 90
-      }
-    }
-newpole.max_health = newpole.max_health * enemy_health_scale
---newpole.autoplace = abandonments_autoplace.abandonment_poles_autoplace(1.25)
+{
+  {
+	type = "fire",
+	percent = 90
+  },
+   {
+	type = "impact",
+	percent = 25
+  },
+  {
+	type = "physical",
+	percent = 35
+  }
+}
+newpole.max_health = 200 * enemy_health_scale
 newpole.autoplace = abandonments_autoplace.abandonments_poles_autoplace("abandonments_autoplace_base(100, 1.00)")
 newpole.build_base_evolution_requirement = 10
-newpole.map_generator_bounding_box = {{ -4.5, -4.5}, {4.5, 4.5}}
+newpole.map_generator_bounding_box = {{ -5.5, -5.5}, {5.5, 5.5}}
 newpole.remove_decoratives = "false"
 newpole.hidden = true
 newpole.enemy_map_color = abandonments_force_color_map
 newpole.loot =
     {
-      {item = "steel-plate", probability = 1, count_min = 0, count_max = 1},
+      {item = "steel-plate", probability = 1, count_min = 0, count_max = 2},
 	  {item = "copper-cable", probability = 1, count_min = 0, count_max = 4},
     },
 data:extend{newpole}
@@ -866,6 +981,7 @@ data:extend{newturret3}
 
 local solarpanel = data.raw["solar-panel"]["solar-panel"]
 local newsolarpanel = util.copy(solarpanel)
+newsolarpanel.icon = "__factorioplus__/graphics/icons/abandonment-solar-1.png"
 newsolarpanel.localised_name = {"",abandonment_loc, " ", {"entity-name." .. newsolarpanel.name}}
 newsolarpanel.name = "abandonment".."-"..newsolarpanel.name.."2"  
 newsolarpanel.max_health = 300 * enemy_health_scale
@@ -899,6 +1015,7 @@ data:extend{newsolarpanel}
 
 
 local newsolarpanel2 = util.copy(data.raw["solar-panel"]["solar-panel"])
+newsolarpanel2.icon = "__factorioplus__/graphics/icons/abandonment-solar-2.png"
 newsolarpanel2.localised_name = {"",abandonment_loc, " ", {"entity-name." .. newsolarpanel2.name}}
 newsolarpanel2.name = "abandonment".."-"..newsolarpanel2.name.."3"
 newsolarpanel2.max_health = 200 * enemy_health_scale
@@ -931,6 +1048,7 @@ data:extend{newsolarpanel2}
 
 local solarpanel3 = data.raw["solar-panel"]["solar-panel"]
 local newsolarpanel3 = util.copy(solarpanel3)
+newsolarpanel3.icon = "__factorioplus__/graphics/icons/abandonment-solar-3.png"
 newsolarpanel3.localised_name = {"",abandonment_loc, " ", {"entity-name." .. newsolarpanel3.name}}
 newsolarpanel3.name = "abandonment".."-"..newsolarpanel3.name 
 newsolarpanel3.max_health = 125 * enemy_health_scale
@@ -966,17 +1084,22 @@ data:extend{newsolarpanel3}
 ---------------------------
 
 local newsaccumulator = util.copy(data.raw["accumulator"]["accumulator"])
+newsaccumulator.icon = "__factorioplus__/graphics/icons/abandonment-accumulator.png"
 newsaccumulator.localised_name = {"",abandonment_loc, " ", {"entity-name." .. newsaccumulator.name}}
 newsaccumulator.name = "abandonment".."-"..newsaccumulator.name  
 newsaccumulator.flags = {"placeable-off-grid", "player-creation"}
+newsaccumulator.collision_box = {{-1.45, -1.45}, {1.45, 1.45}}
+newsaccumulator.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
+newsaccumulator.chargable_graphics.picture = building_accumulator_abandoned
+newsaccumulator.chargable_graphics.charge_animation = nil
+newsaccumulator.chargable_graphics.discharge_animation = nil
 newsaccumulator.hidden = true
 newsaccumulator.max_health = newsaccumulator.max_health * enemy_health_scale
---newsaccumulator.autoplace = abandonments_autoplace.abandonment_auxbuildings_autoplace(2.5)
 newsaccumulator.autoplace = abandonments_autoplace.abandonments_auxbuildings_autoplace("abandonments_autoplace_base(80, 3.0)")
 newsaccumulator.build_base_evolution_requirement = 10
-newsaccumulator.energy_source.buffer_capacity = "8MJ"
+newsaccumulator.energy_source.buffer_capacity = "20MJ"
 newsaccumulator.remove_decoratives = "false"
-newsaccumulator.map_generator_bounding_box = {{ -2.65, -1.35},{ 2.65, 1.35}}
+newsaccumulator.map_generator_bounding_box = {{ -2.65, -1.55},{ 2.65, 1.55}}
 newsaccumulator.enemy_map_color = abandonments_force_color_map
 newsaccumulator.loot =
     {

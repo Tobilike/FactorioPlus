@@ -4213,6 +4213,13 @@ data:extend
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 
+------------------------------------------ OVERRIDE ROCKET SILO ------------------------------------------
+
+-- Switch out Old rocket fuel (now jet fuel) with True Rocket fuel
+table.removeentry(data.raw["technology"]["rocket-silo"].prerequisites, "rocket-fuel")
+table.insert(data.raw["technology"]["rocket-silo"].prerequisites, "true-rocket-fuel")
+
+------------------------------------------ OVERRIDE MODULES ------------------------------------------
 
 
 data.raw["technology"]["modules"].prerequisites = { "plastics", "electronics"}

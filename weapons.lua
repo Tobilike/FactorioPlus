@@ -3196,7 +3196,7 @@ data:extend({
       type = "projectile",
       ammo_category = "beltfed-bullet",
       cooldown =  firerate_minigun,
-	  damage_modifier = 1,
+	  damage_modifier = 1 + damage_modifier_minigun,
       movement_slow_down_factor = 0.9,
 	  --warmup = 60.0 * 1.0,
       shell_particle =

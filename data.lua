@@ -33,6 +33,7 @@ require("map-gen-presets")
 require("abandonments")
 require("abandonments-noise-expressions")
 require("collision-masks")
+require("tips-and-tricks") -- probably not needed
 
 -- If you can isolate space age things, then put them here.
 if (mods["space-age"]) then

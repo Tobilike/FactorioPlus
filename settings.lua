@@ -12,24 +12,23 @@ if (mods["space-age"]) then
     -- },
 -- })
 else
-
---	Rocket Recipe
-data:extend({
-	{
-        type = "int-setting",
-        name = "settings-rocket-recipe",
-        setting_type = "startup",
-        allowed_values = {5, 10, 20, 30, 40, 50, 100, 250, 500, 1000},
-        default_value = 10,
-    },
-	{
-        type = "int-setting",
-        name = "settings-rocket-recipe-energy",
-        setting_type = "startup",
-		allowed_values = {1, 2, 3, 4, 5, 10, 30, 60, 300, 600},
-        default_value = 3,
-    },
-})
+	--	Base game Rocket Recipe
+	data:extend({
+		{
+			type = "int-setting",
+			name = "settings-rocket-recipe",
+			setting_type = "startup",
+			allowed_values = {1, 5, 10, 25, 50, 100, 500, 1000},
+			default_value = 1,
+		},
+		{
+			type = "int-setting",
+			name = "settings-rocket-recipe-energy",
+			setting_type = "startup",
+			allowed_values = {1, 5, 10, 25, 50, 100, 500, 1000},
+			default_value = 1,
+		},
+	})
 end
 
 
@@ -40,17 +39,22 @@ data:extend({
 		setting_type = "startup",
 		allowed_values = {0, 5, 10, 25, 50, 100},
 		default_value = 10,
-    },	
+    },
+
+
+	
 	-- Crashsite Stuff (Equipment, Scrap, Items etc.)
     {
         type = "bool-setting",
         name = "settings-crashsite",
+		order = "b-a[crashsite]",
         setting_type = "startup",
         default_value = true
     },
 		{
         type = "string-setting",
         name = "settings-crashsite-bonus-buildingstats",
+		order = "b-b[crashsite]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal", "more", "extra"},
@@ -58,6 +62,7 @@ data:extend({
 	{
         type = "string-setting",
         name = "settings-crashsite-bonus-equipment",
+		order = "b-c[crashsite]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal", "more", "extra"},
@@ -65,6 +70,7 @@ data:extend({
 	{
         type = "string-setting",
         name = "settings-crashsite-bonus-scrap",
+		order = "b-d[crashsite]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal", "more", "extra"},
@@ -72,35 +78,29 @@ data:extend({
 	{
         type = "bool-setting",
         name = "settings-crashsite-robots",
+		order = "b-e[crashsite]",
         setting_type = "startup",
 		default_value = false,
     },
 	{
         type = "int-setting",
         name = "settings-crashsite-x-players",
+		order = "b-f[crashsite]",
         setting_type = "startup",
 		allowed_values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 		default_value = 1,
     },
-	-- Biter Stuff
-	{
-		type = "int-setting",
-		name = "settings-chunks-probability",
-		setting_type = "startup",
-		allowed_values = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100},
-		default_value = 50,
-    },
-	{
-		type = "int-setting",
-		name = "settings-chunks-multiplier",
-		setting_type = "startup",
-		allowed_values = {1, 2, 3, 4, 5, 10},
-		default_value = 1,
-    },
+	
+	
+	
+
+	
+	
 	-- Enemies	
 	{
         type = "string-setting",
         name = "settings-enemy-spawntime",
+		order = "d-a[enemies]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme", "insane"},
@@ -108,10 +108,33 @@ data:extend({
 	{
         type = "string-setting",
         name = "settings-enemy-health",
+		order = "d-b[enemies]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme", "insane"},
     },
+	
+		-- Biter Stuff
+	{
+		type = "int-setting",
+		name = "settings-chunks-probability",
+		order = "d-c[enemies]",
+		setting_type = "startup",
+		allowed_values = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100},
+		default_value = 50,
+    },
+	{
+		type = "int-setting",
+		name = "settings-chunks-multiplier",
+		order = "d-d[enemies]",
+		setting_type = "startup",
+		allowed_values = {1, 2, 3, 4, 5, 10},
+		default_value = 1,
+    },
+	
+	
+	
+	
 	-- Tech
 	{
         type = "string-setting",
@@ -120,6 +143,9 @@ data:extend({
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme"},
     },
+	
+	
+	
 	-- Warehouse Stuff
 	{
 		type = "bool-setting",
@@ -155,6 +181,9 @@ data:extend({
 		default_value = "default",
 		allowed_values = {"default","kobold","nimble","constructor","soldier","hauler","tank"},
     },
+	
+	
+	
 	-- Loaders
 	{
         type = "bool-setting",
@@ -163,13 +192,58 @@ data:extend({
 		default_value = true,
     },
 	{
+        type = "bool-setting",
+        name = "settings-loaders-electricity",
+        setting_type = "startup",
+		default_value = false,
+    },
+	{
         type = "string-setting",
         name = "settings-loaders-cost",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"normal","expensive"},
     },
-	-- Blanket changes
+	
+	
+	
+	-- Turret Veterancy
+	{
+        type = "string-setting",
+        name = "settings-turrets-vet-kill-damage-check-type",
+		order = "c-a[veterancy]",
+        setting_type = "startup",
+		default_value = "both",
+		allowed_values = {"kill","damage","both","either"},
+    },
+	{
+        type = "string-setting",
+        name = "settings-turrets-vet-bonus-increase",
+		order = "c-b[veterancy]",
+        setting_type = "startup",
+		default_value = "default",
+		allowed_values = {"half","default","double"},
+    },
+	{
+        type = "string-setting",
+        name = "settings-turrets-vet-damage-milestones",
+		order = "c-c[veterancy]",
+        setting_type = "startup",
+		default_value = "default",
+		allowed_values = {"half","default","double"},
+    },
+		{
+        type = "string-setting",
+        name = "settings-turrets-vet-kill-milestones",
+		order = "c-d[veterancy]",
+        setting_type = "startup",
+		default_value = "default",
+		allowed_values = {"half","default","double"},
+    },
+	
+	
+	
+	-- Quality of life changes
 	{
         type = "string-setting",
         name = "settings-status-panels",
@@ -177,6 +251,9 @@ data:extend({
 		default_value = "electric-only",
 		allowed_values = {"none","electric-only","all"},
     },
+	
+	
+	
 	-- World Settings
 	{
         type = "string-setting",

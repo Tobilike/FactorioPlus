@@ -321,6 +321,46 @@ end
 local function escapeHyphens(str) 
   return str:gsub("%-", "%%-") 
 end
+
+
+local delegate = 
+{
+  greet = function(self, name)
+   return "Hello, " .. name .. "!"
+  end
+}
+
+
+local VetFunction = nil
+
+local function CheckKills(entity, i)
+	return (entity.kills >= turretKillLevels[i])
+end
+
+local function CheckDamage(entity, i)
+	return (entity.damage_dealt  >= turretDamageLevels[i])
+end
+
+local function CheckBoth(entity, i)
+	return (CheckKills(entity, i) and CheckDamage(entity, i))
+end
+
+local function CheckEither(entity, i)
+	return (CheckKills(entity, i) or CheckDamage(entity, i))
+end
+
+
+if (settings.startup["settings-turrets-vet-kill-damage-check-type"].value == "kill" ) then
+	VetFunction = CheckKills
+elseif (settings.startup["settings-turrets-vet-kill-damage-check-type"].value == "damage" ) then
+	VetFunction = CheckDamage
+elseif (settings.startup["settings-turrets-vet-kill-damage-check-type"].value == "either" ) then
+	VetFunction = CheckEither
+else 
+	-- value == "both"
+	VetFunction	= CheckBoth
+end
+
 	
 function DidTurretKill(entity)
 
@@ -331,14 +371,14 @@ function DidTurretKill(entity)
 			for index, turretvet in pairs (v) do
 
 			-- if this is the original turret (not upgraded)
-				if string.find(turretgroup, entity.name, 1, true  ) ~= nil and entity.kills >= turretKillLevels[1] then
+				if (string.find(turretgroup, entity.name, 1, true )) ~= nil and VetFunction(entity,1) then
 
 					UpgradeTurret(entity, v[1] ,turretVetIcons[1])
 					return
  
 				end
 			-- if it's already upgraded then
-				if v[index+1] ~= nil and string.find(v[index], entity.name, 1, true  ) ~= nil and turretKillLevels[index+1] ~= nil and entity.kills >= turretKillLevels[index+1] then
+				if v[index+1] ~= nil and string.find(v[index], entity.name, 1, true  ) ~= nil and turretKillLevels[index+1] ~= nil and VetFunction(entity,index+1) then
 					UpgradeTurret(entity, v[index+1] ,turretVetIcons[index+1])
 					return
 				end

@@ -164,7 +164,7 @@ data.extend({
 {
     type = "storage-tank",
     name = "storage-tank-large",
-    icon = "__base__/graphics/icons/storage-tank.png",
+    icon = "__factorioplus__/graphics/icons/storage-tank-large.png",
     flags = {"placeable-player", "player-creation"},
     minable = {mining_time = 0.5, result = "storage-tank-large"},
     max_health = 4000,
@@ -953,7 +953,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {mining_time = 0.75, result = "big-furnace"},
-    max_health = 600,
+    max_health = 800,
     corpse = "stone-furnace-remnants",
     dying_explosion = "stone-furnace-explosion",
     -- repair_sound = sounds.manual_repair,
@@ -1094,7 +1094,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {mining_time = 1.75, result = "steel-forge"},
-    max_health = 1200,
+    max_health = 1800,
     corpse = "stone-furnace-remnants",
     dying_explosion = "stone-furnace-explosion",
     -- repair_sound = sounds.manual_repair,
@@ -1255,7 +1255,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {mining_time = 1.5, result = "electric-foundry"},
-    max_health = 1350,
+    max_health = 1400,
     corpse = "electric-furnace-remnants",
     dying_explosion = "electric-furnace-explosion",
     resistances =
@@ -1265,8 +1265,8 @@ data.extend({
         percent = 80
       }
     },
-    collision_box = {{-1.8, -1.8}, {1.8, 1.8}},
-    selection_box = {{-1.95, -1.95}, {1.95, 1.95}},
+    collision_box = {{-2.4, -2.4}, {2.4, 2.4}},
+    selection_box = {{-2.45, -2.45}, {2.45, 2.45}},
     damaged_trigger_effect = hit_effects.entity(),
 
       module_slots = 4,
@@ -1274,19 +1274,21 @@ data.extend({
     allowed_effects = {"consumption", "speed", "productivity", "pollution"},
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
-    crafting_speed = 2.5,
-	effect_receiver = {
-		base_effect = {
-			productivity = 0.1,
+    crafting_speed = 3,
+	effect_receiver = 
+	{
+		base_effect = 
+		{
+			productivity = 0.15,
 		}
 	},
-    energy_usage = "425kW",
+    energy_usage = "500kW",
     source_inventory_size = 1,
     energy_source =
     {
       type = "electric",
       usage_priority = "secondary-input",
-      emissions_per_minute = { pollution = 4 },
+      emissions_per_minute = { pollution = 2 },
     },
     vehicle_impact_sound = sounds.generic_impact,
     open_sound = sounds.machine_open,
@@ -1297,73 +1299,77 @@ data.extend({
       {
         filename = "__base__/sound/electric-furnace.ogg",
         volume = 0.8,
-		speed = 0.5
+		speed = 0.55,
+		advanced_volume_control = {attenuation = "exponential"},
+        audible_distance_modifier = 0.5,
       },
-      audible_distance_modifier = 0.6,
+	  max_sounds_per_prototype = 4,
       fade_in_ticks = 4,
       fade_out_ticks = 20
     },
 	 graphics_set =
     {
-    animation =
-    {
-      layers =
-      {
-        {
-          filename = "__factorioplus__/graphics/electric-foundry.png",
-          priority = "high",
-           width = 256,
-          height = 320,
-          frame_count = 1,
-          shift = util.by_pixel(0, -20),
-            scale = 0.5,
-          hr_version =
-          {
-            filename = "__factorioplus__/graphics/electric-foundry.png",
-            priority = "high",
-             width = 256,
-            height = 320,
-            frame_count = 1,
-            shift = util.by_pixel(0, -20),
-            scale = 0.5,
-          }
-        },
-        {
-          filename = "__factorioplus__/graphics/electric-foundry-shadow.png",
-          priority = "high",
-          width = 340,
-          height = 320,
-          frame_count = 1,
-          shift = util.by_pixel(18, -20),
-		  scale = 0.5,
-          draw_as_shadow = true,
-        }
-      }
-    },
-	working_visualisations =
-    {
-      {
-        north_position = {0.0, 0.0},
-        east_position = {0.0, 0.0},
-        south_position = {0.0, 0.0},
-        west_position = {0.0, 0.0},
-        animation =
-        {
-          filename = "__factorioplus__/graphics/electric-foundry-on.png",
-            priority = "extra-high",
-            line_length = 4,
-            width = 256,
-			height = 320,
-            axially_symmetrical = false,
-            direction_count = 1,
-            shift = util.by_pixel(0, -20),
-            scale = 0.5,
-			frame_count = 4,
-			animation_speed = 0.5,
-        },
-        light = {intensity = 1, size = 4, color = {r=1.0, g=1.0, b=1.0}}
-      }
-    },
+		animation =
+		{
+		  layers =
+		  {
+			{
+			  filename = "__factorioplus__/graphics/electric-foundry.png",
+			  priority = "high",
+			  width = 380,
+			  height = 439,
+			  frame_count = 1,
+			  shift = util.by_pixel(0, -10),
+			  scale = 0.425,
+			},
+			{
+			  filename = "__factorioplus__/graphics/electric-foundry-shadow.png",
+			  priority = "high",
+			  width = 400,
+			  height = 190,
+			  frame_count = 1,
+			  shift = util.by_pixel(36, 26),
+			  scale = 0.6,
+			  draw_as_shadow = true,
+			}
+		  }
+		},
+		working_visualisations =
+		{
+			{
+				  fadeout = true,
+				  effect = "flicker",
+				  animation =
+				  {
+					filename = "__factorioplus__/graphics/electric-foundry-glow.png",
+					priority = "high",
+					width = 380,
+					height = 439,
+					draw_as_glow = true,
+					shift = util.by_pixel(0, -10),
+					scale = 0.425,
+					blend_mode = "additive"
+				  }
+			},
+		    {
+				-- Fans etc. Is drawn on top. Can be a fire glow too.
+				animation =
+				{
+				  filename = "__factorioplus__/graphics/electric-foundry-on.png",
+					priority = "extra-high",
+					line_length = 4,
+					width = 380,
+					height = 439,
+					axially_symmetrical = false,
+					direction_count = 1,
+					shift = util.by_pixel(0, -10),
+					scale = 0.425,
+					frame_count = 4,
+					animation_speed = 0.5,
+				},
+				light = {intensity = 0.5, size = 10, color = {r=1.0, g=1.0, b=0.8}}
+		    }
+		},
 	},
 	
     fast_replaceable_group = "furnace",
@@ -5746,9 +5752,7 @@ data.extend({
     circuit_connector = circuit_connector_definitions["loader"],
     circuit_wire_max_distance = default_circuit_wire_max_distance,
   },
- 
 
-   
 
 
  --------------------------------------------------- LOADER ------------------------------------------------------------
@@ -6139,6 +6143,54 @@ data.extend({
   },
   
 }) 
+
+	-- If loaders need electricity, give them these values:
+	if settings.startup["settings-loaders-electricity"].value then
+		data.raw["loader"]["basic-loader"].energy_per_item = "6kW"
+		data.raw["loader"]["basic-loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "10kW"
+		}
+		data.raw["loader"]["loader"].energy_per_item = "10kW"
+		data.raw["loader"]["loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "20kW"
+		}
+		data.raw["loader"]["fast-loader"].energy_per_item = "14kW"
+		data.raw["loader"]["fast-loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "40kW"
+		}
+		data.raw["loader"]["express-loader"].energy_per_item = "18kW"
+		data.raw["loader"]["express-loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "80kW"
+		}
+		data.raw["loader"]["turbo-loader"].energy_per_item = "22kW"
+		data.raw["loader"]["turbo-loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "160kW"
+		}
+		data.raw["loader"]["supersonic-loader"].energy_per_item = "26kW"
+		data.raw["loader"]["supersonic-loader"].energy_source =
+		{
+		  type = "electric",
+		  usage_priority = "secondary-input",
+		  drain = "320kW"
+		}
+	end
+   
+   
 end
 
 if (mods["space-age"]) then

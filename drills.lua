@@ -1339,7 +1339,8 @@ data:extend({
 	  working_visualisations =
 	  {
 		{
-          apply_recipe_tint = "tertiary",
+		  -- "resource-color" or "input-fluid-base-color" or "input-fluid-flow-color" or "status" or "none" or "visual-state-color"
+          apply_tint = "resource-color",
           fadeout = true,
           constant_speed = true,
           north_position = util.by_pixel_hr(120, -128),
@@ -1354,13 +1355,13 @@ data:extend({
             line_length = 16,
             width = 90,
             height = 188,
-            animation_speed = 1,
+            animation_speed = 0.3,
             shift = util.by_pixel(-2, -40),
             scale = 0.3
           }
         },
         {
-          apply_recipe_tint = "quaternary",
+          apply_tint = "resource-color",
           fadeout = true,
           constant_speed = true,
           north_position = util.by_pixel_hr(120, -128),
@@ -1375,7 +1376,7 @@ data:extend({
             line_length = 16,
             width = 40,
             height = 84,
-            animation_speed = 1,
+            animation_speed = 0.5,
             shift = util.by_pixel(0, -14),
             scale = 0.3
           }

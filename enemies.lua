@@ -112,8 +112,8 @@ end
 function create_alien_package(data)
 	local _size = data.size
 	local _count = data.count or 1
-	local _countdeviation = data.count_deviation or 1.5
-	local _count_max = _count
+	local _countdeviation = data.count_deviation or 2
+	local _count_max = _count * _countdeviation
 	local _count_min = _count / _countdeviation
 
 	return
@@ -154,7 +154,7 @@ function create_alien_package(data)
 		  },
 		  {
 			type = "physical",
-			percent = 15
+			percent = 25
 		  },
 		},
 		animations  = 
@@ -196,27 +196,27 @@ data:extend({
 	create_alien_package(
 	{
 		size = "small",
-		count = 6
+		count = 4
 	}),
 	create_alien_package(
 	{
 		size = "medium",
-		count = 12
+		count = 6
 	}),
 	create_alien_package(
 	{
 		size = "big",
-		count = 18
+		count = 10
 	}),
 	create_alien_package(
 	{
 		size = "behemoth",
-		count = 24
+		count = 16
 	}),
 	create_alien_package(
 	{
 		size = "boss",
-		count = 30
+		count = 24
 	}),
 })
 

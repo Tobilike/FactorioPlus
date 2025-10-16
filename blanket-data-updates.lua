@@ -1,5 +1,6 @@
 require ("__factorioplus__.util-building-additions")
 require ("__factorioplus__.incineration-data")
+require ("__factorioplus__.weapon-forge-data")
 
 --Add a status panel to entities.
 

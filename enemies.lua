@@ -9,6 +9,9 @@ require ("__factorioplus__.worm-animations")
 require ("__factorioplus__.util-attack-helpers")
 require ("__factorioplus__.explosions")
 
+
+local powerscalingvalue = (settings.startup["settings-enemy-power-scaling"].value/100)
+
 -- AI settings to fix wandering biters
 biter_ai_settings = 
 { 
@@ -932,7 +935,7 @@ data:extend({
         }
       },
     },
-    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(0, 2)"),
+    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(0,"..(1.5 * powerscalingvalue )..")"),
     call_for_help_radius = 40,
     spawn_decorations_on_expansion = true,
     spawn_decoration =
@@ -1095,7 +1098,7 @@ data:extend({
       }
     },
     build_base_evolution_requirement = 0.3,
-    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(4, 3)"),
+    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(4,"..(2.5 * powerscalingvalue )..")"),
     call_for_help_radius = 40,
     spawn_decorations_on_expansion = true,
     spawn_decoration =
@@ -1258,7 +1261,7 @@ collision_box = {{-0.9 * scale_worm_big, -0.8 * scale_worm_big }, {0.9 * scale_w
       }
     },
     build_base_evolution_requirement = 0.5,
-    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(8, 4)"),
+    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(8,"..(3.5 * powerscalingvalue )..")"),
     call_for_help_radius = 40,
     spawn_decorations_on_expansion = true,
     spawn_decoration =
@@ -1418,7 +1421,7 @@ collision_box = {{-0.9 * scale_worm_big, -0.8 * scale_worm_big }, {0.9 * scale_w
       }
     },
     build_base_evolution_requirement = 0.9,
-    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(12, 5)"),
+    autoplace = enemy_autoplace.enemy_worm_autoplace("enemy_autoplace_base(12, "..(5 * powerscalingvalue )..")"),
     --autoplace = enemy_autoplace.enemy_worm_autoplace(8),
     call_for_help_radius = 80,
     spawn_decorations_on_expansion = true,
@@ -1508,7 +1511,7 @@ function makeenemyspawner(spawnername, spawnerbasehealth, spawning_amount, spawn
 	build_base_tier = 0.95
 	end
 
-	_ap = enemy_autoplace.enemy_spawner_autoplace("enemy_autoplace_base(" .. (spawnerautoplace[1] ) * ( (1.8 * spawnertier) * spawnertier ) .."," .. spawnertier ..")")
+	_ap = enemy_autoplace.enemy_spawner_autoplace("enemy_autoplace_base(" .. (spawnerautoplace[1] ) * ( ( 1 + spawnertier * powerscalingvalue ) * spawnertier ) .."," .. spawnertier ..")")
 
 	dte = nil
 	_gs = 
@@ -2452,14 +2455,14 @@ data:extend({
     flags = {"placeable-neutral", "not-on-map"},
      minable =
     {
-      mining_time = 3,
+      mining_time = 2,
        results = 
 	  {
-	  {type = "item", name = "raw-fish", amount_min = 6, amount_max = 18}, 
+	  {type = "item", name = "raw-fish", amount_min = 12, amount_max = 30}, 
 	  },
     },
     mined_sound = sounds.mine_fish,
-    max_health = 100,
+    max_health = 150,
     subgroup = "creatures",
     order = "b-b",
     --factoriopedia_simulation = simulations.factoriopedia_fish,

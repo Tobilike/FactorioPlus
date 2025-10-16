@@ -279,7 +279,6 @@ data:extend
 		tile_layer = 50,
 		map_generator_bounding_box = {{ -0.75, -0.75}, {0.75,0.75}},
 		autoplace = abandonments_autoplace.abandonments_decoratives_autoplace("abandonments_autoplace_base(0, 0.95)"),
-		--autoplace = decal_autoplace_settgins("abandonment-debris-mudium-decal", {{0, 0.3}, {1, 1}}),
 		pictures =
 		{
 			{
@@ -600,7 +599,7 @@ local building_pole_abandoned_connections =
 -- LOOT FUNCTIONS
 local loothutboundingbox = _warehouse_spacing_scale 
 
-local warehouse_scalingvalue = (settings.startup["settings-warehouse-scaling"].value/100)
+local powerscalingvalue = (settings.startup["settings-enemy-power-scaling"].value/100)
 
 local trvinc = 0.25
 local trvincval = 0
@@ -609,7 +608,7 @@ local trv = 0
 -- This is the autoplace function sared by all warehouse objects.
 
 local function loot_autoplace(autoplace_dist)
-	return ("abandonments_autoplace_base(0,".. ( (((autoplace_dist + trv) ^ (1+(warehouse_scalingvalue-1))) / 1.45) -trv ) ..")")
+	return ("abandonments_autoplace_base(0,".. ( (((autoplace_dist + trv) * (1+(powerscalingvalue-1))) ) -trv ) ..")")
 end
 
 local function newtrv()
@@ -762,7 +761,7 @@ local function makeNewAbandonmentTurret(data)
 	-- add a number, which is scaled, don't scale the entire base value...
 	newturret.map_generator_bounding_box = {{ -1.1 - _nbv, -1.1 - _nbv}, {1.1 + _nbv, 1.1 + _nbv}}
 	newturret.build_base_evolution_requirement = 10 -- Make a number so big it can't ever be placed by evo factor (which is 0 - 1.0 range)
-	newturret.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base("..abandonmentTurretLayer..",".._autoplacedistance.." )")
+	newturret.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base("..abandonmentTurretLayer..","..(_autoplacedistance * powerscalingvalue).." )")
 	
 	newturret.enemy_map_color = abandonments_force_color_map
 	
@@ -931,8 +930,7 @@ newturret2.attack_parameters.min_range = newturret2.attack_parameters.min_range 
 newturret2.damage_modifier = 1.0
 newturret2.flags = {"placeable-off-grid",  "player-creation"}
 newturret2.max_health = newturret2.max_health * enemy_health_scale
---newturret2.autoplace = abandonments_autoplace.abandonment_turret_autoplace(5)
-newturret2.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base(33, 6)")
+newturret2.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base(33,"..(6 * powerscalingvalue)..")")
 newturret2.map_generator_bounding_box = {{ -1.70, -1.70}, {1.70, 1.70}}
 newturret2.build_base_evolution_requirement = 10
 newturret2.remove_decoratives = "false"
@@ -958,8 +956,7 @@ newturret3.attack_parameters.min_range = newturret3.attack_parameters.min_range 
 newturret3.damage_modifier = 2
 newturret3.flags = {"placeable-off-grid",  "player-creation"}
 newturret3.max_health = (newturret3.max_health * 1.5) * enemy_health_scale
---newturret3.autoplace = abandonments_autoplace.abandonment_turret_autoplace(5)
-newturret3.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base(33, 12)")
+newturret3.autoplace = abandonments_autoplace.abandonments_turrets_autoplace("abandonments_autoplace_base(33, "..(12 * powerscalingvalue)..")")
 newturret3.map_generator_bounding_box = {{ -1.70, -1.70}, {1.70, 1.70}}
 newturret3.build_base_evolution_requirement = 10
 newturret3.remove_decoratives = "false"
@@ -999,7 +996,7 @@ newsolarpanel.picture = building_solararray_abandoned_1
 newsolarpanel.overlay = nil
 newsolarpanel.collision_box = solarpanel1_scale
 newsolarpanel.selection_box = solarpanel1_scale
-newsolarpanel.autoplace = abandonments_autoplace.abandonments_buildings_autoplace("abandonments_autoplace_base(44, 7.5)")
+newsolarpanel.autoplace = abandonments_autoplace.abandonments_buildings_autoplace("abandonments_autoplace_base(44, "..(8 * powerscalingvalue)..")")
 newsolarpanel.map_generator_bounding_box = solarpanel1_autoplace
 newsolarpanel.enemy_map_color = abandonments_force_color_map
 newsolarpanel.remove_decoratives = "false"
@@ -1033,7 +1030,7 @@ newsolarpanel2.picture = building_solararray_abandoned_2
 newsolarpanel2.overlay = nil
 newsolarpanel2.collision_box = solarpanel2_scale
 newsolarpanel2.selection_box = solarpanel2_scale
-newsolarpanel2.autoplace = abandonments_autoplace.abandonments_buildings2_autoplace("abandonments_autoplace_base(45, 4.5)")
+newsolarpanel2.autoplace = abandonments_autoplace.abandonments_buildings2_autoplace("abandonments_autoplace_base(45,"..(5 * powerscalingvalue)..")")
 newsolarpanel2.map_generator_bounding_box = solarpanel2_autoplace
 newsolarpanel2.enemy_map_color = abandonments_force_color_map
 newsolarpanel2.remove_decoratives = "false"
@@ -1066,7 +1063,7 @@ newsolarpanel3.picture = building_solararray_abandoned_3
 newsolarpanel3.overlay = nil
 newsolarpanel3.collision_box = solarpanel3_scale
 newsolarpanel3.selection_box = solarpanel3_scale
-newsolarpanel3.autoplace = abandonments_autoplace.abandonments_buildings2_autoplace("abandonments_autoplace_base(46, 1.2)")
+newsolarpanel3.autoplace = abandonments_autoplace.abandonments_buildings2_autoplace("abandonments_autoplace_base(46,"..(1 * powerscalingvalue)..")")
 newsolarpanel3.map_generator_bounding_box = solarpanel3_autoplace
 newsolarpanel3.enemy_map_color = abandonments_force_color_map
 newsolarpanel3.remove_decoratives = "false"
@@ -1095,7 +1092,7 @@ newsaccumulator.chargable_graphics.charge_animation = nil
 newsaccumulator.chargable_graphics.discharge_animation = nil
 newsaccumulator.hidden = true
 newsaccumulator.max_health = newsaccumulator.max_health * enemy_health_scale
-newsaccumulator.autoplace = abandonments_autoplace.abandonments_auxbuildings_autoplace("abandonments_autoplace_base(80, 3.0)")
+newsaccumulator.autoplace = abandonments_autoplace.abandonments_auxbuildings_autoplace("abandonments_autoplace_base(80, "..(3 * powerscalingvalue)..")")
 newsaccumulator.build_base_evolution_requirement = 10
 newsaccumulator.energy_source.buffer_capacity = "20MJ"
 newsaccumulator.remove_decoratives = "false"
@@ -1104,8 +1101,8 @@ newsaccumulator.enemy_map_color = abandonments_force_color_map
 newsaccumulator.loot =
     {
       {item = "iron-plate", probability = 1, count_min = 0, count_max = 4},
-	  {item = "copper-plate", probability = 1, count_min = 0, count_max = 4},
-	  {item = "battery", probability = 0.25, count_min = 0, count_max = 2},
+	  {item = "copper-plate", probability = 1, count_min = 2, count_max = 6},
+	  {item = "battery", probability = 0.25, count_min = 0, count_max = 4},
     },
 data:extend{newsaccumulator}
 
@@ -1488,10 +1485,10 @@ if settings.startup["settings-loaders-active"].value then
 data:extend({
 generate_storage_hut ("buildings-logistics-0", loothutboundingbox, 1,
 {
-	{item = "basic-transport-belt", probability = 1, count_min = 50, count_max = 200},
-	{item = "basic-underground-belt", probability =  0.5, count_min = 10, count_max = 20},
-	{item = "basic-splitter", probability = 0.5, count_min = 10, count_max = 20},
-	{item = "basic-loader", probability = 0.25, count_min = 5, count_max = 20},
+	{item = "basic-transport-belt", probability = 1, count_min = 100, count_max = 200},
+	{item = "basic-underground-belt", probability =  0.5, count_min = 20, count_max = 40},
+	{item = "basic-splitter", probability = 0.5, count_min = 20, count_max = 40},
+	{item = "basic-loader", probability = 0.25, count_min = 10, count_max = 40},
 }),
 generate_storage_hut ("buildings-logistics-1", loothutboundingbox, 2,
 {
@@ -1785,31 +1782,31 @@ generate_storage_hut ("transport-5", loothutboundingbox, 9.22,
 data:extend{
 generate_storage_hut ("fuel-0", loothutboundingbox, 2.09,
 {
-	{item = "solid-fuel", probability = 1, count_min = 25, count_max = 80},
+	{item = "solid-fuel", probability = 1, count_min = 50, count_max = 100},
 	{item = "solid-fuel", probability = 0.5, count_min = 25, count_max = 80},
 	{item = "solid-fuel", probability = 0.25, count_min = 25, count_max = 80},
 }),
 generate_storage_hut ("fuel-1", loothutboundingbox, 3.09,
 {
-	{item = "nat-gas-fuel", probability = 1, count_min = 25, count_max = 50},
+	{item = "nat-gas-fuel", probability = 1, count_min = 50, count_max = 100},
 	{item = "nat-gas-fuel", probability = 0.5, count_min = 25, count_max = 50},
 	{item = "nat-gas-fuel", probability = 0.25, count_min = 25, count_max = 50},
 }),
 generate_storage_hut ("fuel-2", loothutboundingbox, 5.09,
 {
-	{item = "petroleum-fuel", probability = 1, count_min = 25, count_max = 50},
+	{item = "petroleum-fuel", probability = 1, count_min = 25, count_max = 100},
 	{item = "petroleum-fuel", probability = 0.5, count_min = 25, count_max = 50},
 	{item = "petroleum-fuel", probability = 0.25, count_min = 25, count_max = 50},
 }),
 generate_storage_hut ("fuel-3", loothutboundingbox, 8.09,
 {
-	{item = "rocket-fuel", probability = 1, count_min = 25, count_max = 50},
+	{item = "rocket-fuel", probability = 1, count_min = 25, count_max = 100},
 	{item = "rocket-fuel", probability = 0.5, count_min = 25, count_max = 50},
 	{item = "rocket-fuel", probability = 0.25, count_min = 25, count_max = 50},
 }),
 generate_storage_hut ("fuel-4", loothutboundingbox, 10.09,
 {
-	{item = "true-rocket-fuel", probability = 1, count_min = 25, count_max = 50},
+	{item = "true-rocket-fuel", probability = 1, count_min = 25, count_max = 80},
 	{item = "true-rocket-fuel", probability = 0.5, count_min = 25, count_max = 50},
 	{item = "true-rocket-fuel", probability = 0.25, count_min = 25, count_max = 50},
 }),
@@ -1848,150 +1845,176 @@ generate_storage_hut ("weapons-robots-3", loothutboundingbox, 10,
 }),
 }
 
+local weaponforge_chance = 5 / 100
+
 data:extend{
 generate_storage_hut ("weapons1-pistol", loothutboundingbox, 0.91,
 {
 	{item = "pistol-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-pistol", loothutboundingbox, 1.21,
 {
 	{item = "pistol-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-pistol", loothutboundingbox, 1.51,
 {
 	{item = "pistol-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "explosive-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-pistol", loothutboundingbox, 2.31,
 {
 	{item = "pistol-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "uranium-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-magnum", loothutboundingbox, 1.12,
 {
 	{item = "magnum", probability = 1, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 25, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-magnum", loothutboundingbox, 1.62,
 {
 	{item = "magnum-uncommon", probability =  0.8, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 25, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-magnum", loothutboundingbox, 2.62,
 {
 	{item = "magnum-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 25, count_max = 40},
 	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-magnum", loothutboundingbox, 3.42,
 {
 	{item = "magnum-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 25, count_max = 40},
 	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-magnum", loothutboundingbox, 5.22,
 {
 	{item = "magnum-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 25, count_max = 40},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 25, count_max = 45},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-smg", loothutboundingbox, 1.73,
 {
 	{item = "submachine-gun", probability = 1, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-smg", loothutboundingbox, 2.73,
 {
 	{item = "submachine-gun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-smg", loothutboundingbox, 3.83,
 {
 	{item = "submachine-gun-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-smg", loothutboundingbox, 4.93,
 {
 	{item = "submachine-gun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-smg", loothutboundingbox, 6.03,
 {
 	{item = "submachine-gun-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "uranium-rounds-magazine", probability = 1, count_min = 10, count_max = 30},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-uzi", loothutboundingbox, 1.93,
 {
 	{item = "uzi-gun", probability = 1, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-uzi", loothutboundingbox, 2.93,
 {
 	{item = "uzi-gun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "firearm-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "firearm-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-uzi", loothutboundingbox, 3.93,
 {
 	{item = "uzi-gun-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "piercing-rounds-magazine", probability = 0.5, count_min = 10, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-uzi", loothutboundingbox, 5.03,
 {
 	{item = "uzi-gun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rounds-magazine", probability = 1, count_min = 20, count_max = 40},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-uzi", loothutboundingbox, 6.23,
 {
 	{item = "uzi-gun-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "uranium-rounds-magazine", probability = 1, count_min = 10, count_max = 30},
 	{item = "uranium-rounds-magazine", probability = 0.5, count_min = 10, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-shotgun", loothutboundingbox, 2.04,
 {
 	{item = "shotgun", probability = 1, count_min = 1, count_max = 1},
 	{item = "shotgun-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-shotgun", loothutboundingbox, 3.04,
 {
 	{item = "shotgun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "shotgun-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-shotgun", loothutboundingbox, 4.04,
 {
 	{item = "shotgun-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "piercing-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-shotgun", loothutboundingbox, 5.04,
 {
 	{item = "shotgun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "explosive-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-shotgun", loothutboundingbox, 6.04,
 {
 	{item = "shotgun-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "explosive-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "explosive-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 
 generate_storage_hut ("weapons0-blunderbuss", loothutboundingbox, 3.55,
@@ -1999,30 +2022,35 @@ generate_storage_hut ("weapons0-blunderbuss", loothutboundingbox, 3.55,
 	{item = "blunderbuss", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "shotgun-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-blunderbuss", loothutboundingbox, 4.55,
 {
 	{item = "blunderbuss-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "shotgun-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-blunderbuss", loothutboundingbox, 5.55,
 {
 	{item = "blunderbuss-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "piercing-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-blunderbuss", loothutboundingbox, 6.75,
 {
 	{item = "blunderbuss-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "depleted-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-blunderbuss", loothutboundingbox, 8.55,
 {
 	{item = "blunderbuss-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "depleted-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "depleted-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 
 
@@ -2031,30 +2059,35 @@ generate_storage_hut ("weapons0-autoshotgun", loothutboundingbox, 5.06,
 	{item = "combat-shotgun", probability = 1, count_min = 1, count_max = 1},
 	{item = "piercing-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "piercing-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-autoshotgun", loothutboundingbox, 6.06,
 {
 	{item = "combat-shotgun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "piercing-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "piercing-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-autoshotgun", loothutboundingbox, 7.06,
 {
 	{item = "combat-shotgun-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "piercing-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "piercing-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-autoshotgun", loothutboundingbox, 8.06,
 {
 	{item = "combat-shotgun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "depleted-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-autoshotgun", loothutboundingbox, 9.06,
 {
 	{item = "combat-shotgun-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "depleted-shotgun-shell", probability = 1,  count_min = 15, count_max = 30},
 	{item = "depleted-shotgun-shell", probability = 0.5, count_min = 5, count_max = 25},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 
 
@@ -2063,120 +2096,140 @@ generate_storage_hut ("weapons0-flamethrower", loothutboundingbox, 5.07,
 	{item = "flamethrower", probability = 1, count_min = 1, count_max = 1},
 	{item = "flamethrower-ammo", probability = 1, count_min = 15, count_max = 30},
 	{item = "flamethrower-ammo", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-flamethrower", loothutboundingbox, 6.07,
 {
 	{item = "flamethrower-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "flamethrower-ammo", probability = 1, count_min = 15, count_max = 30},
 	{item = "flamethrower-ammo", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-flamethrower", loothutboundingbox, 7.07,
 {
 	{item = "flamethrower-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "flamethrower-ammo", probability = 1, count_min = 15, count_max = 30},
 	{item = "flamethrower-ammo-napalm", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-flamethrower", loothutboundingbox, 8.07,
 {
 	{item = "flamethrower-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "flamethrower-ammo-napalm", probability = 1, count_min = 15, count_max = 30},
 	{item = "flamethrower-ammo-napalm", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-flamethrower", loothutboundingbox, 9.07,
 {
 	{item = "flamethrower-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "flamethrower-ammo-napalm", probability = 1, count_min = 15, count_max = 30},
 	{item = "flamethrower-ammo-napalm", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-rocket-launcher", loothutboundingbox, 8.08,
 {
 	{item = "rocket-launcher", probability = 1, count_min = 1, count_max = 1},
 	{item = "rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-rocket-launcher", loothutboundingbox, 9.08,
 {
 	{item = "rocket-launcher-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-rocket-launcher", loothutboundingbox, 10.08,
 {
 	{item = "rocket-launcher-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "explosive-rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "explosive-rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-rocket-launcher", loothutboundingbox, 11.08,
 {
 	{item = "rocket-launcher-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "rocket-micro", probability = 1, count_min = 50, count_max = 200},
 	{item = "explosive-rocket", probability = 0.5, count_min = 25, count_max = 55},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-rocket-launcher", loothutboundingbox, 12.08,
 {
 	{item = "rocket-launcher-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "rocket-micro", probability = 1, count_min = 50, count_max = 200},
 	{item = "explosive-rocket", probability = 0.5, count_min = 45, count_max = 105},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-sniper-rifle", loothutboundingbox, 6.59,
 {
 	{item = "sniper-rifle", probability = 1, count_min = 1, count_max = 1},
 	{item = "sniper-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "sniper-shell", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-sniper-rifle", loothutboundingbox, 7.29,
 {
 	{item = "sniper-rifle-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "sniper-shell", probability = 1, count_min = 15, count_max = 30},
 	{item = "sniper-shell-piercing", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-sniper-rifle", loothutboundingbox, 8.39,
 {
 	{item = "sniper-rifle-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "sniper-shell-piercing", probability = 1, count_min = 15, count_max = 30},
 	{item = "sniper-shell-piercing", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-sniper-rifle", loothutboundingbox, 9.09,
 {
 	{item = "sniper-rifle-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "sniper-shell-piercing", probability = 1, count_min = 15, count_max = 30},
 	{item = "sniper-shell-uranium", probability = 0.25, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-sniper-rifle", loothutboundingbox, 10.19,
 {
 	{item = "sniper-rifle-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "sniper-shell-piercing", probability = 1, count_min = 15, count_max = 30},
 	{item = "sniper-shell-uranium", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons0-multi-rocket-launcher", loothutboundingbox, 10.01,
 {
 	{item = "multirocket-launcher", probability = 1, count_min = 1, count_max = 1},
 	{item = "rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-multi-rocket-launcher", loothutboundingbox, 11.01,
 {
 	{item = "multirocket-launcher-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "explosive-rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-multi-rocket-launcher", loothutboundingbox, 12.01,
 {
 	{item = "multirocket-launcher-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "explosive-rocket", probability = 1, count_min = 15, count_max = 30},
 	{item = "explosive-rocket", probability = 0.5, count_min = 15, count_max = 35},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-multi-rocket-launcher", loothutboundingbox, 13.01,
 {
 	{item = "multirocket-launcher-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "explosive-rocket", probability = 1, count_min = 50, count_max = 200},
 	{item = "rocket-micro", probability = 0.5, count_min = 50, count_max = 200},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-multi-rocket-launcher", loothutboundingbox, 14.01,
 {
 	{item = "multirocket-launcher-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "rocket-micro", probability = 1, count_min = 50, count_max = 200},
 	{item = "explosive-rocket", probability = 0.5, count_min = 45, count_max = 105},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons5-nuke", loothutboundingbox, 14.02,
 {
@@ -2185,35 +2238,40 @@ generate_storage_hut ("weapons5-nuke", loothutboundingbox, 14.02,
 	{item = "atomic-bomb", probability = 0.25, count_min = 1, count_max = 1},
 	{item = "atomic-bomb", probability = 0.125, count_min = 1, count_max = 1},
 }),
-generate_storage_hut ("weapons0-mini-gun", loothutboundingbox, 11.03,
+generate_storage_hut ("weapons0-mini-gun", loothutboundingbox, 10.03,
 {
 	{item = "mini-gun", probability = 1, count_min = 1, count_max = 1},
 	{item = "chaingun-ammo", probability = 1, count_min = 5, count_max = 10},
 	{item = "chaingun-ammo", probability = 0.5, count_min = 5, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons1-mini-gun", loothutboundingbox, 11.43,
 {
 	{item = "mini-gun-uncommon", probability = 0.8, count_min = 1, count_max = 1},
 	{item = "chaingun-ammo", probability = 1, count_min = 5, count_max = 10},
 	{item = "chaingun-ammo", probability = 0.5, count_min = 5, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons2-mini-gun", loothutboundingbox, 11.83,
 {
 	{item = "mini-gun-rare", probability = 0.4, count_min = 1, count_max = 1},
 	{item = "chaingun-ammo", probability = 1, count_min = 5, count_max = 10},
 	{item = "chaingun-ammo-piercing", probability = 0.5, count_min = 5, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons3-mini-gun", loothutboundingbox, 12.23,
 {
 	{item = "mini-gun-epic", probability = 0.2, count_min = 1, count_max = 1},
 	{item = "chaingun-ammo-piercing", probability = 1, count_min = 5, count_max = 15},
 	{item = "chaingun-ammo-piercing", probability = 0.5, count_min = 5, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 generate_storage_hut ("weapons4-mini-gun", loothutboundingbox, 13.13,
 {
 	{item = "mini-gun-legendary", probability = 0.1, count_min = 1, count_max = 1},
 	{item = "chaingun-ammo-piercing", probability = 1, count_min = 5, count_max = 15},
 	{item = "chaingun-ammo-piercing", probability = 0.5, count_min = 5, count_max = 15},
+	{item = "weapon-forge", probability = weaponforge_chance, count_min = 1, count_max = 1},
 }),
 }
     

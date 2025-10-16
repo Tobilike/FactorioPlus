@@ -4017,7 +4017,7 @@ data:extend({
             speed_from_center = 0.08,
             speed_from_center_deviation = 0.005,
             offset_deviation = {{-4, -4}, {4, 4}},
-            max_radius = mortar_regular_damageradius,
+            max_radius = 3.5,
             repeat_count = 2 * 2 * 10
           },
           {
@@ -4026,8 +4026,13 @@ data:extend({
           },
 		  {
             type = "create-entity",
-            entity_name =  "small-scorchmark-tintable"
-          },	 
+            entity_name =  "small-scorchmark-tintable",
+			check_buildability = true
+          },
+          {
+            type = "invoke-tile-trigger",
+            repeat_count = 1,
+          },	
         },
       },
     },

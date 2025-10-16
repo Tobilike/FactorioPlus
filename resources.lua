@@ -516,31 +516,31 @@ data:extend
     {
 	
       mining_particle = "stone-particle",
-      mining_time = 1.5,
+      mining_time = 1.0,
       results = 
 	  {
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.17*goblin_ore_scalar,
+			probability = 0.18*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "iron-ore",
-			probability = 0.27*goblin_ore_scalar,
+			probability = 0.28*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "copper-ore",
-			probability = 0.22*goblin_ore_scalar,
+			probability = 0.20*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 			type = "item",
 			name = "coal",
-			probability = 0.21*goblin_ore_scalar,
+			probability = 0.23*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -608,19 +608,19 @@ data:extend
     {
 	-- STONE RICHEST & COAL RICH, IRON MED-LOW, COPPER MED
       mining_particle = "stone-particle",
-      mining_time = 1.5,
+      mining_time = 1.0,
       results = 
 	  {
 		{
 			type = "item",
 			name = "stone",
-			probability = 0.45*goblin_ore_scalar,
+			probability = 0.48*goblin_ore_scalar,
 			amount = 1
 		},
 		{
 		type = "item",
 			name = "iron-ore",
-			probability = 0.2*goblin_ore_scalar,
+			probability = 0.22*goblin_ore_scalar,
 			amount = 1
 		},
 		{
@@ -632,7 +632,7 @@ data:extend
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.35*goblin_ore_scalar,
+			probability = 0.37*goblin_ore_scalar,
 			amount = 1
 		},
 	  },
@@ -701,13 +701,13 @@ data:extend
     {
 		-- Metal rich
       mining_particle = "stone-particle",
-      mining_time = 1.5,
+      mining_time = 1.0,
       results = 
 	  {
 		{
 		type = "item",
 			name = "stone",
-			probability = 0.05*goblin_ore_scalar,
+			probability = 0.08*goblin_ore_scalar,
 			amount = 1
 		},
 		{
@@ -725,7 +725,7 @@ data:extend
 		{
 		type = "item",
 			name = "coal",
-			probability = 0.16*goblin_ore_scalar,
+			probability = 0.17*goblin_ore_scalar,
 			amount = 1
 		},
 	  },

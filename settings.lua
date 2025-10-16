@@ -33,12 +33,25 @@ end
 
 
 data:extend({
+
+
+	-- Combat things
+	
 	{
 		type = "int-setting",
 		name = "settings-combat-friendlyfire-percent",
 		setting_type = "startup",
 		allowed_values = {0, 5, 10, 25, 50, 100},
 		default_value = 10,
+    },
+	
+	{
+		type = "int-setting",
+		name = "settings-enemy-power-scaling",
+		order = "d-a[crashsite]",
+		setting_type = "startup",
+		allowed_values = {50, 75, 100, 150, 200, 250},
+		default_value = 100,
     },
 
 
@@ -100,7 +113,7 @@ data:extend({
 	{
         type = "string-setting",
         name = "settings-enemy-spawntime",
-		order = "d-a[enemies]",
+		order = "d-b[enemies]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme", "insane"},
@@ -108,7 +121,7 @@ data:extend({
 	{
         type = "string-setting",
         name = "settings-enemy-health",
-		order = "d-b[enemies]",
+		order = "d-c[enemies]",
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme", "insane"},
@@ -142,8 +155,7 @@ data:extend({
         setting_type = "startup",
 		default_value = "normal",
 		allowed_values = {"easy", "normal", "hard", "extreme"},
-    },
-	
+    },	
 	
 	
 	-- Warehouse Stuff
@@ -161,20 +173,24 @@ data:extend({
 		default_value = "normal",
 		-- { 14, 18, 22, 26, 30}
     },
-	{
-		type = "int-setting",
-		name = "settings-warehouse-scaling",
-		setting_type = "startup",
-		allowed_values = {75, 100, 125, 150, 175, 200},
-		default_value = 100,3
-    },
+	-- {
+		-- type = "int-setting",
+		-- name = "settings-warehouse-scaling",
+		-- setting_type = "startup",
+		-- allowed_values = {75, 100, 125, 150, 175, 200},
+		-- default_value = 100,3
+    -- },
+	
 	{
 		type = "bool-setting",
 		name = "settings-warehouse-barren",
 		setting_type = "startup",
 		default_value = true,
     },
-	   {
+	
+	-- Character
+	
+    {
         type = "string-setting",
         name = "settings-character-selection",
         setting_type = "startup",

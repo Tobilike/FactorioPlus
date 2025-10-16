@@ -41,29 +41,30 @@ local lt = t or {r=1, g=1, b=1, a=1}
   return icons
 end
 
+-- Rarity includes _name_ of rarity, the _color_ used and the _scale_ of the stats increase (range, firerate, damage)
 local rarities = 
 {
-uncommon = {name = "uncommon", color = {12,255,70,0.7}, scale = 1.2 }, -- green
-rare = {name = "rare", color = {50,100,255,0.7}, scale = 1.4 }, -- blue
-epic = {name = "epic", color = {255,14,158,0.7}, scale = 1.7 }, -- purple
-legendary = {name = "legendary", color = {255,170,8,0.7}, scale = 2.25 }, -- orange/yellow
+	uncommon = {name = "uncommon", color = {12,255,70,0.7}, scale = 1.2 }, -- green
+	rare = {name = "rare", color = {50,100,255,0.7}, scale = 1.4 }, -- blue
+	epic = {name = "epic", color = {255,14,158,0.7}, scale = 1.7 }, -- purple
+	legendary = {name = "legendary", color = {255,170,8,0.7}, scale = 2.25 }, -- orange/yellow
 }
 
 function createnewrareweapon(weapon, rarity)
-local r = rarities[rarity]
-local nw = table.deepcopy(data.raw["gun"][weapon]) 
-local dm = nw.attack_parameters.damage_modifier or 1.0
-local range_reduction = 1/4
-nw.localised_name = { "" , string.capitalize(r.name) , " " , {"item-name." .. nw.name} }
-nw.name = nw.name .. "-" .. r.name
-nw.icons = util.item_icon_rarity_border(nw.icon , r.color)
-nw.icon = nil
-nw.hidden = true
-nw.attack_parameters.cooldown = nw.attack_parameters.cooldown / r.scale 
-nw.attack_parameters.range = math.ceil( nw.attack_parameters.range * (1+((r.scale-1)*range_reduction)) )
-nw.attack_parameters.damage_modifier = dm * r.scale
+	local r = rarities[rarity]
+	local nw = table.deepcopy(data.raw["gun"][weapon]) 
+	local dm = nw.attack_parameters.damage_modifier or 1.0
+	local range_reduction = 1/4
+	nw.localised_name = { "" , string.capitalize(r.name) , " " , {"item-name." .. nw.name} }
+	nw.name = nw.name .. "-" .. r.name
+	nw.icons = util.item_icon_rarity_border(nw.icon , r.color)
+	nw.icon = nil
+	nw.hidden = true
+	nw.attack_parameters.cooldown = nw.attack_parameters.cooldown / r.scale 
+	nw.attack_parameters.range = math.ceil( nw.attack_parameters.range * (1+((r.scale-1)*range_reduction)) )
+	nw.attack_parameters.damage_modifier = dm * r.scale
 
-return nw
+	return nw
 end
 
 	----- WEAPON CATEGORY -----

@@ -1,8 +1,36 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.0
-Date: 2025.10.00
+Date: 2025.10.10
   Graphics:
-    - Hello!
+    - Added 5 new signal pictographs.
+    - Updated Abandonment Accumulator graphics.
+    - Updated Abandonment Electric pole graphics.
+    - Updated Electric foundry graphics.
+  Fixes:
+    - Fixed Gas extractors not correctly applying the resource color in their smoke.
+    - Fixed some info screen icons using default solar/accumulator instead of the actual graphic of the building. (e.g. power screen using abandonment solar panels)
+    - Moved elevated rails to transport tab when only Elevated rails mod is running - instead of when Space Age is running.
+    - Rocket silo correctly requires Rocket fuel as a prerequisite.
+  Balance:
+    - Turret veterancy now by default requires both Damage and Kills to reach certain milestones. By default the newer kill requirement is almost half.
+    - Abandonment Accumulators now charge increased from 8MJ -> 20MJ.
+    - Abandonment Electric poles are a little tougher and may also drop some Steel plates on destruction.
+    - Increased the health of Large storage tanks, Large stone furnaces and Steel forges by around 30-50%
+    - Electric foundry base productivity increased from 10% -> 15% & increased energy usage 425kW -> 500kW.
+    - Electric foundry footprint increased from 4 x 4 -> 5 x 5.
+    - Electric foundry pollution reduced from 4 -> 2.
+    - Electric foundry craft speed increased from 2.5 -> 3.
+    - Alien polyps drop a higher, but more variable amount. (2x lower min to 2x higher max)
+    - Minigun equipped weapon has a base +25% damage bonus.
+    - Beltfed bullets (Regular and Piercing) damage increased overall by around +25%
+    - Beltfed bullet magazine size increased from 800 -> 1000
+  Settings:
+    - Added setting for Loaders to require electricity to run, with an additional power cost for high item throughput.
+    - Changed base game Rocket Launch settings to use Multiplier values for Rocket parts and Recipe Energy costs.
+    - Added Turret veterancy setting to change whether to use Kills, Damage, Both (AND) or Either (OR) to level up.
+    - Added Turret veterancy milestone settings to change the Kill or Damage amounts reuired to level up.
+    - Added Turret veterancy bonus settings to change how much the Range, Damage and Fire rate is increased per level up.
+    - Inital pass on sorting the ordering of settings.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.9
 Date: 2025.10.03

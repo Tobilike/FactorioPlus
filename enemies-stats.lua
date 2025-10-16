@@ -60,7 +60,7 @@ health_small_worm    	= 200
 health_medium_worm   	= 600
 health_big_worm  		= 1600
 health_behemoth_worm   =  3200
-health_boss_worm  		 =  5000
+health_boss_worm  		 =  6000
 
 damage_splash_worm_small    	= damage_modifier_worm_small / 60 / 2
 damage_splash_worm_medium   	= damage_modifier_worm_medium / 60 / 3
@@ -92,11 +92,11 @@ autoplace_spacing_stinger = {0.55, 7}
 
 spawning_amount_biter = 4
 spawning_amount_spitter = 4
-spawning_amount_swarmer = 8
-spawning_amount_blaster = 3
+spawning_amount_swarmer = 10
+spawning_amount_blaster = 4
 spawning_amount_tanker = 3
 spawning_amount_flamer = 3
-spawning_amount_stinger = 5
+spawning_amount_stinger = 6
 
 -- SPAWN TIME
 
@@ -166,11 +166,11 @@ health_boss_spitter     = 1900
 
 health_spawner_tanker   = 450
 
-health_small_tanker    	= 350
+health_small_tanker    	= 300
 health_medium_tanker  	= 700
-health_big_tanker		= 1200
-health_behemoth_tanker 	= 1600
-health_boss_tanker     	= 2600
+health_big_tanker		= 1300
+health_behemoth_tanker 	= 1800
+health_boss_tanker     	= 3000
 
 health_spawner_stinger   = 250
 
@@ -277,11 +277,11 @@ damage_modifier_swarmer_big      = 14
 damage_modifier_swarmer_behemoth = 22
 damage_modifier_swarmer_boss     = 32
 
-damage_modifier_tanker_small    = 6
-damage_modifier_tanker_medium   = 12
-damage_modifier_tanker_big      = 24
-damage_modifier_tanker_behemoth = 48
-damage_modifier_tanker_boss     = 96
+damage_modifier_tanker_small    = 8  
+damage_modifier_tanker_medium   = 16
+damage_modifier_tanker_big      = 30
+damage_modifier_tanker_behemoth = 60
+damage_modifier_tanker_boss     = 120
 
 damage_modifier_biter_small    = 10
 damage_modifier_biter_medium   = 25
@@ -327,10 +327,10 @@ range_spitter_boss 	   = 38
 attack_speed_flamer_base = 200
 
 damage_modifier_flamer_small    = 20
-damage_modifier_flamer_medium   = 28
-damage_modifier_flamer_big      = 36
-damage_modifier_flamer_behemoth = 48
-damage_modifier_flamer_boss     = 80
+damage_modifier_flamer_medium   = 25
+damage_modifier_flamer_big      = 30
+damage_modifier_flamer_behemoth = 35
+damage_modifier_flamer_boss     = 50
 
 cluster_amount_flamer_small    = 5
 cluster_amount_flamer_medium   = 9
@@ -343,7 +343,7 @@ damage_dps_flamer_medium   	= damage_modifier_flamer_medium / 60
 damage_dps_flamer_big      	= damage_modifier_flamer_big / 60 
 damage_dps_flamer_behemoth 	= damage_modifier_flamer_behemoth / 60 
 damage_dps_flamer_boss 		= damage_modifier_flamer_boss / 60 
-damage_dps_maxstackamount_flamer = 10
+damage_dps_maxstackamount_flamer = 6
 
 stream_radius_flamer_small    = 1.0
 stream_radius_flamer_medium   = 1.2
@@ -351,11 +351,11 @@ stream_radius_flamer_big      = 1.5
 stream_radius_flamer_behemoth = 1.8
 stream_radius_flamer_boss 	= 2.4
 
-stream_blastradius_flamer_small    = 1
-stream_blastradius_flamer_medium   = 2
+stream_blastradius_flamer_small    = 2
+stream_blastradius_flamer_medium   = 2.5
 stream_blastradius_flamer_big      = 3
-stream_blastradius_flamer_behemoth = 4
-stream_blastradius_flamer_boss 	= 5
+stream_blastradius_flamer_behemoth = 3.5
+stream_blastradius_flamer_boss 	= 4.5
 
 flamer_hit_splash_radius_modifier = 3.0
 flamer_sticker_duration = 10
@@ -366,7 +366,7 @@ range_flamer_small    = 18 -4
 range_flamer_medium   = 24 -4
 range_flamer_big      = 32 -4
 range_flamer_behemoth = 42 -4
-range_flamer_boss 	   = 54 -4
+range_flamer_boss 	  = 54 -4
 
 -- WEBBERS
 
@@ -399,7 +399,7 @@ range_webber_big      = 26
 range_webber_behemoth = 30
 range_webber_boss 	   = 36
 
-	-- WBBER STREAM
+	-- WEBBER STREAM
 	
 stream_radius_webber_small    = 1.4
 stream_radius_webber_medium   = 1.7
@@ -418,7 +418,7 @@ damage_webber_boss 	   = 32
 webber_web_tint = {r=1, g=1, b=1, a=0.8} -- spider black, sticky white web stickers, pure slowdown, nothing else.
 
 ground_webber_scale_modifier = 1.35
-webber_ground_patch_duration = 10
+webber_ground_patch_duration = 15
 slow_movement_multiplier_webber = 0.5 -- per level ^ level
 slow_movement_time_webber = 4
 
@@ -447,8 +447,8 @@ damage_stinger_big      = 20
 damage_stinger_behemoth = 30
 damage_stinger_boss     = 50
 	
-slow_movement_multiplier_stinger = 0.8
-slow_movement_time_stinger = 10
+slow_movement_multiplier_stinger = 0.7
+slow_movement_time_stinger = 10 -- Includes damage over time poison
 
 -- HATCHER STATS
 
@@ -489,7 +489,7 @@ slow_movement_time_stinger = 10
 	behemoth_hatcher_scale  = 1.6
 	boss_hatcher_scale      = 2.2
 
-	hatcher_egg_health_base = 150
+	hatcher_egg_health_base = 250
 
 	health_small_hatcher   	= 100
 	health_medium_hatcher  	= 100 * 2
@@ -508,7 +508,7 @@ slow_movement_time_stinger = 10
 	range_hatcher_behemoth = 36
 	range_hatcher_boss 	   = 42
 	
-	-- musltiplied by 10, because spitter logic...
+	-- multiplied by 10, because spitter logic...
 	damage_hatcher_small    = 1
 	damage_hatcher_medium   = 2
 	damage_hatcher_big      = 3

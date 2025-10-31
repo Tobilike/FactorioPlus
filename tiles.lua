@@ -64,8 +64,8 @@ end
 -- --data.raw["cliff"]["cliff-gleba"].cliff_explosive = "cliff-explosives"
 -- end
 
-local pollution_ocean = { pollution = 0.000065 }
-local pollution_deepwater = { pollution = 0.000035 }
+local pollution_ocean = { pollution = 0.00008 }
+local pollution_deepwater = { pollution = 0.00004 }
  
 data.raw["tile"]["stone-path"].walking_speed_modifier = walking_speed_stone
 data.raw["tile"]["concrete"].walking_speed_modifier = walking_speed_concrete
@@ -87,7 +87,7 @@ end
 -- Lush Grass
 
 data.raw["tile"]["grass-1"].tint = { 0.9, 1 , 0.95}
-data.raw["tile"]["grass-1"].absorptions_per_second["pollution"] = tile_pollution.grass["pollution"] * 1.25 
+data.raw["tile"]["grass-1"].absorptions_per_second["pollution"] = tile_pollution.grass["pollution"] * 1.2 
 
 update_tile_map_color ("grass-1")
 

@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.5.1
+Date: 2025.10.16
+  Additions:
+    - Added Weapon forges, a rare drop that is included in any rare weapon drop to allow you to merge copies together for higher rarity weapons. 
+  Fixes:
+    - Abandonment mortars do not leave explosion craters/scortchmarks on water tiles any more.
+  Balance:
+    - Rebalanced Goblin ore ratio amounts closer to older values as Incinerators can handle excess ores easily.
+    - Goblin ore mining time decreased from 1.5s -> 1.0s
+    - Increased Fish shoal size to 6min -> 12min & 12max -> 30max
+    - Increased Hatcher egg health from 150 -> 250.
+    - Reduced Flamer dps and stack damage overall by about half.
+    - Increased Tanker damage by around +50% 
+  Settings:
+    - Moved "Warehouse scaling" into a new "Enemy power scaling" that encompasses all enemy turrets/alien spawners scaling over distance so they correlate.
+---------------------------------------------------------------------------------------------------
 Version: 2.5.0
 Date: 2025.10.10
   Graphics:
@@ -81,7 +97,7 @@ Date: 2025.09.26
     - Added 5 emote signals.
     - Updated F+ added pictograph signals so that they match the base game off-white color.
   Additions:
-    - Added Large kiquid storage tanks and the associated technology.
+    - Added Large liquid storage tanks and the associated technology.
   Balance:
     - Reduced collision box of Large burner mining drill so that it's easier to fit between them.
     - Reduced collision box of Eletric grinder miners so that it's easier to fit between them.

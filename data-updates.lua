@@ -30,3 +30,50 @@ end
 if mods["Dectorio"] then
 	-- do this
 end
+
+-- Flow Control
+if mods["Flow Control"] then
+	-- Place all new pipes into the F+ fluid handling subgroups
+	if data.raw.item["pipe-junction"] then
+	data.raw.item["pipe-junction"].subgroup = "pipes"
+	end
+	if data.raw.item["pipe-elbow"] then
+	data.raw.item["pipe-elbow"].subgroup = "pipes"
+	end
+	if data.raw.item["pipe-straight"] then
+	data.raw.item["pipe-straight"].subgroup = "pipes"
+	end
+end
+
+-- FluidMustFlow
+if mods["FluidMustFlow"] then
+	-- Make a subgroup for Fluidmustflow objects in the F+ fluid handling category
+	data:extend({
+		{
+		type = "item-subgroup",
+		name = "FluidMustFlow",
+		group = "fluid-handling",
+		order = "z"
+		}
+	})
+
+	-- List of FMF items
+	local fluidMustFlowItems = {
+	"duct", 
+	"duct-cross", 
+	"duct-curve", 
+	"duct-exhaust",
+	"duct-intake", 
+	"duct-long", 
+	"duct-small", 
+	"duct-t-junction",
+	"duct-underground", 
+	"non-return-duct"
+	}
+
+	for _, itemName in pairs(fluidMustFlowItems) do
+		if data.raw.item[itemName] then
+		data.raw.item[itemName].subgroup = "FluidMustFlow"
+		end
+	end
+end

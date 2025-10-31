@@ -537,7 +537,7 @@ data.extend({
 	circuit_connector = circuit_connector_definitions["factory"],
    circuit_wire_max_distance = default_circuit_wire_max_distance,
 
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"}
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"}
 },
 ---------------------------------------------------  MINI ASSEMBLER  ------------------------------------------------------------
 {
@@ -626,7 +626,7 @@ data.extend({
     circuit_wire_max_distance = default_circuit_wire_max_distance,
 	
     module_slots = 3,
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
 	
 	icon_draw_specification = {scale = 0.6},
 
@@ -733,7 +733,7 @@ data.extend({
 	circuit_connector = circuit_connector_definitions["hpmp"],
     circuit_wire_max_distance = default_circuit_wire_max_distance,
 	
-	allowed_effects = {"consumption", "speed", "productivity", "pollution"}
+	-- allowed_effects = {"consumption", "speed", "productivity", "pollution"}
 },
 
 ---------------------------------------------------  COMPRESSOR ------------------------------------------------------------
@@ -1271,7 +1271,7 @@ data.extend({
 
       module_slots = 4,
 	  
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
     crafting_speed = 3,
@@ -1415,7 +1415,7 @@ data.extend({
 
       module_slots = 5,
 
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
     crafting_categories = {"smelting"},
 	source_inventory_size = 1,
     result_inventory_size = 1,
@@ -1843,7 +1843,7 @@ data.extend({
 
     module_slots = 2,
 
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
     crafting_speed = 1.5,
@@ -1964,7 +1964,7 @@ data.extend({
     icon_size = 64, icon_mipmaps = 4,
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
     minable = {mining_time = 0.75, result = "basic-electric-furnace"},
-    max_health = 550,
+    max_health = 600,
     corpse = "electric-furnace-remnants",
     dying_explosion = "electric-furnace-explosion",
     resistances =
@@ -1978,13 +1978,13 @@ data.extend({
     selection_box = {{-2.0, -2.0}, {2.0, 2.0}},
     damaged_trigger_effect = hit_effects.entity(),
 
-    module_slots = 1,
+    module_slots = 2,
 
-    allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
     crafting_categories = {"smelting"},
     result_inventory_size = 1,
     crafting_speed = 1,
-    energy_usage = "420kW",
+    energy_usage = "400kW",
     source_inventory_size = 1,
     energy_source =
     {

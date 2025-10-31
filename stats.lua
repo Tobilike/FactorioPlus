@@ -451,7 +451,8 @@ mirv_stack = 15
 -- FLAMETHROWER --
 -------------
 
-firerate_flamethrower = 60 / 15
+firerate_flamethrower = 60 / 20
+range_flamethrower = 24
 
 -------------
 -- ROCKETS --

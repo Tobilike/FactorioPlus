@@ -630,7 +630,7 @@ data:extend({
       movement_slow_down_factor = 0.4,
       gun_barrel_length = 0.8,
       gun_center_shift = { 0, -1 },
-      range = 20,
+      range = range_flamethrower,
       min_range = 3,
       cyclic_sound =
       {
@@ -695,8 +695,8 @@ data:extend({
 	  damage_modifier = damage_modifier_vehicle_bonus,
       gun_barrel_length = 1.4,
       gun_center_shift = { -0.17, -1.15 },
-      range = 25 * range_modifier_vehicle_bonus,
-      min_range = 3,
+      range = range_flamethrower * range_modifier_vehicle_bonus + 4,
+      min_range = 5,
       cyclic_sound =
       {
         begin_sound =

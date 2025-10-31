@@ -1222,9 +1222,9 @@ data:extend({
       emissions_per_minute = {pollution=4},
       usage_priority = "secondary-input"
     },
-    energy_usage = "75kW",
-    resource_searching_radius = 8.0,
-	resource_searching_offset = {0, 7}, -- Waiting for patch 2.0.69
+    energy_usage = "125kW",
+    resource_searching_radius = 11.5,
+	resource_searching_offset = {0, 9}, -- Waiting for patch 2.0.69
     vector_to_place_result = {0, -2.75},
     module_slots = 3,
 

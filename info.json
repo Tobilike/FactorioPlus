@@ -1,6 +1,6 @@
   {
      "name": "factorioplus",
-     "version": "2.5.1",
+     "version": "2.5.2",
      "title": "Factorio+",
      "author": "Fishbus",
      "factorio_version": "2.0",
@@ -12,7 +12,9 @@
 		"(?) lignumis",
 		"(?) BottleneckLite",
 		"(?) Dectorio",
-		"(?) aai-industry"
+		"(?) aai-industry",
+		"(?) Flow Control",
+		"(?) FluidMustFlow"
 	 ],
 	 "description": "A mod that builds upon the vanilla experience. With balance changes and new features"
    }
